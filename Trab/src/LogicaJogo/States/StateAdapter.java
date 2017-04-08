@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package LogicaJogo;
+package LogicaJogo.States;
 
 /**
  *
- * @author edu_f
+ * @author Tiago Coutinho
  */
-public class Constants {
+public class StateAdapter implements States.IStates
+{
     
 }

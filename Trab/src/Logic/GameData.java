@@ -3,20 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Trab;
-
-import Logic.Jogo;
-import View.TextUI;
+package Logic;
 
 /**
  *
  * @author Tiago Coutinho
  */
-public class Trab {
+public class GameData {
+    private int dificuldade;
     
-    public static void main(String[] args) {
-        TextUI textUI = new TextUI(new Jogo());
-        textUI.run();  
-        // TODO code application logic here
+    public GameData()
+    {
+        
+    }
+    
+    public void setDificuldade(int dificuldade)
+    {
+        this.dificuldade=dificuldade;
     }
 }

@@ -3,15 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package LogicaJogo.States;
+package Logic;
 
 /**
  *
- * @author edu_f
+ * @author Tiago Coutinho
  */
-public interface IStates {
-    IStates setStartingArea(int area);
-    IStates setDifficultLevel(int level);
-    IStates start();
-    
+public interface Constants {
+    public static final int [][]NivelDificuldade={{1,5,5,6}, {0,5,3,6}, {0,4,2,5}, {0,3,1,3}};
 }
