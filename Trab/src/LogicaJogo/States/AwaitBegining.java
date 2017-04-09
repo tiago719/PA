@@ -9,6 +9,7 @@ package LogicaJogo.States;
  *
  * @author edu_f
  */
-public class AwaitBegining implements IStates{
-    
+public class AwaitBegining implements IStates
+{
+
 }

@@ -10,15 +10,11 @@ package Logic;
  * @author Tiago Coutinho
  */
 public class GameData {
-    private int dificuldade;
+    private int dificuldade, startingArea;
     
     public GameData()
     {
         
     }
-    
-    public void setDificuldade(int dificuldade)
-    {
-        this.dificuldade=dificuldade;
-    }
+
 }

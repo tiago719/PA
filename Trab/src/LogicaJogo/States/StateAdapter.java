@@ -9,7 +9,7 @@ package LogicaJogo.States;
  *
  * @author Tiago Coutinho
  */
-public class StateAdapter implements States.IStates
+public class StateAdapter implements IStates
 {
     
 }

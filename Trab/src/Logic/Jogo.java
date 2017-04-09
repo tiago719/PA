@@ -30,9 +30,4 @@ public class Jogo {
     {
         return state;
     }
-    
-    public void setDificuldade(int dificuldade)
-    {
-        gameData.setDificuldade(dificuldade);
-    }
 }
