@@ -5,10 +5,14 @@
  */
 package LogicaJogo.States;
 
+import Logic.GameData;
+
 /**
  *
  * @author edu_f
  */
-public class AwaitCardCardSelectionOnCurrentColumn implements IStates{
-    
+public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implements IStates{
+    public AwaitCardCardSelectionOnCurrentColumn(GameData g){
+        super(g);
+    }
 }

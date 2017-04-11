@@ -23,11 +23,23 @@ public class Jogo {
     public Jogo()
     {
         gameData=new GameData();
-        state= new AwaitBegining();
+        state = new AwaitBegining(gameData);
     }
     
     public IStates getState()
     {
         return state;
+    }
+
+    public void setDifficultLevel(Integer valueOf) {
+        gameData.setDifficultLevel(valueOf);
+    }
+
+    public void setStartingArea(Integer valueOf) {
+        gameData.setStartingArea(valueOf);
+    }
+
+    public void startGame(IStates s) {
+        state = s;
     }
 }
