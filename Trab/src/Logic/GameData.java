@@ -89,6 +89,7 @@ public class GameData implements Constants{
         rank = 0;
         startingArea=0;
         dificuldade=2;
+        coluna=1;
         armor = NivelDificuldade[dificuldade-1][0];
         hp = NivelDificuldade[dificuldade-1][1];
         gold = NivelDificuldade[dificuldade-1][2];
@@ -143,7 +144,8 @@ public class GameData implements Constants{
         //TODO: ENTENDER A CENA DO XP E RANKS ...
     }
     
-    
-    
-
+    public int getColuna()
+    {
+        return coluna;
+    }
 }

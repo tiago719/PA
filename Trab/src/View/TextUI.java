@@ -98,7 +98,12 @@ public class TextUI {
 
     public void uiAwaitCardCardSelectionOnCurrentColumn() 
     {
-        System.out.println("Nivel Atual: " + jogo.getGame().)
+        System.out.println("Area Atual: " + jogo.getGame().getArea());
+        System.out.println("Nivel Atual: " + jogo.getGame().getNivel());
+        System.out.println("Coluna Atual: " + jogo.getGame().getColuna());
+        System.out.println("Escolha uma carta da coluna em que se encontra\n\n\n");
+        
+        
         //TODO
     }
 
