@@ -96,7 +96,9 @@ public class TextUI {
         }
     }
 
-    public void uiAwaitCardCardSelectionOnCurrentColumn() {
+    public void uiAwaitCardCardSelectionOnCurrentColumn() 
+    {
+        System.out.println("Nivel Atual: " + jogo.getGame().)
         //TODO
     }
 
@@ -106,7 +108,8 @@ public class TextUI {
 
             if (state instanceof AwaitBegining) {
                 uiAwaitBeggining();
-            } else if (state instanceof AwaitCardCardSelectionOnCurrentColumn) {
+            } 
+            else if (state instanceof AwaitCardCardSelectionOnCurrentColumn) {
                 uiAwaitCardCardSelectionOnCurrentColumn();
             }
         }

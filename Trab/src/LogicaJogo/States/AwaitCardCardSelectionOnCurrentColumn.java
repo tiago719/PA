@@ -15,4 +15,6 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
     public AwaitCardCardSelectionOnCurrentColumn(GameData g){
         super(g);
     }
+    
+    
 }

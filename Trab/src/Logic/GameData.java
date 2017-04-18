@@ -10,11 +10,17 @@ package Logic;
  * @author Tiago Coutinho
  */
 public class GameData implements Constants{
-    private int dificuldade, startingArea, armor, hp, gold, food, rank;
+    private int dificuldade, startingArea, armor, hp, gold, food, rank, areaAtual;
     
     public GameData()
     {
         rank = 0;
+        startingArea=0;
+        dificuldade=2;
+        armor = NivelDificuldade[dificuldade-1][0];
+        hp = NivelDificuldade[dificuldade-1][1];
+        gold = NivelDificuldade[dificuldade-1][2];
+        food = NivelDificuldade[dificuldade-1][3];
     }
 
     void setDifficultLevel(Integer dificuldade) {
@@ -32,6 +38,26 @@ public class GameData implements Constants{
     public boolean intialize() {
         //TODO: iniciar variaveis necessarias (para agora nao estou a ver nenhuma)
         return true;
+    }
+    
+    public int getNivel()
+    {
+        for(int i=0;i<MapaNiveis.length;i++)
+        {
+            for(int j=0;j<MapaNiveis[i].length;j++)
+            {
+                if(MapaNiveis[i][j]==areaAtual)
+                {
+                    return i+1;
+                }
+            }
+        }
+        return -1;
+    }
+    
+    public int getArea()
+    {
+        return areaAtual;
     }
     
     

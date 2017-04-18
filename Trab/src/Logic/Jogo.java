@@ -26,6 +26,11 @@ public class Jogo {
         state = new AwaitBegining(gameData);
     }
     
+    public GameData getGame()
+    {
+        return gameData;
+    }
+    
     public IStates getState()
     {
         return state;
