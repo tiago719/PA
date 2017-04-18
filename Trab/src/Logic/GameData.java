@@ -10,13 +10,14 @@ package Logic;
  * @author Tiago Coutinho
  */
 public class GameData implements Constants{
-    private int dificuldade, startingArea, armor, hp, gold, food, rank, areaAtual;
+    private int dificuldade, startingArea, armor, hp, gold, food, rank, areaAtual, coluna;
     
     public GameData()
     {
         rank = 0;
         startingArea=0;
         dificuldade=2;
+        coluna=1;
         armor = NivelDificuldade[dificuldade-1][0];
         hp = NivelDificuldade[dificuldade-1][1];
         gold = NivelDificuldade[dificuldade-1][2];
@@ -60,7 +61,8 @@ public class GameData implements Constants{
         return areaAtual;
     }
     
-    
-    
-
+    public int getColuna()
+    {
+        return coluna;
+    }
 }
