@@ -10,7 +10,79 @@ package Logic;
  * @author Tiago Coutinho
  */
 public class GameData implements Constants{
-    private int dificuldade, startingArea, armor, hp, gold, food, rank, areaAtual;
+    private int dificuldade, startingArea, armor, hp, gold, food, rank, areaL/*level*/, areaC;
+
+    public int getAreaL() {
+        return areaL;
+    }
+
+    public void setAreaL(int areaL) {
+        this.areaL = areaL;
+    }
+
+    public int getAreaC() {
+        return areaC;
+    }
+
+    public void setAreaC(int areaC) {
+        this.areaC = areaC;
+    }
+
+    public int getDificuldade() {
+        return dificuldade;
+    }
+
+    public void setDificuldade(int dificuldade) {
+        this.dificuldade = dificuldade;
+    }
+
+    public int getStartingArea() {
+        return startingArea;
+    }
+
+    public void setStartingArea(int startingArea) {
+        this.startingArea = startingArea;
+    }
+
+    public int getArmor() {
+        return armor;
+    }
+
+    public void setArmor(int armor) {
+        this.armor = armor;
+    }
+
+    public int getHp() {
+        return hp;
+    }
+
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+
+    public int getGold() {
+        return gold;
+    }
+
+    public void setGold(int gold) {
+        this.gold = gold;
+    }
+
+    public int getFood() {
+        return food;
+    }
+
+    public void setFood(int food) {
+        this.food = food;
+    }
+
+    public int getRank() {
+        return rank;
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
+    }
     
     public GameData()
     {
@@ -42,22 +114,33 @@ public class GameData implements Constants{
     
     public int getNivel()
     {
-        for(int i=0;i<MapaNiveis.length;i++)
-        {
-            for(int j=0;j<MapaNiveis[i].length;j++)
-            {
-                if(MapaNiveis[i][j]==areaAtual)
-                {
-                    return i+1;
-                }
-            }
-        }
-        return -1;
+        return areaL;
     }
     
-    public int getArea()
-    {
-        return areaAtual;
+    public boolean isLastArea(){
+        return MapaNiveis[areaL].length == areaC;                        
+    }
+
+    public boolean addFood(int i) {
+        if (food < 6){
+            food += i;
+            return true;
+        }
+        else return false;
+    }
+
+    public boolean addHealth(int i) {
+        if (hp < 20){
+            hp += i;
+            return true;
+        }
+        else return false;
+    }
+
+    public boolean addXP(int i) {
+        rank += i;
+        return true;
+        //TODO: ENTENDER A CENA DO XP E RANKS ...
     }
     
     

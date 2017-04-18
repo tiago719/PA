@@ -5,10 +5,44 @@
  */
 package LogicaJogo.States;
 
+import Logic.GameData;
+
 /**
  *
  * @author edu_f
  */
-public class AwaitOptionSelection implements IStates{
+public class AwaitOptionSelection extends StateAdapter implements IStates{
+
+    public AwaitOptionSelection(GameData g) {
+        super(g);
+    }
+
+    public boolean ReinforceWeapon(){
+        return getGame().addXP(1);
+
+    }
+    public boolean SearchRation(){
+        return getGame().addFood(1);
+    }
+    
+    public boolean Heal(){
+        return getGame().addHealth(2);
+    }
+    
+    
+    @Override
+    public IStates setStartingArea(int area) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IStates setDifficultLevel(int level) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IStates start() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
