@@ -40,7 +40,7 @@ public class Jogo {
         gameData.setDificuldade(valueOf);
     }
 
-    public void setStartingArea(Integer valueOf) {
+    public void setStartingArea(int valueOf) {
         gameData.setStartingArea(valueOf);
     }
 

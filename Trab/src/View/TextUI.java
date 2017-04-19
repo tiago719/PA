@@ -61,7 +61,7 @@ public class TextUI {
 
                         try
                         {
-                            f=Integer.parseInt(option2);
+                            f=(int)Integer.parseInt(option2);
                         }catch(Exception ex){
                             f=-1;
                         }                   

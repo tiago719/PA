@@ -11,17 +11,16 @@ package Logic;
  */
 public class GameData implements Constants
 {
-    private int dificuldade, startingArea, coluna;
+    private int dificuldade, coluna;
     private final Personagem p;
     private final Caverna c;
     
     public GameData()
     {
-        startingArea=0;
         dificuldade=2;
         coluna=1;
         p=new Personagem(dificuldade);
-        c=new Caverna(startingArea);
+        c=new Caverna();
     }
 
     public int getDificuldade() {
@@ -34,17 +33,9 @@ public class GameData implements Constants
         p.setStats(dificuldade);
     }
 
-    public int getStartingArea() 
+    public void setStartingArea(int startingArea) 
     {
-        return startingArea;
-    }
-
-    public void setStartingArea(int startingArea) {
-        this.startingArea = startingArea;
-    }
-
-    void setStartingArea(Integer area) {
-        startingArea = area;
+        c.setArea(startingArea);
     }
 
     public boolean intialize() 

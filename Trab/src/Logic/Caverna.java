@@ -13,23 +13,12 @@ import static Logic.Constants.MapaNiveis;
  */
 public class Caverna
 {
+
     private int areaL/*level*/, areaC;
-    
-    public Caverna(int startingArea)
+
+    public Caverna()
     {
-        int i, sum=0;
-        
-        for(i=0;i<MapaNiveis.length;i++)
-        {
-            sum+=MapaNiveis[i].length;
-            if(sum>=startingArea)
-            {
-                areaL=i;
-                break;
-            }
-        }
-        
-        areaC=sum-(sum-startingArea);
+        areaL = areaC = 0;
     }
 
     public int getAreaL()
@@ -51,19 +40,43 @@ public class Caverna
     {
         this.areaC = areaC;
     }
-     
+
     public boolean isLastArea()
     {
-        return MapaNiveis[areaL-1].length == areaC+1;                        
+        return MapaNiveis[areaL - 1].length == areaC + 1;
     }
-    
+
     public int getArea()
     {
         return MapaNiveis[areaL][areaC];
     }
-    
+
     public int getNivel()
     {
-        return areaL+1;
+        return areaL + 1;
     }
+
+    public void setArea(int startingArea)
+    {
+        int i,j, sum = 0;
+
+        for (i = 0; i < MapaNiveis.length; i++)
+        {
+            sum += MapaNiveis[i].length;
+            if (sum >= startingArea)
+            {
+                areaL = i;
+                break;
+            }
+        }
+
+        for(j=0;j<MapaNiveis[i].length;j++)
+        {
+            if(MapaNiveis[i][j]==startingArea)
+            {
+                areaC=j;
+            }
+        }
+    }
+
 }
