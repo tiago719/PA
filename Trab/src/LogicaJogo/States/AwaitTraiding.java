@@ -9,6 +9,7 @@ package LogicaJogo.States;
  *
  * @author edu_f
  */
-public class AwaitTraiding implements IStates{
+/*public class AwaitTraiding implements IStates{
     
 }
+*/

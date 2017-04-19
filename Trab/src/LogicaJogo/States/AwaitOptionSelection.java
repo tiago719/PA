@@ -11,7 +11,7 @@ import Logic.GameData;
  *
  * @author edu_f
  */
-public class AwaitOptionSelection extends StateAdapter implements IStates{
+/*public class AwaitOptionSelection extends StateAdapter implements IStates{
 
     public AwaitOptionSelection(GameData g) {
         super(g);
@@ -46,3 +46,4 @@ public class AwaitOptionSelection extends StateAdapter implements IStates{
     }
     
 }
+*/

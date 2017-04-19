@@ -37,7 +37,7 @@ public class Jogo {
     }
 
     public void setDifficultLevel(Integer valueOf) {
-        gameData.setDifficultLevel(valueOf);
+        gameData.setDificuldade(valueOf);
     }
 
     public void setStartingArea(Integer valueOf) {

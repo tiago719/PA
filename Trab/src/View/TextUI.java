@@ -28,6 +28,7 @@ public class TextUI {
     public void uiAwaitBeggining() {
         String option1, option2;
         char c, d;
+        int f;
         Scanner sc = new Scanner(System.in);
         while (true) {
             do {
@@ -52,20 +53,22 @@ public class TextUI {
                     return;
 
                 case '1'://escolher area inicial
-                    do {
+                    do 
+                    {
                         System.out.println("Escolha a area a comecar: (1-14)");
 
                         option2 = sc.next();
 
-                        if (option2.length() >= 1) {
-                            d = option1.charAt(0);
-                        } else {
-                            d = ' ';
-                        }
+                        try
+                        {
+                            f=Integer.parseInt(option2);
+                        }catch(Exception ex){
+                            f=-1;
+                        }                   
+                    }
+                   while (f < 1 || f > 14);
 
-                    } while (d < 1 || d > 14);
-
-                    jogo.setStartingArea(Integer.valueOf(d));
+                    jogo.setStartingArea(f);
                     return;
 
                 case '2'://escolher nivel dificuldade
@@ -78,15 +81,16 @@ public class TextUI {
 
                         option2 = sc.next();
 
-                        if (option2.length() >= 1) {
-                            d = option1.charAt(0);
-                        } else {
-                            d = ' ';
-                        }
+                        try
+                        {
+                            f=Integer.parseInt(option2);
+                        }catch(Exception ex){
+                            f=-1;
+                        }          
 
-                    } while (d < 1 || d > 4);
+                    } while (f < 1 || f > 4);
 
-                    jogo.setDifficultLevel(Integer.valueOf(d));
+                    jogo.setDifficultLevel(f);
                     return;
 
                 case '3'://comecar
@@ -98,9 +102,10 @@ public class TextUI {
 
     public void uiAwaitCardCardSelectionOnCurrentColumn() 
     {
-        System.out.println("Area Atual: " + jogo.getGame().getArea());
-        System.out.println("Nivel Atual: " + jogo.getGame().getNivel());
+        System.out.println("Area Atual: " + jogo.getGame().getCaverna().getArea());
+        System.out.println("Nivel Atual: " + jogo.getGame().getCaverna().getNivel());
         System.out.println("Coluna Atual: " + jogo.getGame().getColuna());
+        System.out.println("Nivel de dificuldade " + jogo.getGame().getDificuldade());
         System.out.println("Escolha uma carta da coluna em que se encontra\n\n\n");
         
         
