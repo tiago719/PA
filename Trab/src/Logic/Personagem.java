@@ -70,23 +70,47 @@ public class Personagem
         this.rank = rank;
     }
     
-    public boolean addFood(int i) {
-        if (food < 6){
+    public boolean addFood(int i) 
+    {
+        if(i<0)
+        {
+            return false;
+        }
+        if (food + i <= 6)
+        {
             food += i;
             return true;
         }
-        else return false;
+        else
+        {
+            food=6;
+            return false;
+        }
     }
 
-    public boolean addHealth(int i) {
-        if (hp < 20){
+    public boolean addHealth(int i) 
+    {
+        if(i<0)
+        {
+            return false;
+        }
+        if (hp + i <= 20){
             hp += i;
             return true;
         }
-        else return false;
+        else
+        {
+            hp=20;
+            return false;
+        }
     }
 
-    public boolean addXP(int i) {
+    public boolean addXP(int i) 
+    {
+        if(i<0)
+        {
+            return false;
+        }
         rank += i;
         return true;
         //TODO: ENTENDER A CENA DO XP E RANKS ...
