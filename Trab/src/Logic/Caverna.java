@@ -22,6 +22,7 @@ public class Caverna
     
     public Caverna(int startingArea, GameData g)
     {
+        areaL = areaC = 0;
         GameData = g;
         Areas = new ArrayList<>();
         for(int i=0; i< Constants.numNiveis; i++){
