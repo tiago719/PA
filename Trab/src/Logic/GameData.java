@@ -5,57 +5,65 @@
  */
 package Logic;
 
+import java.util.ArrayList;
+
+
 /**
  *
  * @author Tiago Coutinho
  */
-public class GameData implements Constants
-{
-    private int dificuldade, coluna;
+public class GameData implements Constants {
+
+    private int dificuldade, startingArea, coluna;
     private final Personagem p;
     private final Caverna c;
-    
-    public GameData()
-    {
-        dificuldade=2;
-        coluna=1;
-        p=new Personagem(dificuldade);
-        c=new Caverna();
+
+
+    public GameData() {
+        startingArea = 0;
+        dificuldade = 2;
+        coluna = 1;
+        p = new Personagem(dificuldade);
+        c = new Caverna(startingArea, this);
+        
     }
 
+   
     public int getDificuldade() {
         return dificuldade;
     }
 
-    public void setDificuldade(int dificuldade) 
-    {
+    public void setDificuldade(int dificuldade) {
         this.dificuldade = dificuldade;
         p.setStats(dificuldade);
     }
 
-    public void setStartingArea(int startingArea) 
-    {
-        c.setArea(startingArea);
+    public int getStartingArea() {
+        return startingArea;
     }
 
-    public boolean intialize() 
-    {
+    public void setStartingArea(int startingArea) {
+        this.startingArea = startingArea;
+    }
+
+    void setStartingArea(Integer area) {
+        startingArea = area;
+    }
+
+    public boolean intialize() {
         //TODO: iniciar variaveis necessarias (para agora nao estou a ver nenhuma)
         return true;
     }
-    
-    public int getColuna()
-    {
+
+    public int getColuna() {
         return coluna;
     }
-    
-    public Caverna getCaverna()
-    {
+
+    public Caverna getCaverna() {
         return c;
     }
-    
-    public Personagem getPersonagem()
-    {
+
+    public Personagem getPersonagem() {
         return p;
     }
 }

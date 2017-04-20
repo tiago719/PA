@@ -6,6 +6,7 @@
 package Logic;
 
 import static Logic.Constants.MapaNiveis;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,12 +14,34 @@ import static Logic.Constants.MapaNiveis;
  */
 public class Caverna
 {
+    private GameData GameData;
 
     private int areaL/*level*/, areaC;
-
-    public Caverna()
+    private final ArrayList<Area> Areas;
+    
+    
+    public Caverna(int startingArea, GameData g)
     {
-        areaL = areaC = 0;
+        GameData = g;
+        Areas = new ArrayList<>();
+        for(int i=0; i< Constants.numNiveis; i++){
+            Areas.add(new Area(g));
+        }
+        
+        
+        int i, sum=0;
+        
+        for(i=0;i<MapaNiveis.length;i++)
+        {
+            sum+=MapaNiveis[i].length;
+            if(sum>=startingArea)
+            {
+                areaL=i;
+                break;
+            }
+        }
+        
+        areaC=sum-(sum-startingArea);
     }
 
     public int getAreaL()
