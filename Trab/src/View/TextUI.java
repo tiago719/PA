@@ -5,11 +5,12 @@
  */
 package View;
 
-import Logic.Cartas.Carta;
+import Logic.Cartas.*;
 import Logic.Jogo;
 import LogicaJogo.States.AwaitBegining;
 import LogicaJogo.States.AwaitCardCardSelectionOnCurrentColumn;
 import LogicaJogo.States.IStates;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -103,14 +104,30 @@ public class TextUI {
 
     public void uiAwaitCardCardSelectionOnCurrentColumn() 
     {
+        ArrayList<Carta> c;
+        int op = 1;
+        
         System.out.println("Area Atual: " + jogo.getGame().getCaverna().getNumArea());
         System.out.println("Nivel Atual: " + jogo.getGame().getCaverna().getNivel());
         System.out.println("Coluna Atual: " + jogo.getGame().getColuna());
         System.out.println("Nivel de dificuldade " + jogo.getGame().getDificuldade());
         System.out.println("Escolha uma carta da coluna em que se encontra\n\n\n");
-        for (Carta cartasColuna : jogo.getGame().getCaverna().getAreaAtual().getCartasColuna()) {
+        
+        c = jogo.getGame().getCaverna().getAreaAtual().getCartasColuna();
+        for (Carta cartasColuna : c) {
             System.out.println(cartasColuna);
         }
+        
+        //TODO: MENU DE ESCOLHA DA CARTA
+        Carta temp = c.get(op-1);
+        
+        if (temp instanceof Resting)
+            jogo.ResolveRestingCard(jogo.getState().ResolveSelectedRestingCard());
+        //else if()
+
+        
+        
+        
     }
 
     public void run() {

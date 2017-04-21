@@ -39,4 +39,9 @@ public class AwaitBegining extends StateAdapter implements IStates
 
     }
 
+    @Override
+    public IStates ResolveSelectedRestingCard() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

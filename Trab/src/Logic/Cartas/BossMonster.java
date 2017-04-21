@@ -30,8 +30,6 @@ public class BossMonster extends Carta{
         s += "4 - Serpent Demon - 25 - 9 - 3 Coins + 5 XP + Item\n";
         s += "5 - Og's Remains - 30 - 12 - OG's Blood\n";
         return s;
-        
-
     }
     
     

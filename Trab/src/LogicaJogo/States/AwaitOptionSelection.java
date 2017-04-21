@@ -11,22 +11,22 @@ import Logic.GameData;
  *
  * @author edu_f
  */
-/*public class AwaitOptionSelection extends StateAdapter implements IStates{
+public class AwaitOptionSelection extends StateAdapter implements IStates{
 
     public AwaitOptionSelection(GameData g) {
         super(g);
     }
 
     public boolean ReinforceWeapon(){
-        return getGame().addXP(1);
+        return getGame().getPersonagem().addXP(1);
 
     }
     public boolean SearchRation(){
-        return getGame().addFood(1);
+        return getGame().getPersonagem().addFood(1);
     }
     
     public boolean Heal(){
-        return getGame().addHealth(2);
+        return getGame().getPersonagem().addHealth(2);
     }
     
     
@@ -44,6 +44,10 @@ import Logic.GameData;
     public IStates start() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public IStates ResolveSelectedRestingCard() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
-*/

@@ -13,5 +13,6 @@ public interface IStates {
     IStates setStartingArea(int area);
     IStates setDifficultLevel(int level);
     IStates start();
+    IStates ResolveSelectedRestingCard();
     
 }

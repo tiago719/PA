@@ -47,4 +47,9 @@ public class Jogo {
     public void startGame(IStates s) {
         state = s;
     }
+    
+    public void ResolveRestingCard(IStates s) {
+        state = s;
+    }
+    
 }

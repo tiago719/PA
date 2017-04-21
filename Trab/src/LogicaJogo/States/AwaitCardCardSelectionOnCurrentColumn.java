@@ -6,6 +6,7 @@
 package LogicaJogo.States;
 
 import Logic.GameData;
+import javax.smartcardio.Card;
 
 /**
  *
@@ -14,7 +15,15 @@ import Logic.GameData;
 public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implements IStates{
     public AwaitCardCardSelectionOnCurrentColumn(GameData g){
         super(g);
+    }    
+    
+    @Override
+    public IStates ResolveSelectedRestingCard() {
+        return new AwaitOptionSelection(getGame());
     }
+    
+    
+    
     
     
 }

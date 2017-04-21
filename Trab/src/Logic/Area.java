@@ -8,6 +8,8 @@ package Logic;
 import Logic.Cartas.BossMonster;
 import Logic.Cartas.Carta;
 import Logic.Cartas.Monster;
+import Logic.Cartas.Resting;
+import Logic.Cartas.Treasure;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -30,6 +32,9 @@ public class Area{
     }
      public final void geraBaralho() {
         Baralho.add(new Monster(GameData));
+        Baralho.add(new Resting(GameData));
+        Baralho.add(new Treasure(GameData));
+
         //TODO: adicionar todas cartas
     }
      public void addBoss(){
