@@ -5,6 +5,7 @@
  */
 package View;
 
+import Logic.Cartas.Carta;
 import Logic.Jogo;
 import LogicaJogo.States.AwaitBegining;
 import LogicaJogo.States.AwaitCardCardSelectionOnCurrentColumn;
@@ -102,14 +103,14 @@ public class TextUI {
 
     public void uiAwaitCardCardSelectionOnCurrentColumn() 
     {
-        System.out.println("Area Atual: " + jogo.getGame().getCaverna().getArea());
+        System.out.println("Area Atual: " + jogo.getGame().getCaverna().getNumArea());
         System.out.println("Nivel Atual: " + jogo.getGame().getCaverna().getNivel());
         System.out.println("Coluna Atual: " + jogo.getGame().getColuna());
         System.out.println("Nivel de dificuldade " + jogo.getGame().getDificuldade());
         System.out.println("Escolha uma carta da coluna em que se encontra\n\n\n");
-        
-        
-        //TODO
+        for (Carta cartasColuna : jogo.getGame().getCaverna().getAreaAtual().getCartasColuna()) {
+            System.out.println(cartasColuna);
+        }
     }
 
     public void run() {

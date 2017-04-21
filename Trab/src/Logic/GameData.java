@@ -5,8 +5,6 @@
  */
 package Logic;
 
-import java.util.ArrayList;
-
 
 /**
  *
@@ -15,16 +13,16 @@ import java.util.ArrayList;
 public class GameData implements Constants {
 
     private int dificuldade, startingArea, coluna;
-    private final Personagem p;
-    private final Caverna c;
+    private final Personagem Personagem;
+    private final Caverna Caverna;
 
 
     public GameData() {
         startingArea = 0;
         dificuldade = 2;
         coluna = 1;
-        p = new Personagem(dificuldade);
-        c = new Caverna(startingArea, this);
+        Personagem = new Personagem(dificuldade);
+        Caverna = new Caverna(startingArea, this);
         
     }
 
@@ -35,7 +33,7 @@ public class GameData implements Constants {
 
     public void setDificuldade(int dificuldade) {
         this.dificuldade = dificuldade;
-        p.setStats(dificuldade);
+        Personagem.setStats(dificuldade);
     }
 
     public int getStartingArea() {
@@ -44,6 +42,7 @@ public class GameData implements Constants {
 
     public void setStartingArea(int startingArea) {
         this.startingArea = startingArea;
+        Caverna.setArea(startingArea);
     }
 
     void setStartingArea(Integer area) {
@@ -51,19 +50,20 @@ public class GameData implements Constants {
     }
 
     public boolean intialize() {
-        //TODO: iniciar variaveis necessarias (para agora nao estou a ver nenhuma)
+        Caverna.geraAreas(startingArea);
         return true;
     }
 
     public int getColuna() {
         return coluna;
     }
+    
 
     public Caverna getCaverna() {
-        return c;
+        return Caverna;
     }
 
     public Personagem getPersonagem() {
-        return p;
+        return Personagem;
     }
 }

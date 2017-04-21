@@ -6,18 +6,22 @@
 package Logic;
 
 import static Logic.Constants.NivelDificuldade;
+import java.util.ArrayList;
 
 /**
  *
  * @author Tiago Coutinho
  */
-public class Personagem
+public final class Personagem
 {
     private int armor, hp, gold, food, rank;
+    ArrayList<Dado> dados;
     
     public Personagem(int dificuldade)
     {
         setStats(dificuldade);
+        dados = new ArrayList<>();
+        dados.add(new Dado());
     }
 
     public int getArmor()

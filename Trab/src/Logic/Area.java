@@ -16,6 +16,7 @@ import java.util.Collections;
  * @author edu_f
  */
 public class Area{
+    
     ArrayList<Carta> Baralho;
     GameData GameData;
     boolean MonsterDefeated;
@@ -33,8 +34,37 @@ public class Area{
     }
      public void addBoss(){
         Baralho.add(new BossMonster(GameData));
-
      }
+
+    public Carta getCartaBaralho(int i) {
+        return Baralho.get(i);
+    }
+    
+    public ArrayList<Carta> getCartasColuna() {
+        ArrayList<Carta> c = new ArrayList<>();
+        
+        switch (GameData.getColuna()){
+            case 1:
+                c.add(Baralho.get(0));
+                break;
+            case 2:
+                c.add(Baralho.get(1));
+                c.add(Baralho.get(2));                
+                break;
+            case 3:
+                c.add(Baralho.get(3));                
+                break;
+            case 4:
+                c.add(Baralho.get(4));
+                c.add(Baralho.get(5));
+                break;
+            case 5:
+                c.add(Baralho.get(6));
+                break;
+        }
+        return c;
+    }
+    
     
 
 }

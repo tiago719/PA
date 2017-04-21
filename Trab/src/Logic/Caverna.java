@@ -12,93 +12,83 @@ import java.util.ArrayList;
  *
  * @author Tiago Coutinho
  */
-public class Caverna
-{
+public class Caverna {
+
     private GameData GameData;
 
     private int areaL/*level*/, areaC;
     private final ArrayList<Area> Areas;
-    
-    
-    public Caverna(int startingArea, GameData g)
-    {
+
+    public Caverna(int startingArea, GameData g) {
         areaL = areaC = 0;
         GameData = g;
         Areas = new ArrayList<>();
-        for(int i=0; i< Constants.numNiveis; i++){
-            Areas.add(new Area(g));
-        }
-        
-        
-        int i, sum=0;
-        
-        for(i=0;i<MapaNiveis.length;i++)
-        {
-            sum+=MapaNiveis[i].length;
-            if(sum>=startingArea)
-            {
-                areaL=i;
-                break;
-            }
-        }
-        
-        areaC=sum-(sum-startingArea);
-    }
 
-    public int getAreaL()
-    {
-        return areaL;
-    }
+        int i, sum = 0;
 
-    public void setAreaL(int areaL)
-    {
-        this.areaL = areaL;
-    }
-
-    public int getAreaC()
-    {
-        return areaC;
-    }
-
-    public void setAreaC(int areaC)
-    {
-        this.areaC = areaC;
-    }
-
-    public boolean isLastArea()
-    {
-        return MapaNiveis[areaL - 1].length == areaC + 1;
-    }
-
-    public int getArea()
-    {
-        return MapaNiveis[areaL][areaC];
-    }
-
-    public int getNivel()
-    {
-        return areaL + 1;
-    }
-
-    public void setArea(int startingArea)
-    {
-        int i,j, sum = 0;
-
-        for (i = 0; i < MapaNiveis.length; i++)
-        {
+        for (i = 0; i < MapaNiveis.length; i++) {
             sum += MapaNiveis[i].length;
-            if (sum >= startingArea)
-            {
+            if (sum >= startingArea) {
                 areaL = i;
                 break;
             }
         }
 
-        for(j=0;j<MapaNiveis[i].length;j++)
-        {
-            if(MapaNiveis[i][j]==startingArea)
-            {
-                areaC=j;
+        areaC = sum - (sum - startingArea);
+    }
+
+    public void geraAreas(int n) {
+        for (int i = n; i < Constants.numNiveis; i++) {
+            Areas.add(new Area(GameData));
+        }
+    }
+    
+    public Area getAreaAtual(){
+        return Areas.get(getNumArea()-GameData.getStartingArea());
+    }
+
+    public int getAreaL() {
+        return areaL;
+    }
+
+    public void setAreaL(int areaL) {
+        this.areaL = areaL;
+    }
+
+    public int getAreaC() {
+        return areaC;
+    }
+
+    public void setAreaC(int areaC) {
+        this.areaC = areaC;
+    }
+
+    public boolean isLastArea() {
+        return MapaNiveis[areaL - 1].length == areaC + 1;
+    }
+
+    public int getNumArea() {
+        return MapaNiveis[areaL][areaC];
+    }
+
+    public int getNivel() {
+        return areaL + 1;
+    }
+
+    public void setArea(int startingArea) {
+        int i, j, sum = 0;
+
+        for (i = 0; i < MapaNiveis.length; i++) {
+            sum += MapaNiveis[i].length;
+            if (sum >= startingArea) {
+                areaL = i;
+                break;
+            }
+        }
+
+        for (j = 0; j < MapaNiveis[i].length; j++) {
+            if (MapaNiveis[i][j] == startingArea) {
+                areaC = j;
             }
         }
     }

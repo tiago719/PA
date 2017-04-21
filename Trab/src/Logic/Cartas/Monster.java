@@ -21,7 +21,8 @@ public class Monster extends Carta {
 
     @Override
     public String toString() {
-        String s = "Level - DMG - REWARD\n";
+        String s = "Carta: MONSTER\n";
+        s+= "Level - DMG - REWARD\n";
         s += "1 - Undead Soldier - 2 - 1 XP\n";
         s += "2 - Skeleton - 4 - 1 XP\n";
         s += "3 - Undead Knight - 6 - 2 XP\n";

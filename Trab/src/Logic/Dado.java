@@ -3,20 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Logic.Cartas;
-
-import Logic.GameData;
+package Logic;
 
 /**
  *
  * @author edu_f
  */
-public class Carta {
-    private final GameData gd;
+public class Dado {
+    private int valor;
 
-    public Carta(GameData g) {
-        gd = g;
+    public Dado() {
+    
     }
+
+    public int getValor() {
+        return valor;
+    }
+
+    public void setValor(int valor) {
+        this.valor = valor;
+    }
+    
     
     
 }

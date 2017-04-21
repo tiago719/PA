@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Logic.Cartas;
+package LogicaJogo.States;
 
 import Logic.GameData;
 
@@ -11,12 +11,12 @@ import Logic.GameData;
  *
  * @author edu_f
  */
-public class Carta {
-    private final GameData gd;
+public class AwaitRollDice extends StateAdapter {
 
-    public Carta(GameData g) {
-        gd = g;
+    public AwaitRollDice(GameData g) {
+        super(g);
     }
+
     
     
 }
