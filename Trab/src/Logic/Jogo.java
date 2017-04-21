@@ -10,29 +10,25 @@ import static Logic.Constants.*;
 import LogicaJogo.States.AwaitBegining;
 import LogicaJogo.States.IStates;
 
-
 /**
  *
  * @author Tiago Coutinho
  */
 public class Jogo {
-    
+
     private GameData gameData;
-    private IStates state; 
-    
-    public Jogo()
-    {
-        gameData=new GameData();
+    private IStates state;
+
+    public Jogo() {
+        gameData = new GameData();
         state = new AwaitBegining(gameData);
     }
-    
-    public GameData getGame()
-    {
+
+    public GameData getGame() {
         return gameData;
     }
-    
-    public IStates getState()
-    {
+
+    public IStates getState() {
         return state;
     }
 
@@ -47,9 +43,27 @@ public class Jogo {
     public void startGame(IStates s) {
         state = s;
     }
-    
+
     public void ResolveRestingCard(IStates s) {
         state = s;
     }
-    
+
+    public boolean AOS_OptionSelection(int i) {
+        switch (i) {
+            case 1:
+                return getGame().getPersonagem().addXP(1);
+            case 2:
+                return getGame().getPersonagem().addFood(1);
+            case 3:
+                return getGame().getPersonagem().addHealth(2);
+
+        }
+        return false;
+
+    }
+
+    public void OptionSelected(IStates s) {
+        state = s;
+    }
+
 }

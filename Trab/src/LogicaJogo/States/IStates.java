@@ -14,5 +14,6 @@ public interface IStates {
     IStates setDifficultLevel(int level);
     IStates start();
     IStates ResolveSelectedRestingCard();
-    
+    IStates OptionSelected();
+
 }

@@ -17,17 +17,17 @@ public class AwaitOptionSelection extends StateAdapter implements IStates{
         super(g);
     }
 
-    public boolean ReinforceWeapon(){
-        return getGame().getPersonagem().addXP(1);
-
-    }
-    public boolean SearchRation(){
-        return getGame().getPersonagem().addFood(1);
-    }
-    
-    public boolean Heal(){
-        return getGame().getPersonagem().addHealth(2);
-    }
+//    public boolean ReinforceWeapon(){
+//        return getGame().getPersonagem().addXP(1);
+//
+//    }
+//    public boolean SearchRation(){
+//        return getGame().getPersonagem().addFood(1);
+//    }
+//    
+//    public boolean Heal(){
+//        return getGame().getPersonagem().addHealth(2);
+//    }
     
     
     @Override
@@ -48,6 +48,11 @@ public class AwaitOptionSelection extends StateAdapter implements IStates{
     @Override
     public IStates ResolveSelectedRestingCard() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IStates OptionSelected() {
+        return new AwaitCardCardSelectionOnCurrentColumn(getGame());
     }
     
 }

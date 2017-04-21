@@ -31,9 +31,9 @@ public class Area{
         Collections.shuffle(Baralho);
     }
      public final void geraBaralho() {
-        Baralho.add(new Monster(GameData));
+        //Baralho.add(new Monster(GameData));
         Baralho.add(new Resting(GameData));
-        Baralho.add(new Treasure(GameData));
+        //Baralho.add(new Treasure(GameData));
 
         //TODO: adicionar todas cartas
     }

@@ -21,9 +21,9 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
     public IStates ResolveSelectedRestingCard() {
         return new AwaitOptionSelection(getGame());
     }
-    
-    
-    
-    
-    
+
+    @Override
+    public IStates OptionSelected() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
