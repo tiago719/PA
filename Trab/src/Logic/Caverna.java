@@ -15,7 +15,6 @@ import java.util.ArrayList;
 public class Caverna {
 
     private GameData GameData;
-
     private int areaL/*level*/, areaC;
     private final ArrayList<Area> Areas;
 
@@ -38,8 +37,10 @@ public class Caverna {
     }
 
     public void geraAreas(int n) {
-        for (int i = n; i < Constants.numNiveis; i++) {
-            Areas.add(new Area(GameData));
+        for (int i = n; i < Constants.numNiveis; i++) 
+        {
+            Area nova=new Area(GameData); 
+            Areas.add(nova);
         }
     }
     

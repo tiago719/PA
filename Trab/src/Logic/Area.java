@@ -21,8 +21,8 @@ public class Area{
     
     public Area(GameData g){
         Baralho = new ArrayList<>();
-        geraBaralho();
         GameData = g;
+        geraBaralho();
         MonsterDefeated = false;
         Collections.shuffle(Baralho);
     }
