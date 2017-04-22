@@ -46,10 +46,16 @@ public class StateAdapter implements IStates {
     public IStates ResolveSelectedRestingCard() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+     @Override
+    public IStates ResolveSelectedTreasureCard() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     @Override
     public IStates OptionSelected() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
+  
 }

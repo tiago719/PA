@@ -88,7 +88,7 @@ public final class Personagem
         else
         {
             food=6;
-            return false;
+            return true;
         }
     }
 
@@ -118,6 +118,24 @@ public final class Personagem
         rank += i;
         return true;
         //TODO: ENTENDER A CENA DO XP E RANKS ...
+    }
+    
+    public boolean addGold(int g)
+    {
+        if(g<0)
+        {
+            return false;
+        }
+        else if(gold+g<=20)
+        {
+            gold+=g;
+            return true;
+        }
+        else
+        {
+            gold=20;
+            return true;
+        }
     }
     
     public void setStats(int dificuldade)

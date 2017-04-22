@@ -67,6 +67,14 @@ public class Area{
         return c;
     }
     
+    public boolean getMonsterDefeated()
+    {
+        return MonsterDefeated;
+    }
     
+    public void setMonsterDefeated(boolean b)
+    {
+        MonsterDefeated=b;
+    }
 
 }

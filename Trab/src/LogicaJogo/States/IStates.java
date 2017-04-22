@@ -15,5 +15,7 @@ public interface IStates {
     IStates start();
     IStates ResolveSelectedRestingCard();
     IStates OptionSelected();
+    IStates ResolveSelectedTreasureCard();
+
 
 }

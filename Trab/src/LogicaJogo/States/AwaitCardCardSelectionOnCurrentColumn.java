@@ -21,6 +21,22 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
     public IStates ResolveSelectedRestingCard() {
         return new AwaitOptionSelection(getGame());
     }
+    
+    @Override
+    public IStates ResolveSelectedTreasureCard()
+    {
+        if(getGame().getCaverna().getAreaAtual().getMonsterDefeated())
+        {
+            getGame().getPersonagem().addGold(2);
+        }
+        else
+        {
+            getGame().getPersonagem().addGold(1);
+        }
+        
+        return this;
+        //TODO: falta o resto
+    }
 
     @Override
     public IStates OptionSelected() {

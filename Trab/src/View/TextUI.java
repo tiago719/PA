@@ -96,7 +96,8 @@ public class TextUI {
         }
     }
 
-    public void uiAwaitCardCardSelectionOnCurrentColumn() {
+    public void uiAwaitCardCardSelectionOnCurrentColumn() 
+    {
         ArrayList<Carta> c;
         Scanner sc = new Scanner(System.in);
         int op, cont = 0;
@@ -128,25 +129,15 @@ public class TextUI {
 
         Carta temp = c.get(op - 1);
 
-        if (temp instanceof Resting) {
+        if (temp instanceof Resting) 
+        {
             jogo.ResolveRestingCard(jogo.getState().ResolveSelectedRestingCard());
-        } else if (temp instanceof Monster)
-            ;
-
-    }
-
-    public void run() {
-        while (!sair) {
-            IStates state = jogo.getState();
-
-            if (state instanceof AwaitBegining) {
-                uiAwaitBeggining();
-            } else if (state instanceof AwaitCardCardSelectionOnCurrentColumn) {
-                uiAwaitCardCardSelectionOnCurrentColumn();
-            } else if (state instanceof AwaitOptionSelection) {
-                uiAwaitOptionSelection();
-            }
+        } else if (temp instanceof Treasure)
+        {
+            jogo.ResolveTreasureCard(jogo.getState().ResolveSelectedTreasureCard());
         }
+            
+
     }
 
     private void uiAwaitOptionSelection() {
@@ -177,5 +168,18 @@ public class TextUI {
             jogo.OptionSelected(jogo.getState().OptionSelected());
         }
     }
+    
+     public void run() {
+        while (!sair) {
+            IStates state = jogo.getState();
 
+            if (state instanceof AwaitBegining) {
+                uiAwaitBeggining();
+            } else if (state instanceof AwaitCardCardSelectionOnCurrentColumn) {
+                uiAwaitCardCardSelectionOnCurrentColumn();
+            } else if (state instanceof AwaitOptionSelection) {
+                uiAwaitOptionSelection();
+            }
+        }
+    }
 }
