@@ -64,7 +64,7 @@ public class Caverna {
     }
 
     public boolean isLastArea() {
-        return MapaNiveis[areaL - 1].length == areaC + 1;
+        return MapaNiveis[areaL].length == areaC + 1;
     }
 
     public int getNumArea() {
@@ -90,6 +90,16 @@ public class Caverna {
             if (MapaNiveis[i][j] == startingArea) {
                 areaC = j;
             }
+        }
+    }
+
+    void proxArea() {
+        if (isLastArea()){
+            areaC=0;
+            areaL++;
+        }
+        else{
+            areaC++;
         }
     }
 

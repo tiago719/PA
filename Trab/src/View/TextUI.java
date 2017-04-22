@@ -98,20 +98,34 @@ public class TextUI {
 
     public void uiAwaitCardCardSelectionOnCurrentColumn() {
         ArrayList<Carta> c;
-        int op = 1;
+        Scanner sc = new Scanner(System.in);
+        int op, cont = 0;
+        String option1;
 
         System.out.println("Area Atual: " + jogo.getGame().getCaverna().getNumArea());
         System.out.println("Nivel Atual: " + jogo.getGame().getCaverna().getNivel());
         System.out.println("Coluna Atual: " + jogo.getGame().getColuna());
         System.out.println("Nivel de dificuldade " + jogo.getGame().getDificuldade());
-        System.out.println("Escolha uma carta da coluna em que se encontra\n\n\n");
+        System.out.println("Escolha uma carta da coluna em que se encontra\n");
 
         c = jogo.getGame().getCaverna().getAreaAtual().getCartasColuna();
         for (Carta cartasColuna : c) {
-            System.out.println(cartasColuna);
+            System.out.println((++cont) + " - " + cartasColuna + "\n");
         }
 
-        //TODO: MENU DE ESCOLHA DA CARTA
+        do {
+            System.out.println("Escolha Uma Carta ( 1 - " + (c.size()) + ")");
+
+            option1 = sc.next();
+
+            try {
+                op = (int) Integer.parseInt(option1);
+            } catch (Exception ex) {
+                op = -1;
+            }
+
+        } while (op < 1 || op > c.size());
+
         Carta temp = c.get(op - 1);
 
         if (temp instanceof Resting) {
@@ -141,7 +155,7 @@ public class TextUI {
         int c;
 
         do {
-            System.out.println("\n=== AWAITING FOR THE BEGINNING OF THE GAME ===\n");
+            System.out.println("\n=== AWAITING OPTION SELECTION(RESTING CARD) ===\n");
             System.out.println("1 - Reinforce your Weapon: +1 XP");
             System.out.println("2 - Search for Ration: +1 FOOD");
             System.out.println("3 - Heal: +2 HP");
@@ -158,7 +172,8 @@ public class TextUI {
 
         if (!jogo.AOS_OptionSelection(c))
                 //TODO: TRATAR erro
-                ; else {
+                ; 
+        else {
             jogo.OptionSelected(jogo.getState().OptionSelected());
         }
     }

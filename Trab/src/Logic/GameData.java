@@ -5,7 +5,6 @@
  */
 package Logic;
 
-
 /**
  *
  * @author Tiago Coutinho
@@ -16,17 +15,15 @@ public class GameData implements Constants {
     private final Personagem Personagem;
     private final Caverna Caverna;
 
-
     public GameData() {
         startingArea = 0;
         dificuldade = 2;
         coluna = 1;
         Personagem = new Personagem(dificuldade);
         Caverna = new Caverna(startingArea, this);
-        
+
     }
 
-   
     public int getDificuldade() {
         return dificuldade;
     }
@@ -57,7 +54,20 @@ public class GameData implements Constants {
     public int getColuna() {
         return coluna;
     }
-    
+
+    public void proxColuna() {
+        int ultimaColuna = 4;
+        if (Caverna.isLastArea())
+            ultimaColuna = 5;
+
+
+        if (coluna < ultimaColuna) {
+            coluna++;
+        } else {
+            coluna = 1;
+            Caverna.proxArea();
+        }
+    }
 
     public Caverna getCaverna() {
         return Caverna;

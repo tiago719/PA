@@ -22,7 +22,7 @@ public class BossMonster extends Carta{
     
     @Override
     public String toString() {
-        String s = "Carta: BOSS MONSTER";
+        String s = "Carta: BOSS MONSTER\n";
         s += "Level - HP - DMG - REWARD\n";
         s += "1 - Undead Giant - 10 - 3 - 2 Coins + 2 XP + Item\n";
         s += "2 - Skeleton Lord - 15 - 5 - 2 Coins + 3 XP + Item\n";

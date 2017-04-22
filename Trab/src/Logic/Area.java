@@ -5,11 +5,7 @@
  */
 package Logic;
 
-import Logic.Cartas.BossMonster;
-import Logic.Cartas.Carta;
-import Logic.Cartas.Monster;
-import Logic.Cartas.Resting;
-import Logic.Cartas.Treasure;
+import Logic.Cartas.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -31,15 +27,16 @@ public class Area{
         Collections.shuffle(Baralho);
     }
      public final void geraBaralho() {
-        //Baralho.add(new Monster(GameData));
         Baralho.add(new Resting(GameData));
-        //Baralho.add(new Treasure(GameData));
-
+        Baralho.add(new Resting(GameData));
+        Baralho.add(new Resting(GameData));
+        Baralho.add(new Resting(GameData));
+        Baralho.add(new Resting(GameData));
+        Baralho.add(new Resting(GameData));
+        if (GameData.getCaverna().isLastArea())
+            Baralho.add(new BossMonster(GameData));
         //TODO: adicionar todas cartas
     }
-     public void addBoss(){
-        Baralho.add(new BossMonster(GameData));
-     }
 
     public Carta getCartaBaralho(int i) {
         return Baralho.get(i);

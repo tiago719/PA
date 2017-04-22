@@ -105,7 +105,7 @@ public final class Personagem
         else
         {
             hp=20;
-            return false;
+            return true;
         }
     }
 
