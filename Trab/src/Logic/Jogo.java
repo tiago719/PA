@@ -63,7 +63,30 @@ public class Jogo {
 
         }
         return false;
-
+    }
+    
+    public boolean AOS_TraidingSelection(int i)
+    {
+        switch(i)
+        {
+            case 1:
+                return getGame().getPersonagem().buyRation();
+            case 2:
+                return getGame().getPersonagem().buyPotion();
+            case 3:
+                return getGame().getPersonagem().buyBigPotion();
+            case 4:
+                return getGame().getPersonagem().buyArmor();
+            case 5:
+                System.out.println("FALTA FAZER");//TODO
+                return false;
+            case 6:
+                return getGame().getPersonagem().sellArmor();
+            case 7:
+                System.out.println("FALTA FAZER");//TODO
+                return false;
+        }
+        return false;
     }
 
     public void OptionSelected(IStates s) {

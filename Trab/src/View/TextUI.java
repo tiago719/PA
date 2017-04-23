@@ -136,8 +136,6 @@ public class TextUI {
         {
             jogo.ResolveTreasureCard(jogo.getState().ResolveSelectedTreasureCard());
         }
-            
-
     }
 
     private void uiAwaitOptionSelection() {
@@ -169,6 +167,52 @@ public class TextUI {
         }
     }
     
+    private void uiAwaitTrading()
+    {
+        Scanner sc = new Scanner(System.in);
+        String option1;
+        int c;
+        boolean skip=false;
+        
+        do
+        {
+            do
+            {
+                System.out.println("\n=== AWAITING TRAIDING(MERCHANT CARD) ===\n");
+                System.out.println("Buy:");
+                System.out.println("1 - Ration: +1 Food - Custo: 1 Gold");
+                System.out.println("2 - Health Potion: +1 HP - Custo: 1 Gold");
+                System.out.println("3 - Big Health Potion: +4 HP - Custo: 3 Gold");
+                System.out.println("4 - Armor Piece: +1 Armor - Custo: 6 Gold");
+                System.out.println("5 - Any 1 Spell - Custo: 8 Gold");
+                System.out.println("\nSell:");
+                System.out.println("6 - 1 Armor Piece - Recompensa: 3 Gold");
+                System.out.println("7 - Any 1 Spell - Recompensa: 4 Gold");
+                System.out.println("\n8 - Continue");
+
+                option1 = sc.next();
+
+                try
+                {
+                    c = (int) Integer.parseInt(option1);
+                } catch (Exception ex)
+                {
+                    c = -1;
+                }
+
+                if (c == 8)
+                {
+                    jogo.OptionSelected(jogo.getState().skipMerchant());
+                    break;
+                }
+
+            } while (c < 0 || c > 7);
+
+            jogo.AOS_TraidingSelection(c);
+            
+        }while(!sair);
+    }
+    
      public void run() {
         while (!sair) {
             IStates state = jogo.getState();
@@ -179,6 +223,10 @@ public class TextUI {
                 uiAwaitCardCardSelectionOnCurrentColumn();
             } else if (state instanceof AwaitOptionSelection) {
                 uiAwaitOptionSelection();
+            }
+            else if(state instanceof AwaitTraiding)
+            {
+                uiAwaitTrading();
             }
         }
     }

@@ -138,11 +138,91 @@ public final class Personagem
         }
     }
     
+    public boolean addArmor(int a)
+    {
+        if(a<0)
+        {
+            return false;
+        }
+        else if(armor+a<=5)
+        {
+            armor+=a;
+            return true;
+        }
+        else
+        {
+            armor=5;
+            return true;
+        }
+    }
+    
     public void setStats(int dificuldade)
     {
         armor = NivelDificuldade[dificuldade-1][0];
         hp = NivelDificuldade[dificuldade-1][1];
         gold = NivelDificuldade[dificuldade-1][2];
         food = NivelDificuldade[dificuldade-1][3];
+    }
+    
+    public boolean buyRation()
+    {
+        if(gold>=1)
+        {
+            return addFood(1);
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    public boolean buyPotion()
+    {
+        if(gold>=1)
+        {
+            return addHealth(1);
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    public boolean buyBigPotion()
+    {
+        if(gold>=3)
+        {
+            return addHealth(4);
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    public boolean buyArmor()
+    {
+        if(gold>=6)
+        {
+            return addArmor(1);
+        }
+        else
+        {
+            return false;
+        }
+    }
+   
+    public boolean sellArmor()
+    {
+        if(armor>0)
+        {
+            if(addGold(4))
+            {
+                armor--;
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 }

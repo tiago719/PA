@@ -57,5 +57,8 @@ public class StateAdapter implements IStates {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-  
+     @Override
+    public IStates skipMerchant() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

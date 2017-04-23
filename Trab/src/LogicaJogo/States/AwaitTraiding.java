@@ -5,11 +5,21 @@
  */
 package LogicaJogo.States;
 
+import Logic.GameData;
+
 /**
  *
  * @author edu_f
  */
-/*public class AwaitTraiding implements IStates{
+public class AwaitTraiding extends StateAdapter implements IStates
+{
+    public AwaitTraiding(GameData g){
+        super(g);
+    }
     
+    public IStates skipMerchant()
+    {
+        getGame().proxColuna();
+        return new AwaitCardCardSelectionOnCurrentColumn(getGame());
+    }
 }
-*/
