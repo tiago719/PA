@@ -168,7 +168,12 @@ public final class Personagem
     {
         if(gold>=1)
         {
-            return addFood(1);
+            if(addFood(1))
+            {
+                gold--;
+                return true;
+            }
+            return false;
         }
         else
         {
@@ -180,7 +185,12 @@ public final class Personagem
     {
         if(gold>=1)
         {
-            return addHealth(1);
+            if(addHealth(1))
+            {
+                gold--;
+                return true;
+            }
+            return false;
         }
         else
         {
@@ -192,7 +202,12 @@ public final class Personagem
     {
         if(gold>=3)
         {
-            return addHealth(4);
+            if(addHealth(4))
+            {
+                gold-=3;
+                return true;
+            }
+            return false;
         }
         else
         {
@@ -204,7 +219,12 @@ public final class Personagem
     {
         if(gold>=6)
         {
-            return addArmor(1);
+            if(addArmor(1))
+            {
+                gold-=6;
+                return true;
+            }
+            return false;
         }
         else
         {

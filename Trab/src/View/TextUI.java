@@ -72,9 +72,9 @@ public class TextUI {
                     do {
                         System.out.println("Escolha o nivel de dificuldade");
                         System.out.println("1 - Casual (1 Armor, 5 HP, 5 Gold, 6 Food)");
-                        System.out.println("2 - Casual (0 Armor, 5 HP, 3 Gold, 6 Food)");
-                        System.out.println("3 - Casual (0 Armor, 4 HP, 2 Gold, 5 Food)");
-                        System.out.println("4 - Casual (0 Armor, 3 HP, 1 Gold, 3 Food)");
+                        System.out.println("2 - Normal (0 Armor, 5 HP, 3 Gold, 6 Food)");
+                        System.out.println("3 - Hard (0 Armor, 4 HP, 2 Gold, 5 Food)");
+                        System.out.println("4 - Impossible (0 Armor, 3 HP, 1 Gold, 3 Food)");
 
                         option2 = sc.next();
 
@@ -103,6 +103,10 @@ public class TextUI {
         int op, cont = 0;
         String option1;
 
+         for(int i=0;i<50;i++)
+                {
+                    System.out.println();
+                }
         System.out.println("Area Atual: " + jogo.getGame().getCaverna().getNumArea());
         System.out.println("Nivel Atual: " + jogo.getGame().getCaverna().getNivel());
         System.out.println("Coluna Atual: " + jogo.getGame().getColuna());
@@ -138,7 +142,7 @@ public class TextUI {
         }
         else if(temp instanceof Merchant)
         {
-            jogo.ResolveMerchantCard(jogo.getState().ResolveSelectedTreasureCard());
+            jogo.ResolveMerchantCard(jogo.getState().ResolveSelectedMerchantCard());
         }
     }
 
@@ -182,6 +186,14 @@ public class TextUI {
         {
             do
             {
+                for(int i=0;i<50;i++)
+                {
+                    System.out.println();//TODO: tirar
+                }
+                System.out.println("Food: " + jogo.getGame().getPersonagem().getFood());
+                System.out.println("Health: " + jogo.getGame().getPersonagem().getHp());
+                System.out.println("Gold: " + jogo.getGame().getPersonagem().getGold());
+                System.out.println("Armor: " + jogo.getGame().getPersonagem().getArmor());
                 System.out.println("\n=== AWAITING TRAIDING(MERCHANT CARD) ===\n");
                 System.out.println("Buy:");
                 System.out.println("1 - Ration: +1 Food - Custo: 1 Gold");
@@ -207,14 +219,18 @@ public class TextUI {
                 if (c == 8)
                 {
                     jogo.OptionSelected(jogo.getState().skipMerchant());
+                    skip=true;
                     break;
                 }
 
             } while (c < 0 || c > 7);
 
-            jogo.AOS_TraidingSelection(c);
+            if(!jogo.AOS_TraidingSelection(c))
+            {
+                //TODO: tratar erro
+            }
             
-        }while(!sair);
+        }while(!skip);
     }
     
      public void run() {
