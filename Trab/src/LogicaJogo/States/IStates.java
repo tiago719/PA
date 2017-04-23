@@ -17,6 +17,7 @@ public interface IStates {
     IStates OptionSelected();
     IStates skipMerchant();
     IStates ResolveSelectedTreasureCard();
+    IStates ResolveSelectedMerchantCard();
 
 
 }

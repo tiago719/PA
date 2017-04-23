@@ -23,6 +23,12 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
     }
     
     @Override
+    public IStates ResolveSelectedMerchantCard()
+    {
+        return new AwaitTraiding(getGame());
+    }
+    
+    @Override
     public IStates ResolveSelectedTreasureCard()
     {
         if(getGame().getCaverna().getAreaAtual().getMonsterDefeated())

@@ -17,6 +17,7 @@ public class AwaitTraiding extends StateAdapter implements IStates
         super(g);
     }
     
+    @Override
     public IStates skipMerchant()
     {
         getGame().proxColuna();

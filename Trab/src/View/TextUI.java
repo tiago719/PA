@@ -136,6 +136,10 @@ public class TextUI {
         {
             jogo.ResolveTreasureCard(jogo.getState().ResolveSelectedTreasureCard());
         }
+        else if(temp instanceof Merchant)
+        {
+            jogo.ResolveMerchantCard(jogo.getState().ResolveSelectedTreasureCard());
+        }
     }
 
     private void uiAwaitOptionSelection() {

@@ -51,6 +51,10 @@ public class Jogo {
     public void ResolveTreasureCard(IStates s) {
         state = s;
     }
+    
+     public void ResolveMerchantCard(IStates s) {
+        state = s;
+    }
 
     public boolean AOS_OptionSelection(int i) {
         switch (i) {
