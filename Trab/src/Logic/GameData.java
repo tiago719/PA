@@ -5,6 +5,8 @@
  */
 package Logic;
 
+import Logic.Cartas.Monster;
+
 /**
  *
  * @author Tiago Coutinho
@@ -13,15 +15,24 @@ public class GameData implements Constants {
 
     private int dificuldade, startingArea, coluna;
     private final Personagem Personagem;
+    private Monster MonstroAlvo;//IDEIA- FAZER UMA CLASS MONSTRO(PAI) - BOSS E NORMAL (FILHAS)
     private final Caverna Caverna;
 
     public GameData() {
         startingArea = 0;
         dificuldade = 2;
         coluna = 1;
-        Personagem = new Personagem(dificuldade);
+        Personagem = new Personagem(dificuldade, this);
         Caverna = new Caverna(startingArea, this);
+        MonstroAlvo = null;
+    }
 
+    public Monster getMonstroAlvo() {
+        return MonstroAlvo;
+    }
+
+    public void setMonstroAlvo(Monster MonstroAlvo) {
+        this.MonstroAlvo = MonstroAlvo;
     }
 
     public int getDificuldade() {

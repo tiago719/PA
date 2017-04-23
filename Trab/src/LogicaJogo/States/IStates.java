@@ -10,14 +10,21 @@ package LogicaJogo.States;
  * @author edu_f
  */
 public interface IStates {
+    //  Await beginning
     IStates setStartingArea(int area);
     IStates setDifficultLevel(int level);
     IStates start();
+    
+    //Resting Card
     IStates ResolveSelectedRestingCard();
     IStates OptionSelected();
-    IStates skipMerchant();
+    
+    //treasure
     IStates ResolveSelectedTreasureCard();
+
+    //merchant
     IStates ResolveSelectedMerchantCard();
+    IStates skipMerchant();
 
 
 }

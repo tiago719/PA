@@ -186,10 +186,6 @@ public class TextUI {
         {
             do
             {
-                for(int i=0;i<50;i++)
-                {
-                    System.out.println();//TODO: tirar
-                }
                 System.out.println("Food: " + jogo.getGame().getPersonagem().getFood());
                 System.out.println("Health: " + jogo.getGame().getPersonagem().getHp());
                 System.out.println("Gold: " + jogo.getGame().getPersonagem().getGold());

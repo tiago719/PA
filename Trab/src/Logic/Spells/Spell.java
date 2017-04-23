@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Logic.Cartas;
+package Logic.Spells;
 
 import Logic.GameData;
 
@@ -11,12 +11,13 @@ import Logic.GameData;
  *
  * @author edu_f
  */
-public abstract class Carta {
+public abstract class Spell {
     private final GameData gd;
 
-    public Carta(GameData g) {
+    public Spell(GameData g) {
         gd = g;
     }
     
+    public abstract void Efeito(GameData g);
     
 }

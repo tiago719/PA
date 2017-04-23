@@ -82,13 +82,11 @@ public class Jogo {
             case 4:
                 return getGame().getPersonagem().buyArmor();
             case 5:
-                System.out.println("FALTA FAZER");//TODO
-                return false;
+                return getGame().getPersonagem().buyAnySpell();
             case 6:
                 return getGame().getPersonagem().sellArmor();
             case 7:
-                System.out.println("FALTA FAZER");//TODO
-                return false;
+                return getGame().getPersonagem().sellAnySpell();
         }
         return false;
     }

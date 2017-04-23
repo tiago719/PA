@@ -5,6 +5,7 @@
  */
 package Logic.Cartas;
 
+import Logic.Constants;
 import Logic.GameData;
 
 /**
@@ -13,10 +14,21 @@ import Logic.GameData;
  */
 public class Monster extends Carta {
 
-    int inf[][] = {{2, 1}, {4, 1}, {6, 2}, {8, 10}, {10, 3}};
+    private final int dmg, rwd;
 
     public Monster(GameData g) {
         super(g);
+        int rank = g.getPersonagem().getRank();
+        dmg = Constants.InfoMonster[rank ][0]; 
+        rwd = Constants.InfoMonster[rank][1];
+    }
+
+    public int getDmg() {
+        return dmg;
+    }
+
+    public int getRwd() {
+        return rwd;
     }
 
     @Override

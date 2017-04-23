@@ -6,42 +6,59 @@
 package LogicaJogo.States;
 
 import Logic.GameData;
-import javax.smartcardio.Card;
+import Logic.Spells.*;
 
 /**
  *
  * @author edu_f
  */
-public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implements IStates{
-    public AwaitCardCardSelectionOnCurrentColumn(GameData g){
+public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implements IStates {
+
+    public AwaitCardCardSelectionOnCurrentColumn(GameData g) {
         super(g);
-    }    
-    
+    }
+
     @Override
     public IStates ResolveSelectedRestingCard() {
         return new AwaitOptionSelection(getGame());
     }
-    
+
     @Override
-    public IStates ResolveSelectedMerchantCard()
-    {
+    public IStates ResolveSelectedMerchantCard() {
         return new AwaitTraiding(getGame());
     }
-    
+
     @Override
-    public IStates ResolveSelectedTreasureCard()
-    {
-        if(getGame().getCaverna().getAreaAtual().getMonsterDefeated())
-        {
+    public IStates ResolveSelectedTreasureCard() {
+        int ran = (int) (Math.random() + 6);//TODO: VER COMO SE FAZ RAND
+        if (getGame().getCaverna().getAreaAtual().getMonsterDefeated()) {
             getGame().getPersonagem().addGold(2);
-        }
-        else
-        {
+        } else {
             getGame().getPersonagem().addGold(1);
         }
-        
+
+        switch (ran) {
+            case 1:
+                getGame().getPersonagem().addArmor(1);
+                break;
+            case 2:
+                getGame().getPersonagem().addXP(2);
+                break;
+            case 3:
+                getGame().getPersonagem().addSpell(new Fire(getGame()));
+                break;
+            case 4:
+                getGame().getPersonagem().addSpell(new Ice(getGame()));
+                break;
+            case 5:
+                getGame().getPersonagem().addSpell(new Poison(getGame()));
+                break;
+            case 6:
+                getGame().getPersonagem().addSpell(new Healing(getGame()));
+                break;
+        }
+
         return this;
-        //TODO: falta o resto
     }
 
     @Override
