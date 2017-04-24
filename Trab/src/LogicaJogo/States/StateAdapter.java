@@ -5,6 +5,7 @@
  */
 package LogicaJogo.States;
 
+import Logic.Dado;
 import Logic.GameData;
 
 /**
@@ -64,6 +65,24 @@ public class StateAdapter implements IStates {
     
      @Override
     public IStates skipMerchant() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IStates relancarDado(Dado dado)
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IStates ResolveSelectedEventCard()
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IStates ResolveSelectedTrapCard()
+    {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

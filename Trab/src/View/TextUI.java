@@ -107,6 +107,10 @@ public class TextUI {
                 {
                     System.out.println();
                 }
+        System.out.println("Food: " + jogo.getGame().getPersonagem().getFood());
+        System.out.println("Health: " + jogo.getGame().getPersonagem().getHp());
+        System.out.println("Gold: " + jogo.getGame().getPersonagem().getGold());
+        System.out.println("Armor: " + jogo.getGame().getPersonagem().getArmor());
         System.out.println("Area Atual: " + jogo.getGame().getCaverna().getNumArea());
         System.out.println("Nivel Atual: " + jogo.getGame().getCaverna().getNivel());
         System.out.println("Coluna Atual: " + jogo.getGame().getColuna());
@@ -136,6 +140,7 @@ public class TextUI {
         if (temp instanceof Resting) 
         {
             jogo.ResolveRestingCard(jogo.getState().ResolveSelectedRestingCard());
+            
         } else if (temp instanceof Treasure)
         {
             jogo.ResolveTreasureCard(jogo.getState().ResolveSelectedTreasureCard());
@@ -144,7 +149,22 @@ public class TextUI {
         {
             jogo.ResolveMerchantCard(jogo.getState().ResolveSelectedMerchantCard());
         }
-    }
+        else if(temp instanceof Event)
+        {
+            jogo.ResolveEventCard(jogo.getState().ResolveSelectedEventCard());
+        }
+        else if(temp instanceof Trap)
+        {
+            
+        }
+        else if(temp instanceof Monster)
+        {
+            System.out.println("FALTA FAZER");//TODO
+        }
+        else if(temp instanceof BossMonster)
+        {
+            System.out.println("FALTA FAZER");//TODO
+        }
 
     private void uiAwaitOptionSelection() {
         Scanner sc = new Scanner(System.in);

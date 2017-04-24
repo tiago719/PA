@@ -21,6 +21,12 @@ public class Healing extends Spell{
     public String toString(){
         return "Healing  Spell: Gain  8  HP  in  Combat  or  before  resolving  a  Room  card";
     }
+
+    @Override
+    public void Efeito(GameData g)
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 }

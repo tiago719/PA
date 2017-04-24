@@ -196,7 +196,7 @@ public final class Personagem {
         spells.add(s);
     }
 
-    boolean buyAnySpell() {
+    public boolean buyAnySpell() {
         int rand = 1 + (int)(Math.random() * ((5 - 1) + 1));
 
         if ((gold - 8) < 0) {
@@ -224,7 +224,7 @@ public final class Personagem {
         return true;
     }
 
-    boolean sellAnySpell() {
+    public boolean sellAnySpell() {
         int rand = 0 + (int)(Math.random() * ((spells.size() - 0) + 1));
         spells.remove(rand);
         gold+=4;
@@ -232,5 +232,91 @@ public final class Personagem {
         return true;
         
 
+    }
+    
+    public boolean loseFood(int f)
+    {
+        if(f>=0)
+        {
+            return false;
+        }
+        if(food-f<0)
+        {
+            return false;
+        }
+        else
+        {
+            food-=f;
+            return true;
+        }
+    }
+    
+    public boolean loseGold(int g)
+    {
+        if(g>=0)
+        {
+            return false;
+        }
+        if(gold-g<0)
+        {
+            return false;
+        }
+        else
+        {
+            gold-=g;
+            return true;
+        }
+    }
+    
+    public boolean loseArmor(int a)
+    {
+        if(a>=0)
+        {
+            return false;
+        }
+        if(armor-a<0)
+        {
+            return false;
+        }
+        else
+        {
+            armor-=a;
+            return true;
+        }
+    }
+    
+    public boolean loseHp(int h)
+    {
+        if(h>=0)
+        {
+            return false;
+        }
+        if(hp-h<0)
+        {
+            return false;
+        }
+        else
+        {
+            hp-=h;
+            return true;
+        }
+    }
+    
+    public boolean loseXp(int x)
+    {
+        if(x>=0)
+        {
+            return false;
+        }
+        if(rank-x<0)
+        {
+            return false;
+        }
+        else
+        {
+            rank-=x;
+            //TODO: entender a cena da xp e dos niveis
+            return true;
+        }
     }
 }

@@ -28,6 +28,12 @@ public interface IStates {
     IStates ResolveSelectedMerchantCard();
     IStates skipMerchant();
     
+    //event
+    IStates ResolveSelectedEventCard();
+    
+    //trap
+    IStates ResolveSelectedTrapCard();
+    
     //combat
     IStates relancarDado(Dado dado);
 

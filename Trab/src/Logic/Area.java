@@ -27,12 +27,12 @@ public class Area{
         Collections.shuffle(Baralho);
     }
      public final void geraBaralho() {
-        Baralho.add(new Merchant(GameData));
-        Baralho.add(new Merchant(GameData));
-        Baralho.add(new Merchant(GameData));
-        Baralho.add(new Merchant(GameData));
-        Baralho.add(new Merchant(GameData));
-        Baralho.add(new Merchant(GameData));
+        Baralho.add(new Event(GameData));
+        Baralho.add(new Event(GameData));
+        Baralho.add(new Event(GameData));
+        Baralho.add(new Event(GameData));
+        Baralho.add(new Event(GameData));
+        Baralho.add(new Event(GameData));
         if (GameData.getCaverna().isLastArea())
             Baralho.add(new BossMonster(GameData));
         //TODO: adicionar todas cartas

@@ -55,6 +55,16 @@ public class Jogo {
      public void ResolveMerchantCard(IStates s) {
         state = s;
     }
+     
+    public void ResolveEventCard(IStates s)
+    {
+        state=s;
+    }
+    
+    public void ResolveTrapCard(IStates s)
+    {
+        state=s;//TODO: varias funcoes a fazer o mesmo?
+    }
 
     public boolean AOS_OptionSelection(int i) {
         switch (i) {

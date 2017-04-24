@@ -57,8 +57,86 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
                 getGame().getPersonagem().addSpell(new Healing(getGame()));
                 break;
         }
-
+        getGame().proxColuna();
         return this;
+    }
+    
+    @Override
+    public IStates ResolveSelectedEventCard()
+    {
+        int ran = 1 + (int)(Math.random() * ((6 - 1) + 1));
+        
+        switch(ran)
+        {
+            case 1:
+                getGame().getPersonagem().addFood(1);
+                break;
+            case 2:
+                getGame().getPersonagem().addHealth(2);
+                break;
+            case 3:
+                getGame().getPersonagem().addGold(2);
+                break;
+            case 4:
+                getGame().getPersonagem().addXP(2);
+                break;
+            case 5:
+                getGame().getPersonagem().addArmor(1);
+                break;
+            case 6:
+                System.out.println("FALTA FAZER");//TODO
+                break;
+        }
+        getGame().proxColuna();
+        return this;
+    }
+    
+    @Override
+    public IStates ResolveSelectedTrapCard()
+    {
+        //TODO: Falta skill checks em todos
+        int ran = 1 + (int)(Math.random() * ((6 - 1) + 1));
+        
+        switch(ran)
+        {
+            case 1:
+                if(!getGame().getPersonagem().loseFood(1))
+                {
+                    getGame().getPersonagem().loseHp(2);
+                }
+                break;
+            case 2:
+                if(!getGame().getPersonagem().loseGold(1))
+                {
+                    getGame().getPersonagem().loseHp(2);
+                }
+                break;
+            case 3:
+                if(!getGame().getPersonagem().loseArmor(1))
+                {
+                    getGame().getPersonagem().loseHp(2);
+                }
+                break;
+            case 4:
+                if(!getGame().getPersonagem().loseHp(1))
+                {
+                    //TODO:muda para GAMEOVER
+                }
+                break;
+            case 5:
+                if(!getGame().getPersonagem().loseXp(1))
+                {
+                    getGame().getPersonagem().loseHp(2);
+                }
+                break;
+            case 6:
+                getGame().getPersonagem().loseHp(2);
+                System.out.println("FALTA FAZER");//TODO
+                break;
+        }
+        
+        getGame().proxColuna();
+        return this;//TODO
     }
 
     @Override

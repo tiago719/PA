@@ -23,12 +23,12 @@ public class Monster extends Carta {
         rwd = Constants.InfoMonster[rank][1];
         hp = g.getCaverna().getNumArea() + (1 + (int)(Math.random() * ((6 - 1) + 1)));
     }
-    public Monster(GameData g, int lvl) {
+   /* public Monster(GameData g, int lvl) {
         super(g);
         int rank = g.getPersonagem().getRank();
         dmg = Constants.InfoMonster[rank ][0]; 
         rwd = Constants.InfoMonster[rank][1];
-    }
+    }*/
 
     public int getDmg() {
         return dmg;
