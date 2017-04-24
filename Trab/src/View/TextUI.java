@@ -165,6 +165,7 @@ public class TextUI {
         {
             System.out.println("FALTA FAZER");//TODO
         }
+    }
 
     private void uiAwaitOptionSelection() {
         Scanner sc = new Scanner(System.in);
