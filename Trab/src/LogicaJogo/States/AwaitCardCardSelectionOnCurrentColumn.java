@@ -30,7 +30,7 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
 
     @Override
     public IStates ResolveSelectedTreasureCard() {
-        int ran = (int) (Math.random() + 6);//TODO: VER COMO SE FAZ RAND
+        int ran = 1 + (int)(Math.random() * ((6 - 1) + 1));
         if (getGame().getCaverna().getAreaAtual().getMonsterDefeated()) {
             getGame().getPersonagem().addGold(2);
         } else {

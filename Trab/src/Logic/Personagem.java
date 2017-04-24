@@ -17,16 +17,13 @@ import java.util.ArrayList;
 public final class Personagem {
 
     private int armor, hp, gold, food, rank;
-    ArrayList<Dado> dados;
     ArrayList<Spell> spells;
     GameData gamedata;
     
 
     public Personagem(int dificuldade, GameData gamedata) {
         setStats(dificuldade);
-        dados = new ArrayList<>();
         spells = new ArrayList<>();
-        dados.add(new Dado());
         this.gamedata = gamedata;
     }
 
@@ -200,7 +197,7 @@ public final class Personagem {
     }
 
     boolean buyAnySpell() {
-        int rand = (int) (Math.random() + 5);//TODO: VER RANDOM
+        int rand = 1 + (int)(Math.random() * ((5 - 1) + 1));
 
         if ((gold - 8) < 0) {
             return false;
@@ -228,7 +225,7 @@ public final class Personagem {
     }
 
     boolean sellAnySpell() {
-        int rand = (int) (Math.random() + spells.size());//TODO: VER RANDOM
+        int rand = 0 + (int)(Math.random() * ((spells.size() - 0) + 1));
         spells.remove(rand);
         gold+=4;
         

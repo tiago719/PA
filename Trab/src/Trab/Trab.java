@@ -17,6 +17,5 @@ public class Trab {
     public static void main(String[] args) {
         TextUI textUI = new TextUI(new Jogo());
         textUI.run();  
-        // TODO code application logic here
     }
 }

@@ -10,18 +10,32 @@ package Logic;
  * @author edu_f
  */
 public class Dado {
-    private int valor;
-
-    public Dado() {
+    private int face;
+    private int somatorio;
     
+    public Dado() {
+        somatorio=0;
     }
 
-    public int getValor() {
-        return valor;
+    public int getFace() {
+        return face;
     }
 
     public void setValor(int valor) {
-        this.valor = valor;
+        this.face = valor;
+    }
+    
+    public void addSomatorio(int i){
+        somatorio+=i;
+    }
+    
+    public void clearSomatorio(){
+        somatorio=0;
+    }
+    
+    @Override
+    public String toString(){
+        return "Valor do Dado: " + face;
     }
     
     

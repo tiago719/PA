@@ -6,6 +6,7 @@
 package Logic;
 
 import Logic.Cartas.Monster;
+import java.util.ArrayList;
 
 /**
  *
@@ -17,6 +18,8 @@ public class GameData implements Constants {
     private final Personagem Personagem;
     private Monster MonstroAlvo;//IDEIA- FAZER UMA CLASS MONSTRO(PAI) - BOSS E NORMAL (FILHAS)
     private final Caverna Caverna;
+    ArrayList<Dado> dados;
+
 
     public GameData() {
         startingArea = 0;
@@ -25,6 +28,10 @@ public class GameData implements Constants {
         Personagem = new Personagem(dificuldade, this);
         Caverna = new Caverna(startingArea, this);
         MonstroAlvo = null;
+        dados = new ArrayList<>();
+        dados.add(new Dado());
+
+
     }
 
     public Monster getMonstroAlvo() {
