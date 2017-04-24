@@ -5,6 +5,8 @@
  */
 package LogicaJogo.States;
 
+import Logic.Dado;
+
 /**
  *
  * @author edu_f
@@ -25,6 +27,9 @@ public interface IStates {
     //merchant
     IStates ResolveSelectedMerchantCard();
     IStates skipMerchant();
+    
+    //combat
+    IStates relancarDado(Dado dado);
 
 
 }

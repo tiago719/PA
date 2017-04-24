@@ -21,6 +21,11 @@ public class Ice extends Spell{
     public String toString(){
         return "Ice  Spell: In  combat,  freeze  a  Monster  for  one  turn.  The  Monster  does  not  counter­attack.";
     }
+
+    @Override
+    public void Efeito(GameData g) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 }

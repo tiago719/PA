@@ -30,8 +30,6 @@ public class GameData implements Constants {
         MonstroAlvo = null;
         dados = new ArrayList<>();
         dados.add(new Dado());
-
-
     }
 
     public Monster getMonstroAlvo() {

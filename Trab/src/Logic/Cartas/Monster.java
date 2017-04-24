@@ -14,9 +14,16 @@ import Logic.GameData;
  */
 public class Monster extends Carta {
 
-    private final int dmg, rwd;
+    private final int hp, dmg, rwd;
 
     public Monster(GameData g) {
+        super(g);
+        int rank = g.getPersonagem().getRank();
+        dmg = Constants.InfoMonster[rank ][0]; 
+        rwd = Constants.InfoMonster[rank][1];
+        hp = g.getCaverna().getNumArea() + (1 + (int)(Math.random() * ((6 - 1) + 1)));
+    }
+    public Monster(GameData g, int lvl) {
         super(g);
         int rank = g.getPersonagem().getRank();
         dmg = Constants.InfoMonster[rank ][0]; 

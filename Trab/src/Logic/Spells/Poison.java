@@ -21,6 +21,11 @@ public class Poison extends Spell{
     public String toString(){
         return "Poison  Spell: In  Combat,  for  the  remainder  of  the  Combat  sequence,  inict 5  extra  damage  per  turn";
     }
+
+    @Override
+    public void Efeito(GameData g) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 }

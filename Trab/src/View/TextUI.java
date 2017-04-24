@@ -244,6 +244,14 @@ public class TextUI {
             {
                 uiAwaitTrading();
             }
+            else if(state instanceof AwaitRoll)
+            {
+                uiAwaitRoll();
+            }
         }
+    }
+
+    private void uiAwaitRoll() {
+        
     }
 }

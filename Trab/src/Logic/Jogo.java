@@ -94,5 +94,7 @@ public class Jogo {
     public void OptionSelected(IStates s) {
         state = s;
     }
+    
+    
 
 }
