@@ -36,6 +36,8 @@ public interface IStates {
     
     //combat
     IStates relancarDado(Dado dado);
+    
+    boolean skillCheck();
 
 
 }

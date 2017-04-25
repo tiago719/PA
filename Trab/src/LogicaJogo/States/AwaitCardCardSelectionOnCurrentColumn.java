@@ -92,29 +92,42 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
     }
     
     @Override
+    
+    public boolean skillCheck()
+    {
+        int ran = 1 + (int)(Math.random() * ((6 - 1) + 1));
+        
+        return ran<=getGame().getPersonagem().getRank();
+    }
+    @Override
     public IStates ResolveSelectedTrapCard()
     {
-        //TODO: Falta skill checks em todos
+        boolean flag=false;
         int ran = 1 + (int)(Math.random() * ((6 - 1) + 1));
+        
+        if(skillCheck())
+        {
+            return this;
+        }
         
         switch(ran)
         {
             case 1:
                 if(!getGame().getPersonagem().loseFood(1))
                 {
-                    getGame().getPersonagem().loseHp(2);
+                    flag=true;
                 }
                 break;
             case 2:
                 if(!getGame().getPersonagem().loseGold(1))
                 {
-                    getGame().getPersonagem().loseHp(2);
+                    flag=true;
                 }
                 break;
             case 3:
                 if(!getGame().getPersonagem().loseArmor(1))
                 {
-                    getGame().getPersonagem().loseHp(2);
+                    flag=true;
                 }
                 break;
             case 4:
@@ -126,13 +139,26 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
             case 5:
                 if(!getGame().getPersonagem().loseXp(1))
                 {
-                    getGame().getPersonagem().loseHp(2);
+                    flag=true;
                 }
                 break;
             case 6:
                 getGame().getPersonagem().loseHp(2);
+                
+                if(getGame().getCaverna().getNivel()==5)
+                {
+                    break;
+                }
                 System.out.println("FALTA FAZER");//TODO
                 break;
+        }
+        
+        if(flag)
+        {
+            if(!getGame().getPersonagem().loseHp(2))
+            {
+                //TODO: muda para GAMEOVER
+            }
         }
         
         getGame().proxColuna();
