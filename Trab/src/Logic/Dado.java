@@ -22,8 +22,8 @@ public class Dado {
         return face;
     }
 
-    public void setValor(int valor) {
-        this.face = valor;
+    public void lancaDado(int valor) {
+        this.face = 1 + (int)(Math.random() * ((6 - 1) + 1));
     }
     
     public void addSomatorio(int i){

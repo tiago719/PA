@@ -17,4 +17,6 @@ public class AwaitAttack extends StateAdapter implements IStates
     {
         super(g);
     }
+    
+    
 }

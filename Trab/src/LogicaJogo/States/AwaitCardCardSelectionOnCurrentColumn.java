@@ -98,6 +98,7 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
         
         return ran<=getGame().getPersonagem().getRank();
     }
+    
     @Override
     public IStates ResolveSelectedTrapCard()
     {
@@ -167,6 +168,7 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
     @Override
     public IStates ResvolveSelectedMonsterCard()
     {
+        getGame().getPersonagem().get
         return new AwaitAttack(getGame());
     }
 
