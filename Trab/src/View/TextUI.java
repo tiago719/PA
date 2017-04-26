@@ -90,7 +90,7 @@ public class TextUI {
                     return;
 
                 case '3'://comecar
-                    jogo.startGame(jogo.getState().start());
+                    jogo.setState(jogo.getState().start());
                     return;
             }
         }
@@ -139,26 +139,27 @@ public class TextUI {
 
         if (temp instanceof Resting) 
         {
-            jogo.ResolveRestingCard(jogo.getState().ResolveSelectedRestingCard());
+            jogo.setState(jogo.getState().ResolveSelectedRestingCard());
             
         } else if (temp instanceof Treasure)
         {
-            jogo.ResolveTreasureCard(jogo.getState().ResolveSelectedTreasureCard());
+            jogo.setState(jogo.getState().ResolveSelectedTreasureCard());
         }
         else if(temp instanceof Merchant)
         {
-            jogo.ResolveMerchantCard(jogo.getState().ResolveSelectedMerchantCard());
+            jogo.setState(jogo.getState().ResolveSelectedMerchantCard());
         }
         else if(temp instanceof Event)
         {
-            jogo.ResolveEventCard(jogo.getState().ResolveSelectedEventCard());
+            jogo.setState(jogo.getState().ResolveSelectedEventCard());
         }
         else if(temp instanceof Trap)
         {
-            
+            jogo.setState(jogo.getState().ResolveSelectedTrapCard());
         }
         else if(temp instanceof Monster)
         {
+            //jogo.setState(jogo.getState().ResvolveSelectedMonsterCard());
             System.out.println("FALTA FAZER");//TODO
         }
         else if(temp instanceof BossMonster)

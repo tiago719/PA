@@ -9,14 +9,12 @@ import Logic.GameData;
 
 /**
  *
- * @author edu_f
+ * @author Tiago Coutinho
  */
-public class AwaitRollDice extends StateAdapter {
-
-    public AwaitRollDice(GameData g) {
+public class AwaitFeats extends StateAdapter implements IStates
+{
+    public AwaitFeats(GameData g)
+    {
         super(g);
     }
-
-    
-    
 }

@@ -91,8 +91,7 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
         return this;
     }
     
-    @Override
-    
+    @Override   
     public boolean skillCheck()
     {
         int ran = 1 + (int)(Math.random() * ((6 - 1) + 1));
@@ -163,6 +162,12 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
         
         getGame().proxColuna();
         return this;//TODO
+    }
+    
+    @Override
+    public IStates ResvolveSelectedMonsterCard()
+    {
+        return new AwaitAttack(getGame());
     }
 
     @Override

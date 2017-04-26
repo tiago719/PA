@@ -40,32 +40,10 @@ public class Jogo {
         gameData.setStartingArea(valueOf);
     }
 
-    public void startGame(IStates s) {
-        state = s;
-    }
-
-    public void ResolveRestingCard(IStates s) {
+    public void setState(IStates s) {
         state = s;
     }
     
-    public void ResolveTreasureCard(IStates s) {
-        state = s;
-    }
-    
-     public void ResolveMerchantCard(IStates s) {
-        state = s;
-    }
-     
-    public void ResolveEventCard(IStates s)
-    {
-        state=s;
-    }
-    
-    public void ResolveTrapCard(IStates s)
-    {
-        state=s;//TODO: varias funcoes a fazer o mesmo?
-    }
-
     public boolean AOS_OptionSelection(int i) {
         switch (i) {
             case 1:

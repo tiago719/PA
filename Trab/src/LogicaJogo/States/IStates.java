@@ -34,8 +34,8 @@ public interface IStates {
     //trap
     IStates ResolveSelectedTrapCard();
     
-    //combat
-    IStates relancarDado(Dado dado);
+    //monster
+    IStates ResvolveSelectedMonsterCard();
     
     boolean skillCheck();
 

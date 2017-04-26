@@ -69,12 +69,6 @@ public class StateAdapter implements IStates {
     }
 
     @Override
-    public IStates relancarDado(Dado dado)
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public IStates ResolveSelectedEventCard()
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -88,6 +82,12 @@ public class StateAdapter implements IStates {
 
     @Override
     public boolean skillCheck()
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IStates ResvolveSelectedMonsterCard()
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
