@@ -251,6 +251,21 @@ public class TextUI {
         }while(!skip);
     }
     
+    private void uiAwaitAttack()
+    {
+        
+    }
+    
+    private void uiAwaitFeats()
+    {
+        
+    }
+    
+    private void uiAwaitSpellChoose()
+    {
+        
+    }
+    
      public void run() {
         while (!sair) {
             IStates state = jogo.getState();
@@ -266,14 +281,18 @@ public class TextUI {
             {
                 uiAwaitTrading();
             }
-            else if(state instanceof AwaitRoll)
+            else if(state instanceof AwaitAttack)
             {
-                uiAwaitRoll();
+                uiAwaitAttack();
+            }
+            else if(state instanceof AwaitFeats)
+            {
+                uiAwaitFeats();
+            }
+            else if(state instanceof AwaitSpellChoose)
+            {
+                uiAwaitSpellChoose();
             }
         }
-    }
-
-    private void uiAwaitRoll() {
-        
     }
 }
