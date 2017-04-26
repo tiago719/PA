@@ -85,8 +85,8 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
                 getGame().getPersonagem().addArmor(1);
                 break;
             case 6:
-                System.out.println("FALTA FAZER");//TODO
-                break;
+                //TODO
+                return new AwaitAttack(getGame());
         }
         getGame().proxColuna();
         return this;
@@ -134,7 +134,7 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
             case 4:
                 if(!getGame().getPersonagem().loseHp(1))
                 {
-                    //TODO:muda para GAMEOVER
+                    return new GameOver(getGame());
                 }
                 break;
             case 5:
@@ -158,7 +158,7 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
         {
             if(!getGame().getPersonagem().loseHp(2))
             {
-                //TODO: muda para GAMEOVER
+                return new GameOver(getGame());
             }
         }
         

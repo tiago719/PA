@@ -16,7 +16,7 @@ public class AwaitAttack extends StateAdapter implements IStates
     public AwaitAttack(GameData g)
     {
         super(g);
-    }
+    }    
     
     @Override
     public IStates Feats(){
@@ -28,4 +28,9 @@ public class AwaitAttack extends StateAdapter implements IStates
         return new AwaitSpellChoose(getGame());
     }
     
+    /*public AwaitAttack(GameData g, int hp, int damage)
+    {
+        super(g);
+        g.
+    }*/
 }

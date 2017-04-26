@@ -253,7 +253,34 @@ public class TextUI {
     
     private void uiAwaitAttack()
     {
+        Scanner sc = new Scanner(System.in);
+        String option1;
+        int c;
+        do {
+                System.out.println("\n=== AWAITING ATTACK ===\n");
+                System.out.println("Resultado dos dados: ");
+                System.out.println("1 - Atacar");
+                System.out.println("2 - Rerrol");
+                System.out.println("3 - Feats");
+
+               option1 = sc.next();
+
+            try {
+                c = (int) Integer.parseInt(option1);
+            } catch (Exception ex) {
+                c = -1;
+            }
+            
+            } while (c < 1 || c > 3);
         
+            switch(c)
+            {
+                case 1:
+                    
+                case 2:
+                    
+                case 3:
+            }
     }
     
     private void uiAwaitFeats()
@@ -292,6 +319,11 @@ public class TextUI {
             else if(state instanceof AwaitSpellChoose)
             {
                 uiAwaitSpellChoose();
+            }
+            else if(state instanceof GameOver)
+            {
+                System.out.println();
+                System.out.println("************** Game over *****************");
             }
         }
     }

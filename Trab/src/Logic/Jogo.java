@@ -8,6 +8,8 @@ package Logic;
 import Logic.Caverna;
 import static Logic.Constants.*;
 import LogicaJogo.States.AwaitBegining;
+import LogicaJogo.States.AwaitFeats;
+import LogicaJogo.States.AwaitSpellChoose;
 import LogicaJogo.States.IStates;
 
 /**
@@ -44,7 +46,7 @@ public class Jogo {
         state = s;
     }
     
-    public boolean AOS_OptionSelection(int i) {
+    public boolean AOS_OptionSelected(int i) {
         switch (i) {
             case 1:
                 return getGame().getPersonagem().addXP(1);
