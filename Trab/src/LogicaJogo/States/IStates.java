@@ -38,6 +38,15 @@ public interface IStates {
     IStates ResvolveSelectedMonsterCard();
     
     boolean skillCheck();
-
+    
+    //attack
+    IStates Feats();
+    IStates Spells();
+            
+    //feats
+    IStates ReturnAwaitAttack();
+            
+    //spells
+    IStates AttackMontser();
 
 }

@@ -5,6 +5,7 @@
  */
 package LogicaJogo.States;
 
+import Logic.Dado;
 import Logic.GameData;
 import Logic.Spells.*;
 
@@ -168,7 +169,9 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
     @Override
     public IStates ResvolveSelectedMonsterCard()
     {
-        getGame().getPersonagem().get
+        for (Dado d : getGame().getDados()){
+            d.lancaDado();
+        }
         return new AwaitAttack(getGame());
     }
 

@@ -92,4 +92,15 @@ public class GameData implements Constants {
     public Personagem getPersonagem() {
         return Personagem;
     }
+    
+    public boolean AnyCritical(){
+        for (Dado d : dados)
+            if (d.getFace() == 6)
+                return true;
+        return false;
+    }
+    
+    public ArrayList<Dado> getDados(){
+        return dados;
+    }
 }
