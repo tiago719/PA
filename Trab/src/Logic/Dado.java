@@ -10,11 +10,12 @@ package Logic;
  * @author edu_f
  */
 public class Dado {
-    private int face;
-    private int somatorio;
+    private int face,somatorio;
+    private boolean feated;
     
     public Dado() {
         somatorio=0;
+        feated=false;
     }
 
     public int getFace() {
