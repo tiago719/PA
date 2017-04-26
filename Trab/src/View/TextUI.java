@@ -6,6 +6,7 @@
 package View;
 
 import Logic.Cartas.*;
+import Logic.Dado;
 import Logic.Jogo;
 import LogicaJogo.States.*;
 import java.util.ArrayList;
@@ -255,13 +256,14 @@ public class TextUI {
     {
         Scanner sc = new Scanner(System.in);
         String option1;
-        int c;
+        int c, i=0;
         do {
                 System.out.println("\n=== AWAITING ATTACK ===\n");
                 System.out.println("Resultado dos dados: ");
                 System.out.println("1 - Atacar");
-                System.out.println("2 - Rerrol");
-                System.out.println("3 - Feats");
+                System.out.println("2 - Feats");
+                if(jogo.AnyCritical())
+                    System.out.println("3 - Rerrol");
 
                option1 = sc.next();
 
@@ -271,15 +273,23 @@ public class TextUI {
                 c = -1;
             }
             
-            } while (c < 1 || c > 3);
+            } while (c < 1 || c > 3);//TODO: alterar condição de saida
         
             switch(c)
             {
                 case 1:
-                    
+                    jogo.setState(jogo.getState().AttackMontser());
                 case 2:
-                    
+                    jogo.setState(jogo.getState().Feats());                   
                 case 3:
+                    System.out.println("Escolha o dado que pretende fazer rerrol: ");
+                    for (Dado d: jogo.getDados())
+                    {
+                        System.out.println("Dado " + ++i + ": "+ d);
+                    }
+                    
+                    
+                        
             }
     }
     

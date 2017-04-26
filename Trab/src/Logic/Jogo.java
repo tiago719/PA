@@ -11,6 +11,7 @@ import LogicaJogo.States.AwaitBegining;
 import LogicaJogo.States.AwaitFeats;
 import LogicaJogo.States.AwaitSpellChoose;
 import LogicaJogo.States.IStates;
+import java.util.ArrayList;
 
 /**
  *
@@ -45,6 +46,21 @@ public class Jogo {
     public void setState(IStates s) {
         state = s;
     }
+    
+    public boolean AnyCritical()
+    {
+        return gameData.AnyCritical();
+    }
+    
+    public ArrayList<Dado> getDados()
+    {
+        return gameData.getDados();
+    }
+    
+    public Dado getDado(int i){
+        return gameData.getDados().get(i);
+    }
+    
     
     public boolean AOS_OptionSelected(int i) {
         switch (i) {

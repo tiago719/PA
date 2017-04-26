@@ -18,7 +18,7 @@ public class GameData implements Constants {
     private final Personagem Personagem;
     private Monster MonstroAlvo;//IDEIA- FAZER UMA CLASS MONSTRO(PAI) - BOSS E NORMAL (FILHAS)
     private final Caverna Caverna;
-    ArrayList<Dado> dados;
+    private ArrayList<Dado> dados;
 
 
     public GameData() {
@@ -102,5 +102,9 @@ public class GameData implements Constants {
     
     public ArrayList<Dado> getDados(){
         return dados;
+    }
+    
+    public Dado getDado(int i){
+        return dados.get(i);
     }
 }
