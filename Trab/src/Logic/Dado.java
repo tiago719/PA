@@ -10,11 +10,11 @@ package Logic;
  * @author edu_f
  */
 public class Dado {
-    private int face,somatorio;
+    private int face,totalDado;
     private boolean feated;
     
     public Dado() {
-        somatorio=0;
+        totalDado=0;
         feated=false;
     }
 
@@ -22,16 +22,13 @@ public class Dado {
         return face;
     }
 
-    public void lancaDado(int valor) {
+    public void lancaDado() {
         this.face = 1 + (int)(Math.random() * ((6 - 1) + 1));
-    }
-    
-    public void addSomatorio(int i){
-        somatorio+=i;
+        totalDado += this.face;
     }
     
     public void clearSomatorio(){
-        somatorio=0;
+        totalDado=0;
     }
     
     @Override
