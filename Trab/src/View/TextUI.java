@@ -348,6 +348,7 @@ public class TextUI {
             } else if (state instanceof GameOver) {
                 System.out.println();
                 System.out.println("************** Game over *****************");
+                sair=true;
             }
         }
     }
