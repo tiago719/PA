@@ -120,4 +120,15 @@ public class StateAdapter implements IStates {
     public IStates ProxRonda() {
         return this;
     }
+    
+    public IStates GameOver()
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IStates VoltaAwaitAttack()
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

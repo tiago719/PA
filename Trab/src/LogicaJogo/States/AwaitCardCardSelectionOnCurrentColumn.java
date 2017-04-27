@@ -85,7 +85,7 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
                 getGame().getPersonagem().addArmor(1);
                 break;
             case 6:
-                //TODO
+                //TODO:meter lancamento dos dados no estado AwaitAttack 
                 return new AwaitAttack(getGame());
         }
         getGame().proxColuna();
