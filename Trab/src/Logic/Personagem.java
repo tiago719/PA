@@ -270,10 +270,6 @@ public final class Personagem {
     
     public boolean loseArmor(int a)
     {
-        if(a>=0)
-        {
-            return false;
-        }
         if(armor-a<0)
         {
             return false;
@@ -287,12 +283,9 @@ public final class Personagem {
     
     public boolean loseHp(int h)
     {
-        if(h>=0)
-        {
-            return false;
-        }
         if(hp-h<0)
         {
+            hp=0;
             return false;
         }
         else
@@ -304,10 +297,6 @@ public final class Personagem {
     
     public boolean loseXp(int x)
     {
-        if(x>=0)
-        {
-            return false;
-        }
         if(rank-x<0)
         {
             return false;

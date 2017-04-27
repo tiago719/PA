@@ -22,4 +22,16 @@ public class AwaitFeats extends StateAdapter implements IStates
     public IStates ReturnAwaitAttack(){
         return new AwaitAttack(getGame());
     }
+    
+    @Override
+    public IStates GameOver()
+    {
+        return new GameOver(getGame());
+    }
+    
+    @Override
+    public IStates VoltaAwaitAttack()
+    {
+        return new AwaitAttack(getGame());
+    }
 }

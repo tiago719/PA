@@ -114,6 +114,39 @@ public class Jogo {
         gameData.getDado(c-1).lancaDado();
         return true;
     }
+    // 1 sucesso
+    // -1 feated
+    // -2 gameOver
+    // -3 nao tem xp
+    public int AA_Feat(int d, int custo)
+    {
+        Dado temp=gameData.getDado(d-1);
+        
+        if(temp.getFeated())
+        {
+            return -1;
+        }
+        
+        switch(custo)
+        {
+            case 1:
+                if(!gameData.getPersonagem().loseHp(2))
+                {
+                    return -2;
+                }
+                break;                
+            case 2:
+                if(!gameData.getPersonagem().loseXp(1))
+                {
+                    return -3;
+                }  
+                break;
+        }
+        
+        gameData.getDado(d-1).setFeated(true);
+        gameData.getDado(d-1).lancaDado();
+        return 1;
+    }
 
     public Monster getMonstroAlvo() {
         return gameData.getMonstroAlvo();

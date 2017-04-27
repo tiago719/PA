@@ -35,6 +35,16 @@ public class Dado {
         totalDado=0;
     }
     
+    public boolean getFeated()
+    {
+        return feated;
+    }
+    
+    public void setFeated(boolean b)
+    {
+        feated=b;
+    }
+    
     @Override
     public String toString(){
         return "Valor do Dado: " + face;

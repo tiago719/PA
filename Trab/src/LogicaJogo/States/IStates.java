@@ -45,6 +45,8 @@ public interface IStates {
             
     //feats
     IStates ReturnAwaitAttack();
+    IStates GameOver();
+    IStates VoltaAwaitAttack();
             
     //spells
     IStates AttackMontser();
