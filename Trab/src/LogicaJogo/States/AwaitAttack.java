@@ -12,36 +12,42 @@ import Logic.GameData;
  *
  * @author Tiago Coutinho
  */
-public class AwaitAttack extends StateAdapter implements IStates
-{
-    public AwaitAttack(GameData g)
-    {
+public class AwaitAttack extends StateAdapter implements IStates {
+
+    public AwaitAttack(GameData g) {
         super(g);
-    }    
-    
+    }
+
     @Override
-    public IStates Feats(){
+    public IStates Feats() {
         return new AwaitFeats(getGame());
     }
-    
+
     @Override
-    public IStates AtacaMonstro(){
+    public IStates AtacaMonstro() {
         int soma = 0;
-        for(Dado d : getGame().getDados())
+        for (Dado d : getGame().getDados()) {
             soma += d.getTotalDado();
-        
-        if (getGame().getMonstroAlvo().Deffend(soma))
-        {
+        }
+
+        if (!getGame().getMonstroAlvo().Deffend(soma)) {
             return new AwaitSpellChoose(getGame());
-        } 
-        else
-        {
+        } else {
             getGame().proxColuna();
             return new AwaitCardCardSelectionOnCurrentColumn(getGame());
         }
-        
+
     }
-    
+
+    @Override
+    public IStates AttackMonster() {
+        
+        
+        
+        
+        return new AwaitSpellChoose(getGame());
+    }
+
     /*public AwaitAttack(GameData g, int hp, int damage)
     {
         super(g);

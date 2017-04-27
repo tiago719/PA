@@ -65,6 +65,9 @@ public class Caverna {
     }
 
     public boolean isLastArea() {
+        int a = MapaNiveis[areaL].length;
+        int b = areaC + 1;
+        
         return MapaNiveis[areaL].length == areaC + 1;
     }
 

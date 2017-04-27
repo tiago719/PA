@@ -49,7 +49,7 @@ public interface IStates {
     IStates VoltaAwaitAttack();
             
     //spells
-    IStates AttackMontser();
+    IStates AttackMonster();
     IStates EndBattle();
     IStates ProxRonda();
 

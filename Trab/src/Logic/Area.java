@@ -33,7 +33,7 @@ public class Area{
         Baralho.add(new Monster(GameData));
         Baralho.add(new Monster(GameData));
         Baralho.add(new Monster(GameData));
-        if (GameData.getCaverna().isLastArea())
+        if (GameData.getCaverna().isLastArea())//TODO: CORRIGIR ESTE ERRO
             Baralho.add(new BossMonster(GameData));
         //TODO: adicionar todas cartas
     }

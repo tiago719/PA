@@ -316,7 +316,7 @@ public class TextUI
             switch (c)
             {
                 case 1:
-                    jogo.setState(jogo.getState().AttackMontser());
+                    jogo.setState(jogo.getState().AtacaMonstro());
                     end = true;
                     break;
                 case 2:
@@ -390,6 +390,7 @@ public class TextUI
             if(c==0)
             {
                 jogo.setState(jogo.getState().VoltaAwaitAttack());
+                return;
             }
 
             do

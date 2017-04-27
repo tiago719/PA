@@ -5,6 +5,7 @@
  */
 package LogicaJogo.States;
 
+import Logic.Cartas.Monster;
 import Logic.Dado;
 import Logic.GameData;
 import Logic.Spells.*;
@@ -85,7 +86,8 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
                 getGame().getPersonagem().addArmor(1);
                 break;
             case 6:
-                //TODO:meter lancamento dos dados no estado AwaitAttack 
+                //TODO:meter lancamento dos dados no estado AwaitAttack
+                getGame().setMonstroAlvo(new Monster(getGame(), true));
                 return new AwaitAttack(getGame());
         }
         getGame().proxColuna();

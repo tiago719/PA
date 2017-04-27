@@ -49,22 +49,19 @@ public class Jogo {
     public void setState(IStates s) {
         state = s;
     }
-    
-    public boolean AnyCritical()
-    {
+
+    public boolean AnyCritical() {
         return gameData.AnyCritical();
     }
-    
-    public ArrayList<Dado> getDados()
-    {
+
+    public ArrayList<Dado> getDados() {
         return gameData.getDados();
     }
-    
-    public Dado getDado(int i){
+
+    public Dado getDado(int i) {
         return gameData.getDados().get(i);
     }
-    
-    
+
     public boolean AOS_OptionSelected(int i) {
         switch (i) {
             case 1:
@@ -77,11 +74,9 @@ public class Jogo {
         }
         return false;
     }
-    
-    public boolean AOS_TraidingSelection(int i)
-    {
-        switch(i)
-        {
+
+    public boolean AOS_TraidingSelection(int i) {
+        switch (i) {
             case 1:
                 return getGame().getPersonagem().buyRation();
             case 2:
@@ -109,43 +104,40 @@ public class Jogo {
     }
 
     public boolean AA_Reroll(int c) {
-        Dado temp = gameData.getDado(c-1);
-        if (temp.getFace()!=6)
+        Dado temp = gameData.getDado(c - 1);
+        if (temp.getFace() != 6) {
             return false;
-        gameData.getDado(c-1).lancaDado();
+        }
+        gameData.getDado(c - 1).lancaDado();
         return true;
     }
+
     // 1 sucesso
     // -1 feated
     // -2 gameOver
     // -3 nao tem xp
-    public int AA_Feat(int d, int custo)
-    {
-        Dado temp=gameData.getDado(d-1);
-        
-        if(temp.getFeated())
-        {
+    public int AA_Feat(int d, int custo) {
+        Dado temp = gameData.getDado(d - 1);
+
+        if (temp.getFeated()) {
             return -1;
         }
-        
-        switch(custo)
-        {
+
+        switch (custo) {
             case 1:
-                if(!gameData.getPersonagem().loseHp(2))
-                {
+                if (!gameData.getPersonagem().loseHp(2)) {
                     return -2;
                 }
-                break;                
+                break;
             case 2:
-                if(!gameData.getPersonagem().loseXp(1))
-                {
+                if (!gameData.getPersonagem().loseXp(1)) {
                     return -3;
-                }  
+                }
                 break;
         }
-        
-        gameData.getDado(d-1).setFeated(true);
-        gameData.getDado(d-1).lancaDado();
+
+        gameData.getDado(d - 1).setFeated(true);
+        gameData.getDado(d - 1).lancaDado();
         return 1;
     }
 
@@ -158,9 +150,8 @@ public class Jogo {
     }
 
     //retorna true se morreu, false se nao morreu
-    public boolean AS_ChooseSpell(int c) 
-    {
-        switch(c){
+    public boolean AS_ChooseSpell(int c) {
+        switch (c) {
             case -1:
                 //TODO: menssagem de erro
                 break;
@@ -168,18 +159,15 @@ public class Jogo {
                 //TODO: sem spells
                 break;
             default:
-                getSpells().get(c-1).Efeito(gameData);
-                getSpells().remove(c-1);
-                if(getMonstroAlvo().getHp() == 0){
-                    return true;
-                }
-                else{
-                    return false;
-                }            
+                getSpells().get(c - 1).Efeito(gameData);
+                getSpells().remove(c - 1);
+
         }
-        return false;
+        if (getMonstroAlvo().getHp() == 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
-    
-    
 
 }
