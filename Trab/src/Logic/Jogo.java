@@ -5,8 +5,10 @@
  */
 package Logic;
 
+import Logic.Cartas.Monster;
 import Logic.Caverna;
 import static Logic.Constants.*;
+import Logic.Spells.Spell;
 import LogicaJogo.States.AwaitBegining;
 import LogicaJogo.States.AwaitFeats;
 import LogicaJogo.States.AwaitSpellChoose;
@@ -99,6 +101,30 @@ public class Jogo {
 
     public void OptionSelected(IStates s) {
         state = s;
+    }
+
+    public void setMonster() {
+        gameData.setMonster();
+    }
+
+    public boolean AA_Reroll(int c) {
+        Dado temp = gameData.getDado(c-1);
+        if (temp.getFace()!=6)
+            return false;
+        gameData.getDado(c-1).lancaDado();
+        return true;
+    }
+
+    public Monster getMonstroAlvo() {
+        return gameData.getMonstroAlvo();
+    }
+
+    public ArrayList<Spell> getSpells() {
+        return gameData.getPersonagem().getSpells();
+    }
+
+    public void AS_ChooseSpell(int c) {
+        //TODO: CONTINUAR AQUI
     }
     
     
