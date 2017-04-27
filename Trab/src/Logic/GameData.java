@@ -16,7 +16,7 @@ public class GameData implements Constants {
 
     private int dificuldade, startingArea, coluna;
     private final Personagem Personagem;
-    private Monster MonstroAlvo;//IDEIA- FAZER UMA CLASS MONSTRO(PAI) - BOSS E NORMAL (FILHAS)
+    private Monster MonstroAlvo;
     private final Caverna Caverna;
     private ArrayList<Dado> dados;
 

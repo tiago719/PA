@@ -98,7 +98,7 @@ public class StateAdapter implements IStates {
     }
 
     @Override
-    public IStates Spells() {
+    public IStates AtacaMonstro() {
         return this;
     }
 

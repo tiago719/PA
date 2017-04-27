@@ -123,8 +123,12 @@ public class Jogo {
         return gameData.getPersonagem().getSpells();
     }
 
-    public void AS_ChooseSpell(int c) {
-        //TODO: CONTINUAR AQUI
+    public void AS_ChooseSpell(int c) 
+    {//TODO: CONTINUAR AQUI
+        if(c==-1)
+        {
+            
+        }
     }
     
     

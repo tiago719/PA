@@ -41,7 +41,7 @@ public interface IStates {
     
     //attack
     IStates Feats();
-    IStates Spells();
+    IStates AtacaMonstro();
             
     //feats
     IStates ReturnAwaitAttack();

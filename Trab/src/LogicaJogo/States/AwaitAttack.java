@@ -25,13 +25,21 @@ public class AwaitAttack extends StateAdapter implements IStates
     }
     
     @Override
-    public IStates Spells(){
+    public IStates AtacaMonstro(){
         int soma = 0;
         for(Dado d : getGame().getDados())
             soma += d.getTotalDado();
         
-        getGame().getMonstroAlvo().Deffend(soma);
-        return new AwaitSpellChoose(getGame());
+        if (getGame().getMonstroAlvo().Deffend(soma))
+        {
+            return new AwaitSpellChoose(getGame());
+        } 
+        else
+        {
+            getGame().proxColuna();
+            return new AwaitCardCardSelectionOnCurrentColumn(getGame());
+        }
+        
     }
     
     /*public AwaitAttack(GameData g, int hp, int damage)

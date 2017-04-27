@@ -17,23 +17,28 @@ import java.util.Scanner;
  *
  * @author Tiago Coutinho
  */
-public class TextUI {
+public class TextUI
+{
 
     private Jogo jogo;
     private boolean sair;
 
-    public TextUI(Jogo jogo) {
+    public TextUI(Jogo jogo)
+    {
         this.jogo = jogo;
         sair = false;
     }
 
-    public void uiAwaitBeggining() {
+    public void uiAwaitBeggining()
+    {
         String option1, option2;
         char c, d;
         int f;
         Scanner sc = new Scanner(System.in);
-        while (true) {
-            do {
+        while (true)
+        {
+            do
+            {
                 System.out.println("\n=== AWAITING FOR THE BEGINNING OF THE GAME ===\n");
                 System.out.println("0 - Sair");
                 System.out.println("1 - Escolher area inicial");
@@ -42,27 +47,33 @@ public class TextUI {
 
                 option1 = sc.next();
 
-                if (option1.length() >= 1) {
+                if (option1.length() >= 1)
+                {
                     c = option1.charAt(0);
-                } else {
+                } else
+                {
                     c = ' ';
                 }
             } while (c < '0' || c > '3');
 
-            switch (c) {
+            switch (c)
+            {
                 case '0'://sair
                     sair = true;
                     return;
 
                 case '1'://escolher area inicial
-                    do {
+                    do
+                    {
                         System.out.println("Escolha a area a comecar: (1-14)");
 
                         option2 = sc.next();
 
-                        try {
+                        try
+                        {
                             f = (int) Integer.parseInt(option2);
-                        } catch (Exception ex) {
+                        } catch (Exception ex)
+                        {
                             f = -1;
                         }
                     } while (f < 1 || f > 14);
@@ -71,7 +82,8 @@ public class TextUI {
                     return;
 
                 case '2'://escolher nivel dificuldade
-                    do {
+                    do
+                    {
                         System.out.println("Escolha o nivel de dificuldade");
                         System.out.println("1 - Casual (1 Armor, 5 HP, 5 Gold, 6 Food)");
                         System.out.println("2 - Normal (0 Armor, 5 HP, 3 Gold, 6 Food)");
@@ -80,9 +92,11 @@ public class TextUI {
 
                         option2 = sc.next();
 
-                        try {
+                        try
+                        {
                             f = Integer.parseInt(option2);
-                        } catch (Exception ex) {
+                        } catch (Exception ex)
+                        {
                             f = -1;
                         }
 
@@ -98,13 +112,15 @@ public class TextUI {
         }
     }
 
-    public void uiAwaitCardCardSelectionOnCurrentColumn() {
+    public void uiAwaitCardCardSelectionOnCurrentColumn()
+    {
         ArrayList<Carta> c;
         Scanner sc = new Scanner(System.in);
         int op, cont = 0;
         String option1;
 
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 50; i++)
+        {
             System.out.println();
         }
         System.out.println("Food: " + jogo.getGame().getPersonagem().getFood());
@@ -118,18 +134,22 @@ public class TextUI {
         System.out.println("Escolha uma carta da coluna em que se encontra\n");
 
         c = jogo.getGame().getCaverna().getAreaAtual().getCartasColuna();
-        for (Carta cartasColuna : c) {
+        for (Carta cartasColuna : c)
+        {
             System.out.println((++cont) + " - " + cartasColuna + "\n");
         }
 
-        do {
+        do
+        {
             System.out.println("Escolha Uma Carta ( 1 - " + (c.size()) + ")");
 
             option1 = sc.next();
 
-            try {
+            try
+            {
                 op = (int) Integer.parseInt(option1);
-            } catch (Exception ex) {
+            } catch (Exception ex)
+            {
                 op = -1;
             }
 
@@ -137,31 +157,40 @@ public class TextUI {
 
         Carta temp = c.get(op - 1);
 
-        if (temp instanceof Resting) {
+        if (temp instanceof Resting)
+        {
             jogo.setState(jogo.getState().ResolveSelectedRestingCard());
 
-        } else if (temp instanceof Treasure) {
+        } else if (temp instanceof Treasure)
+        {
             jogo.setState(jogo.getState().ResolveSelectedTreasureCard());
-        } else if (temp instanceof Merchant) {
+        } else if (temp instanceof Merchant)
+        {
             jogo.setState(jogo.getState().ResolveSelectedMerchantCard());
-        } else if (temp instanceof Event) {
+        } else if (temp instanceof Event)
+        {
             jogo.setState(jogo.getState().ResolveSelectedEventCard());
-        } else if (temp instanceof Trap) {
+        } else if (temp instanceof Trap)
+        {
             jogo.setState(jogo.getState().ResolveSelectedTrapCard());
-        } else if (temp instanceof Monster) {
+        } else if (temp instanceof Monster)
+        {
             jogo.setMonster();
             jogo.setState(jogo.getState().ResvolveSelectedMonsterCard());
-        } else if (temp instanceof BossMonster) {
+        } else if (temp instanceof BossMonster)
+        {
             System.out.println("FALTA FAZER");//TODO
         }
     }
 
-    private void uiAwaitOptionSelection() {
+    private void uiAwaitOptionSelection()
+    {
         Scanner sc = new Scanner(System.in);
         String option1;
         int c;
 
-        do {
+        do
+        {
             System.out.println("\n=== AWAITING OPTION SELECTION(RESTING CARD) ===\n");
             System.out.println("1 - Reinforce your Weapon: +1 XP");
             System.out.println("2 - Search for Ration: +1 FOOD");
@@ -169,9 +198,11 @@ public class TextUI {
 
             option1 = sc.next();
 
-            try {
+            try
+            {
                 c = (int) Integer.parseInt(option1);
-            } catch (Exception ex) {
+            } catch (Exception ex)
+            {
                 c = -1;
             }
 
@@ -179,19 +210,23 @@ public class TextUI {
 
         if (!jogo.AOS_OptionSelected(c))
                 //TODO: TRATAR erro
-                ; else {
+                ; else
+        {
             jogo.OptionSelected(jogo.getState().OptionSelected());
         }
     }
 
-    private void uiAwaitTrading() {
+    private void uiAwaitTrading()
+    {
         Scanner sc = new Scanner(System.in);
         String option1;
         int c;
         boolean skip = false;
 
-        do {
-            do {
+        do
+        {
+            do
+            {
                 System.out.println("Food: " + jogo.getGame().getPersonagem().getFood());
                 System.out.println("Health: " + jogo.getGame().getPersonagem().getHp());
                 System.out.println("Gold: " + jogo.getGame().getPersonagem().getGold());
@@ -210,13 +245,16 @@ public class TextUI {
 
                 option1 = sc.next();
 
-                try {
+                try
+                {
                     c = (int) Integer.parseInt(option1);
-                } catch (Exception ex) {
+                } catch (Exception ex)
+                {
                     c = -1;
                 }
 
-                if (c == 8) {
+                if (c == 8)
+                {
                     jogo.OptionSelected(jogo.getState().skipMerchant());
                     skip = true;
                     break;
@@ -224,46 +262,55 @@ public class TextUI {
 
             } while (c < 0 || c > 7);
 
-            if (!jogo.AOS_TraidingSelection(c)) {
+            if (!jogo.AOS_TraidingSelection(c))
+            {
                 //TODO: tratar erro
             }
 
         } while (!skip);
     }
 
-    private void uiAwaitAttack() {
+    private void uiAwaitAttack()
+    {
         Scanner sc = new Scanner(System.in);
         String option1;
         int c, i = 0, aux = 2;
         boolean end = false;
-        do {
+        do
+        {
 
-            do {
+            do
+            {
                 System.out.println("\n=== AWAITING ATTACK ===\n");
                 System.out.println("Resultado dos dados: ");
 
-                for (Dado d : jogo.getDados()) {
+                for (Dado d : jogo.getDados())
+                {
                     System.out.println("Dado " + ++i + ": " + d);
                 }
 
                 System.out.println("1 - Atacar");
                 System.out.println("2 - Feats");
-                if (jogo.AnyCritical()) {
+                if (jogo.AnyCritical())
+                {
                     System.out.println("3 - Reroll");
                     aux = 3;
                 }
 
                 option1 = sc.next();
 
-                try {
+                try
+                {
                     c = (int) Integer.parseInt(option1);
-                } catch (Exception ex) {
+                } catch (Exception ex)
+                {
                     c = -1;
                 }
 
             } while (c < 1 || c > aux);
 
-            switch (c) {
+            switch (c)
+            {
                 case 1:
                     jogo.setState(jogo.getState().AttackMontser());
                     end = true;
@@ -273,18 +320,22 @@ public class TextUI {
                     end = true;
                     break;
                 case 3:
-                    do {
+                    do
+                    {
                         System.out.println("Escolha o dado que pretende fazer reroll: ");
-                        for (Dado d : jogo.getDados()) {
+                        for (Dado d : jogo.getDados())
+                        {
                             System.out.println("Dado " + ++i + ": " + d);
                         }
                         //TODO: adicionar opcao de sair/nao escolher dado
 
                         option1 = sc.next();
 
-                        try {
+                        try
+                        {
                             c = (int) Integer.parseInt(option1);
-                        } catch (Exception ex) {
+                        } catch (Exception ex)
+                        {
                             c = -1;
                         }
 
@@ -295,60 +346,83 @@ public class TextUI {
         } while (!end);
     }
 
-    private void uiAwaitFeats() {
+    private void uiAwaitFeats()
+    {
     }
 
-    private void uiAwaitSpellChoose() {
+    private void uiAwaitSpellChoose()
+    {
         Scanner sc = new Scanner(System.in);
         String option1;
         int c, i = 0;
-        do {
+        do
+        {
             System.out.println("\n=== AWAITING SPELLS CHOOSE ===\n");
 
             System.out.println("Status do Monstro:");
             System.out.println(jogo.getMonstroAlvo());
 
-            System.out.println("Spells:");
-            for (Spell d : jogo.getSpells()) {
-                System.out.println("Spell " + ++i + ": " + d);
-            }
+            if (jogo.getSpells().size() != 0)
+            {
+                System.out.println("Spells:");
+                for (Spell d : jogo.getSpells())
+                {
+                    System.out.println("Spell " + ++i + ": " + d);
+                }
 
-            option1 = sc.next();
+                option1 = sc.next();
 
-            try {
-                c = (int) Integer.parseInt(option1);
-            } catch (Exception ex) {
-                c = -1;
+                try
+                {
+                    c = (int) Integer.parseInt(option1);
+                } catch (Exception ex)
+                {
+                    c = -1;
+                }
+
+            } else
+            {
+                c=-1;
+                break;
             }
 
         } while (c < 1 || c > i);
         jogo.AS_ChooseSpell(c);
-        
 
     }
 
-    public void run() {
-        while (!sair) {
+    public void run()
+    {
+        while (!sair)
+        {
             IStates state = jogo.getState();
 
-            if (state instanceof AwaitBegining) {
+            if (state instanceof AwaitBegining)
+            {
                 uiAwaitBeggining();
-            } else if (state instanceof AwaitCardCardSelectionOnCurrentColumn) {
+            } else if (state instanceof AwaitCardCardSelectionOnCurrentColumn)
+            {
                 uiAwaitCardCardSelectionOnCurrentColumn();
-            } else if (state instanceof AwaitOptionSelection) {
+            } else if (state instanceof AwaitOptionSelection)
+            {
                 uiAwaitOptionSelection();
-            } else if (state instanceof AwaitTraiding) {
+            } else if (state instanceof AwaitTraiding)
+            {
                 uiAwaitTrading();
-            } else if (state instanceof AwaitAttack) {
+            } else if (state instanceof AwaitAttack)
+            {
                 uiAwaitAttack();
-            } else if (state instanceof AwaitFeats) {
+            } else if (state instanceof AwaitFeats)
+            {
                 uiAwaitFeats();
-            } else if (state instanceof AwaitSpellChoose) {
+            } else if (state instanceof AwaitSpellChoose)
+            {
                 uiAwaitSpellChoose();
-            } else if (state instanceof GameOver) {
+            } else if (state instanceof GameOver)
+            {
                 System.out.println();
                 System.out.println("************** Game over *****************");
-                sair=true;
+                sair = true;
             }
         }
     }
