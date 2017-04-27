@@ -107,7 +107,7 @@ public class StateAdapter implements IStates {
     }
 
     @Override
-    public IStates AttackMontser() {
+    public IStates AttackMonster() {
         return this;
     }
 
