@@ -362,7 +362,7 @@ public class TextUI
             System.out.println("Status do Monstro:");
             System.out.println(jogo.getMonstroAlvo());
 
-            if (jogo.getSpells().size() != 0)
+            if (!jogo.getSpells().isEmpty())
             {
                 System.out.println("Spells:");
                 for (Spell d : jogo.getSpells())
@@ -382,12 +382,15 @@ public class TextUI
 
             } else
             {
-                c=-1;
+                c=0;
                 break;
             }
 
         } while (c < 1 || c > i);
-        jogo.AS_ChooseSpell(c);
+        if(jogo.AS_ChooseSpell(c))
+            jogo.setState(jogo.getState().EndBattle());
+        else
+            jogo.setState(jogo.getState().ProxRonda());
 
     }
 

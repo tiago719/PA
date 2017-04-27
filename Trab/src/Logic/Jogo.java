@@ -10,6 +10,7 @@ import Logic.Caverna;
 import static Logic.Constants.*;
 import Logic.Spells.Spell;
 import LogicaJogo.States.AwaitBegining;
+import LogicaJogo.States.AwaitCardCardSelectionOnCurrentColumn;
 import LogicaJogo.States.AwaitFeats;
 import LogicaJogo.States.AwaitSpellChoose;
 import LogicaJogo.States.IStates;
@@ -123,12 +124,27 @@ public class Jogo {
         return gameData.getPersonagem().getSpells();
     }
 
-    public void AS_ChooseSpell(int c) 
-    {//TODO: CONTINUAR AQUI
-        if(c==-1)
-        {
-            
+    //retorna true se morreu, false se nao morreu
+    public boolean AS_ChooseSpell(int c) 
+    {
+        switch(c){
+            case -1:
+                //TODO: menssagem de erro
+                break;
+            case 0:
+                //TODO: sem spells
+                break;
+            default:
+                getSpells().get(c-1).Efeito(gameData);
+                getSpells().remove(c-1);
+                if(getMonstroAlvo().getHp() == 0){
+                    return true;
+                }
+                else{
+                    return false;
+                }            
         }
+        return false;
     }
     
     

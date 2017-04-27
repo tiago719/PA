@@ -48,5 +48,8 @@ public interface IStates {
             
     //spells
     IStates AttackMontser();
+    IStates EndBattle();
+    IStates ProxRonda();
+
 
 }

@@ -11,10 +11,36 @@ import Logic.GameData;
  *
  * @author Tiago Coutinho
  */
-public class AwaitSpellChoose extends StateAdapter implements IStates
-{
-    public AwaitSpellChoose(GameData g)
-    {
+public class AwaitSpellChoose extends StateAdapter implements IStates {
+
+    public AwaitSpellChoose(GameData g) {
         super(g);
     }
+
+    @Override
+    public IStates EndBattle() {
+        getGame().proxColuna();
+        return new AwaitCardCardSelectionOnCurrentColumn(getGame());
+
+    }
+
+    @Override
+    public IStates ProxRonda() {
+        //Monstro ataca
+
+        int dmg = getGame().getMonstroAlvo().getDmg();
+
+        int armor = getGame().getPersonagem().getArmor();
+
+        int hp = getGame().getPersonagem().getHp();
+
+        int retirar = (dmg - armor);
+        if (retirar > 0) {
+            if (!getGame().getPersonagem().loseHp(retirar)) {
+                return new GameOver(getGame());
+            }
+        }
+        return new AwaitAttack(getGame());
+    }
+
 }

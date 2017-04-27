@@ -5,7 +5,6 @@
  */
 package LogicaJogo.States;
 
-import Logic.Dado;
 import Logic.GameData;
 
 /**
@@ -109,6 +108,16 @@ public class StateAdapter implements IStates {
 
     @Override
     public IStates AttackMontser() {
+        return this;
+    }
+
+    @Override
+    public IStates EndBattle() {
+        return this;
+    }
+
+    @Override
+    public IStates ProxRonda() {
         return this;
     }
 }
