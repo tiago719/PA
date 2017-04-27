@@ -5,6 +5,7 @@
  */
 package LogicaJogo.States;
 
+import Logic.Dado;
 import Logic.GameData;
 
 /**
@@ -25,6 +26,11 @@ public class AwaitAttack extends StateAdapter implements IStates
     
     @Override
     public IStates Spells(){
+        int soma = 0;
+        for(Dado d : getGame().getDados())
+            soma += d.getTotalDado();
+        
+        getGame().getMonstroAlvo().Deffend(soma);
         return new AwaitSpellChoose(getGame());
     }
     

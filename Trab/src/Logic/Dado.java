@@ -18,6 +18,10 @@ public class Dado {
         feated=false;
     }
 
+    public int getTotalDado() {
+        return totalDado;
+    }
+
     public int getFace() {
         return face;
     }

@@ -319,4 +319,8 @@ public final class Personagem {
             return true;
         }
     }
+    
+    public ArrayList<Spell> getSpells(){
+        return spells;
+    }
 }

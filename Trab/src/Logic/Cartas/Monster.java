@@ -14,7 +14,8 @@ import Logic.GameData;
  */
 public class Monster extends Carta {
 
-    private final int hp, dmg, rwd;
+    private int hp;
+    private final int dmg, rwd;
 
     public Monster(GameData g) {
         super(g);
@@ -23,12 +24,13 @@ public class Monster extends Carta {
         rwd = Constants.InfoMonster[rank][1];
         hp = g.getCaverna().getNumArea() + (1 + (int)(Math.random() * ((6 - 1) + 1)));
     }
-   /* public Monster(GameData g, int lvl) {
+    public Monster(GameData g, boolean event) {
         super(g);
         int rank = g.getPersonagem().getRank();
-        dmg = Constants.InfoMonster[rank ][0]; 
-        rwd = Constants.InfoMonster[rank][1];
-    }*/
+        dmg = g.getCaverna().getNumArea()*2; 
+        rwd = 2;
+        hp = g.getCaverna().getNumArea() + (1 + (int)(Math.random() * ((6 - 1) + 1)));
+    }
 
     public int getDmg() {
         return dmg;
@@ -52,4 +54,15 @@ public class Monster extends Carta {
 
     }
 
+    public void Deffend(int soma) {
+        if (hp<=soma)
+            hp=0;
+        else
+            hp-=soma;
+    }
+
+    public int getHp() {
+        return hp;
+    }
+    
 }
