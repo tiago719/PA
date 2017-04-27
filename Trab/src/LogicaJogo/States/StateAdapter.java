@@ -5,7 +5,6 @@
  */
 package LogicaJogo.States;
 
-import Logic.Dado;
 import Logic.GameData;
 
 /**
@@ -113,6 +112,15 @@ public class StateAdapter implements IStates {
     }
 
     @Override
+    public IStates EndBattle() {
+        return this;
+    }
+
+    @Override
+    public IStates ProxRonda() {
+        return this;
+    }
+    
     public IStates GameOver()
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
