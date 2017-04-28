@@ -30,7 +30,8 @@ public class AwaitAttack extends StateAdapter implements IStates {
             soma += d.getTotalDado();
             d.clearSomatorio();
         }
-        
+        if (getGame().getMonstroAlvo().isPoison())
+            soma += 5;
 
         if (!getGame().getMonstroAlvo().Deffend(soma)) {
             return new AwaitSpellChoose(getGame());

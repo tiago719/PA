@@ -107,6 +107,10 @@ public class GameData implements Constants {
     public Dado getDado(int i){
         return dados.get(i);
     }
+    
+    public void addDado(){
+         dados.add(new Dado());
+    }
 
     void setMonster() {
         MonstroAlvo = new Monster(this);

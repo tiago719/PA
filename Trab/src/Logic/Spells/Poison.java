@@ -6,6 +6,7 @@
 package Logic.Spells;
 
 import Logic.GameData;
+import LogicaJogo.States.IStates;
 
 /**
  *
@@ -23,8 +24,9 @@ public class Poison extends Spell{
     }
 
     @Override
-    public void Efeito(GameData g) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public IStates Efeito(GameData g, IStates s) {
+        g.getMonstroAlvo().setPoison(true);
+        return s;
     }
     
     

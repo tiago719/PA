@@ -6,6 +6,7 @@
 package Logic.Spells;
 
 import Logic.GameData;
+import LogicaJogo.States.IStates;
 
 /**
  *
@@ -18,6 +19,6 @@ public abstract class Spell {
         gd = g;
     }
     
-    public abstract void Efeito(GameData g);
+    public abstract IStates Efeito(GameData g, IStates s);
     
 }

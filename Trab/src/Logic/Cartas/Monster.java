@@ -17,6 +17,7 @@ public class Monster extends Carta
 
     private int hp;
     private final int dmg, rwd;
+    private boolean poison;
 
     public Monster(GameData g)
     {
@@ -28,6 +29,7 @@ public class Monster extends Carta
         g.getCaverna().getNumArea();
         
         hp = g.getCaverna().getNumArea() + (1 + (int) (Math.random() * ((6 - 1) + 1)));
+        poison = false;
     }
 
     public Monster(GameData g, boolean event)
@@ -37,6 +39,14 @@ public class Monster extends Carta
         dmg = g.getCaverna().getNumArea() * 2;
         rwd = 2;
         hp = g.getCaverna().getNumArea() + (1 + (int) (Math.random() * ((6 - 1) + 1)));
+    }
+
+    public boolean isPoison() {
+        return poison;
+    }
+
+    public void setPoison(boolean poison) {
+        this.poison = poison;
     }
 
     public int getDmg()

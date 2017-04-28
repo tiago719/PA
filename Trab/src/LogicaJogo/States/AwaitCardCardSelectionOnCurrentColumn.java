@@ -140,7 +140,7 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
                 }
                 break;
             case 5:
-                if(!getGame().getPersonagem().loseXp(1))
+                if(!getGame().getPersonagem().addXP(-1))
                 {
                     flag=true;
                 }

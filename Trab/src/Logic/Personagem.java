@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Logic;
+
 import Logic.GameData;
 
 import static Logic.Constants.NivelDificuldade;
@@ -16,15 +17,17 @@ import java.util.ArrayList;
  */
 public final class Personagem {
 
-    private int armor, hp, gold, food, rank;
+    private final GameData gd;
+
+    private int armor, hp, gold, food, rank, xp;
     ArrayList<Spell> spells;
-    GameData gamedata;
-    
 
     public Personagem(int dificuldade, GameData gamedata) {
         setStats(dificuldade);
         spells = new ArrayList<>();
-        this.gamedata = gamedata;
+        rank = 1;
+        xp = 0;
+        gd = gamedata;
     }
 
     public int getArmor() {
@@ -94,12 +97,47 @@ public final class Personagem {
     }
 
     public boolean addXP(int i) {
-        if (i < 0) {
-            return false;
+        int aux;
+        //se rank = 4 adiciona 1hp
+        if (rank == 4) {
+            addHealth(1);
+            return true;
+        } //se esta a retirar xp
+        else if (i < 0) {
+            //se baixa de rank
+            if (xp + i < 0) {
+                //se esta no 1º rank
+                if (rank == 1) {
+                    xp = 0;
+                    return true;
+                }
+                rank--;
+                aux = xp + i;
+                xp = 6 + aux;//continua com 6xp do rank anterior - o xp retirado a mais do rank atual(6 + (1 - 3))
+            }
+            //se nao passa para rank anterior
+            else {
+                xp += i;
+            }
         }
-        rank += i;
+        //se passa para rank seguinte
+        else if (xp + i >= 6) {
+            gd.addDado();
+            rank++;
+            if (xp + i > 6) {
+                xp = xp + i - 6;//fica com o xp recebido a mais (5+2=7   7-6 = 1 <- fica com 1xp)
+            } 
+            //se xp + i = 6
+            else {
+                xp = 0;
+            }
+
+        }
+        //se nao passa para prox rank
+        else {
+            xp += i;
+        }
         return true;
-        //TODO: ENTENDER A CENA DO XP E RANKS ...
     }
 
     public boolean addGold(int g) {
@@ -197,7 +235,7 @@ public final class Personagem {
     }
 
     public boolean buyAnySpell() {
-        int rand = 1 + (int)(Math.random() * ((5 - 1) + 1));
+        int rand = 1 + (int) (Math.random() * ((5 - 1) + 1));
 
         if ((gold - 8) < 0) {
             return false;
@@ -205,19 +243,19 @@ public final class Personagem {
 
         switch (rand) {
             case 1:
-                spells.add(new Fire(gamedata));
+                spells.add(new Fire(gd));
                 break;
             case 2:
-                gamedata.getPersonagem().addSpell(new Fire(gamedata));
+                gd.getPersonagem().addSpell(new Fire(gd));
                 break;
             case 3:
-                gamedata.getPersonagem().addSpell(new Ice(gamedata));
+                gd.getPersonagem().addSpell(new Ice(gd));
                 break;
             case 4:
-                gamedata.getPersonagem().addSpell(new Poison(gamedata));
+                gd.getPersonagem().addSpell(new Poison(gd));
                 break;
             case 5:
-                gamedata.getPersonagem().addSpell(new Healing(gamedata));
+                gd.getPersonagem().addSpell(new Healing(gd));
                 break;
         }
         gold -= 8;
@@ -225,91 +263,58 @@ public final class Personagem {
     }
 
     public boolean sellAnySpell() {
-        int rand = 0 + (int)(Math.random() * ((spells.size() - 0) + 1));
+        int rand = 0 + (int) (Math.random() * ((spells.size() - 0) + 1));
         spells.remove(rand);
-        gold+=4;
-        
+        gold += 4;
+
         return true;
-        
 
     }
-    
-    public boolean loseFood(int f)
-    {
-        if(f>=0)
-        {
+
+    public boolean loseFood(int f) {
+        if (f >= 0) {
             return false;
         }
-        if(food-f<0)
-        {
+        if (food - f < 0) {
             return false;
-        }
-        else
-        {
-            food-=f;
+        } else {
+            food -= f;
             return true;
         }
     }
-    
-    public boolean loseGold(int g)
-    {
-        if(g>=0)
-        {
+
+    public boolean loseGold(int g) {
+        if (g >= 0) {
             return false;
         }
-        if(gold-g<0)
-        {
+        if (gold - g < 0) {
             return false;
-        }
-        else
-        {
-            gold-=g;
+        } else {
+            gold -= g;
             return true;
         }
     }
-    
-    public boolean loseArmor(int a)
-    {
-        if(armor-a<0)
-        {
+
+    public boolean loseArmor(int a) {
+        if (armor - a < 0) {
             return false;
-        }
-        else
-        {
-            armor-=a;
+        } else {
+            armor -= a;
             return true;
         }
     }
-    
-    public boolean loseHp(int h)
-    {
-        if(hp-h<0)
-        {
-            hp=0;
+
+    public boolean loseHp(int h) {
+        if (hp - h < 0) {
+            hp = 0;
             return false;
-        }
-        else
-        {
-            hp-=h;
+        } else {
+            hp -= h;
             return true;
         }
     }
-    
-    public boolean loseXp(int x)
-    {
-        if(rank-x<0)
-        {
-            return false;
-        }
-        else
-        {
-            rank-=x;
-            //TODO: entender a cena da xp e dos niveis
-            return true;
-        }
-    }
-    
-    public ArrayList<Spell> getSpells(){
+
+    public ArrayList<Spell> getSpells() {
         return spells;
     }
 }

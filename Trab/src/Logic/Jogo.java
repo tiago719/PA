@@ -128,7 +128,7 @@ public class Jogo {
                 }
                 break;
             case 2:
-                if (!gameData.getPersonagem().loseXp(1)) {
+                if (!gameData.getPersonagem().addXP(-1)) {
                     return -3;
                 }
                 break;
@@ -157,7 +157,7 @@ public class Jogo {
                 //TODO: sem spells
                 break;
             default:
-                getSpells().get(c - 1).Efeito(gameData);
+                getSpells().get(c - 1).Efeito(gameData, state);
                 getSpells().remove(c - 1);
 
         }

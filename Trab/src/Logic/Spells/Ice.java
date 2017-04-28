@@ -6,26 +6,27 @@
 package Logic.Spells;
 
 import Logic.GameData;
+import LogicaJogo.States.AwaitAttack;
+import LogicaJogo.States.IStates;
 
 /**
  *
  * @author edu_f
  */
-public class Ice extends Spell{
-    
+public class Ice extends Spell {
+
     public Ice(GameData g) {
         super(g);
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return "Ice  Spell: In  combat,  freeze  a  Monster  for  one  turn.  The  Monster  does  not  counter­attack.";
     }
 
     @Override
-    public void Efeito(GameData g) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public IStates Efeito(GameData g, IStates s) {
+        return new AwaitAttack(g);
     }
-    
-    
+
 }

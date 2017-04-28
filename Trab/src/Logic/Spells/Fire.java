@@ -6,6 +6,8 @@
 package Logic.Spells;
 
 import Logic.GameData;
+import LogicaJogo.States.AwaitCardCardSelectionOnCurrentColumn;
+import LogicaJogo.States.IStates;
 
 /**
  *
@@ -23,8 +25,12 @@ public class Fire extends Spell{
     }
 
     @Override
-    public void Efeito(GameData g) {
+    public IStates Efeito(GameData g, IStates s) {
+        if (g.getMonstroAlvo().Deffend(8))
+            return new AwaitCardCardSelectionOnCurrentColumn(g);
         
+        return s;
+            
     }
     
     
