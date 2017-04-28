@@ -102,16 +102,6 @@ public class StateAdapter implements IStates {
     }
 
     @Override
-    public IStates ReturnAwaitAttack() {
-        return this;
-    }
-
-    @Override
-    public IStates AttackMonster() {
-        return this;
-    }
-
-    @Override
     public IStates EndBattle() {
         return this;
     }

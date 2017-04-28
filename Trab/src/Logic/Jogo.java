@@ -6,13 +6,8 @@
 package Logic;
 
 import Logic.Cartas.Monster;
-import Logic.Caverna;
-import static Logic.Constants.*;
 import Logic.Spells.Spell;
 import LogicaJogo.States.AwaitBegining;
-import LogicaJogo.States.AwaitCardCardSelectionOnCurrentColumn;
-import LogicaJogo.States.AwaitFeats;
-import LogicaJogo.States.AwaitSpellChoose;
 import LogicaJogo.States.IStates;
 import java.util.ArrayList;
 
@@ -104,6 +99,9 @@ public class Jogo {
     }
 
     public boolean AA_Reroll(int c) {
+        if (gameData.getDados().size() < c || c <= 0)
+            return false;
+        
         Dado temp = gameData.getDado(c - 1);
         if (temp.getFace() != 6) {
             return false;
@@ -169,5 +167,5 @@ public class Jogo {
             return false;
         }
     }
-
+    
 }

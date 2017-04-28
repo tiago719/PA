@@ -327,9 +327,10 @@ public class TextUI
                     do
                     {
                         System.out.println("Escolha o dado que pretende fazer reroll: ");
+                        i=0;
                         for (Dado d : jogo.getDados())
                         {
-                            System.out.println("Dado " + ++i + ": " + d);
+                            System.out.println( ++i + ": " + d);
                         }
                         //TODO: adicionar opcao de sair/nao escolher dado
 
@@ -365,10 +366,12 @@ public class TextUI
                 System.out.println("\n=== AWAITING FEATS ===\n");
                 System.out.println("ATENCAO: Custo: 2 HP ou 1 XP");
 
+                System.out.println("0 : Sair");
+
                 System.out.println("Escolha o dado que pretende fazer Feat: ");
                 for (Dado d : jogo.getDados())
                 {
-                    System.out.println("Dado " + ++i + ": " + d);
+                    System.out.println(++i + " : " + d);
                 }
                 //TODO: adicionar opcao de sair/nao escolher dado
                 

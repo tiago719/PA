@@ -27,7 +27,8 @@ public class Dado {
     }
 
     public void lancaDado() {
-        this.face = 1 + (int)(Math.random() * ((6 - 1) + 1));
+        //this.face = 1 + (int)(Math.random() * ((6 - 1) + 1));
+        face = 6;
         totalDado += this.face;
     }
     
