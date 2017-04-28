@@ -22,29 +22,12 @@ public class Caverna {
         areaL = areaC = 0;
         GameData = g;
         Areas = new ArrayList<>();
-
-        int i, sum = 0;
-
-        for (i = 0; i < MapaNiveis.length; i++) {
-            sum += MapaNiveis[i].length;
-            if (sum >= startingArea) {
-                areaL = i;
-                break;
-            }
-        }
-
-        areaC = sum - (sum - startingArea);
-    }
-
-    public void geraAreas(int n) {
-        for (int i = n; i < Constants.numNiveis; i++) 
-        {
-            Area nova=new Area(GameData); 
-            Areas.add(nova);
-        }
+        
+        setArea(startingArea);
     }
     
     public Area getAreaAtual(){
+        //int ola=getNumArea()-GameData.getStartingArea();
         return Areas.get(getNumArea()-GameData.getStartingArea());
     }
 
@@ -66,7 +49,7 @@ public class Caverna {
 
     public boolean isLastArea() {
         int a = MapaNiveis[areaL].length;
-        int b = areaC + 1;
+        int b = areaC;
         
         return MapaNiveis[areaL].length == areaC + 1;
     }
@@ -95,9 +78,12 @@ public class Caverna {
                 areaC = j;
             }
         }
+        
     }
 
     void proxArea() {
+        Areas.add(new Area(GameData));
+
         if (isLastArea()){
             areaC=0;
             areaL++;
@@ -105,6 +91,10 @@ public class Caverna {
         else{
             areaC++;
         }
+    }
+
+    void geraPrimeiraArea() {
+        Areas.add(new Area(GameData));
     }
 
 }

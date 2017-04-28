@@ -44,14 +44,12 @@ public interface IStates {
     IStates AtacaMonstro();
             
     //feats
-    IStates ReturnAwaitAttack();
-    IStates GameOver();
     IStates VoltaAwaitAttack();
             
     //spells
-    IStates AttackMonster();
     IStates EndBattle();
     IStates ProxRonda();
 
+    IStates GameOver();
 
 }

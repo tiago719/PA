@@ -22,7 +22,7 @@ public class GameData implements Constants {
 
 
     public GameData() {
-        startingArea = 0;
+        startingArea = 1;
         dificuldade = 2;
         coluna = 1;
         Personagem = new Personagem(dificuldade, this);
@@ -63,7 +63,7 @@ public class GameData implements Constants {
     }
 
     public boolean intialize() {
-        Caverna.geraAreas(startingArea);
+        Caverna.geraPrimeiraArea();
         return true;
     }
 

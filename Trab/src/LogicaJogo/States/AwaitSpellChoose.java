@@ -42,5 +42,11 @@ public class AwaitSpellChoose extends StateAdapter implements IStates {
         }
         return new AwaitAttack(getGame());
     }
+    
+    @Override
+    public IStates GameOver()
+    {
+        return new GameOver(getGame());
+    }
 
 }
