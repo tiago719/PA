@@ -24,6 +24,9 @@ public class Monster extends Carta
         int rank = g.getPersonagem().getRank();
         dmg = Constants.InfoMonster[rank][0];
         rwd = Constants.InfoMonster[rank][1];
+        
+        g.getCaverna().getNumArea();
+        
         hp = g.getCaverna().getNumArea() + (1 + (int) (Math.random() * ((6 - 1) + 1)));
     }
 

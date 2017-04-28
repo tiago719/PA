@@ -34,7 +34,7 @@ public class AwaitAttack extends StateAdapter implements IStates {
             return new AwaitSpellChoose(getGame());
         } else {
             getGame().proxColuna();
-            return new AwaitCardCardSelectionOnCurrentColumn(getGame());
+//            return new AwaitCardCardSelectionOnCurrentColumn(getGame());
         }
 
     }
