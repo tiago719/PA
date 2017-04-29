@@ -5,6 +5,7 @@
  */
 package LogicaJogo.States;
 
+import Logic.Cartas.Carta;
 import Logic.Cartas.Monster;
 import Logic.Dado;
 import Logic.GameData;
@@ -87,7 +88,7 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
                 break;
             case 6:
                 //TODO:meter lancamento dos dados no estado AwaitAttack
-                getGame().setMonstroAlvo(new Monster(getGame(), true));
+                //getGame().setMonstroAlvo(new Monster(getGame(), true));
                 return new AwaitAttack(getGame());
         }
         getGame().proxColuna();
@@ -169,21 +170,21 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
     }
     
     @Override
-    public IStates ResvolveSelectedMonsterCard()
+    public IStates ResvolveSelectedMonsterCard(Carta c)
     {
         for (Dado d : getGame().getDados()){
             d.lancaDado();
         }
-        return new AwaitAttack(getGame());
+        return new AwaitAttack(getGame(), c);
     }
     
     @Override
-    public IStates ResolveSelectedBossMonsterCard()
+    public IStates ResolveSelectedBossMonsterCard(Carta c)
     {
          for (Dado d : getGame().getDados()){
             d.lancaDado();
         }
-         return new AwaitAttack(getGame());
+         return new AwaitAttack(getGame(), c);
     }
 
     @Override

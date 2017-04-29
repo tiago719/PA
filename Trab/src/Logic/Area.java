@@ -27,17 +27,17 @@ public class Area{
         Collections.shuffle(Baralho);
     }
      public final void geraBaralho() {
-        Baralho.add(new Treasure(GameData));
-        Baralho.add(new Treasure(GameData));
-        Baralho.add(new Treasure(GameData));
-        Baralho.add(new Treasure(GameData));
-        Baralho.add(new Treasure(GameData));
-        Baralho.add(new Treasure(GameData));
+        Baralho.add(new Monster(GameData));
+        Baralho.add(new Monster(GameData));
+        Baralho.add(new Monster(GameData));
+        Baralho.add(new Monster(GameData));
+        Baralho.add(new Monster(GameData));
+        Baralho.add(new Monster(GameData));
         if (GameData.getCaverna().isLastArea())//TODO: CORRIGIR ESTE ERRO
         {
-            BossMonster bm=new BossMonster(GameData);
-            Baralho.add(bm);
-            GameData.setBossMonster(bm);
+                
+            Baralho.add(new BossMonster(GameData));
+            //GameData.setBossMonster(bm);
         }
         //TODO: adicionar todas cartas
     }
@@ -80,5 +80,4 @@ public class Area{
     {
         MonsterDefeated=b;
     }
-
 }

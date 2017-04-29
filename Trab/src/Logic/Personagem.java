@@ -5,24 +5,32 @@
  */
 package Logic;
 
+import Logic.Cartas.BossMonster;
+import Logic.Cartas.Carta;
+import Logic.Cartas.Monster;
+import static Logic.Constants.InfoBossMonster;
+import static Logic.Constants.InfoMonster;
 import Logic.GameData;
 
 import static Logic.Constants.NivelDificuldade;
 import Logic.Spells.*;
+import LogicaJogo.States.AwaitTraiding;
 import java.util.ArrayList;
 
 /**
  *
  * @author Tiago Coutinho
  */
-public final class Personagem {
+public final class Personagem
+{
 
     private final GameData gd;
-
+    private boolean poison;
     private int armor, hp, gold, food, rank, xp;
     ArrayList<Spell> spells;
 
-    public Personagem(int dificuldade, GameData gamedata) {
+    public Personagem(int dificuldade, GameData gamedata)
+    {
         setStats(dificuldade);
         spells = new ArrayList<>();
         rank = 1;
@@ -30,198 +38,250 @@ public final class Personagem {
         gd = gamedata;
     }
 
-    public int getArmor() {
+    public int getArmor()
+    {
         return armor;
     }
 
-    public void setArmor(int armor) {
+    public void setArmor(int armor)
+    {
         this.armor = armor;
     }
 
-    public int getHp() {
+    public int getHp()
+    {
         return hp;
     }
 
-    public void setHp(int hp) {
+    public void setHp(int hp)
+    {
         this.hp = hp;
     }
 
-    public int getGold() {
+    public int getGold()
+    {
         return gold;
     }
 
-    public void setGold(int gold) {
+    public void setGold(int gold)
+    {
         this.gold = gold;
     }
 
-    public int getFood() {
+    public int getFood()
+    {
         return food;
     }
 
-    public void setFood(int food) {
+    public void setFood(int food)
+    {
         this.food = food;
     }
 
-    public int getRank() {
+    public int getRank()
+    {
         return rank;
     }
 
-    public void setRank(int rank) {
+    public void setRank(int rank)
+    {
         this.rank = rank;
     }
 
-    public boolean addFood(int i) {
-        if (i < 0) {
+    public boolean addFood(int i)
+    {
+        if (i < 0)
+        {
             return false;
         }
-        if (food + i <= 6) {
+        if (food + i <= 6)
+        {
             food += i;
             return true;
-        } else {
+        } else
+        {
             food = 6;
             return true;
         }
     }
 
-    public boolean addHealth(int i) {
-        if (i < 0) {
+    public boolean addHealth(int i)
+    {
+        if (i < 0)
+        {
             return false;
         }
-        if (hp + i <= 20) {
+        if (hp + i <= 20)
+        {
             hp += i;
             return true;
-        } else {
+        } else
+        {
             hp = 20;
             return true;
         }
     }
 
-    public boolean addXP(int i) { //TODO: retorna sempre true; Considerar mudar de boolean para void
+    public boolean addXP(int i)
+    { //TODO: retorna sempre true; Considerar mudar de boolean para void
         int aux;
         //se rank = 4 adiciona 1hp
-        if (rank == 4) {
+        if (rank == 4)
+        {
             addHealth(1);
             return true;
         } //se esta a retirar xp
-        else if (i < 0) {
+        else if (i < 0)
+        {
             //se baixa de rank
-            if (xp + i < 0) {
+            if (xp + i < 0)
+            {
                 //se esta no 1º rank
-                if (rank == 1) {
+                if (rank == 1)
+                {
                     xp = 0;
                     return true;
                 }
                 rank--;
                 aux = xp + i;
                 xp = 6 + aux;//continua com 6xp do rank anterior - o xp retirado a mais do rank atual(6 + (1 - 3))
-            }
-            //se nao passa para rank anterior
-            else {
+            } //se nao passa para rank anterior
+            else
+            {
                 xp += i;
             }
-        }
-        //se passa para rank seguinte
-        else if (xp + i >= 6) {
+        } //se passa para rank seguinte
+        else if (xp + i >= 6)
+        {
             gd.addDado();
             rank++;
-            if (xp + i > 6) {
+            if (xp + i > 6)
+            {
                 xp = xp + i - 6;//fica com o xp recebido a mais (5+2=7   7-6 = 1 <- fica com 1xp)
-            } 
-            //se xp + i = 6
-            else {
+            } //se xp + i = 6
+            else
+            {
                 xp = 0;
             }
 
-        }
-        //se nao passa para prox rank
-        else {
+        } //se nao passa para prox rank
+        else
+        {
             xp += i;
         }
         return true;
     }
 
-    public boolean addGold(int g) {
-        if (g < 0) {
+    public boolean addGold(int g)
+    {
+        if (g < 0)
+        {
             return false;
-        } else if (gold + g <= 20) {
+        } else if (gold + g <= 20)
+        {
             gold += g;
             return true;
-        } else {
+        } else
+        {
             gold = 20;
             return true;
         }
     }
 
-    public boolean addArmor(int a) {
-        if (a < 0) {
+    public boolean addArmor(int a)
+    {
+        if (a < 0)
+        {
             return false;
-        } else if (armor + a <= 5) {
+        } else if (armor + a <= 5)
+        {
             armor += a;
             return true;
-        } else {
+        } else
+        {
             armor = 5;
             return true;
         }
     }
 
-    public void setStats(int dificuldade) {
+    public void setStats(int dificuldade)
+    {
         armor = NivelDificuldade[dificuldade - 1][0];
         hp = NivelDificuldade[dificuldade - 1][1];
         gold = NivelDificuldade[dificuldade - 1][2];
         food = NivelDificuldade[dificuldade - 1][3];
     }
 
-    public boolean buyRation() {
-        if (gold >= 1) {
-            if (addFood(1)) {
+    public boolean buyRation()
+    {
+        if (gold >= 1)
+        {
+            if (addFood(1))
+            {
                 gold--;
                 return true;
             }
             return false;
-        } else {
+        } else
+        {
             return false;
         }
     }
 
-    public boolean buyPotion() {
-        if (gold >= 1) {
-            if (addHealth(1)) {
+    public boolean buyPotion()
+    {
+        if (gold >= 1)
+        {
+            if (addHealth(1))
+            {
                 gold--;
                 return true;
             }
             return false;
-        } else {
+        } else
+        {
             return false;
         }
     }
 
-    public boolean buyBigPotion() {
-        if (gold >= 3) {
-            if (addHealth(4)) {
+    public boolean buyBigPotion()
+    {
+        if (gold >= 3)
+        {
+            if (addHealth(4))
+            {
                 gold -= 3;
                 return true;
             }
             return false;
-        } else {
+        } else
+        {
             return false;
         }
     }
 
-    public boolean buyArmor() {
-        if (gold >= 6) {
-            if (addArmor(1)) {
+    public boolean buyArmor()
+    {
+        if (gold >= 6)
+        {
+            if (addArmor(1))
+            {
                 gold -= 6;
                 return true;
             }
             return false;
-        } else {
+        } else
+        {
             return false;
         }
     }
 
-    public boolean sellArmor() {
-        if (armor > 0) {
-            if (addGold(4)) {
+    public boolean sellArmor()
+    {
+        if (armor > 0)
+        {
+            if (addGold(4))
+            {
                 armor--;
                 return true;
             }
@@ -230,18 +290,22 @@ public final class Personagem {
         return false;
     }
 
-    public void addSpell(Spell s) {
+    public void addSpell(Spell s)
+    {
         spells.add(s);
     }
 
-    public boolean buyAnySpell() {
+    public boolean buyAnySpell()
+    {
         int rand = 1 + (int) (Math.random() * ((5 - 1) + 1));
 
-        if ((gold - 8) < 0) {
+        if ((gold - 8) < 0)
+        {
             return false;
         }
 
-        switch (rand) {
+        switch (rand)
+        {
             case 1:
                 spells.add(new Fire(gd));
                 break;
@@ -262,7 +326,8 @@ public final class Personagem {
         return true;
     }
 
-    public boolean sellAnySpell() {
+    public boolean sellAnySpell()
+    {
         int rand = 0 + (int) (Math.random() * ((spells.size() - 0) + 1));
         spells.remove(rand);
         gold += 4;
@@ -271,83 +336,137 @@ public final class Personagem {
 
     }
 
-    public boolean loseFood(int f) {
-        if (f >= 0) {
+    public boolean loseFood(int f)
+    {
+        if (f >= 0)
+        {
             return false;
         }
-        if (food - f < 0) {
+        if (food - f < 0)
+        {
             return false;
-        } else {
+        } else
+        {
             food -= f;
             return true;
         }
     }
-    
+
     public boolean TradeXpForFeat()
     {
-        if(xp<=0)
+        if (xp <= 0)
         {
-            if(rank==1)
+            if (rank == 1)
             {
                 return false;
-            }
-            else
+            } else
             {
-                xp=5;
+                xp = 5;
                 rank--;
                 return true;
             }
-        }
-        else
+        } else
         {
             xp--;
             return true;
         }
     }
 
-    public boolean loseGold(int g) {
-        if (g >= 0) {
+    public boolean loseGold(int g)
+    {
+        if (g >= 0)
+        {
             return false;
         }
-        if (gold - g < 0) {
+        if (gold - g < 0)
+        {
             return false;
-        } else {
+        } else
+        {
             gold -= g;
             return true;
         }
     }
 
-    public boolean loseArmor(int a) {
-        if (armor - a < 0) {
+    public boolean loseArmor(int a)
+    {
+        if (armor - a < 0)
+        {
             return false;
-        } else {
+        } else
+        {
             armor -= a;
             return true;
         }
     }
 
-    public boolean loseHp(int h) {
-        if (hp - h < 0) {
+    public boolean loseHp(int h)
+    {
+        if (hp - h < 0)
+        {
             hp = 0;
             return false;
-        } else {
+        } else
+        {
             hp -= h;
             return true;
         }
     }
 
-    public ArrayList<Spell> getSpells() {
+    public ArrayList<Spell> getSpells()
+    {
         return spells;
     }
-    
-    public void recompensaMonstro(int x)
-    {
-        System.out.println("Adicionei " + x + " de XP por ter derrotado o monstro");//TODO: tirar
-        addXP(x);
-    }
-    
+
     public int getXp()
     {
         return xp;
     }
+
+    public void recompensa()
+    {
+        if (gd.getCarta() instanceof Monster)
+        {
+            if(gd.getCaverna().getNivel()==5)
+            {
+                System.out.println("VENCEU O JOGO");//TODO: tirar
+            }
+            else
+            {
+                addGold(InfoBossMonster[gd.getCaverna().getNivel()-1][2]);
+                addXP(InfoBossMonster[gd.getCaverna().getNivel()-1][3]);
+                //TODO: ir para o mercado
+            }
+        } else if(gd.getCarta() instanceof Monster)
+        {
+            System.out.println("Adicionei " + InfoMonster[gd.getCaverna().getNivel()][1] + " de XP por ter derrotado o monstro");//TODO: tirar
+            addXP(InfoMonster[gd.getCaverna().getNivel()-1][1]);
+        }
+        
+        System.out.println("A carta nao e nenhum dos tipos de monstros");//TODO: tirar
+    }
+    
+    public boolean hasPoison()
+    {
+        return poison;
+    }
+    
+    public void setPoison(boolean p)
+    {
+        poison=p;
+    }
+
+    //true = morto
+    /*public boolean DeffendMonstro(int soma, int hpMonstro)
+    {
+        if (hpMonstro <= soma)
+        {
+            
+            return true;
+        } else
+        {
+            hp -= soma;
+            return false;
+        }
+    }*/
 }

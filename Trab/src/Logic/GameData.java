@@ -15,12 +15,13 @@ import javax.smartcardio.Card;
  */
 public class GameData implements Constants {
 
-    private int dificuldade, startingArea, coluna;
+    private int dificuldade, startingArea, coluna, HpMonstro;
     private final Personagem Personagem;
-    private Monster MonstroAlvo;
-    private BossMonster BossMonstroAlvo;
+    //private Monster MonstroAlvo;
+    //private BossMonster BossMonstroAlvo;
     private final Caverna Caverna;
     private ArrayList<Dado> dados;
+    Carta c;
 
 
     public GameData() {
@@ -29,19 +30,21 @@ public class GameData implements Constants {
         coluna = 1;
         Personagem = new Personagem(dificuldade, this);
         Caverna = new Caverna(startingArea, this);
-        MonstroAlvo = null;
-        BossMonstroAlvo=null;
+        //MonstroAlvo = null;
+        //BossMonstroAlvo=null;
         dados = new ArrayList<>();
         dados.add(new Dado());
+        c=null;
+        HpMonstro=0;
     }
-
+/*
     public Monster getMonstroAlvo() {
         return MonstroAlvo;
     }
 
     public void setMonstroAlvo(Monster MonstroAlvo) {
         this.MonstroAlvo = MonstroAlvo;
-    }
+    }*/
 
     public int getDificuldade() {
         return dificuldade;
@@ -114,7 +117,53 @@ public class GameData implements Constants {
     public void addDado(){
          dados.add(new Dado());
     }
-
+    
+    public void retiraHpMonster(int h)
+    {
+        HpMonstro-=h;
+    }
+    
+    public void setHpMonster(int h)
+    {
+        HpMonstro=h;
+    }
+    
+    public int getHpMonster()
+    {
+        return HpMonstro;
+    }
+    
+    public Carta getCarta()
+    {
+        return c;
+    }
+    
+    public void setCarta(Carta c)
+    {
+        this.c=c;
+        if(c instanceof Monster)
+        {
+            setHpMonster(getCaverna().getNumArea()+(1 + (int)(Math.random() * ((6 - 1) + 1))));
+        }
+        else if(c instanceof BossMonster)
+        {
+            setHpMonster(InfoBossMonster[getCaverna().getNivel()-1][0]);
+        }
+    }
+    
+    public int getDmgM()
+    {
+        if(c instanceof Monster)
+        {
+            return InfoMonster[getCaverna().getNivel()-1][0];
+        }
+        else if(c instanceof BossMonster)
+        {
+            return InfoBossMonster[getCaverna().getNivel()-1][1];
+        }
+        return -1;
+    }
+/*
     void setMonster(Monster M) {
         MonstroAlvo= M;
     }
@@ -122,5 +171,5 @@ public class GameData implements Constants {
     void setBossMonster(BossMonster BM)
     {
         BossMonstroAlvo=BM;
-    }
+    }*/
 }

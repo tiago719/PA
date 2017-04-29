@@ -82,7 +82,7 @@ public class Monster extends Carta
             hp -= soma;
             return false;
         }
-    }
+    }//TODO: retirar
 
     public int getHp()
     {

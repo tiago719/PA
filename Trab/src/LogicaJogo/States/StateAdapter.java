@@ -5,6 +5,7 @@
  */
 package LogicaJogo.States;
 
+import Logic.Cartas.Carta;
 import Logic.GameData;
 
 /**
@@ -86,7 +87,7 @@ public class StateAdapter implements IStates {
     }
 
     @Override
-    public IStates ResvolveSelectedMonsterCard()
+    public IStates ResvolveSelectedMonsterCard(Carta c)
     {
         return this;
     }
@@ -123,7 +124,7 @@ public class StateAdapter implements IStates {
     }
 
     @Override
-    public IStates ResolveSelectedBossMonsterCard()
+    public IStates ResolveSelectedBossMonsterCard(Carta c)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

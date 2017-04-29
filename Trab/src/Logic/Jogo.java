@@ -96,9 +96,9 @@ public class Jogo {
         state = s;
     }
 
-    public void setMonster(Monster M) {
+   /* public void setMonster(Monster M) {
         gameData.setMonster(M);
-    }
+    }*/
 
     public boolean AA_Reroll(int c) {
         if (gameData.getDados().size() < c || c <= 0)
@@ -141,10 +141,10 @@ public class Jogo {
         gameData.getDado(d - 1).lancaDado();
         return 1;
     }
-
+/*
     public Monster getMonstroAlvo() {
         return gameData.getMonstroAlvo();
-    }
+    }*/
 
     public ArrayList<Spell> getSpells() {
         return gameData.getPersonagem().getSpells();
@@ -164,7 +164,7 @@ public class Jogo {
                 getSpells().remove(c - 1);
 
         }
-        if (getMonstroAlvo().getHp() == 0) {
+        if (getGame().getHpMonster() <= 0) {
             return true;
         } else {
             return false;

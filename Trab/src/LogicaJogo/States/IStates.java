@@ -5,6 +5,7 @@
  */
 package LogicaJogo.States;
 
+import Logic.Cartas.Carta;
 import Logic.Dado;
 
 /**
@@ -35,10 +36,10 @@ public interface IStates {
     IStates ResolveSelectedTrapCard();
     
     //monster
-    IStates ResvolveSelectedMonsterCard();
+    IStates ResvolveSelectedMonsterCard(Carta c);
     
     //bossMonster
-    IStates ResolveSelectedBossMonsterCard();
+    IStates ResolveSelectedBossMonsterCard(Carta c);
     
     boolean skillCheck();
     

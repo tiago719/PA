@@ -25,7 +25,7 @@ public class Poison extends Spell{
 
     @Override
     public IStates Efeito(GameData g, IStates s) {
-        g.getMonstroAlvo().setPoison(true);
+        g.getPersonagem().setPoison(true);
         return s;
     }
     

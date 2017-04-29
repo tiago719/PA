@@ -175,12 +175,12 @@ public class TextUI
             jogo.setState(jogo.getState().ResolveSelectedTrapCard());
         } else if (temp instanceof Monster)
         {
-            jogo.setMonster((Monster) temp);
-            jogo.setState(jogo.getState().ResvolveSelectedMonsterCard());
+            //jogo.setMonster((Monster) temp);
+            jogo.setState(jogo.getState().ResvolveSelectedMonsterCard(temp));
         } else if (temp instanceof BossMonster)
         {
-            jogo.setState(jogo.getState().ResolveSelectedBossMonsterCard());
-            System.out.println("FALTA FAZER");//TODO
+            jogo.setState(jogo.getState().ResolveSelectedBossMonsterCard(temp));
+            //System.out.println("FALTA FAZER");//TODO
         }
     }
 
@@ -448,8 +448,7 @@ public class TextUI
         {
             System.out.println("\n=== AWAITING SPELLS CHOOSE ===\n");
 
-            System.out.println("Status do Monstro: " + jogo.getMonstroAlvo().getHp() + " vida");
-            System.out.println(jogo.getMonstroAlvo());
+            System.out.println("Status do Monstro: " );
 
             if (!jogo.getSpells().isEmpty())
             {
