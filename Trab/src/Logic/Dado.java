@@ -28,7 +28,14 @@ public class Dado {
 
     public void lancaDado() {
         this.face = 1 + (int)(Math.random() * ((6 - 1) + 1));
+        System.out.println("Resultado do lancamento do dado: " + face);//TODO: retirar, mas mostrar na mesma o resultado
         totalDado += this.face;
+    }
+    
+    public void setDado(int val)
+    {
+        face=val;
+        totalDado+=face;
     }
     
     public void clearSomatorio(){

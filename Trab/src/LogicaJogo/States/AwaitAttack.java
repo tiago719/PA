@@ -36,12 +36,13 @@ public class AwaitAttack extends StateAdapter implements IStates
             if (!d.isMiss())
             {
                 soma += d.getTotalDado();
-                d.clearSomatorio();
             }
             else
             {
                 System.out.println("O dado tem o valor 1, nao pode ser usado nesta ronda");//TODO: tirar
             }
+            d.clearSomatorio();
+            d.setFeated(false);
         }
         if (getGame().getMonstroAlvo().isPoison())
         {

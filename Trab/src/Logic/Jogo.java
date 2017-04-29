@@ -129,13 +129,14 @@ public class Jogo {
                 }
                 break;
             case 2:
-                if (!gameData.getPersonagem().addXP(-1)) {
+                if (!gameData.getPersonagem().TradeXpForFeat()) {
                     return -3;
                 }
                 break;
         }
 
         gameData.getDado(d - 1).setFeated(true);
+        gameData.getDado(d-1).clearSomatorio();
         gameData.getDado(d - 1).lancaDado();
         return 1;
     }

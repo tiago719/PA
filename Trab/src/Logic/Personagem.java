@@ -282,6 +282,28 @@ public final class Personagem {
             return true;
         }
     }
+    
+    public boolean TradeXpForFeat()
+    {
+        if(xp<=0)
+        {
+            if(rank==1)
+            {
+                return false;
+            }
+            else
+            {
+                xp=5;
+                rank--;
+                return true;
+            }
+        }
+        else
+        {
+            xp--;
+            return true;
+        }
+    }
 
     public boolean loseGold(int g) {
         if (g >= 0) {

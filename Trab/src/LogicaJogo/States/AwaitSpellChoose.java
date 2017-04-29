@@ -5,6 +5,7 @@
  */
 package LogicaJogo.States;
 
+import Logic.Dado;
 import Logic.GameData;
 
 /**
@@ -32,13 +33,14 @@ public class AwaitSpellChoose extends StateAdapter implements IStates {
 
         int armor = getGame().getPersonagem().getArmor();
 
-        int hp = getGame().getPersonagem().getHp();
-
         int retirar = (dmg - armor);
         if (retirar > 0) {
             if (!getGame().getPersonagem().loseHp(retirar)) {
                 return new GameOver(getGame());
             }
+        }
+        for (Dado d : getGame().getDados()){
+            d.lancaDado();
         }
         return new AwaitAttack(getGame());
     }

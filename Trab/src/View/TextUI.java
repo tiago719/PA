@@ -447,7 +447,7 @@ public class TextUI
         {
             System.out.println("\n=== AWAITING SPELLS CHOOSE ===\n");
 
-            System.out.println("Status do Monstro:");
+            System.out.println("Status do Monstro: " + jogo.getMonstroAlvo().getHp() + " vida");
             System.out.println(jogo.getMonstroAlvo());
 
             if (!jogo.getSpells().isEmpty())
