@@ -5,6 +5,7 @@
  */
 package LogicaJogo.States;
 
+import static Logic.Constants.InfoMonster;
 import Logic.Dado;
 import Logic.GameData;
 
@@ -12,30 +13,47 @@ import Logic.GameData;
  *
  * @author Tiago Coutinho
  */
-public class AwaitAttack extends StateAdapter implements IStates {
+public class AwaitAttack extends StateAdapter implements IStates
+{
 
-    public AwaitAttack(GameData g) {
+    public AwaitAttack(GameData g)
+    {
         super(g);
     }
 
     @Override
-    public IStates Feats() {
+    public IStates Feats()
+    {
         return new AwaitFeats(getGame());
     }
 
     @Override
-    public IStates AtacaMonstro() {
+    public IStates AtacaMonstro()
+    {
         int soma = 0;
-        for (Dado d : getGame().getDados()) {
-            soma += d.getTotalDado();
-            d.clearSomatorio();
+        for (Dado d : getGame().getDados())
+        {
+            if (!d.isMiss())
+            {
+                soma += d.getTotalDado();
+                d.clearSomatorio();
+            }
+            else
+            {
+                System.out.println("O dado tem o valor 1, nao pode ser usado nesta ronda");//TODO: tirar
+            }
         }
         if (getGame().getMonstroAlvo().isPoison())
+        {
             soma += 5;
+        }
 
-        if (!getGame().getMonstroAlvo().Deffend(soma)) {
+        if (!getGame().getMonstroAlvo().Deffend(soma))
+        {
             return new AwaitSpellChoose(getGame());
-        } else {
+        } else
+        {
+            getGame().getPersonagem().recompensaMonstro(InfoMonster[getGame().getCaverna().getNivel()-1][1]);
             getGame().proxColuna();
             return new AwaitCardCardSelectionOnCurrentColumn(getGame());
         }

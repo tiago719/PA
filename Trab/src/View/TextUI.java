@@ -175,7 +175,7 @@ public class TextUI
             jogo.setState(jogo.getState().ResolveSelectedTrapCard());
         } else if (temp instanceof Monster)
         {
-            jogo.setMonster();
+            jogo.setMonster((Monster) temp);
             jogo.setState(jogo.getState().ResvolveSelectedMonsterCard());
         } else if (temp instanceof BossMonster)
         {
@@ -281,10 +281,13 @@ public class TextUI
 
             do
             {
+                i=0;
                 System.out.println("Food: " + jogo.getGame().getPersonagem().getFood());
                 System.out.println("Health: " + jogo.getGame().getPersonagem().getHp());
                 System.out.println("Gold: " + jogo.getGame().getPersonagem().getGold());
                 System.out.println("Armor: " + jogo.getGame().getPersonagem().getArmor());
+                System.out.println("XP: " + jogo.getGame().getPersonagem().getXp());
+                System.out.println("Numero de dados: " + jogo.getGame().getDados().size());
                 System.out.println("\n=== AWAITING ATTACK ===\n");
                 System.out.println("Resultado dos dados: ");
 

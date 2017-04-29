@@ -22,12 +22,9 @@ public class Monster extends Carta
     public Monster(GameData g)
     {
         super(g);
-        int rank = g.getPersonagem().getRank();
-        dmg = Constants.InfoMonster[rank][0];
-        rwd = Constants.InfoMonster[rank][1];
-        
-        g.getCaverna().getNumArea();
-        
+        int level = g.getCaverna().getNivel();
+        dmg = Constants.InfoMonster[level-1][0]; //TODO: Nao sera o nivel aqui?? Ve se esta bem
+        rwd = Constants.InfoMonster[level-1][1];
         hp = g.getCaverna().getNumArea() + (1 + (int) (Math.random() * ((6 - 1) + 1)));
         poison = false;
     }

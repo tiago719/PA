@@ -27,8 +27,7 @@ public class Dado {
     }
 
     public void lancaDado() {
-        //this.face = 1 + (int)(Math.random() * ((6 - 1) + 1));
-        face = 6;
+        this.face = 1 + (int)(Math.random() * ((6 - 1) + 1));
         totalDado += this.face;
     }
     
@@ -44,6 +43,18 @@ public class Dado {
     public void setFeated(boolean b)
     {
         feated=b;
+    }
+    
+    public boolean isMiss()
+    {
+        if(face==1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     
     @Override

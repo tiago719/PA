@@ -5,6 +5,7 @@
  */
 package Logic;
 
+import Logic.Cartas.Carta;
 import Logic.Cartas.Monster;
 import Logic.Spells.Spell;
 import LogicaJogo.States.AwaitBegining;
@@ -94,8 +95,8 @@ public class Jogo {
         state = s;
     }
 
-    public void setMonster() {
-        gameData.setMonster();
+    public void setMonster(Monster M) {
+        gameData.setMonster(M);
     }
 
     public boolean AA_Reroll(int c) {

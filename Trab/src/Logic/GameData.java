@@ -5,8 +5,9 @@
  */
 package Logic;
 
-import Logic.Cartas.Monster;
+import Logic.Cartas.*;
 import java.util.ArrayList;
+import javax.smartcardio.Card;
 
 /**
  *
@@ -112,7 +113,7 @@ public class GameData implements Constants {
          dados.add(new Dado());
     }
 
-    void setMonster() {
-        MonstroAlvo = new Monster(this);
+    void setMonster(Monster M) {
+        MonstroAlvo= M;
     }
 }

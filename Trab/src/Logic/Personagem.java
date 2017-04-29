@@ -96,7 +96,7 @@ public final class Personagem {
         }
     }
 
-    public boolean addXP(int i) {
+    public boolean addXP(int i) { //TODO: retorna sempre true; Considerar mudar de boolean para void
         int aux;
         //se rank = 4 adiciona 1hp
         if (rank == 4) {
@@ -316,5 +316,16 @@ public final class Personagem {
 
     public ArrayList<Spell> getSpells() {
         return spells;
+    }
+    
+    public void recompensaMonstro(int x)
+    {
+        System.out.println("Adicionei " + x + " de XP por ter derrotado o monstro");//TODO: tirar
+        addXP(x);
+    }
+    
+    public int getXp()
+    {
+        return xp;
     }
 }
