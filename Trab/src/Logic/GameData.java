@@ -18,6 +18,7 @@ public class GameData implements Constants {
     private int dificuldade, startingArea, coluna;
     private final Personagem Personagem;
     private Monster MonstroAlvo;
+    private BossMonster BossMonstroAlvo;
     private final Caverna Caverna;
     private ArrayList<Dado> dados;
 
@@ -29,6 +30,7 @@ public class GameData implements Constants {
         Personagem = new Personagem(dificuldade, this);
         Caverna = new Caverna(startingArea, this);
         MonstroAlvo = null;
+        BossMonstroAlvo=null;
         dados = new ArrayList<>();
         dados.add(new Dado());
     }
@@ -115,5 +117,10 @@ public class GameData implements Constants {
 
     void setMonster(Monster M) {
         MonstroAlvo= M;
+    }
+    
+    void setBossMonster(BossMonster BM)
+    {
+        BossMonstroAlvo=BM;
     }
 }

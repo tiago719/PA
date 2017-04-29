@@ -179,6 +179,7 @@ public class TextUI
             jogo.setState(jogo.getState().ResvolveSelectedMonsterCard());
         } else if (temp instanceof BossMonster)
         {
+            jogo.setState(jogo.getState().ResolveSelectedBossMonsterCard());
             System.out.println("FALTA FAZER");//TODO
         }
     }

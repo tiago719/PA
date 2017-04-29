@@ -5,6 +5,7 @@
  */
 package Logic;
 
+import Logic.Cartas.BossMonster;
 import Logic.Cartas.Carta;
 import Logic.Cartas.Monster;
 import Logic.Spells.Spell;

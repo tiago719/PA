@@ -5,6 +5,8 @@
  */
 package Logic.Cartas;
 
+import Logic.Constants;
+import static Logic.Constants.InfoBossMonster;
 import Logic.GameData;
 
 /**
@@ -13,11 +15,19 @@ import Logic.GameData;
  */
 public class BossMonster extends Carta{
 
-    int inf[][] = {{10, 3, 2, 2}, {15, 5, 2, 3}, {20, 7, 3, 4},
-        {25, 9, 3, 5}, {30, 12}};
+    private int hp;
+    private final int dmg, XpRwd, GRwd;
+    private boolean poison;
     
-    public BossMonster(GameData g) {
+    public BossMonster(GameData g) 
+    {
         super(g);
+        int level = g.getCaverna().getNivel();
+        hp=InfoBossMonster[level-1][0];
+        dmg=InfoBossMonster[level-1][1];
+        XpRwd=InfoBossMonster[level-1][2];
+        GRwd=InfoBossMonster[level-1][3];
+        poison=false;
     }
     
     @Override

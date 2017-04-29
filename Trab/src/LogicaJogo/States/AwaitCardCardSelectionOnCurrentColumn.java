@@ -176,6 +176,15 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
         }
         return new AwaitAttack(getGame());
     }
+    
+    @Override
+    public IStates ResolveSelectedBossMonsterCard()
+    {
+         for (Dado d : getGame().getDados()){
+            d.lancaDado();
+        }
+         return new AwaitAttack(getGame());
+    }
 
     @Override
     public IStates OptionSelected() {

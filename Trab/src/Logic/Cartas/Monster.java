@@ -6,6 +6,7 @@
 package Logic.Cartas;
 
 import Logic.Constants;
+import static Logic.Constants.InfoMonster;
 import Logic.GameData;
 
 /**
@@ -14,7 +15,6 @@ import Logic.GameData;
  */
 public class Monster extends Carta
 {
-
     private int hp;
     private final int dmg, rwd;
     private boolean poison;

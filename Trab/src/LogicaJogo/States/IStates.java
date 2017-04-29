@@ -37,6 +37,9 @@ public interface IStates {
     //monster
     IStates ResvolveSelectedMonsterCard();
     
+    //bossMonster
+    IStates ResolveSelectedBossMonsterCard();
+    
     boolean skillCheck();
     
     //attack
