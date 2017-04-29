@@ -425,7 +425,7 @@ public final class Personagem
 
     public void recompensa()
     {
-        if (gd.getCarta() instanceof Monster)
+        if (gd.getCarta() instanceof BossMonster)
         {
             if(gd.getCaverna().getNivel()==5)
             {
@@ -443,7 +443,7 @@ public final class Personagem
             addXP(InfoMonster[gd.getCaverna().getNivel()-1][1]);
         }
         
-        System.out.println("A carta nao e nenhum dos tipos de monstros");//TODO: tirar
+        
     }
     
     public boolean hasPoison()

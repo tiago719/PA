@@ -96,5 +96,10 @@ public class Caverna {
     void geraPrimeiraArea() {
         Areas.add(new Area(GameData));
     }
+    
+    void geraProximaArea()
+    {
+        Areas.add(new Area(GameData));
+    }
 
 }
