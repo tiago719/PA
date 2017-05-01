@@ -147,13 +147,18 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
                 }
                 break;
             case 6:
-                getGame().getPersonagem().loseHp(2);
+                if(!getGame().getPersonagem().loseHp(2))
+                {
+                    return new GameOver(getGame());
+                }
                 
-                if(getGame().getCaverna().getNivel()==5)
+                if(getGame().getCaverna().getNivel()>=11 || getGame().getCaverna().getNivel()==5)
                 {
                     break;
                 }
-                System.out.println("FALTA FAZER");//TODO
+                
+                getGame().getCaverna().Pit();
+                
                 break;
         }
         

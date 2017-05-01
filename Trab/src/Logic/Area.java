@@ -26,14 +26,21 @@ public class Area{
         MonsterDefeated = false;
         Collections.shuffle(Baralho);
     }
+
+    Area(GameData GameData, ArrayList<Carta> baralho) {
+        Baralho = baralho;
+        this.GameData = GameData;
+        MonsterDefeated = false;
+    }
+    
      public final void geraBaralho() {
-        Baralho.add(new Monster(GameData));
-        Baralho.add(new Monster(GameData));
-        Baralho.add(new Monster(GameData));
-        Baralho.add(new Monster(GameData));
-        Baralho.add(new Monster(GameData));
-        Baralho.add(new Monster(GameData));
-        if (GameData.getCaverna().isLastArea())//TODO: CORRIGIR ESTE ERRO
+        Baralho.add(new Trap(GameData));
+        Baralho.add(new Trap(GameData));
+        Baralho.add(new Trap(GameData));
+        Baralho.add(new Trap(GameData));
+        Baralho.add(new Trap(GameData));
+        Baralho.add(new Trap(GameData));
+        if (GameData.getCaverna().isLastArea())
         {
                 
             Baralho.add(new BossMonster(GameData));
@@ -80,4 +87,13 @@ public class Area{
     {
         MonsterDefeated=b;
     }
+    
+    public void setBaralho(ArrayList<Carta> b){
+        this.Baralho = b;
+    }
+    
+    public ArrayList<Carta> getBaralho(){
+        return Baralho;
+    }
+    
 }

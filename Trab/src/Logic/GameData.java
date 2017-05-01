@@ -5,9 +5,7 @@
  */
 package Logic;
 
-import Logic.Cartas.*;
 import java.util.ArrayList;
-import javax.smartcardio.Card;
 
 /**
  *
