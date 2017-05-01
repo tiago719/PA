@@ -425,7 +425,7 @@ public final class Personagem
 
     public void recompensa()
     {
-        if (gd.getCarta() instanceof BossMonster)
+        if (gd.getMonstroAlvo() instanceof Monsters.BossMonster)
         {
             if(gd.getCaverna().getNivel()==5)
             {
@@ -435,9 +435,10 @@ public final class Personagem
             {
                 addGold(InfoBossMonster[gd.getCaverna().getNivel()-1][2]);
                 addXP(InfoBossMonster[gd.getCaverna().getNivel()-1][3]);
+                
                 //TODO: ir para o mercado
             }
-        } else if(gd.getCarta() instanceof Monster)
+        } else if(gd.getMonstroAlvo() instanceof Monsters.NormalMonster)
         {
             System.out.println("Adicionei " + InfoMonster[gd.getCaverna().getNivel()][1] + " de XP por ter derrotado o monstro");//TODO: tirar
             addXP(InfoMonster[gd.getCaverna().getNivel()-1][1]);

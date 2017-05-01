@@ -5,11 +5,7 @@
  */
 package LogicaJogo.States;
 
-import Logic.Cartas.BossMonster;
 import Logic.Cartas.Carta;
-import Logic.Cartas.Monster;
-import static Logic.Constants.InfoBossMonster;
-import static Logic.Constants.InfoMonster;
 import Logic.Dado;
 import Logic.GameData;
 
@@ -19,12 +15,7 @@ import Logic.GameData;
  */
 public class AwaitAttack extends StateAdapter implements IStates
 {
-    public AwaitAttack(GameData g, Carta c)
-    {
-        super(g);
-        g.setCarta(c);       
-    }
-    
+   
     public AwaitAttack(GameData g)
     {
         super(g);
@@ -58,13 +49,13 @@ public class AwaitAttack extends StateAdapter implements IStates
             soma += 5;
         }
         
-        if (getGame().getHpMonster()>soma)
+        if (getGame().getMonstroAlvo().getHP()>soma)
         {
-            getGame().setHpMonster(getGame().getHpMonster()-soma);
+            getGame().getMonstroAlvo().setHP(getGame().getMonstroAlvo().getHP()-soma);
             return new AwaitSpellChoose(getGame());
         } else
         {
-            getGame().setHpMonster(0);
+            getGame().getMonstroAlvo().setHP(0);
             getGame().getPersonagem().recompensa();
             getGame().proxColuna();
             return new AwaitCardCardSelectionOnCurrentColumn(getGame());

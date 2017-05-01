@@ -164,7 +164,7 @@ public class Jogo {
                 getSpells().remove(c - 1);
 
         }
-        if (getGame().getHpMonster() <= 0) {
+        if (getGame().getMonstroAlvo().getHP() <= 0) {
             return true;
         } else {
             return false;

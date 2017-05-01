@@ -173,15 +173,11 @@ public class TextUI
         } else if (temp instanceof Trap)
         {
             jogo.setState(jogo.getState().ResolveSelectedTrapCard());
-        } else if (temp instanceof Monster)
+        } else if (temp instanceof Monster || temp instanceof BossMonster)
         {
             //jogo.setMonster((Monster) temp);
-            jogo.setState(jogo.getState().ResvolveSelectedMonsterCard(temp));
-        } else if (temp instanceof BossMonster)
-        {
-            jogo.setState(jogo.getState().ResolveSelectedBossMonsterCard(temp));
-            //System.out.println("FALTA FAZER");//TODO
-        }
+            jogo.setState(jogo.getState().ResvolveSelectedMonsterCard());
+        } 
     }
 
     private void uiAwaitOptionSelection()

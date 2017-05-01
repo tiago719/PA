@@ -170,21 +170,21 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
     }
     
     @Override
-    public IStates ResvolveSelectedMonsterCard(Carta c)
+    public IStates ResvolveSelectedMonsterCard()
     {
         for (Dado d : getGame().getDados()){
             d.lancaDado();
         }
-        return new AwaitAttack(getGame(), c);
+        return new AwaitAttack(getGame());
     }
     
     @Override
-    public IStates ResolveSelectedBossMonsterCard(Carta c)
+    public IStates ResolveSelectedBossMonsterCard()
     {
          for (Dado d : getGame().getDados()){
             d.lancaDado();
         }
-         return new AwaitAttack(getGame(), c);
+         return new AwaitAttack(getGame());
     }
 
     @Override

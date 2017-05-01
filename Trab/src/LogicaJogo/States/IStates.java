@@ -36,10 +36,10 @@ public interface IStates {
     IStates ResolveSelectedTrapCard();
     
     //monster
-    IStates ResvolveSelectedMonsterCard(Carta c);
+    IStates ResvolveSelectedMonsterCard();
     
     //bossMonster
-    IStates ResolveSelectedBossMonsterCard(Carta c);
+    IStates ResolveSelectedBossMonsterCard();
     
     boolean skillCheck();
     
