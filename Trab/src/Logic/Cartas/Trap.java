@@ -11,7 +11,7 @@ import Logic.GameData;
  *
  * @author Tiago Coutinho
  */
-public class Trap extends Carta
+public class Trap extends AdaptadorCartas
 {
     public Trap(GameData g)
     {

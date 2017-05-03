@@ -103,7 +103,7 @@ public class Caverna {
 
     public void Pit() {
         areaL++;
-        Areas.add(new Area(GameData, getAreaAtual().getBaralho()));
+        Areas.add(new Area(GameData, getAreaAtual().getBaralho(), getAreaAtual().getMonsterDefeated()));
     }
 
 }

@@ -30,16 +30,16 @@ public interface IStates {
     IStates skipMerchant();
     
     //event
-    IStates ResolveSelectedEventCard();
+    IStates ResolveSelectedEventCard(Carta c);
     
     //trap
     IStates ResolveSelectedTrapCard();
     
     //monster
-    IStates ResvolveSelectedMonsterCard();
+    IStates ResvolveSelectedMonsterCard(Carta c);
     
     //bossMonster
-    IStates ResolveSelectedBossMonsterCard();
+    //IStates ResolveSelectedBossMonsterCard(Carta c);
     
     boolean skillCheck();
     

@@ -7,6 +7,10 @@ package LogicaJogo.States;
 
 import Logic.Cartas.Carta;
 import Logic.GameData;
+import Logic.Spells.Fire;
+import Logic.Spells.Healing;
+import Logic.Spells.Ice;
+import Logic.Spells.Poison;
 
 /**
  *
@@ -50,6 +54,34 @@ public class StateAdapter implements IStates {
     
     @Override
     public IStates ResolveSelectedTreasureCard() {
+        int ran = 1 + (int)(Math.random() * ((6 - 1) + 1));
+        if (getGame().getCaverna().getAreaAtual().getMonsterDefeated()) {
+            getGame().getPersonagem().addGold(2);
+        } else {
+            getGame().getPersonagem().addGold(1);
+        }
+
+        switch (ran) {
+            case 1:
+                getGame().getPersonagem().addArmor(1);
+                break;
+            case 2:
+                getGame().getPersonagem().addXP(2);
+                break;
+            case 3:
+                getGame().getPersonagem().addSpell(new Fire(getGame()));
+                break;
+            case 4:
+                getGame().getPersonagem().addSpell(new Ice(getGame()));
+                break;
+            case 5:
+                getGame().getPersonagem().addSpell(new Poison(getGame()));
+                break;
+            case 6:
+                getGame().getPersonagem().addSpell(new Healing(getGame()));
+                break;
+        }
+        getGame().proxColuna();
         return this;
     }
     
@@ -69,7 +101,7 @@ public class StateAdapter implements IStates {
     }
 
     @Override
-    public IStates ResolveSelectedEventCard()
+    public IStates ResolveSelectedEventCard(Carta c)
     {
         return this;
     }
@@ -84,12 +116,6 @@ public class StateAdapter implements IStates {
     public boolean skillCheck()
     {
         return false;
-    }
-
-    @Override
-    public IStates ResvolveSelectedMonsterCard()
-    {
-        return this;
     }
 
     @Override
@@ -124,8 +150,13 @@ public class StateAdapter implements IStates {
     }
 
     @Override
-    public IStates ResolveSelectedBossMonsterCard()
-    {
+    public IStates ResvolveSelectedMonsterCard(Carta c) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+//    @Override
+//    public IStates ResolveSelectedBossMonsterCard(Carta c) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+
 }

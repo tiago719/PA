@@ -5,6 +5,7 @@
  */
 package Logic;
 
+import Logic.Cartas.Carta;
 import java.util.ArrayList;
 
 /**
@@ -19,7 +20,7 @@ public class GameData implements Constants {
     //private BossMonster BossMonstroAlvo;
     private final Caverna Caverna;
     private ArrayList<Dado> dados;
-    Monsters.Monster MonstroAlvo;
+    private Carta MonstroAlvo;
 
 
     public GameData() {
@@ -115,12 +116,12 @@ public class GameData implements Constants {
          dados.add(new Dado());
     }
         
-    public Monsters.Monster getMonstroAlvo()
+    public Carta getMonstroAlvo()
     {
         return MonstroAlvo;
     }
     
-    public void setMonstroAlvo(Monsters.Monster c)
+    public void setMonstroAlvo(Carta c)
     {
         this.MonstroAlvo=c;
     }

@@ -27,19 +27,19 @@ public class Area{
         Collections.shuffle(Baralho);
     }
 
-    Area(GameData GameData, ArrayList<Carta> baralho) {
+    Area(GameData GameData, ArrayList<Carta> baralho, boolean MonsterDefeated) {
         Baralho = baralho;
         this.GameData = GameData;
-        MonsterDefeated = false;
+        this.MonsterDefeated = MonsterDefeated;
     }
     
      public final void geraBaralho() {
-        Baralho.add(new Trap(GameData));
-        Baralho.add(new Trap(GameData));
-        Baralho.add(new Trap(GameData));
-        Baralho.add(new Trap(GameData));
-        Baralho.add(new Trap(GameData));
-        Baralho.add(new Trap(GameData));
+        Baralho.add(new BossMonster(GameData));
+        Baralho.add(new BossMonster(GameData));
+        Baralho.add(new BossMonster(GameData));
+        Baralho.add(new BossMonster(GameData));
+        Baralho.add(new BossMonster(GameData));
+        Baralho.add(new BossMonster(GameData));
         if (GameData.getCaverna().isLastArea())
         {
                 

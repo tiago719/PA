@@ -34,7 +34,7 @@ public class Fire extends Spell{
         else
         {
             g.getMonstroAlvo().setHP(0);
-            g.getPersonagem().recompensa();
+            g.getMonstroAlvo().addRwd();
             g.proxColuna();
             return new AwaitCardCardSelectionOnCurrentColumn(g);
         }

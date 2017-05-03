@@ -49,14 +49,13 @@ public class AwaitAttack extends StateAdapter implements IStates
             soma += 5;
         }
         
-        if (getGame().getMonstroAlvo().getHP()>soma)
+        if (!getGame().getMonstroAlvo().Deffend(soma))
         {
-            getGame().getMonstroAlvo().setHP(getGame().getMonstroAlvo().getHP()-soma);
             return new AwaitSpellChoose(getGame());
         } else
         {
-            getGame().getMonstroAlvo().setHP(0);
-            getGame().getPersonagem().recompensa();
+            getGame().getCaverna().getAreaAtual().setMonsterDefeated(true);
+            getGame().getMonstroAlvo().addRwd();
             getGame().proxColuna();
             return new AwaitCardCardSelectionOnCurrentColumn(getGame());
         }

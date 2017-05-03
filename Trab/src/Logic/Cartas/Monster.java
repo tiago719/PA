@@ -8,52 +8,53 @@ package Logic.Cartas;
 import Logic.Constants;
 import static Logic.Constants.InfoMonster;
 import Logic.GameData;
+import LogicaJogo.States.IStates;
 
 /**
  *
  * @author edu_f
  */
-public class Monster extends Carta
+public class Monster extends AdaptadorCartas
 {
     private int hp;
     private final int dmg, rwd;
-    private boolean poison;
 
     public Monster(GameData g)
     {
         super(g);
         int level = g.getCaverna().getNivel();
-        dmg = Constants.InfoMonster[level-1][0]; //TODO: Nao sera o nivel aqui?? Ve se esta bem
+        if (g.getCaverna().isLastArea())
+            level++;
+        dmg = Constants.InfoMonster[level-1][0];
         rwd = Constants.InfoMonster[level-1][1];
         hp = g.getCaverna().getNumArea() + (1 + (int) (Math.random() * ((6 - 1) + 1)));
-        poison = false;
     }
 
     public Monster(GameData g, boolean event)
     {
         super(g);
-        int rank = g.getPersonagem().getRank();
         dmg = g.getCaverna().getNumArea() * 2;
         rwd = 2;
         hp = g.getCaverna().getNumArea() + (1 + (int) (Math.random() * ((6 - 1) + 1)));
     }
 
-    public boolean isPoison() {
-        return poison;
-    }
-
-    public void setPoison(boolean poison) {
-        this.poison = poison;
-    }
-
+    @Override
     public int getDmg()
     {
         return dmg;
     }
 
-    public int getRwd()
+    @Override
+    public void setHP(int hp)
     {
-        return rwd;
+        this.hp = hp;
+    }
+    
+    @Override
+    public void addRwd()
+    {
+        gd.getPersonagem().addXP(rwd);
+        
     }
 
     @Override
@@ -69,23 +70,24 @@ public class Monster extends Carta
         return s;
 
     }
+    
+//    @Override
+//    //true = morto
+//    public boolean Deffend(int soma)
+//    {
+//        if (hp <= soma)
+//        {
+//            hp = 0;
+//            return true;
+//        } else
+//        {
+//            hp -= soma;
+//            return false;
+//        }
+//    }
 
-    //true = morto
-    public boolean Deffend(int soma)
-    {
-        if (hp <= soma)
-        {
-            hp = 0;
-            return true;
-        } else
-        {
-            hp -= soma;
-            return false;
-        }
-    }//TODO: retirar
-
-    public int getHp()
-    {
+    @Override
+    public int getHP() {
         return hp;
     }
 
