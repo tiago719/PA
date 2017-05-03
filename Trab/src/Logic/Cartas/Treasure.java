@@ -11,7 +11,7 @@ import Logic.GameData;
  *
  * @author edu_f
  */
-public class Treasure extends Carta{
+public class Treasure extends AdaptadorCartas{
     
     public Treasure(GameData g) {
         super(g);

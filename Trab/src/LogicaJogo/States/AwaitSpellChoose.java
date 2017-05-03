@@ -29,7 +29,7 @@ public class AwaitSpellChoose extends StateAdapter implements IStates {
     public IStates ProxRonda() {
         //Monstro ataca
 
-        int dmg = getGame().getDmgM();
+        int dmg = getGame().getMonstroAlvo().getDmg();
 
         int armor = getGame().getPersonagem().getArmor();
 

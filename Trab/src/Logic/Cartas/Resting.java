@@ -11,7 +11,7 @@ import Logic.GameData;
  *
  * @author edu_f
  */
-public class Resting extends Carta{
+public class Resting extends AdaptadorCartas{
     
     public Resting(GameData g) {
         super(g);

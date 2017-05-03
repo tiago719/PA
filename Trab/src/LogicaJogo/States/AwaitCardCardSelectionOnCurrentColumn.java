@@ -31,41 +31,41 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
         return new AwaitTraiding(getGame());
     }
 
-    @Override
-    public IStates ResolveSelectedTreasureCard() {
-        int ran = 1 + (int)(Math.random() * ((6 - 1) + 1));
-        if (getGame().getCaverna().getAreaAtual().getMonsterDefeated()) {
-            getGame().getPersonagem().addGold(2);
-        } else {
-            getGame().getPersonagem().addGold(1);
-        }
-
-        switch (ran) {
-            case 1:
-                getGame().getPersonagem().addArmor(1);
-                break;
-            case 2:
-                getGame().getPersonagem().addXP(2);
-                break;
-            case 3:
-                getGame().getPersonagem().addSpell(new Fire(getGame()));
-                break;
-            case 4:
-                getGame().getPersonagem().addSpell(new Ice(getGame()));
-                break;
-            case 5:
-                getGame().getPersonagem().addSpell(new Poison(getGame()));
-                break;
-            case 6:
-                getGame().getPersonagem().addSpell(new Healing(getGame()));
-                break;
-        }
-        getGame().proxColuna();
-        return this;
-    }
+//    @Override
+//    public IStates ResolveSelectedTreasureCard() {
+//        int ran = 1 + (int)(Math.random() * ((6 - 1) + 1));
+//        if (getGame().getCaverna().getAreaAtual().getMonsterDefeated()) {
+//            getGame().getPersonagem().addGold(2);
+//        } else {
+//            getGame().getPersonagem().addGold(1);
+//        }
+//
+//        switch (ran) {
+//            case 1:
+//                getGame().getPersonagem().addArmor(1);
+//                break;
+//            case 2:
+//                getGame().getPersonagem().addXP(2);
+//                break;
+//            case 3:
+//                getGame().getPersonagem().addSpell(new Fire(getGame()));
+//                break;
+//            case 4:
+//                getGame().getPersonagem().addSpell(new Ice(getGame()));
+//                break;
+//            case 5:
+//                getGame().getPersonagem().addSpell(new Poison(getGame()));
+//                break;
+//            case 6:
+//                getGame().getPersonagem().addSpell(new Healing(getGame()));
+//                break;
+//        }
+//        getGame().proxColuna();
+//        return this;
+//    }
     
     @Override
-    public IStates ResolveSelectedEventCard()
+    public IStates ResolveSelectedEventCard(Carta c)
     {
         int ran = 1 + (int)(Math.random() * ((6 - 1) + 1));
         
@@ -87,8 +87,7 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
                 getGame().getPersonagem().addArmor(1);
                 break;
             case 6:
-                //TODO:meter lancamento dos dados no estado AwaitAttack
-                //getGame().setMonstroAlvo(new Monster(getGame(), true));
+                getGame().setMonstroAlvo(c);
                 return new AwaitAttack(getGame());
         }
         getGame().proxColuna();
@@ -147,13 +146,18 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
                 }
                 break;
             case 6:
-                getGame().getPersonagem().loseHp(2);
+                if(!getGame().getPersonagem().loseHp(2))
+                {
+                    return new GameOver(getGame());
+                }
                 
-                if(getGame().getCaverna().getNivel()==5)
+                if(getGame().getCaverna().getNivel()>=11 || getGame().getCaverna().getNivel()==5)
                 {
                     break;
                 }
-                System.out.println("FALTA FAZER");//TODO
+                
+                getGame().getCaverna().Pit();
+                
                 break;
         }
         
@@ -172,20 +176,24 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
     @Override
     public IStates ResvolveSelectedMonsterCard(Carta c)
     {
+        getGame().setMonstroAlvo(c);
+        
         for (Dado d : getGame().getDados()){
             d.lancaDado();
         }
-        return new AwaitAttack(getGame(), c);
+        return new AwaitAttack(getGame());
     }
     
-    @Override
-    public IStates ResolveSelectedBossMonsterCard(Carta c)
-    {
-         for (Dado d : getGame().getDados()){
-            d.lancaDado();
-        }
-         return new AwaitAttack(getGame(), c);
-    }
+//    @Override
+//    public IStates ResolveSelectedBossMonsterCard(Carta c)
+//    {
+//        getGame().setMonstroAlvo(c);
+//
+//         for (Dado d : getGame().getDados()){
+//            d.lancaDado();
+//        }
+//         return new AwaitAttack(getGame());
+//    }
 
     @Override
     public IStates OptionSelected() {

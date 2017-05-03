@@ -8,15 +8,16 @@ package Logic.Cartas;
 import Logic.Constants;
 import static Logic.Constants.InfoBossMonster;
 import Logic.GameData;
+import LogicaJogo.States.IStates;
 
 /**
  *
  * @author edu_f
  */
-public class BossMonster extends Carta{
+public class BossMonster extends AdaptadorCartas{
 
     private int hp;
-    private final int dmg, XpRwd, GRwd;
+    private final int dmg, XpRwd, GoldRwd;
     private boolean poison;
     
     public BossMonster(GameData g) 
@@ -26,7 +27,7 @@ public class BossMonster extends Carta{
         hp=InfoBossMonster[level-1][0];
         dmg=InfoBossMonster[level-1][1];
         XpRwd=InfoBossMonster[level-1][2];
-        GRwd=InfoBossMonster[level-1][3];
+        GoldRwd=InfoBossMonster[level-1][3];
         poison=false;
     }
     
@@ -40,6 +41,47 @@ public class BossMonster extends Carta{
         s += "4 - Serpent Demon - 25 - 9 - 3 Coins + 5 XP + Item\n";
         s += "5 - Og's Remains - 30 - 12 - OG's Blood\n";
         return s;
+    }
+
+    @Override
+    public int getHP() {
+        return hp;
+    }
+    
+    @Override
+    public void setHP(int hp)
+    {
+        this.hp = hp;
+    }
+
+    @Override
+    public boolean Deffend(int soma) {
+        if (hp <= soma)
+        {
+            hp = 0;
+            return true;
+        } else
+        {
+            hp -= soma;
+            return false;
+        }
+    }
+
+    @Override
+    public int getDmg() {
+        return dmg;
+    }
+
+    @Override
+    public void addRwd(){
+        if (gd.getCaverna().getNivel()== 5)
+            System.out.println("||||||||||||||VENCEU||||||||||||||||||||");//TODO: QUANDO ACABA JOGO, TIRAR LINHA        
+        else{
+            gd.getPersonagem().addGold(GoldRwd);
+            gd.getPersonagem().addXP(XpRwd);
+        }
+       
+        
     }
     
     

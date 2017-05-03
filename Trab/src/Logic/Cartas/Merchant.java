@@ -11,7 +11,7 @@ import Logic.GameData;
  *
  * @author Tiago Coutinho
  */
-public class Merchant extends Carta
+public class Merchant extends AdaptadorCartas
 {
     public Merchant(GameData g)
     {

@@ -30,7 +30,7 @@ public interface IStates {
     IStates skipMerchant();
     
     //event
-    IStates ResolveSelectedEventCard();
+    IStates ResolveSelectedEventCard(Carta c);
     
     //trap
     IStates ResolveSelectedTrapCard();
@@ -39,7 +39,7 @@ public interface IStates {
     IStates ResvolveSelectedMonsterCard(Carta c);
     
     //bossMonster
-    IStates ResolveSelectedBossMonsterCard(Carta c);
+    //IStates ResolveSelectedBossMonsterCard(Carta c);
     
     boolean skillCheck();
     

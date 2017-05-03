@@ -6,17 +6,28 @@
 package Logic.Cartas;
 
 import Logic.GameData;
+import LogicaJogo.States.IStates;
 
 /**
  *
  * @author edu_f
  */
 public abstract class Carta {
-    private final GameData gd;
+    protected final GameData gd;
 
     public Carta(GameData g) {
         gd = g;
     }
+
+    public abstract int getHP();
     
+    public abstract void setHP(int hp);
+    
+    public abstract boolean Deffend(int soma);
+    
+    public abstract int getDmg();
+
+    public abstract void addRwd();
+
     
 }

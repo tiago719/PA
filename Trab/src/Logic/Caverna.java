@@ -27,8 +27,7 @@ public class Caverna {
     }
     
     public Area getAreaAtual(){
-        //int ola=getNumArea()-GameData.getStartingArea();
-        return Areas.get(getNumArea()-GameData.getStartingArea());
+        return Areas.get(Areas.size()-1);
     }
 
     public int getAreaL() {
@@ -100,6 +99,11 @@ public class Caverna {
     void geraProximaArea()
     {
         Areas.add(new Area(GameData));
+    }
+
+    public void Pit() {
+        areaL++;
+        Areas.add(new Area(GameData, getAreaAtual().getBaralho(), getAreaAtual().getMonsterDefeated()));
     }
 
 }

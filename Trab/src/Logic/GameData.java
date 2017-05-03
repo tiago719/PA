@@ -5,9 +5,8 @@
  */
 package Logic;
 
-import Logic.Cartas.*;
+import Logic.Cartas.Carta;
 import java.util.ArrayList;
-import javax.smartcardio.Card;
 
 /**
  *
@@ -15,13 +14,13 @@ import javax.smartcardio.Card;
  */
 public class GameData implements Constants {
 
-    private int dificuldade, startingArea, coluna, HpMonstro;
+    private int dificuldade, startingArea, coluna;
     private final Personagem Personagem;
     //private Monster MonstroAlvo;
     //private BossMonster BossMonstroAlvo;
     private final Caverna Caverna;
     private ArrayList<Dado> dados;
-    Carta c;
+    private Carta MonstroAlvo;
 
 
     public GameData() {
@@ -34,8 +33,7 @@ public class GameData implements Constants {
         //BossMonstroAlvo=null;
         dados = new ArrayList<>();
         dados.add(new Dado());
-        c=null;
-        HpMonstro=0;
+        MonstroAlvo=null;
     }
 /*
     public Monster getMonstroAlvo() {
@@ -117,52 +115,17 @@ public class GameData implements Constants {
     public void addDado(){
          dados.add(new Dado());
     }
-    
-    public void retiraHpMonster(int h)
+        
+    public Carta getMonstroAlvo()
     {
-        HpMonstro-=h;
+        return MonstroAlvo;
     }
     
-    public void setHpMonster(int h)
+    public void setMonstroAlvo(Carta c)
     {
-        HpMonstro=h;
+        this.MonstroAlvo=c;
     }
     
-    public int getHpMonster()
-    {
-        return HpMonstro;
-    }
-    
-    public Carta getCarta()
-    {
-        return c;
-    }
-    
-    public void setCarta(Carta c)
-    {
-        this.c=c;
-        if(c instanceof Monster)
-        {
-            setHpMonster(getCaverna().getNumArea()+(1 + (int)(Math.random() * ((6 - 1) + 1))));
-        }
-        else if(c instanceof BossMonster)
-        {
-            setHpMonster(InfoBossMonster[getCaverna().getNivel()-1][0]);
-        }
-    }
-    
-    public int getDmgM()
-    {
-        if(c instanceof Monster)
-        {
-            return InfoMonster[getCaverna().getNivel()-1][0];
-        }
-        else if(c instanceof BossMonster)
-        {
-            return InfoBossMonster[getCaverna().getNivel()-1][1];
-        }
-        return -1;
-    }
 /*
     void setMonster(Monster M) {
         MonstroAlvo= M;

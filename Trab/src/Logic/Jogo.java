@@ -59,17 +59,17 @@ public class Jogo {
         return gameData.getDados().get(i);
     }
 
-    public boolean AOS_OptionSelected(int i) {
+    //TODO: QUANDO NAO PODE ADICIONAR MAIS XP(POR EXEMPLO) ADICIONA 1 HP, CRIAR MSG AVISAR USER
+    public void AOS_OptionSelected(int i) {
         switch (i) {
             case 1:
-                return getGame().getPersonagem().addXP(1);
+                getGame().getPersonagem().addXP(1);
             case 2:
-                return getGame().getPersonagem().addFood(1);
+                getGame().getPersonagem().addFood(1);
             case 3:
-                return getGame().getPersonagem().addHealth(2);
+                getGame().getPersonagem().addHealth(2);
 
         }
-        return false;
     }
 
     public boolean AOS_TraidingSelection(int i) {
@@ -164,7 +164,8 @@ public class Jogo {
                 getSpells().remove(c - 1);
 
         }
-        if (getGame().getHpMonster() <= 0) {
+        if (getGame().getMonstroAlvo().getHP() <= 0) {
+            getGame().getCaverna().getAreaAtual().setMonsterDefeated(true);
             return true;
         } else {
             return false;

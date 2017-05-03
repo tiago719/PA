@@ -422,29 +422,6 @@ public final class Personagem
     {
         return xp;
     }
-
-    public void recompensa()
-    {
-        if (gd.getCarta() instanceof BossMonster)
-        {
-            if(gd.getCaverna().getNivel()==5)
-            {
-                System.out.println("VENCEU O JOGO");//TODO: tirar
-            }
-            else
-            {
-                addGold(InfoBossMonster[gd.getCaverna().getNivel()-1][2]);
-                addXP(InfoBossMonster[gd.getCaverna().getNivel()-1][3]);
-                //TODO: ir para o mercado
-            }
-        } else if(gd.getCarta() instanceof Monster)
-        {
-            System.out.println("Adicionei " + InfoMonster[gd.getCaverna().getNivel()][1] + " de XP por ter derrotado o monstro");//TODO: tirar
-            addXP(InfoMonster[gd.getCaverna().getNivel()-1][1]);
-        }
-        
-        
-    }
     
     public boolean hasPoison()
     {

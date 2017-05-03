@@ -6,13 +6,17 @@
 package Logic.Cartas;
 
 import Logic.GameData;
+import LogicaJogo.States.StateAdapter;
 
 /**
  *
  * @author Tiago Coutinho
  */
-public class Event extends Carta
+public class Event extends AdaptadorCartas
 {
+    
+    private int hp, dmg;
+    
     public Event(GameData g)
     {
         super(g);
@@ -31,4 +35,25 @@ public class Event extends Carta
         s += "6: Monster - Fight!";
         return s;
     }
+
+    @Override
+    public int getHP() {
+        return hp;
+    }
+
+    @Override
+    public void setHP(int hp) {
+        this.hp = hp;
+    }
+
+    @Override
+    public int getDmg() {
+        return gd.getCaverna().getNivel()*2;
+    }
+
+    @Override
+    public void addRwd() {
+        gd.getPersonagem().addXP(2);
+    }
+
 }
