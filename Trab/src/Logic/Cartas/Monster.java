@@ -8,6 +8,7 @@ package Logic.Cartas;
 import Logic.Constants;
 import static Logic.Constants.InfoMonster;
 import Logic.GameData;
+import LogicaJogo.States.AwaitCardCardSelectionOnCurrentColumn;
 import LogicaJogo.States.IStates;
 
 /**
@@ -51,10 +52,11 @@ public class Monster extends AdaptadorCartas
     }
     
     @Override
-    public void addRwd()
+    public IStates addRwd()
     {
         gd.getPersonagem().addXP(rwd);
-        
+        gd.proxColuna();
+        return new AwaitCardCardSelectionOnCurrentColumn(gd);
     }
 
     @Override

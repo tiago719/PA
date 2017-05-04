@@ -6,7 +6,11 @@
 package Logic;
 
 import Logic.Cartas.Carta;
+import LogicaJogo.States.AwaitCardCardSelectionOnCurrentColumn;
+import LogicaJogo.States.IStates;
 import java.util.ArrayList;
+import Logic.Spells.*;
+
 
 /**
  *
@@ -125,6 +129,40 @@ public class GameData implements Constants {
     {
         this.MonstroAlvo=c;
     }
+    
+    public IStates Treasure(){
+        int ran = 1 + (int)(Math.random() * ((6 - 1) + 1));
+        if (Caverna.getAreaAtual().getMonsterDefeated()) {
+            Personagem.addGold(2);
+        } else {
+            Personagem.addGold(1);
+        }
+
+        switch (ran) {
+            case 1:
+               Personagem.addArmor(1);
+                break;
+            case 2:
+               Personagem.addXP(2);
+                break;
+            case 3:
+                Personagem.addSpell(new Fire(this));
+                break;
+            case 4:
+                Personagem.addSpell(new Ice(this));
+                break;
+            case 5:
+                Personagem.addSpell(new Poison(this));
+                break;
+            case 6:
+                Personagem.addSpell(new Healing(this));
+                break;
+        }
+        proxColuna();
+        
+        return new AwaitCardCardSelectionOnCurrentColumn(this);
+    }
+    
     
 /*
     void setMonster(Monster M) {
