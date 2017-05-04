@@ -22,7 +22,13 @@ public class Merchant extends AdaptadorCartas
     public String toString()
     {
         String s = "Carta: MERCHANT\n";
-        s+="Buy: \n";
+        return s;
+    }
+    
+    @Override
+    public String infoCarta()
+    {
+        String s = "Buy: \n";
         s+="Ration: +1 Food - Custo: 1 Gold\n";
         s+="Health Potion: +1 HP - Custo: 1 Gold\n";
         s+="Big Health Potion: +4 HP - Custo: 3 Gold\n";
@@ -31,7 +37,6 @@ public class Merchant extends AdaptadorCartas
         s+="Sell: \n";
         s+="1 Armor Piece - Recompensa: 3 Gold\n";
         s+="Any 1 Spell - Recompensa: 4 Gold\n";
-        
         return s;
     }
 }

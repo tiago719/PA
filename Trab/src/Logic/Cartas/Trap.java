@@ -22,7 +22,13 @@ public class Trap extends AdaptadorCartas
     public String toString() 
     {
         String s = "Carta: TRAP\n";
-        s += "Traps - Description\n";
+        return s;
+    }
+    
+     @Override
+    public String infoCarta() 
+    {
+        String s = "Traps - Description\n";
         s += "1: Mold Miasma - A terrible stench seems to have added a layer of white and blue hair on your meat. Lose 1 Food ration.\n";
         s += "2: Tripwire - You tripped and fell hard to the ground. A Gold piece was ejected from your bag. Lose 1 Gold.\n";
         s += "3: Acid Mist - Powerful acid falls from the ceiling and damages your equipment. Lose 1 Armor.\n";
