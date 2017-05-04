@@ -58,7 +58,7 @@ public class Monster extends AdaptadorCartas {
     @Override
     public String toString() {
         String s = "Carta: MONSTER\n";
-        s += "HP Atual: "+ hp +"\n";
+        s += "HP Atual do Monstro: "+ hp +"\n";
         s += "Damage: "+ dmg +"\n";
         s += "Recompensa: "+ rwd +"XP\n";
         return s;
@@ -67,7 +67,8 @@ public class Monster extends AdaptadorCartas {
 
     @Override
     public String infoCarta() {
-        String s = "Level - DMG - REWARD\n";
+        String s = "Monster - Description";
+        s += "Level - DMG - REWARD\n";
         s += "1 - Undead Soldier - 2 - 1 XP\n";
         s += "2 - Skeleton - 4 - 1 XP\n";
         s += "3 - Undead Knight - 6 - 2 XP\n";

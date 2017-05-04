@@ -63,11 +63,11 @@ public class Jogo {
     public void AOS_OptionSelected(int i) {
         switch (i) {
             case 1:
-                getGame().getPersonagem().addXP(1);
+                gameData.getPersonagem().addXP(1);
             case 2:
-                getGame().getPersonagem().addFood(1);
+                gameData.getPersonagem().addFood(1);
             case 3:
-                getGame().getPersonagem().addHealth(2);
+                gameData.getPersonagem().addHealth(2);
 
         }
     }
@@ -75,19 +75,19 @@ public class Jogo {
     public boolean AOS_TraidingSelection(int i) {
         switch (i) {
             case 1:
-                return getGame().getPersonagem().buyRation();
+                return gameData.getPersonagem().buyRation();
             case 2:
-                return getGame().getPersonagem().buyPotion();
+                return gameData.getPersonagem().buyPotion();
             case 3:
-                return getGame().getPersonagem().buyBigPotion();
+                return gameData.getPersonagem().buyBigPotion();
             case 4:
-                return getGame().getPersonagem().buyArmor();
+                return gameData.getPersonagem().buyArmor();
             case 5:
-                return getGame().getPersonagem().buyAnySpell();
+                return gameData.getPersonagem().buyAnySpell();
             case 6:
-                return getGame().getPersonagem().sellArmor();
+                return gameData.getPersonagem().sellArmor();
             case 7:
-                return getGame().getPersonagem().sellAnySpell();
+                return gameData.getPersonagem().sellAnySpell();
         }
         return false;
     }
@@ -150,26 +150,27 @@ public class Jogo {
         return gameData.getPersonagem().getSpells();
     }
 
-    //retorna true se morreu, false se nao morreu
-    public boolean AS_ChooseSpell(int c) {
-        switch (c) {
-            case -1:
-                //TODO: menssagem de erro
-                break;
-            case 0:
-                //TODO: sem spells
-                break;
-            default:
-                getSpells().get(c - 1).Efeito(gameData, state);
-                getSpells().remove(c - 1);
 
-        }
-        if (getGame().getMonstroAlvo().getHP() <= 0) {
-            getGame().getCaverna().getAreaAtual().setMonsterDefeated(true);
-            return true;
-        } else {
-            return false;
-        }
+    
+    public Personagem getPersonagem()
+    {
+        return gameData.getPersonagem();
     }
     
+    public Carta getMonstroAlvo()
+    {
+        return gameData.getMonstroAlvo();
+    }
+    
+    public ArrayList<Carta> getCartasColuna()
+    {
+        return gameData.getCaverna().getAreaAtual().getCartasColuna();
+    }
+    
+    public boolean AS_ChooseSpell(int c)
+    {
+        return gameData.AS_ChooseSpell(c, state);
+    }
 }
+
+

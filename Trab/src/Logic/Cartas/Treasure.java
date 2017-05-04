@@ -26,7 +26,8 @@ public class Treasure extends AdaptadorCartas{
     
      @Override
     public String infoCarta() {
-        String s = "+1 Coin No Monster Defeated\n";
+        String s="Treasure - Description\n";
+        s += "+1 Coin No Monster Defeated\n";
         s += "+2 Coins if a Monster was Deafeated\n";
         s += "----------------------------\n";
         s += "1 - Armor Piece: +1 Armor\n";

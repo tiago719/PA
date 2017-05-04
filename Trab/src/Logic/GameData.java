@@ -163,6 +163,27 @@ public class GameData implements Constants {
         return new AwaitCardCardSelectionOnCurrentColumn(this);
     }
     
+      public boolean AS_ChooseSpell(int c, IStates s) {
+        switch (c) {
+            case -1:
+                //TODO: menssagem de erro
+                break;
+            case 0:
+                //TODO: sem spells
+                break;
+            default:
+                getPersonagem().getSpells().get(c - 1).Efeito(this, s);
+                getPersonagem().getSpells().remove(c - 1);
+
+        }
+        if (getMonstroAlvo().getHP() <= 0) {
+            getCaverna().getAreaAtual().setMonsterDefeated(true);
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     
 /*
     void setMonster(Monster M) {

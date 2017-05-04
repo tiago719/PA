@@ -34,7 +34,7 @@ public class BossMonster extends AdaptadorCartas {
     @Override
     public String toString() {
         String s = "Carta: BOSS MONSTER\n";
-        s += "HP Atual: "+ hp +"\n";
+        s += "HP Atual do Monstro: "+ hp +"\n";
         s += "Damage: "+ dmg +"\n";
         s += "Recompensa: \n"+ XpRwd +"XP+\t";
         s += GoldRwd +"GOLD+\t";
@@ -45,7 +45,7 @@ public class BossMonster extends AdaptadorCartas {
 
     @Override
     public String infoCarta() {
-        String s = "Carta: BOSS MONSTER\n";
+        String s = "Boss Monster - Description\n";
         s += "Level - HP - DMG - REWARD\n";
         s += "1 - Undead Giant - 10 - 3 - 2 Coins + 2 XP + Item\n";
         s += "2 - Skeleton Lord - 15 - 5 - 2 Coins + 3 XP + Item\n";

@@ -34,12 +34,12 @@ public class Area{
     }
     
      public final void geraBaralho() {
-        Baralho.add(new BossMonster(GameData));
-        Baralho.add(new BossMonster(GameData));
-        Baralho.add(new BossMonster(GameData));
-        Baralho.add(new BossMonster(GameData));
-        Baralho.add(new BossMonster(GameData));
-        Baralho.add(new BossMonster(GameData));
+        Baralho.add(new Event(GameData));
+        Baralho.add(new Monster(GameData));
+        Baralho.add(new Treasure(GameData));
+        Baralho.add(new Merchant(GameData));
+        Baralho.add(new Trap(GameData));
+        Baralho.add(new Resting(GameData));
         if (GameData.getCaverna().isLastArea())
         {
                 

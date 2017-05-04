@@ -34,7 +34,7 @@ public class TextUI {
         Scanner sc = new Scanner(System.in);
         while (true) {
             do {
-                System.out.println("\n=== AWAITING FOR THE BEGINNING OF THE GAME ===\n");
+                System.out.println("\n=== Bem-vindo ao Mini-Rogue ===\n");
                 System.out.println("0 - Sair");
                 System.out.println("1 - Escolher area inicial");
                 System.out.println("2 - Escolher nivel de dificuldade");
@@ -107,19 +107,13 @@ public class TextUI {
         for (int i = 0; i < 50; i++) {
             System.out.println();
         }
-        System.out.println("Food: " + jogo.getGame().getPersonagem().getFood());
-        System.out.println("Health: " + jogo.getGame().getPersonagem().getHp());
-        System.out.println("Gold: " + jogo.getGame().getPersonagem().getGold());
-        System.out.println("Armor: " + jogo.getGame().getPersonagem().getArmor());
-        System.out.println("Area Atual: " + jogo.getGame().getCaverna().getNumArea());
-        System.out.println("Nivel Atual: " + jogo.getGame().getCaverna().getNivel());
-        System.out.println("Coluna Atual: " + jogo.getGame().getColuna());
-        System.out.println("Nivel de dificuldade " + jogo.getGame().getDificuldade());
+        
+        System.out.println(jogo.getPersonagem());
         System.out.println("Escolha uma carta da coluna em que se encontra\n");
 
-        c = jogo.getGame().getCaverna().getAreaAtual().getCartasColuna();
+        c = jogo.getCartasColuna();
         for (Carta cartasColuna : c) {
-            System.out.println((++cont) + " - " + cartasColuna + "\n");
+            System.out.println((++cont) + " - " + cartasColuna.infoCarta() + "\n");
         }
 
         do {
@@ -149,7 +143,6 @@ public class TextUI {
         } else if (temp instanceof Trap) {
             jogo.setState(jogo.getState().ResolveSelectedTrapCard());
         } else if (temp instanceof Monster || temp instanceof BossMonster) {
-            //jogo.setMonster((Monster) temp);
             jogo.setState(jogo.getState().ResvolveSelectedMonsterCard(temp));
         }
     }
@@ -160,7 +153,7 @@ public class TextUI {
         int c;
 
         do {
-            System.out.println("\n=== AWAITING OPTION SELECTION(RESTING CARD) ===\n");
+            System.out.println("\n=== Escolha uma opcao! ===\n");
             System.out.println("1 - Reinforce your Weapon: +1 XP");
             System.out.println("2 - Search for Ration: +1 FOOD");
             System.out.println("3 - Heal: +2 HP");
@@ -187,10 +180,7 @@ public class TextUI {
 
         do {
             do {
-                System.out.println("Food: " + jogo.getGame().getPersonagem().getFood());
-                System.out.println("Health: " + jogo.getGame().getPersonagem().getHp());
-                System.out.println("Gold: " + jogo.getGame().getPersonagem().getGold());
-                System.out.println("Armor: " + jogo.getGame().getPersonagem().getArmor());
+                System.out.println(jogo.getPersonagem());
                 System.out.println("\n=== AWAITING TRAIDING(MERCHANT CARD) ===\n");
                 System.out.println("Buy:");
                 System.out.println("1 - Ration: +1 Food - Custo: 1 Gold");
@@ -235,13 +225,8 @@ public class TextUI {
 
             do {
                 i = 0;
-                System.out.println("Food: " + jogo.getGame().getPersonagem().getFood());
-                System.out.println("Health: " + jogo.getGame().getPersonagem().getHp());
-                System.out.println("Gold: " + jogo.getGame().getPersonagem().getGold());
-                System.out.println("Armor: " + jogo.getGame().getPersonagem().getArmor());
-                System.out.println("XP: " + jogo.getGame().getPersonagem().getXp());
-                System.out.println("Numero de dados: " + jogo.getGame().getDados().size());
-                System.out.println("\n=== AWAITING ATTACK ===\n");
+                System.out.println(jogo.getPersonagem());
+                System.out.println("\n=== Escolha uma opcao ===\n");
                 System.out.println("Resultado dos dados: ");
 
                 for (Dado d : jogo.getDados()) {
@@ -307,7 +292,7 @@ public class TextUI {
 
             do {
                 i = 0;
-                System.out.println("\n=== AWAITING FEATS ===\n");
+                System.out.println("\nFeats: Escolha uma opcao\n");
                 System.out.println("ATENCAO: Custo: 2 HP ou 1 XP");
 
                 System.out.println("0 : Sair");
@@ -316,7 +301,6 @@ public class TextUI {
                 for (Dado d : jogo.getDados()) {
                     System.out.println(++i + " : " + d);
                 }
-                //TODO: adicionar opcao de sair/nao escolher dado
 
                 System.out.println("\n0 - Sair ");
 
@@ -359,7 +343,7 @@ public class TextUI {
                     continuar = false;
                     break;
                 case -1:
-                    System.out.println("Once a die has been rerolled through a Feat, you must accept its result");
+                    System.out.println("Quando um dado foi lancado novamente atraves de um Feat, nao e possivel voltar a lancar");
                     continuar = true;
                     break;
                 case 1:
@@ -376,9 +360,10 @@ public class TextUI {
         String option1;
         int c, i = 0;
         do {
-            System.out.println("\n=== AWAITING SPELLS CHOOSE ===\n");
+            System.out.println("\n=== Escolha o Spell ===\n");
 
-            System.out.println("Status do Monstro: ");
+            System.out.println(jogo.getMonstroAlvo());
+            
 
             if (!jogo.getSpells().isEmpty()) {
                 System.out.println("Spells:");
