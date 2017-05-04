@@ -8,7 +8,10 @@ package Logic.Cartas;
 import Logic.Constants;
 import static Logic.Constants.InfoBossMonster;
 import Logic.GameData;
+import LogicaJogo.States.AwaitCardCardSelectionOnCurrentColumn;
+import LogicaJogo.States.GameOver;
 import LogicaJogo.States.IStates;
+import LogicaJogo.States.StateAdapter;
 
 /**
  *
@@ -73,12 +76,15 @@ public class BossMonster extends AdaptadorCartas{
     }
 
     @Override
-    public void addRwd(){
-        if (gd.getCaverna().getNivel()== 5)
+    public IStates addRwd(){
+        if (gd.getCaverna().getNivel()== 5){
             System.out.println("||||||||||||||VENCEU||||||||||||||||||||");//TODO: QUANDO ACABA JOGO, TIRAR LINHA        
+            return new GameOver(gd);
+        }
         else{
             gd.getPersonagem().addGold(GoldRwd);
             gd.getPersonagem().addXP(XpRwd);
+            return gd.Treasure();//TODO: MANDAR PARA TREASURE
         }
        
         

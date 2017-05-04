@@ -49,7 +49,7 @@ public class AdaptadorCartas extends Carta{
     }
 
     @Override
-    public void addRwd() {
+    public IStates addRwd() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

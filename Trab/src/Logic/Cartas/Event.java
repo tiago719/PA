@@ -6,6 +6,8 @@
 package Logic.Cartas;
 
 import Logic.GameData;
+import LogicaJogo.States.AwaitCardCardSelectionOnCurrentColumn;
+import LogicaJogo.States.IStates;
 import LogicaJogo.States.StateAdapter;
 
 /**
@@ -52,8 +54,9 @@ public class Event extends AdaptadorCartas
     }
 
     @Override
-    public void addRwd() {
+    public IStates addRwd() {
         gd.getPersonagem().addXP(2);
+        return new AwaitCardCardSelectionOnCurrentColumn(gd);
     }
 
 }

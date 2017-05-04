@@ -82,7 +82,7 @@ public class StateAdapter implements IStates {
                 break;
         }
         getGame().proxColuna();
-        return this;
+        return new AwaitCardCardSelectionOnCurrentColumn(getGame());
     }
     
     @Override

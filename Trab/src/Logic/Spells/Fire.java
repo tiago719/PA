@@ -26,16 +26,15 @@ public class Fire extends Spell{
 
     @Override
     public IStates Efeito(GameData g, IStates s) {
-        if (g.getMonstroAlvo().getHP()>8)
+        if (!g.getMonstroAlvo().Deffend(8))
         {
-            g.getMonstroAlvo().setHP(g.getMonstroAlvo().getHP()-8);
             return s;
         }
         else
         {
-            g.getMonstroAlvo().setHP(0);
+            g.getCaverna().getAreaAtual().setMonsterDefeated(true);
             g.getMonstroAlvo().addRwd();
-            g.proxColuna();
+            g.proxColuna();//TODO: ACHO QUE NAO PASSA AQUI (TESTAR)
             return new AwaitCardCardSelectionOnCurrentColumn(g);
         }
     }
