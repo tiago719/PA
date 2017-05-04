@@ -17,25 +17,34 @@ import LogicaJogo.States.StateAdapter;
  *
  * @author edu_f
  */
-public class BossMonster extends AdaptadorCartas{
+public class BossMonster extends AdaptadorCartas {
 
     private int hp;
     private final int dmg, XpRwd, GoldRwd;
-    private boolean poison;
-    
-    public BossMonster(GameData g) 
-    {
+
+    public BossMonster(GameData g) {
         super(g);
         int level = g.getCaverna().getNivel();
-        hp=InfoBossMonster[level-1][0];
-        dmg=InfoBossMonster[level-1][1];
-        XpRwd=InfoBossMonster[level-1][2];
-        GoldRwd=InfoBossMonster[level-1][3];
-        poison=false;
+        hp = InfoBossMonster[level - 1][0];
+        dmg = InfoBossMonster[level - 1][1];
+        XpRwd = InfoBossMonster[level - 1][2];
+        GoldRwd = InfoBossMonster[level - 1][3];
     }
-    
+
     @Override
     public String toString() {
+        String s = "Carta: BOSS MONSTER\n";
+        s += "HP Atual: "+ hp +"\n";
+        s += "Damage: "+ dmg +"\n";
+        s += "Recompensa: \n"+ XpRwd +"XP+\t";
+        s += GoldRwd +"GOLD+\t";
+        s += "Carta TREASURE\n";
+        
+        return s;
+    }
+
+    @Override
+    public String infoCarta() {
         String s = "Carta: BOSS MONSTER\n";
         s += "Level - HP - DMG - REWARD\n";
         s += "1 - Undead Giant - 10 - 3 - 2 Coins + 2 XP + Item\n";
@@ -50,21 +59,18 @@ public class BossMonster extends AdaptadorCartas{
     public int getHP() {
         return hp;
     }
-    
+
     @Override
-    public void setHP(int hp)
-    {
+    public void setHP(int hp) {
         this.hp = hp;
     }
 
     @Override
     public boolean Deffend(int soma) {
-        if (hp <= soma)
-        {
+        if (hp <= soma) {
             hp = 0;
             return true;
-        } else
-        {
+        } else {
             hp -= soma;
             return false;
         }
@@ -76,19 +82,16 @@ public class BossMonster extends AdaptadorCartas{
     }
 
     @Override
-    public IStates addRwd(){
-        if (gd.getCaverna().getNivel()== 5){
+    public IStates addRwd() {
+        if (gd.getCaverna().getNivel() == 5) {
             System.out.println("||||||||||||||VENCEU||||||||||||||||||||");//TODO: QUANDO ACABA JOGO, TIRAR LINHA        
             return new GameOver(gd);
-        }
-        else{
+        } else {
             gd.getPersonagem().addGold(GoldRwd);
             gd.getPersonagem().addXP(XpRwd);
             return gd.Treasure();//TODO: MANDAR PARA TREASURE
         }
-       
-        
+
     }
-    
-    
+
 }

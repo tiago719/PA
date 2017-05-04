@@ -5,16 +5,8 @@
  */
 package Logic;
 
-import Logic.Cartas.BossMonster;
-import Logic.Cartas.Carta;
-import Logic.Cartas.Monster;
-import static Logic.Constants.InfoBossMonster;
-import static Logic.Constants.InfoMonster;
-import Logic.GameData;
-
 import static Logic.Constants.NivelDificuldade;
 import Logic.Spells.*;
-import LogicaJogo.States.AwaitTraiding;
 import java.util.ArrayList;
 
 /**
@@ -433,6 +425,21 @@ public final class Personagem
         poison=p;
     }
 
+    
+    @Override
+    public String toString(){
+        String s = "Personagem: \n";
+        s += "HP: "+hp+"\n";
+        s += "Armor: "+armor+"\n";
+        s += "Gold: "+gold+"\n";
+        s += "Food: "+food+"\n";
+        s += "Rank: "+rank+"\n";
+        s += "XP: "+xp+"\n";
+        return s;
+    }
+    
+    
+    
     //true = morto
     /*public boolean DeffendMonstro(int soma, int hpMonstro)
     {

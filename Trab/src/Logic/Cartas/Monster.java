@@ -15,24 +15,23 @@ import LogicaJogo.States.IStates;
  *
  * @author edu_f
  */
-public class Monster extends AdaptadorCartas
-{
+public class Monster extends AdaptadorCartas {
+
     private int hp;
     private final int dmg, rwd;
 
-    public Monster(GameData g)
-    {
+    public Monster(GameData g) {
         super(g);
         int level = g.getCaverna().getNivel();
-        if (g.getCaverna().isLastArea())
+        if (g.getCaverna().isLastArea()) {
             level++;
-        dmg = Constants.InfoMonster[level-1][0];
-        rwd = Constants.InfoMonster[level-1][1];
+        }
+        dmg = Constants.InfoMonster[level - 1][0];
+        rwd = Constants.InfoMonster[level - 1][1];
         hp = g.getCaverna().getNumArea() + (1 + (int) (Math.random() * ((6 - 1) + 1)));
     }
 
-    public Monster(GameData g, boolean event)
-    {
+    public Monster(GameData g, boolean event) {
         super(g);
         dmg = g.getCaverna().getNumArea() * 2;
         rwd = 2;
@@ -40,39 +39,44 @@ public class Monster extends AdaptadorCartas
     }
 
     @Override
-    public int getDmg()
-    {
+    public int getDmg() {
         return dmg;
     }
 
     @Override
-    public void setHP(int hp)
-    {
+    public void setHP(int hp) {
         this.hp = hp;
     }
-    
+
     @Override
-    public IStates addRwd()
-    {
+    public IStates addRwd() {
         gd.getPersonagem().addXP(rwd);
         gd.proxColuna();
         return new AwaitCardCardSelectionOnCurrentColumn(gd);
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         String s = "Carta: MONSTER\n";
-//        s += "Level - DMG - REWARD\n";
-//        s += "1 - Undead Soldier - 2 - 1 XP\n";
-//        s += "2 - Skeleton - 4 - 1 XP\n";
-//        s += "3 - Undead Knight - 6 - 2 XP\n";
-//        s += "4 - Serpent Knight - 8 - 2 XP\n";
-//        s += "5 - Og's Sanctum Guard - 10 - 3 XP\n";
+        s += "HP Atual: "+ hp +"\n";
+        s += "Damage: "+ dmg +"\n";
+        s += "Recompensa: "+ rwd +"XP\n";
         return s;
 
     }
-    
+
+    @Override
+    public String infoCarta() {
+        String s = "Level - DMG - REWARD\n";
+        s += "1 - Undead Soldier - 2 - 1 XP\n";
+        s += "2 - Skeleton - 4 - 1 XP\n";
+        s += "3 - Undead Knight - 6 - 2 XP\n";
+        s += "4 - Serpent Knight - 8 - 2 XP\n";
+        s += "5 - Og's Sanctum Guard - 10 - 3 XP\n";
+        return s;
+
+    }
+
 //    @Override
 //    //true = morto
 //    public boolean Deffend(int soma)
@@ -87,7 +91,6 @@ public class Monster extends AdaptadorCartas
 //            return false;
 //        }
 //    }
-
     @Override
     public int getHP() {
         return hp;

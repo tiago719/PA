@@ -28,7 +28,13 @@ public class Event extends AdaptadorCartas
     public String toString() 
     {
         String s = "Carta: EVENT\n";
-        s += "Events - Effect\n";
+        return s;
+    }
+    
+     @Override
+    public String infoCarta() 
+    {
+        String s = "Events - Effect\n";
         s += "1 - Food Ration - You don’t know what this meat is, and you don’t care. Gain 1 Food.\n";
         s += "2: Found Health - A Monster’s favorite drink. Might as well drink a sip too. Gain 2 HP.\n";
         s += "3: Found Loot - You’ve found a coin hidden in a crack between two stones. Gain 2 Gold.\n";
