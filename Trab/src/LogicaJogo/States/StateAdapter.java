@@ -150,7 +150,7 @@ public class StateAdapter implements IStates {
     }
 
     @Override
-    public IStates ResvolveSelectedMonsterCard(Carta c) {
+    public IStates ResolveSelectedMonsterCard(Carta c) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

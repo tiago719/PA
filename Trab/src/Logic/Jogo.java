@@ -171,6 +171,33 @@ public class Jogo {
     {
         return gameData.AS_ChooseSpell(c, state);
     }
+    
+    public void treasure()
+    {
+        setState(getState().ResolveSelectedTreasureCard());
+    }
+    
+    public void event(Carta c)
+    {
+        setState(getState().ResolveSelectedEventCard(c));
+    }
+    
+    public void trap()
+    {
+        setState(getState().ResolveSelectedTrapCard());
+    }
+    
+    public void monster(Carta c)
+    {
+        setState(getState().ResolveSelectedMonsterCard(c));
+    }
+    
+    public void merchant()
+    {
+        setState(getState().ResolveSelectedMerchantCard());
+    }
+    
+    
 }
 
 

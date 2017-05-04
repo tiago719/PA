@@ -146,7 +146,7 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
     }
     
     @Override
-    public IStates ResvolveSelectedMonsterCard(Carta c)
+    public IStates ResolveSelectedMonsterCard(Carta c)
     {
         getGame().setMonstroAlvo(c);
         

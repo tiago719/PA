@@ -36,7 +36,7 @@ public interface IStates {
     IStates ResolveSelectedTrapCard();
     
     //monster
-    IStates ResvolveSelectedMonsterCard(Carta c);
+    IStates ResolveSelectedMonsterCard(Carta c);
     
     //bossMonster
     //IStates ResolveSelectedBossMonsterCard(Carta c);

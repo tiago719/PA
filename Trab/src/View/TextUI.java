@@ -135,15 +135,15 @@ public class TextUI {
             jogo.setState(jogo.getState().ResolveSelectedRestingCard());
 
         } else if (temp instanceof Treasure) {
-            jogo.setState(jogo.getState().ResolveSelectedTreasureCard());
+            jogo.treasure();
         } else if (temp instanceof Merchant) {
-            jogo.setState(jogo.getState().ResolveSelectedMerchantCard());
+            jogo.merchant();
         } else if (temp instanceof Event) {
-            jogo.setState(jogo.getState().ResolveSelectedEventCard(temp));
+            jogo.event(temp);
         } else if (temp instanceof Trap) {
-            jogo.setState(jogo.getState().ResolveSelectedTrapCard());
+            jogo.trap();
         } else if (temp instanceof Monster || temp instanceof BossMonster) {
-            jogo.setState(jogo.getState().ResvolveSelectedMonsterCard(temp));
+            jogo.monster(temp);
         }
     }
 
