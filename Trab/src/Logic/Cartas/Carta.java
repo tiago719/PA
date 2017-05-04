@@ -28,6 +28,5 @@ public abstract class Carta {
     public abstract int getDmg();
 
     public abstract IStates addRwd();
-
-    
+    ;
 }
