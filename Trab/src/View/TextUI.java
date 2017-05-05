@@ -92,7 +92,7 @@ public class TextUI {
                     return;
 
                 case '3'://comecar
-                    jogo.setState(jogo.getState().start());
+                    jogo.comecar();
                     return;
             }
         }
@@ -132,8 +132,7 @@ public class TextUI {
         Carta temp = c.get(op - 1);
 
         if (temp instanceof Resting) {
-            jogo.setState(jogo.getState().ResolveSelectedRestingCard());
-
+            jogo.resting();
         } else if (temp instanceof Treasure) {
             jogo.treasure();
         } else if (temp instanceof Merchant) {
@@ -169,7 +168,7 @@ public class TextUI {
         } while (c < 1 || c > 3);
 
         jogo.AOS_OptionSelected(c);
-        jogo.OptionSelected(jogo.getState().OptionSelected());
+        jogo.RestingOptionSelected();
     }
 
     private void uiAwaitTrading() {
@@ -202,7 +201,7 @@ public class TextUI {
                 }
 
                 if (c == 8) {
-                    jogo.OptionSelected(jogo.getState().skipMerchant());
+                    jogo.MerchantOptionSelected();
                     skip = true;
                     break;
                 }
@@ -252,11 +251,11 @@ public class TextUI {
 
             switch (c) {
                 case 1:
-                    jogo.setState(jogo.getState().AtacaMonstro());
+                    jogo.AtacaMonstro();
                     end = true;
                     break;
                 case 2:
-                    jogo.setState(jogo.getState().Feats());
+                    jogo.Feats();
                     end = true;
                     break;
                 case 3:
@@ -316,7 +315,7 @@ public class TextUI {
             } while (c < 0 || c > i);
 
             if (c == 0) {
-                jogo.setState(jogo.getState().VoltaAwaitAttack());
+                jogo.VoltaAwaitAttack();
                 return;
             }
 
@@ -339,7 +338,7 @@ public class TextUI {
                     System.out.println("Nao tem xp suficiente");
                     break;
                 case -2:
-                    jogo.setState(jogo.getState().GameOver());
+                    jogo.GameOver();
                     continuar = false;
                     break;
                 case -1:
@@ -348,7 +347,7 @@ public class TextUI {
                     break;
                 case 1:
                     System.out.println("Sucesso a featar o dado");
-                    jogo.setState(jogo.getState().VoltaAwaitAttack());
+                    jogo.VoltaAwaitAttack();
                     continuar = false;
                     break;
             }
@@ -386,9 +385,9 @@ public class TextUI {
 
         } while (c < 1 || c > i);
         if (jogo.AS_ChooseSpell(c)) {
-            jogo.setState(jogo.getState().EndBattle());
+            jogo.EndBatle();
         } else {
-            jogo.setState(jogo.getState().ProxRonda());
+            jogo.ProxRonda();
         }
 
     }

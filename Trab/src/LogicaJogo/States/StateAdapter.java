@@ -140,18 +140,18 @@ public class StateAdapter implements IStates {
     
     public IStates GameOver()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this;
     }
 
     @Override
     public IStates VoltaAwaitAttack()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this;
     }
 
     @Override
     public IStates ResolveSelectedMonsterCard(Carta c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return this;
     }
 
 //    @Override

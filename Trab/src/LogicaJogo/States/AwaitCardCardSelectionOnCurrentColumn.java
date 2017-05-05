@@ -33,13 +33,42 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
 
     @Override
     public IStates ResolveSelectedTreasureCard() {
-       return getGame().Treasure();
+       int ran = 1 + (int)(Math.random() * ((6 - 1) + 1));
+        if (getGame().getCaverna().getAreaAtual().getMonsterDefeated()) {
+            getGame().getPersonagem().addGold(2);
+        } else {
+            getGame().getPersonagem().addGold(1);
+        }
+
+        switch (ran) {
+            case 1:
+               getGame().getPersonagem().addArmor(1);
+                break;
+            case 2:
+               getGame().getPersonagem().addXP(2);
+                break;
+            case 3:
+                getGame().getPersonagem().addSpell(new Fire(getGame()));
+                break;
+            case 4:
+                getGame().getPersonagem().addSpell(new Ice(getGame()));
+                break;
+            case 5:
+                getGame().getPersonagem().addSpell(new Poison(getGame()));
+                break;
+            case 6:
+                getGame().getPersonagem().addSpell(new Healing(getGame()));
+                break;
+        }
+        getGame().proxColuna();
+        
+        return new AwaitCardCardSelectionOnCurrentColumn(getGame());
     }
     
     @Override
     public IStates ResolveSelectedEventCard(Carta c)
     {
-        int ran = 1 + (int)(Math.random() * ((6 - 1) + 1));
+        int ran = 1 + (int)(Math.random() * ((6 - 1) + 1));//TODO: maostrar ao utilizador o resultado
         
         switch(ran)
         {
@@ -71,14 +100,14 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
     {
         int ran = 1 + (int)(Math.random() * ((6 - 1) + 1));
         
-        return ran<=getGame().getPersonagem().getRank();
+        return ran<=getGame().getPersonagem().getRank();//TODO: maostrar ao utilizador o resultado
     }
     
     @Override
     public IStates ResolveSelectedTrapCard()
     {
         boolean flag=false;
-        int ran = 1 + (int)(Math.random() * ((6 - 1) + 1));
+        int ran = 1 + (int)(Math.random() * ((6 - 1) + 1));//TODO: maostrar ao utilizador o resultado e consequencia
         
         if(skillCheck())
         {
@@ -135,6 +164,7 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
         
         if(flag)
         {
+            //TODO: dizer ao utilizador que nao podia sofrer a consequencia e que vai perder vida
             if(!getGame().getPersonagem().loseHp(2))
             {
                 return new GameOver(getGame());

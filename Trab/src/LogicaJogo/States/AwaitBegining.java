@@ -21,12 +21,14 @@ public class AwaitBegining extends StateAdapter implements IStates
 
     @Override
     public IStates setStartingArea(int area) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        getGame().setStartingArea(area);
+        return this;
     }
 
     @Override
     public IStates setDifficultLevel(int level) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        getGame().setDificuldade(level);
+        return this;
     }
 
     @Override
@@ -38,15 +40,4 @@ public class AwaitBegining extends StateAdapter implements IStates
         return this;
 
     }
-
-    @Override
-    public IStates ResolveSelectedRestingCard() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public IStates OptionSelected() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }

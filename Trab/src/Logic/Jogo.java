@@ -24,7 +24,7 @@ public class Jogo {
 
     public Jogo() {
         gameData = new GameData();
-        state = new AwaitBegining(gameData);
+        setState(new AwaitBegining(gameData));
     }
 
     public GameData getGame() {
@@ -34,72 +34,101 @@ public class Jogo {
     public IStates getState() {
         return state;
     }
-
-    public void setDifficultLevel(Integer valueOf) {
-        gameData.setDificuldade(valueOf);
-    }
-
-    public void setStartingArea(int valueOf) {
-        gameData.setStartingArea(valueOf);
-    }
-
+    
     public void setState(IStates s) {
         state = s;
     }
 
-    public boolean AnyCritical() {
-        return gameData.AnyCritical();
+    // Methods that are intended to be used by the user interfaces and that are delegated in the current state of the finite state machine 
+    
+    public void setDifficultLevel(Integer valueOf) {
+        setState(getState().setDifficultLevel(valueOf));
     }
 
-    public ArrayList<Dado> getDados() {
-        return gameData.getDados();
+    public void setStartingArea(int valueOf) {
+        setState(getState().setStartingArea(valueOf));
     }
-
-    public Dado getDado(int i) {
-        return gameData.getDados().get(i);
+    
+    public void comecar()
+    {
+        setState(getState().start());
     }
-
-    //TODO: QUANDO NAO PODE ADICIONAR MAIS XP(POR EXEMPLO) ADICIONA 1 HP, CRIAR MSG AVISAR USER
-    public void AOS_OptionSelected(int i) {
-        switch (i) {
-            case 1:
-                gameData.getPersonagem().addXP(1);
-            case 2:
-                gameData.getPersonagem().addFood(1);
-            case 3:
-                gameData.getPersonagem().addHealth(2);
-
-        }
+    
+    public void RestingOptionSelected() {
+        setState(getState().OptionSelected());
     }
-
-    public boolean AOS_TraidingSelection(int i) {
-        switch (i) {
-            case 1:
-                return gameData.getPersonagem().buyRation();
-            case 2:
-                return gameData.getPersonagem().buyPotion();
-            case 3:
-                return gameData.getPersonagem().buyBigPotion();
-            case 4:
-                return gameData.getPersonagem().buyArmor();
-            case 5:
-                return gameData.getPersonagem().buyAnySpell();
-            case 6:
-                return gameData.getPersonagem().sellArmor();
-            case 7:
-                return gameData.getPersonagem().sellAnySpell();
-        }
-        return false;
+    
+    public void MerchantOptionSelected()
+    {
+        setState(getState().skipMerchant());
     }
-
-    public void OptionSelected(IStates s) {
-        state = s;
+    
+    public void AtacaMonstro()
+    {
+        setState(getState().AtacaMonstro());
     }
+    
+    public void Feats()
+    {
+        setState(getState().Feats());
+    }
+    
+    public void VoltaAwaitAttack()
+    {
+        setState(getState().VoltaAwaitAttack());
+    }
+    
+    public void GameOver()
+    {
+        setState(getState().GameOver());
+    }
+    
+    public void EndBatle()
+    {
+        setState(getState().EndBattle());
+    }
+    
+    public void ProxRonda()
+    {
+        setState(getState().ProxRonda());
+    }
+        public void treasure()
+    {
+        setState(getState().ResolveSelectedTreasureCard());
+    }
+    
+    public void event(Carta c)
+    {
+        setState(getState().ResolveSelectedEventCard(c));
+    }
+    
+    public void trap()
+    {
+        setState(getState().ResolveSelectedTrapCard());
+    }
+    
+    public void monster(Carta c)
+    {
+        setState(getState().ResolveSelectedMonsterCard(c));
+    }
+    
+    public void merchant()
+    {
+        setState(getState().ResolveSelectedMerchantCard());
+    }   
+    
+    public void resting()
+    {
+        setState(getState().ResolveSelectedRestingCard());
+    }
+    
 
    /* public void setMonster(Monster M) {
         gameData.setMonster(M);
     }*/
 
+    // Methods retrieve data from the game
+    
     public boolean AA_Reroll(int c) {
         if (gameData.getDados().size() < c || c <= 0)
             return false;
@@ -172,31 +201,51 @@ public class Jogo {
         return gameData.AS_ChooseSpell(c, state);
     }
     
-    public void treasure()
-    {
-        setState(getState().ResolveSelectedTreasureCard());
+    public boolean AnyCritical() {
+        return gameData.AnyCritical();
     }
-    
-    public void event(Carta c)
-    {
-        setState(getState().ResolveSelectedEventCard(c));
+
+    public ArrayList<Dado> getDados() {
+        return gameData.getDados();
     }
-    
-    public void trap()
-    {
-        setState(getState().ResolveSelectedTrapCard());
+
+    public Dado getDado(int i) {
+        return gameData.getDados().get(i);
     }
-    
-    public void monster(Carta c)
-    {
-        setState(getState().ResolveSelectedMonsterCard(c));
+
+    //TODO: QUANDO NAO PODE ADICIONAR MAIS XP(POR EXEMPLO) ADICIONA 1 HP, CRIAR MSG AVISAR USER
+    public void AOS_OptionSelected(int i) {
+        switch (i) {
+            case 1:
+                gameData.getPersonagem().addXP(1);
+            case 2:
+                gameData.getPersonagem().addFood(1);
+            case 3:
+                gameData.getPersonagem().addHealth(2);
+
+        }
     }
-    
-    public void merchant()
-    {
-        setState(getState().ResolveSelectedMerchantCard());
+
+    public boolean AOS_TraidingSelection(int i) {
+        switch (i) {
+            case 1:
+                return gameData.getPersonagem().buyRation();
+            case 2:
+                return gameData.getPersonagem().buyPotion();
+            case 3:
+                return gameData.getPersonagem().buyBigPotion();
+            case 4:
+                return gameData.getPersonagem().buyArmor();
+            case 5:
+                return gameData.getPersonagem().buyAnySpell();
+            case 6:
+                return gameData.getPersonagem().sellArmor();
+            case 7:
+                return gameData.getPersonagem().sellAnySpell();
+        }
+        return false;
     }
-    
+
     
 }
 

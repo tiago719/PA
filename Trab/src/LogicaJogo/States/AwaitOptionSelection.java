@@ -28,27 +28,6 @@ public class AwaitOptionSelection extends StateAdapter implements IStates{
 //    public boolean Heal(){
 //        return getGame().getPersonagem().addHealth(2);
 //    }
-    
-    
-    @Override
-    public IStates setStartingArea(int area) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public IStates setDifficultLevel(int level) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public IStates start() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public IStates ResolveSelectedRestingCard() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     public IStates OptionSelected() {
