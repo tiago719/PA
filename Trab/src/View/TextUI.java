@@ -391,6 +391,19 @@ public class TextUI {
         }
 
     }
+    
+    private void uiGameOver()
+    {
+        if(jogo.getHpPersonagem()<=0)
+        {
+            //perdeu
+            System.out.println("Oh, sorry, you died, right? Mini Rogue can sometimes be a punishingly hard game. Nevertheless, you’ve faced great odds, found great loot, and kicked ass!");
+        }
+        else
+        {
+            System.out.println("the Og’s Blood is now yours! You have won the game!");//venceu
+        }
+    }
 
     public void run() {
         while (!sair) {
@@ -411,8 +424,7 @@ public class TextUI {
             } else if (state instanceof AwaitSpellChoose) {
                 uiAwaitSpellChoose();
             } else if (state instanceof GameOver) {
-                System.out.println();
-                System.out.println("************** Game over *****************");
+                uiGameOver();
                 sair = true;
             }
         }

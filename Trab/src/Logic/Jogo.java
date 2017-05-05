@@ -245,7 +245,11 @@ public class Jogo {
         }
         return false;
     }
-
+    
+    public int getHpPersonagem()
+    {
+        return gameData.getPersonagem().getHp();
+    }
     
 }
 
