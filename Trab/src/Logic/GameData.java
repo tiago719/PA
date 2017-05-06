@@ -25,12 +25,12 @@ public class GameData implements Constants {
     private final Caverna Caverna;
     private ArrayList<Dado> dados;
     private Carta MonstroAlvo;
+    private String msg;
 
 
     public GameData() {
         startingArea = 1;
         dificuldade = 2;
-        coluna = 1;
         Personagem = new Personagem(dificuldade, this);
         Caverna = new Caverna(startingArea, this);
         //MonstroAlvo = null;
@@ -38,6 +38,7 @@ public class GameData implements Constants {
         dados = new ArrayList<>();
         dados.add(new Dado());
         MonstroAlvo=null;
+        msg="\n";
     }
 /*
     public Monster getMonstroAlvo() {
@@ -73,24 +74,6 @@ public class GameData implements Constants {
     public boolean intialize() {
         Caverna.geraPrimeiraArea();
         return true;
-    }
-
-    public int getColuna() {
-        return coluna;
-    }
-
-    public void proxColuna() {
-        int ultimaColuna = 4;
-        if (Caverna.isLastArea())
-            ultimaColuna = 5;
-
-
-        if (coluna < ultimaColuna) {
-            coluna++;
-        } else {
-            coluna = 1;
-            Caverna.proxArea();
-        }
     }
 
     public Caverna getCaverna() {
@@ -158,7 +141,7 @@ public class GameData implements Constants {
                 Personagem.addSpell(new Healing(this));
                 break;
         }
-        proxColuna();
+        getCaverna().getAreaAtual().proxColuna();
         
         return new AwaitCardCardSelectionOnCurrentColumn(this);
     }
@@ -183,6 +166,21 @@ public class GameData implements Constants {
             return false;
         }
     }
+      
+      public String getMsg()
+      {
+          return msg;
+      }
+      
+      public void addMsg(String s)
+      {
+          msg+=s;
+      }
+      
+      public void clearMsg()
+      {
+          msg="\n";
+      }
     
     
 /*

@@ -178,9 +178,7 @@ public class Jogo {
     public ArrayList<Spell> getSpells() {
         return gameData.getPersonagem().getSpells();
     }
-
-
-    
+  
     public Personagem getPersonagem()
     {
         return gameData.getPersonagem();
@@ -249,6 +247,26 @@ public class Jogo {
     public int getHpPersonagem()
     {
         return gameData.getPersonagem().getHp();
+    }
+    
+    public boolean gravarJogo()
+    {
+        return false;//TODO: fazer gravar jogo
+    }
+    
+    public void addMsg(String s)
+    {
+        gameData.addMsg(s);
+    }
+    
+    public void clearMsg()
+    {
+        gameData.clearMsg();
+    }
+    
+    public String getMsg()
+    {
+        return gameData.getMsg();
     }
     
 }

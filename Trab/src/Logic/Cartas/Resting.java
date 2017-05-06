@@ -26,7 +26,7 @@ public class Resting extends AdaptadorCartas{
     
     @Override
     public String infoCarta() {
-        String s = "Resting - Description";
+        String s = "Resting - Description\n";
         s += "Reinforce your Weapon: +1 XP\n";
         s += "Search for Ration: +1 Food\n";
         s += "Heal: +2 HP\n";

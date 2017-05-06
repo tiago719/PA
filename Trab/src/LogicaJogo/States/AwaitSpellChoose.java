@@ -20,7 +20,7 @@ public class AwaitSpellChoose extends StateAdapter implements IStates {
 
     @Override
     public IStates EndBattle() {
-        getGame().proxColuna();
+        getGame().getCaverna().getAreaAtual().proxColuna();
         return new AwaitCardCardSelectionOnCurrentColumn(getGame());
 
     }

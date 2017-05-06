@@ -56,12 +56,12 @@ public class Event extends AdaptadorCartas
 
     @Override
     public int getDmg() {
-        return gd.getCaverna().getNivel()*2;
+        return getGame().getCaverna().getNivel()*2;
     }
 
     @Override
     public IStates addRwd() {
-        gd.getPersonagem().addXP(2);
+        getGame().getPersonagem().addXP(2);
         return new AwaitCardCardSelectionOnCurrentColumn(gd);
     }
 

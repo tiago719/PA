@@ -29,6 +29,11 @@ public final class Personagem
         xp = 0;
         gd = gamedata;
     }
+    
+    public GameData getGame()
+    {
+        return gd;
+    }
 
     public int getArmor()
     {
@@ -289,7 +294,8 @@ public final class Personagem
 
     public boolean buyAnySpell()
     {
-        int rand = 1 + (int) (Math.random() * ((5 - 1) + 1));
+        int rand = 1 + (int) (Math.random() * ((5 - 1) + 1));//TODO:print
+        getGame().addMsg("Resultado do lancamento do dado: " + rand);
 
         if ((gold - 8) < 0)
         {
@@ -302,16 +308,16 @@ public final class Personagem
                 spells.add(new Fire(gd));
                 break;
             case 2:
-                gd.getPersonagem().addSpell(new Fire(gd));
+                getGame().getPersonagem().addSpell(new Fire(getGame()));
                 break;
             case 3:
-                gd.getPersonagem().addSpell(new Ice(gd));
+                getGame().getPersonagem().addSpell(new Ice(getGame()));
                 break;
             case 4:
-                gd.getPersonagem().addSpell(new Poison(gd));
+                getGame().getPersonagem().addSpell(new Poison(getGame()));
                 break;
             case 5:
-                gd.getPersonagem().addSpell(new Healing(gd));
+                getGame().getPersonagem().addSpell(new Healing(getGame()));
                 break;
         }
         gold -= 8;

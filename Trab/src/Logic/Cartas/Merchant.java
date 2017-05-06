@@ -28,7 +28,7 @@ public class Merchant extends AdaptadorCartas
     @Override
     public String infoCarta()
     {
-        String s = "Merchant - Description";
+        String s = "Merchant - Description\n";
         s += "Buy: \n";
         s+="Ration: +1 Food - Custo: 1 Gold\n";
         s+="Health Potion: +1 HP - Custo: 1 Gold\n";

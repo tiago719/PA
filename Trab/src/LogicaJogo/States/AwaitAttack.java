@@ -37,10 +37,6 @@ public class AwaitAttack extends StateAdapter implements IStates
             {
                 soma += d.getTotalDado();
             }
-            else
-            {
-                System.out.println("O dado tem o valor 1, nao pode ser usado nesta ronda");//TODO: tirar
-            }
             d.clearSomatorio();
             d.setFeated(false);
         }
@@ -48,7 +44,7 @@ public class AwaitAttack extends StateAdapter implements IStates
         {
             soma += 5;
         }
-        
+       
         if (!getGame().getMonstroAlvo().Deffend(soma))
         {
             return new AwaitSpellChoose(getGame());
@@ -56,7 +52,7 @@ public class AwaitAttack extends StateAdapter implements IStates
         {
             getGame().getCaverna().getAreaAtual().setMonsterDefeated(true);
             getGame().getMonstroAlvo().addRwd();
-            getGame().proxColuna();
+            getGame().getCaverna().getAreaAtual().proxColuna();
             return new AwaitCardCardSelectionOnCurrentColumn(getGame());
         }
     }

@@ -21,4 +21,9 @@ public abstract class Spell {
     
     public abstract IStates Efeito(GameData g, IStates s);
     
+    public GameData getGame()
+    {
+        return gd;
+    }
+    
 }

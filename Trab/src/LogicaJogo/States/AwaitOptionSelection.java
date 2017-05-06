@@ -31,7 +31,7 @@ public class AwaitOptionSelection extends StateAdapter implements IStates{
 
     @Override
     public IStates OptionSelected() {
-        getGame().proxColuna();
+        getGame().getCaverna().getAreaAtual().proxColuna();
         return new AwaitCardCardSelectionOnCurrentColumn(getGame());
     }
     

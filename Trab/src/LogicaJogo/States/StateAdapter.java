@@ -81,7 +81,7 @@ public class StateAdapter implements IStates {
                 getGame().getPersonagem().addSpell(new Healing(getGame()));
                 break;
         }
-        getGame().proxColuna();
+        getGame().getCaverna().getAreaAtual().proxColuna();
         return new AwaitCardCardSelectionOnCurrentColumn(getGame());
     }
     

@@ -18,6 +18,7 @@ public class Area{
     ArrayList<Carta> Baralho;
     GameData GameData;
     boolean MonsterDefeated;
+    int coluna;
     
     public Area(GameData g){
         Baralho = new ArrayList<>();
@@ -25,9 +26,10 @@ public class Area{
         geraBaralho();
         MonsterDefeated = false;
         Collections.shuffle(Baralho);
+        coluna=1;
     }
-
-    Area(GameData GameData, ArrayList<Carta> baralho, boolean MonsterDefeated) {
+    
+    public Area(GameData GameData, ArrayList<Carta> baralho, boolean MonsterDefeated) {
         Baralho = baralho;
         this.GameData = GameData;
         this.MonsterDefeated = MonsterDefeated;
@@ -41,13 +43,17 @@ public class Area{
         Baralho.add(new Trap(GameData));
         Baralho.add(new Resting(GameData));
         if (GameData.getCaverna().isLastArea())
-        {
-                
+        {    
             Baralho.add(new BossMonster(GameData));
             //GameData.setBossMonster(bm);
         }
         //TODO: adicionar todas cartas
     }
+     
+     public GameData getGame()
+     {
+         return GameData;
+     }
 
     public Carta getCartaBaralho(int i) {
         return Baralho.get(i);
@@ -56,7 +62,7 @@ public class Area{
     public ArrayList<Carta> getCartasColuna() {
         ArrayList<Carta> c = new ArrayList<>();
         
-        switch (GameData.getColuna()){
+        switch (getGame().getCaverna().getAreaAtual().getColuna()){
             case 1:
                 c.add(Baralho.get(0));
                 break;
@@ -94,6 +100,24 @@ public class Area{
     
     public ArrayList<Carta> getBaralho(){
         return Baralho;
+    }
+    
+    public int getColuna() {
+        return coluna;
+    }
+
+    public void proxColuna() {
+        int ultimaColuna = 4;
+        if (getGame().getCaverna().isLastArea())
+            ultimaColuna = 5;
+
+
+        if (coluna < ultimaColuna) {
+            coluna++;
+        } else {
+            coluna = 1;
+            getGame().getCaverna().proxArea();
+        }
     }
     
 }

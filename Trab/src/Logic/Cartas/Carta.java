@@ -18,6 +18,11 @@ public abstract class Carta {
     public Carta(GameData g) {
         gd = g;
     }
+    
+    public GameData getGame()
+    {
+        return gd;
+    }
 
     public abstract int getHP();
     

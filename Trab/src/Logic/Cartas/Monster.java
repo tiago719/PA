@@ -50,9 +50,9 @@ public class Monster extends AdaptadorCartas {
 
     @Override
     public IStates addRwd() {
-        gd.getPersonagem().addXP(rwd);
-        gd.proxColuna();
-        return new AwaitCardCardSelectionOnCurrentColumn(gd);
+        getGame().getPersonagem().addXP(rwd);
+        getGame().getCaverna().getAreaAtual().proxColuna();
+        return new AwaitCardCardSelectionOnCurrentColumn(getGame());
     }
 
     @Override

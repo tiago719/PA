@@ -107,7 +107,7 @@ public class TextUI {
         for (int i = 0; i < 50; i++) {
             System.out.println();
         }
-        
+        System.out.println(jogo.getMsg());
         System.out.println(jogo.getPersonagem());
         System.out.println("Escolha uma carta da coluna em que se encontra\n");
 
@@ -118,6 +118,7 @@ public class TextUI {
 
         do {
             System.out.println("Escolha Uma Carta ( 1 - " + (c.size()) + ")");
+            System.out.println("0 - Salvar Jogo");
 
             option1 = sc.next();
 
@@ -127,8 +128,19 @@ public class TextUI {
                 op = -1;
             }
 
-        } while (op < 1 || op > c.size());
+        } while (op < 0 || op > c.size());
 
+        if(op==0)
+        {
+            if(!jogo.gravarJogo())
+            {
+                System.out.println("Nao foi possivel gravar o jogo");
+            }
+            else
+            {
+                System.out.println("Jogo gravado com sucesso");
+            }
+        }
         Carta temp = c.get(op - 1);
 
         if (temp instanceof Resting) {
@@ -152,6 +164,7 @@ public class TextUI {
         int c;
 
         do {
+            System.out.println(jogo.getPersonagem());
             System.out.println("\n=== Escolha uma opcao! ===\n");
             System.out.println("1 - Reinforce your Weapon: +1 XP");
             System.out.println("2 - Search for Ration: +1 FOOD");

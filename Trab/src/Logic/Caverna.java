@@ -26,6 +26,11 @@ public class Caverna {
         setArea(startingArea);
     }
     
+    public GameData getGame()
+     {
+         return GameData;
+     }
+    
     public Area getAreaAtual(){
         return Areas.get(Areas.size()-1);
     }
@@ -81,7 +86,7 @@ public class Caverna {
     }
 
     void proxArea() {
-        Areas.add(new Area(GameData));
+        Areas.add(new Area(getGame()));
 
         if (isLastArea()){
             areaC=0;
@@ -93,17 +98,17 @@ public class Caverna {
     }
 
     void geraPrimeiraArea() {
-        Areas.add(new Area(GameData));
+        Areas.add(new Area(getGame()));
     }
     
     void geraProximaArea()
     {
-        Areas.add(new Area(GameData));
+        Areas.add(new Area(getGame()));
     }
 
     public void Pit() {
         areaL++;
-        Areas.add(new Area(GameData, getAreaAtual().getBaralho(), getAreaAtual().getMonsterDefeated()));
+        Areas.add(new Area(getGame(), getAreaAtual().getBaralho(), getAreaAtual().getMonsterDefeated()));
     }
 
 }

@@ -34,7 +34,7 @@ public class Fire extends Spell{
         {
             g.getCaverna().getAreaAtual().setMonsterDefeated(true);
             g.getMonstroAlvo().addRwd();
-            g.proxColuna();//TODO: ACHO QUE NAO PASSA AQUI (TESTAR)
+            getGame().getCaverna().getAreaAtual().proxColuna();//TODO: ACHO QUE NAO PASSA AQUI (TESTAR)
             return new AwaitCardCardSelectionOnCurrentColumn(g);
         }
     }

@@ -5,6 +5,8 @@
  */
 package Logic;
 
+import static javax.swing.JOptionPane.showMessageDialog;
+
 /**
  *
  * @author edu_f
@@ -28,7 +30,6 @@ public class Dado {
 
     public void lancaDado() {
         this.face = 1 + (int)(Math.random() * ((6 - 1) + 1));
-        System.out.println("Resultado do lancamento do dado: " + face);//TODO: retirar, mas mostrar na mesma o resultado
         totalDado += this.face;
     }
     

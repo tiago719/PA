@@ -34,9 +34,15 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
     @Override
     public IStates ResolveSelectedTreasureCard() {
        int ran = 1 + (int)(Math.random() * ((6 - 1) + 1));
-        if (getGame().getCaverna().getAreaAtual().getMonsterDefeated()) {
+       getGame().addMsg("Resultado do lancamento do dado: " + ran+"\n");
+       
+        if (getGame().getCaverna().getAreaAtual().getMonsterDefeated()) 
+        {
+            getGame().addMsg("Como ja derrotaste um monstro nesta ronda recebes 2 de Gold\n");
             getGame().getPersonagem().addGold(2);
-        } else {
+        } else 
+        {
+            getGame().addMsg("Como ainda nao derrotaste um monstro nesta ronda recebes apenas 1 de Gold\n");
             getGame().getPersonagem().addGold(1);
         }
 
@@ -60,7 +66,7 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
                 getGame().getPersonagem().addSpell(new Healing(getGame()));
                 break;
         }
-        getGame().proxColuna();
+getGame().getCaverna().getAreaAtual().proxColuna();
         
         return new AwaitCardCardSelectionOnCurrentColumn(getGame());
     }
@@ -69,6 +75,7 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
     public IStates ResolveSelectedEventCard(Carta c)
     {
         int ran = 1 + (int)(Math.random() * ((6 - 1) + 1));//TODO: maostrar ao utilizador o resultado
+        getGame().addMsg("Resultado do lancamento do dado: " + ran+"\n");
         
         switch(ran)
         {
@@ -89,9 +96,17 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
                 break;
             case 6:
                 getGame().setMonstroAlvo(c);
+                
+                for (Dado d : getGame().getDados())
+                {
+                    d.lancaDado();
+                }
+                
+                getGame().addMsg("Azar, vais ter de enfrentar um monstro! \n");
+        
                 return new AwaitAttack(getGame());
         }
-        getGame().proxColuna();
+getGame().getCaverna().getAreaAtual().proxColuna();
         return this;
     }
     
@@ -100,7 +115,16 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
     {
         int ran = 1 + (int)(Math.random() * ((6 - 1) + 1));
         
-        return ran<=getGame().getPersonagem().getRank();//TODO: maostrar ao utilizador o resultado
+        if(ran<=getGame().getPersonagem().getRank())//TODO: maostrar ao utilizador o resultado
+        {
+            getGame().addMsg("Suceddo no Skill Check. A trap vai ser ignorada\n");
+            return true;
+        }
+        else
+        {
+            getGame().addMsg("Azar no Skill Check. Vais ter mesmo de enfrentar a trap\n");
+            return false;
+        }
     }
     
     @Override
@@ -108,6 +132,7 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
     {
         boolean flag=false;
         int ran = 1 + (int)(Math.random() * ((6 - 1) + 1));//TODO: maostrar ao utilizador o resultado e consequencia
+        getGame().addMsg("Resultado do lancamento do dado: " + ran + "\n");
         
         if(skillCheck())
         {
@@ -164,14 +189,14 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
         
         if(flag)
         {
-            //TODO: dizer ao utilizador que nao podia sofrer a consequencia e que vai perder vida
+            getGame().addMsg("Infelizmente nao tens atributos suficientes para poderes sofrer a consequencias...\n Vais assim perde 2 de HP \n");
             if(!getGame().getPersonagem().loseHp(2))
             {
                 return new GameOver(getGame());
             }
         }
         
-        getGame().proxColuna();
+            getGame().getCaverna().getAreaAtual().proxColuna();
         return this;//TODO
     }
     
