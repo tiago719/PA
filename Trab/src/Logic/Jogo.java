@@ -259,16 +259,30 @@ public class Jogo {
         gameData.addMsg(s);
     }
     
-    public void clearMsg()
-    {
-        gameData.clearMsg();
-    }
+//    public void clearMsg()
+//    {
+//        gameData.clearMsg();
+//    }
     
     public String getMsg()
     {
         return gameData.getMsg();
     }
     
+    public int getColuna()
+    {
+        return gameData.getCaverna().getAreaAtual().getColuna();
+    }
+    
+    @Override
+    public String toString(){
+        String s = getMsg();
+        s+=gameData.getPersonagem()+"\n";
+        s+="Coluna: "+gameData.getCaverna().getAreaAtual().getColuna()+ "\n";
+        s+=gameData.getCaverna();
+        
+        return s;
+    }
 }
 
 

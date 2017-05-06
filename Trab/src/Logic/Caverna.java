@@ -110,5 +110,12 @@ public class Caverna {
         areaL++;
         Areas.add(new Area(getGame(), getAreaAtual().getBaralho(), getAreaAtual().getMonsterDefeated()));
     }
+    
+    @Override
+    public String toString(){
+        String s = "Area Atual: " + getAreaAtual();
+        s+= "Nivel: " + getNivel();
+        return s;
+    }
 
 }
