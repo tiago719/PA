@@ -11,7 +11,6 @@ import LogicaJogo.States.IStates;
 import java.util.ArrayList;
 import Logic.Spells.*;
 
-
 /**
  *
  * @author Tiago Coutinho
@@ -27,7 +26,6 @@ public class GameData implements Constants {
     private Carta MonstroAlvo;
     private String msg;
 
-
     public GameData() {
         startingArea = 1;
         dificuldade = 2;
@@ -37,10 +35,11 @@ public class GameData implements Constants {
         //BossMonstroAlvo=null;
         dados = new ArrayList<>();
         dados.add(new Dado());
-        MonstroAlvo=null;
-        msg="\n";
+        MonstroAlvo = null;
+        msg = "\n";
     }
-/*
+
+    /*
     public Monster getMonstroAlvo() {
         return MonstroAlvo;
     }
@@ -83,38 +82,38 @@ public class GameData implements Constants {
     public Personagem getPersonagem() {
         return Personagem;
     }
-    
-    public boolean AnyCritical(){
-        for (Dado d : dados)
-            if (d.getFace() == 6)
+
+    public boolean AnyCritical() {
+        for (Dado d : dados) {
+            if (d.getFace() == 6) {
                 return true;
+            }
+        }
         return false;
     }
-    
-    public ArrayList<Dado> getDados(){
+
+    public ArrayList<Dado> getDados() {
         return dados;
     }
-    
-    public Dado getDado(int i){
+
+    public Dado getDado(int i) {
         return dados.get(i);
     }
-    
-    public void addDado(){
-         dados.add(new Dado());
+
+    public void addDado() {
+        dados.add(new Dado());
     }
-        
-    public Carta getMonstroAlvo()
-    {
+
+    public Carta getMonstroAlvo() {
         return MonstroAlvo;
     }
-    
-    public void setMonstroAlvo(Carta c)
-    {
-        this.MonstroAlvo=c;
+
+    public void setMonstroAlvo(Carta c) {
+        this.MonstroAlvo = c;
     }
-    
-    public IStates Treasure(){
-        int ran = 1 + (int)(Math.random() * ((6 - 1) + 1));
+
+    public IStates Treasure() {
+        int ran = 1 + (int) (Math.random() * ((6 - 1) + 1));
         if (Caverna.getAreaAtual().getMonsterDefeated()) {
             Personagem.addGold(2);
         } else {
@@ -123,10 +122,10 @@ public class GameData implements Constants {
 
         switch (ran) {
             case 1:
-               Personagem.addArmor(1);
+                Personagem.addArmor(1);
                 break;
             case 2:
-               Personagem.addXP(2);
+                Personagem.addXP(2);
                 break;
             case 3:
                 Personagem.addSpell(new Fire(this));
@@ -142,11 +141,11 @@ public class GameData implements Constants {
                 break;
         }
         getCaverna().getAreaAtual().proxColuna();
-        
+
         return new AwaitCardCardSelectionOnCurrentColumn(this);
     }
-    
-      public boolean AS_ChooseSpell(int c, IStates s) {
+
+    public boolean AS_ChooseSpell(int c, IStates s) {
         switch (c) {
             case -1:
                 //TODO: menssagem de erro
@@ -166,24 +165,22 @@ public class GameData implements Constants {
             return false;
         }
     }
-      
-      public String getMsg()
-      {
-          return msg;
-      }
-      
-      public void addMsg(String s)
-      {
-          msg+=s;
-      }
-      
-      public void clearMsg()
-      {
-          msg="\n";
-      }
-    
-    
-/*
+
+    public String getMsg() {
+        String m = msg;
+        msg = "\n";
+        return m;
+    }
+
+    public void addMsg(String s) {
+        msg += s;
+    }
+
+//    public void clearMsg() {
+//        msg = "\n";
+//    }
+
+    /*
     void setMonster(Monster M) {
         MonstroAlvo= M;
     }

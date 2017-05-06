@@ -126,6 +126,7 @@ public final class Personagem
         if (rank == 4)
         {
             addHealth(1);
+            gd.addMsg("Limite de XP atingido, adicionado 1 HP!");
             return true;
         } //se esta a retirar xp
         else if (i < 0)

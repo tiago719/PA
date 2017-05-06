@@ -107,8 +107,7 @@ public class TextUI {
         for (int i = 0; i < 50; i++) {
             System.out.println();
         }
-        System.out.println(jogo.getMsg());
-        System.out.println(jogo.getPersonagem());
+        System.out.println(jogo);
         System.out.println("Escolha uma carta da coluna em que se encontra\n");
 
         c = jogo.getCartasColuna();
@@ -143,6 +142,7 @@ public class TextUI {
         }
         Carta temp = c.get(op - 1);
 
+        //TODO: TALVEZ PASSAR ISTO PARA UMA FUNCAO NO JOGO
         if (temp instanceof Resting) {
             jogo.resting();
         } else if (temp instanceof Treasure) {
