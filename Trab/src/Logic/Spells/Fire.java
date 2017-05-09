@@ -8,12 +8,13 @@ package Logic.Spells;
 import Logic.GameData;
 import LogicaJogo.States.AwaitCardCardSelectionOnCurrentColumn;
 import LogicaJogo.States.IStates;
+import java.io.Serializable;
 
 /**
  *
  * @author edu_f
  */
-public class Fire extends Spell{
+public class Fire extends Spell implements Serializable{
     
     public Fire(GameData g) {
         super(g);

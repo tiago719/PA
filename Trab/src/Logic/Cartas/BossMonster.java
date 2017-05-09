@@ -9,12 +9,13 @@ import static Logic.Constants.InfoBossMonster;
 import Logic.GameData;
 import LogicaJogo.States.GameOver;
 import LogicaJogo.States.IStates;
+import java.io.Serializable;
 
 /**
  *
  * @author edu_f
  */
-public class BossMonster extends AdaptadorCartas {
+public class BossMonster extends AdaptadorCartas implements Serializable{
 
     private int hp;
     private final int dmg, XpRwd, GoldRwd;

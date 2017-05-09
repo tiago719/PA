@@ -1,18 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Logic;
 
 import static Logic.Constants.MapaNiveis;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-/**
- *
- * @author Tiago Coutinho
- */
-public class Caverna {
+
+public class Caverna implements Serializable {
 
     private GameData GameData;
     private int areaL/*level*/, areaC;
@@ -113,7 +106,7 @@ public class Caverna {
     
     @Override
     public String toString(){
-        String s = "Area Atual: " + getAreaAtual();
+        String s = "Area Atual: " + getNumArea() + "\n";
         s+= "Nivel: " + getNivel();
         return s;
     }

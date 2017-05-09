@@ -8,12 +8,13 @@ package Logic.Spells;
 import Logic.GameData;
 import LogicaJogo.States.AwaitAttack;
 import LogicaJogo.States.IStates;
+import java.io.Serializable;
 
 /**
  *
  * @author edu_f
  */
-public class Ice extends Spell {
+public class Ice extends Spell implements Serializable{
 
     public Ice(GameData g) {
         super(g);

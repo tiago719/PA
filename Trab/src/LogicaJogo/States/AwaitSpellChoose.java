@@ -7,12 +7,13 @@ package LogicaJogo.States;
 
 import Logic.Dado;
 import Logic.GameData;
+import java.io.Serializable;
 
 /**
  *
  * @author Tiago Coutinho
  */
-public class AwaitSpellChoose extends StateAdapter implements IStates {
+public class AwaitSpellChoose extends StateAdapter implements IStates, Serializable {
 
     public AwaitSpellChoose(GameData g) {
         super(g);

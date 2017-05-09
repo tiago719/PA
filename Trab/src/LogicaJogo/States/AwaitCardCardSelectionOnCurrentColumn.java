@@ -10,12 +10,13 @@ import Logic.Cartas.Monster;
 import Logic.Dado;
 import Logic.GameData;
 import Logic.Spells.*;
+import java.io.Serializable;
 
 /**
  *
  * @author edu_f
  */
-public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implements IStates {
+public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implements IStates, Serializable{
 
     public AwaitCardCardSelectionOnCurrentColumn(GameData g) {
         super(g);

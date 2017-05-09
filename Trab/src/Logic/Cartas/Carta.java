@@ -7,12 +7,13 @@ package Logic.Cartas;
 
 import Logic.GameData;
 import LogicaJogo.States.IStates;
+import java.io.Serializable;
 
 /**
  *
  * @author edu_f
  */
-public abstract class Carta {
+public abstract class Carta implements Serializable{
     protected final GameData gd;
 
     public Carta(GameData g) {

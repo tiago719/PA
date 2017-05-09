@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Logic;
 
 import Logic.Cartas.Carta;
@@ -10,12 +5,9 @@ import LogicaJogo.States.AwaitCardCardSelectionOnCurrentColumn;
 import LogicaJogo.States.IStates;
 import java.util.ArrayList;
 import Logic.Spells.*;
+import java.io.Serializable;
 
-/**
- *
- * @author Tiago Coutinho
- */
-public class GameData implements Constants {
+public class GameData implements Constants, Serializable {
 
     private int dificuldade, startingArea, coluna;
     private final Personagem Personagem;

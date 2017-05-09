@@ -6,12 +6,13 @@
 package LogicaJogo.States;
 
 import Logic.GameData;
+import java.io.Serializable;
 
 /**
  *
  * @author edu_f
  */
-public class AwaitOptionSelection extends StateAdapter implements IStates{
+public class AwaitOptionSelection extends StateAdapter implements IStates, Serializable{
 
     public AwaitOptionSelection(GameData g) {
         super(g);

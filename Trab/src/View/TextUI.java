@@ -12,6 +12,8 @@ import Logic.Spells.Spell;
 import LogicaJogo.States.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -38,7 +40,8 @@ public class TextUI {
                 System.out.println("0 - Sair");
                 System.out.println("1 - Escolher area inicial");
                 System.out.println("2 - Escolher nivel de dificuldade");
-                System.out.println("3 - Comecar");
+                System.out.println("3 - Comecar Novo Jogo");
+                System.out.println("4 - Continuar Jogo");
 
                 option1 = sc.next();
 
@@ -47,7 +50,7 @@ public class TextUI {
                 } else {
                     c = ' ';
                 }
-            } while (c < '0' || c > '3');
+            } while (c < '0' || c > '4');
 
             switch (c) {
                 case '0'://sair
@@ -91,9 +94,19 @@ public class TextUI {
                     jogo.setDifficultLevel(f);
                     return;
 
-                case '3'://comecar
+                case '3'://novo jogo
                     jogo.comecar();
                     return;
+                case '4': {
+                    try {
+                        //retomar jogo
+                        jogo.continuarJogo();
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(TextUI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                return;
+
             }
         }
     }
@@ -129,16 +142,14 @@ public class TextUI {
 
         } while (op < 0 || op > c.size());
 
-        if(op==0)
-        {
-            if(!jogo.gravarJogo())
-            {
+        if (op == 0) {
+            if (!jogo.exportarJogo()) {
                 System.out.println("Nao foi possivel gravar o jogo");
-            }
-            else
-            {
+            } else {
                 System.out.println("Jogo gravado com sucesso");
             }
+            sair = true;
+            return;
         }
         Carta temp = c.get(op - 1);
 
@@ -375,7 +386,6 @@ public class TextUI {
             System.out.println("\n=== Escolha o Spell ===\n");
 
             System.out.println(jogo.getMonstroAlvo());
-            
 
             if (!jogo.getSpells().isEmpty()) {
                 System.out.println("Spells:");
@@ -404,16 +414,12 @@ public class TextUI {
         }
 
     }
-    
-    private void uiGameOver()
-    {
-        if(jogo.getHpPersonagem()<=0)
-        {
+
+    private void uiGameOver() {
+        if (jogo.getHpPersonagem() <= 0) {
             //perdeu
             System.out.println("Oh, sorry, you died, right? Mini Rogue can sometimes be a punishingly hard game. Nevertheless, you’ve faced great odds, found great loot, and kicked ass!");
-        }
-        else
-        {
+        } else {
             System.out.println("the Og’s Blood is now yours! You have won the game!");//venceu
         }
     }
