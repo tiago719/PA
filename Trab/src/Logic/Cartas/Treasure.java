@@ -6,12 +6,13 @@
 package Logic.Cartas;
 
 import Logic.GameData;
+import java.io.Serializable;
 
 /**
  *
  * @author edu_f
  */
-public class Treasure extends AdaptadorCartas{
+public class Treasure extends AdaptadorCartas implements Serializable{
     
     public Treasure(GameData g) {
         super(g);

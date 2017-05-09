@@ -6,12 +6,13 @@
 package LogicaJogo.States;
 
 import Logic.GameData;
+import java.io.Serializable;
 
 /**
  *
  * @author edu_f
  */
-public class AwaitTraiding extends StateAdapter implements IStates
+public class AwaitTraiding extends StateAdapter implements IStates, Serializable
 {
     public AwaitTraiding(GameData g){
         super(g);

@@ -7,12 +7,13 @@ package Logic.Spells;
 
 import Logic.GameData;
 import LogicaJogo.States.IStates;
+import java.io.Serializable;
 
 /**
  *
  * @author edu_f
  */
-public class Poison extends Spell{
+public class Poison extends Spell implements Serializable{
     
     public Poison(GameData g) {
         super(g);

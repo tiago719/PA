@@ -1,17 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Logic;
 
-import static javax.swing.JOptionPane.showMessageDialog;
+import java.io.Serializable;
 
-/**
- *
- * @author edu_f
- */
-public class Dado {
+
+public class Dado implements Serializable {
     private int face,totalDado;
     private boolean feated;
     

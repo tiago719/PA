@@ -10,12 +10,13 @@ import static Logic.Constants.InfoMonster;
 import Logic.GameData;
 import LogicaJogo.States.AwaitCardCardSelectionOnCurrentColumn;
 import LogicaJogo.States.IStates;
+import java.io.Serializable;
 
 /**
  *
  * @author edu_f
  */
-public class Monster extends AdaptadorCartas {
+public class Monster extends AdaptadorCartas implements Serializable {
 
     private int hp;
     private final int dmg, rwd;

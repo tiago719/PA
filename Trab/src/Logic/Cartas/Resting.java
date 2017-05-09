@@ -6,12 +6,13 @@
 package Logic.Cartas;
 
 import Logic.GameData;
+import java.io.Serializable;
 
 /**
  *
  * @author edu_f
  */
-public class Resting extends AdaptadorCartas{
+public class Resting extends AdaptadorCartas implements Serializable{
     
     public Resting(GameData g) {
         super(g);

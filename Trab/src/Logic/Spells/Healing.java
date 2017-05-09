@@ -7,12 +7,13 @@ package Logic.Spells;
 
 import Logic.GameData;
 import LogicaJogo.States.IStates;
+import java.io.Serializable;
 
 /**
  *
  * @author edu_f
  */
-public class Healing extends Spell{
+public class Healing extends Spell implements Serializable{
     
     public Healing(GameData g) {
         super(g);

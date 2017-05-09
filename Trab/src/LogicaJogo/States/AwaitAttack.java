@@ -8,12 +8,13 @@ package LogicaJogo.States;
 import Logic.Cartas.Carta;
 import Logic.Dado;
 import Logic.GameData;
+import java.io.Serializable;
 
 /**
  *
  * @author Tiago Coutinho
  */
-public class AwaitAttack extends StateAdapter implements IStates
+public class AwaitAttack extends StateAdapter implements IStates, Serializable
 {
    
     public AwaitAttack(GameData g)

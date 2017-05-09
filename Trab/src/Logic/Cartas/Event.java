@@ -9,12 +9,13 @@ import Logic.GameData;
 import LogicaJogo.States.AwaitCardCardSelectionOnCurrentColumn;
 import LogicaJogo.States.IStates;
 import LogicaJogo.States.StateAdapter;
+import java.io.Serializable;
 
 /**
  *
  * @author Tiago Coutinho
  */
-public class Event extends AdaptadorCartas
+public class Event extends AdaptadorCartas implements Serializable
 {
     
     private int hp, dmg;

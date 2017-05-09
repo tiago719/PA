@@ -11,12 +11,13 @@ import Logic.Spells.Fire;
 import Logic.Spells.Healing;
 import Logic.Spells.Ice;
 import Logic.Spells.Poison;
+import java.io.Serializable;
 
 /**
  *
  * @author Tiago Coutinho
  */
-public class StateAdapter implements IStates {
+public class StateAdapter implements IStates, Serializable{
 
     private GameData game;
 

@@ -7,12 +7,13 @@ package Logic.Spells;
 
 import Logic.GameData;
 import LogicaJogo.States.IStates;
+import java.io.Serializable;
 
 /**
  *
  * @author edu_f
  */
-public abstract class Spell {
+public abstract class Spell implements Serializable {
     private final GameData gd;
 
     public Spell(GameData g) {

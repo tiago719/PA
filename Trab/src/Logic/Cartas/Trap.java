@@ -6,12 +6,13 @@
 package Logic.Cartas;
 
 import Logic.GameData;
+import java.io.Serializable;
 
 /**
  *
  * @author Tiago Coutinho
  */
-public class Trap extends AdaptadorCartas
+public class Trap extends AdaptadorCartas implements Serializable
 {
     public Trap(GameData g)
     {

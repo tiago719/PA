@@ -6,12 +6,13 @@
 package Logic.Cartas;
 
 import Logic.GameData;
+import java.io.Serializable;
 
 /**
  *
  * @author Tiago Coutinho
  */
-public class Merchant extends AdaptadorCartas
+public class Merchant extends AdaptadorCartas implements Serializable
 {
     public Merchant(GameData g)
     {

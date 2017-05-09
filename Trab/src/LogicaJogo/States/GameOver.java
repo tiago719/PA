@@ -6,12 +6,13 @@
 package LogicaJogo.States;
 
 import Logic.GameData;
+import java.io.Serializable;
 
 /**
  *
  * @author Tiago Coutinho
  */
-public class GameOver extends StateAdapter implements IStates
+public class GameOver extends StateAdapter implements IStates, Serializable
 {
     public GameOver(GameData g)
     {

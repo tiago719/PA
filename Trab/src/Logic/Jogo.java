@@ -1,23 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Logic;
 
-import Logic.Cartas.BossMonster;
 import Logic.Cartas.Carta;
-import Logic.Cartas.Monster;
 import Logic.Spells.Spell;
 import LogicaJogo.States.AwaitBegining;
 import LogicaJogo.States.IStates;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Tiago Coutinho
  */
-public class Jogo {
+public class Jogo implements Serializable {
 
     private GameData gameData;
     private IStates state;
@@ -34,13 +33,12 @@ public class Jogo {
     public IStates getState() {
         return state;
     }
-    
+
     public void setState(IStates s) {
         state = s;
     }
 
     // Methods that are intended to be used by the user interfaces and that are delegated in the current state of the finite state machine 
-    
     public void setDifficultLevel(Integer valueOf) {
         setState(getState().setDifficultLevel(valueOf));
     }
@@ -48,91 +46,77 @@ public class Jogo {
     public void setStartingArea(int valueOf) {
         setState(getState().setStartingArea(valueOf));
     }
-    
-    public void comecar()
-    {
+
+    public void comecar() {
         setState(getState().start());
     }
-    
+
     public void RestingOptionSelected() {
         setState(getState().OptionSelected());
     }
-    
-    public void MerchantOptionSelected()
-    {
+
+    public void MerchantOptionSelected() {
         setState(getState().skipMerchant());
     }
-    
-    public void AtacaMonstro()
-    {
+
+    public void AtacaMonstro() {
         setState(getState().AtacaMonstro());
     }
-    
-    public void Feats()
-    {
+
+    public void Feats() {
         setState(getState().Feats());
     }
-    
-    public void VoltaAwaitAttack()
-    {
+
+    public void VoltaAwaitAttack() {
         setState(getState().VoltaAwaitAttack());
     }
-    
-    public void GameOver()
-    {
+
+    public void GameOver() {
         setState(getState().GameOver());
     }
-    
-    public void EndBatle()
-    {
+
+    public void EndBatle() {
         setState(getState().EndBattle());
     }
-    
-    public void ProxRonda()
-    {
+
+    public void ProxRonda() {
         setState(getState().ProxRonda());
     }
-        public void treasure()
-    {
+
+    public void treasure() {
         setState(getState().ResolveSelectedTreasureCard());
     }
-    
-    public void event(Carta c)
-    {
+
+    public void event(Carta c) {
         setState(getState().ResolveSelectedEventCard(c));
     }
-    
-    public void trap()
-    {
+
+    public void trap() {
         setState(getState().ResolveSelectedTrapCard());
     }
-    
-    public void monster(Carta c)
-    {
+
+    public void monster(Carta c) {
         setState(getState().ResolveSelectedMonsterCard(c));
     }
-    
-    public void merchant()
-    {
+
+    public void merchant() {
         setState(getState().ResolveSelectedMerchantCard());
-    }   
-    
-    public void resting()
-    {
+    }
+
+    public void resting() {
         setState(getState().ResolveSelectedRestingCard());
     }
-    
 
-   /* public void setMonster(Monster M) {
+
+    /* public void setMonster(Monster M) {
         gameData.setMonster(M);
     }*/
-
     // Methods retrieve data from the game
-    
     public boolean AA_Reroll(int c) {
-        if (gameData.getDados().size() < c || c <= 0)
+        if (gameData.getDados().size() < c || c <= 0) {
             return false;
-        
+        }
+
         Dado temp = gameData.getDado(c - 1);
         if (temp.getFace() != 6) {
             return false;
@@ -166,11 +150,12 @@ public class Jogo {
         }
 
         gameData.getDado(d - 1).setFeated(true);
-        gameData.getDado(d-1).clearSomatorio();
+        gameData.getDado(d - 1).clearSomatorio();
         gameData.getDado(d - 1).lancaDado();
         return 1;
     }
-/*
+
+    /*
     public Monster getMonstroAlvo() {
         return gameData.getMonstroAlvo();
     }*/
@@ -178,27 +163,23 @@ public class Jogo {
     public ArrayList<Spell> getSpells() {
         return gameData.getPersonagem().getSpells();
     }
-  
-    public Personagem getPersonagem()
-    {
+
+    public Personagem getPersonagem() {
         return gameData.getPersonagem();
     }
-    
-    public Carta getMonstroAlvo()
-    {
+
+    public Carta getMonstroAlvo() {
         return gameData.getMonstroAlvo();
     }
-    
-    public ArrayList<Carta> getCartasColuna()
-    {
+
+    public ArrayList<Carta> getCartasColuna() {
         return gameData.getCaverna().getAreaAtual().getCartasColuna();
     }
-    
-    public boolean AS_ChooseSpell(int c)
-    {
+
+    public boolean AS_ChooseSpell(int c) {
         return gameData.AS_ChooseSpell(c, state);
     }
-    
+
     public boolean AnyCritical() {
         return gameData.AnyCritical();
     }
@@ -243,46 +224,66 @@ public class Jogo {
         }
         return false;
     }
-    
-    public int getHpPersonagem()
-    {
+
+    public int getHpPersonagem() {
         return gameData.getPersonagem().getHp();
     }
-    
-    public boolean gravarJogo()
-    {
-        return false;//TODO: fazer gravar jogo
-    }
-    
-    public void addMsg(String s)
-    {
+
+    public void addMsg(String s) {
         gameData.addMsg(s);
     }
-    
+
 //    public void clearMsg()
 //    {
 //        gameData.clearMsg();
 //    }
-    
-    public String getMsg()
-    {
+    public String getMsg() {
         return gameData.getMsg();
     }
-    
-    public int getColuna()
-    {
+
+    public int getColuna() {
         return gameData.getCaverna().getAreaAtual().getColuna();
     }
-    
+
+    public boolean exportarJogo() {
+        try {
+            Export ex = new Export();
+            ObjectOutputStream out = null;
+
+            out = ex.abreFObjectosEscrita(Constants.nomeFicheiro);
+            out.writeObject(this.gameData);
+            out.writeObject(this.state);
+
+            return true;
+
+        } catch (IOException ex1) {
+            //Logger.getLogger(Jogo.class.getName()).log(Level.SEVERE, null, ex1);
+            return false;
+        }
+    }
+
+    public boolean continuarJogo() throws ClassNotFoundException {
+        try {
+            Export ex = new Export();
+            ObjectInputStream in = null;
+
+            in = ex.abreFObjectosLeitura(Constants.nomeFicheiro);
+            this.gameData = (GameData) in.readObject();
+            this.state = (IStates) in.readObject();
+            return true;
+        } catch (IOException ex1) {
+            //Logger.getLogger(Jogo.class.getName()).log(Level.SEVERE, null, ex1);
+            return false;
+        }
+    }
+
     @Override
-    public String toString(){
+    public String toString() {
         String s = getMsg();
-        s+=gameData.getPersonagem()+"\n";
-        s+="Coluna: "+gameData.getCaverna().getAreaAtual().getColuna()+ "\n";
-        s+=gameData.getCaverna();
-        
+        s += gameData.getPersonagem() + "\n";
+        s += "Coluna: " + gameData.getCaverna().getAreaAtual().getColuna() + "\n";
+        s += gameData.getCaverna();
+
         return s;
     }
 }
-
-

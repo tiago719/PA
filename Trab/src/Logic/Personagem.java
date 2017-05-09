@@ -1,19 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Logic;
 
 import static Logic.Constants.NivelDificuldade;
 import Logic.Spells.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-/**
- *
- * @author Tiago Coutinho
- */
-public final class Personagem
+public final class Personagem implements Serializable
 {
 
     private final GameData gd;
@@ -28,11 +20,6 @@ public final class Personagem
         rank = 1;
         xp = 0;
         gd = gamedata;
-    }
-    
-    public GameData getGame()
-    {
-        return gd;
     }
 
     public int getArmor()
@@ -98,7 +85,8 @@ public final class Personagem
         } else
         {
             food = 6;
-            return true;
+            gd.addMsg("Nao pode obter mais FOOD");
+            return false;
         }
     }
 
@@ -115,7 +103,8 @@ public final class Personagem
         } else
         {
             hp = 20;
-            return true;
+            gd.addMsg("Nao pode obter mais HEALTH");
+            return false;
         }
     }
 
@@ -182,7 +171,8 @@ public final class Personagem
         } else
         {
             gold = 20;
-            return true;
+            gd.addMsg("Nao pode ganhar mais GOLD");
+            return false;
         }
     }
 
@@ -198,7 +188,8 @@ public final class Personagem
         } else
         {
             armor = 5;
-            return true;
+            gd.addMsg("Nao pode obter mais ARMOR");
+            return false;
         }
     }
 
@@ -222,6 +213,7 @@ public final class Personagem
             return false;
         } else
         {
+            gd.addMsg("GOLD Insuficiente");
             return false;
         }
     }
@@ -238,6 +230,7 @@ public final class Personagem
             return false;
         } else
         {
+            gd.addMsg("GOLD Insuficiente");
             return false;
         }
     }
@@ -254,6 +247,7 @@ public final class Personagem
             return false;
         } else
         {
+            gd.addMsg("GOLD Insuficiente");
             return false;
         }
     }
@@ -270,6 +264,7 @@ public final class Personagem
             return false;
         } else
         {
+            gd.addMsg("GOLD Insuficiente");
             return false;
         }
     }
@@ -285,6 +280,7 @@ public final class Personagem
             }
             return false;
         }
+        gd.addMsg("Nao tem Armor");
         return false;
     }
 
@@ -296,7 +292,7 @@ public final class Personagem
     public boolean buyAnySpell()
     {
         int rand = 1 + (int) (Math.random() * ((5 - 1) + 1));//TODO:print
-        getGame().addMsg("Resultado do lancamento do dado: " + rand);
+        gd.addMsg("Resultado do lancamento do dado: " + rand);
 
         if ((gold - 8) < 0)
         {
@@ -309,16 +305,16 @@ public final class Personagem
                 spells.add(new Fire(gd));
                 break;
             case 2:
-                getGame().getPersonagem().addSpell(new Fire(getGame()));
+                spells.add(new Fire(gd));
                 break;
             case 3:
-                getGame().getPersonagem().addSpell(new Ice(getGame()));
+                spells.add(new Ice(gd));
                 break;
             case 4:
-                getGame().getPersonagem().addSpell(new Poison(getGame()));
+                spells.add(new Poison(gd));
                 break;
             case 5:
-                getGame().getPersonagem().addSpell(new Healing(getGame()));
+                spells.add(new Healing(gd));
                 break;
         }
         gold -= 8;
