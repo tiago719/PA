@@ -9,8 +9,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -38,7 +36,8 @@ public class Jogo implements Serializable {
         state = s;
     }
 
-    // Methods that are intended to be used by the user interfaces and that are delegated in the current state of the finite state machine 
+    //TODO: QUERES MANTER ESTE COMENTARIO?
+    //Methods that are intended to be used by the user interfaces and that are delegated in the current state of the finite state machine 
     public void setDifficultLevel(Integer valueOf) {
         setState(getState().setDifficultLevel(valueOf));
     }

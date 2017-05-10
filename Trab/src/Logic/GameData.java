@@ -23,8 +23,6 @@ public class GameData implements Constants, Serializable {
         dificuldade = 2;
         Personagem = new Personagem(dificuldade, this);
         Caverna = new Caverna(startingArea, this);
-        //MonstroAlvo = null;
-        //BossMonstroAlvo=null;
         dados = new ArrayList<>();
         dados.add(new Dado());
         MonstroAlvo = null;

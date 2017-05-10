@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package View;
 
 import Logic.Cartas.*;
@@ -15,10 +10,6 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Tiago Coutinho
- */
 public class TextUI {
 
     private Jogo jogo;
@@ -147,8 +138,8 @@ public class TextUI {
                 System.out.println("Nao foi possivel gravar o jogo");
             } else {
                 System.out.println("Jogo gravado com sucesso");
+                sair = true;
             }
-            sair = true;
             return;
         }
         Carta temp = c.get(op - 1);
