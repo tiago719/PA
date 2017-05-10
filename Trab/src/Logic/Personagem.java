@@ -137,10 +137,13 @@ public final class Personagem implements Serializable
             {
                 xp += i;
             }
+           
+            gd.addMsg("A personagem tem agora " + xp + " XP e esta no rank " + rank + "\n");
         } //se passa para rank seguinte
         else if (xp + i >= 6)
         {
             gd.addDado();
+            gd.addMsg("Foi adicionado um novo dado a personagem\n");
             rank++;
             if (xp + i > 6)
             {
@@ -150,10 +153,13 @@ public final class Personagem implements Serializable
             {
                 xp = 0;
             }
+            gd.addMsg("A personagem tem agora " + xp + " XP e esta no rank " + rank + "\n");
+
 
         } //se nao passa para prox rank
         else
         {
+            //gd.addMsg("Foi adicionado " + i + " XP\n");
             xp += i;
         }
         return true;
@@ -333,7 +339,7 @@ public final class Personagem implements Serializable
 
     public boolean loseFood(int f)
     {
-        if (f >= 0)
+        if (f <= 0)
         {
             return false;
         }
@@ -369,7 +375,7 @@ public final class Personagem implements Serializable
 
     public boolean loseGold(int g)
     {
-        if (g >= 0)
+        if (g <= 0)
         {
             return false;
         }
@@ -385,6 +391,10 @@ public final class Personagem implements Serializable
 
     public boolean loseArmor(int a)
     {
+        if(a<=0)
+        {
+            return false;
+        }
         if (armor - a < 0)
         {
             return false;
@@ -426,6 +436,19 @@ public final class Personagem implements Serializable
     public void setPoison(boolean p)
     {
         poison=p;
+    }
+    
+    public boolean hasHeal()
+    {
+        for(int i=0;i<spells.size();i++)
+        {
+            if(spells.get(i) instanceof Healing)
+            {
+                return true;
+            }
+        }
+        
+        return false;
     }
 
     

@@ -168,7 +168,7 @@ public class GameData implements Constants, Serializable {
         msg += s;
     }
 
-//    public void clearMsg() {
+//   public void clearMsg() {
 //        msg = "\n";
 //    }
 

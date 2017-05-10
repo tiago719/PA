@@ -68,7 +68,7 @@ public class Monster extends AdaptadorCartas implements Serializable {
 
     @Override
     public String infoCarta() {
-        String s = "Carta: MONSTER";
+        String s = "Carta: MONSTER\n";
         s += "Level - DMG - REWARD\n";
         s += "1 - Undead Soldier - 2 - 1 XP\n";
         s += "2 - Skeleton - 4 - 1 XP\n";
