@@ -538,7 +538,6 @@ public class TextUI
                 uiAwaitTrading();
             } else if (state instanceof AwaitAttack)
             {
-                jogo.getPersonagem().setHp(25);
                 uiAwaitAttack();
             } else if (state instanceof AwaitFeats)
             {

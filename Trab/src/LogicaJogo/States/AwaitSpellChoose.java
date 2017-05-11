@@ -5,6 +5,7 @@
  */
 package LogicaJogo.States;
 
+import Logic.Cartas.BossMonster;
 import Logic.Dado;
 import Logic.GameData;
 import java.io.Serializable;
@@ -22,6 +23,9 @@ public class AwaitSpellChoose extends StateAdapter implements IStates, Serializa
     @Override
     public IStates EndBattle() {
         getGame().addMsg("O monstro foi derrotado\n");
+        
+        if(getGame().getCaverna().getNumArea()==14 && getGame().getMonstroAlvo() instanceof BossMonster)
+            return new GameOver(getGame());
         
         return new AwaitCardCardSelectionOnCurrentColumn(getGame());
 

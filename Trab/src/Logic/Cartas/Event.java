@@ -25,13 +25,15 @@ public class Event extends AdaptadorCartas implements Serializable
     {
         super(g);
         ice=false;
-
     }
     
     @Override
     public String toString() 
     {
-        String s = "Carta: EVENT\n";
+       String s = "Carta: EVENT\n";
+        s += "HP Atual do Monstro: "+ hp +"\n";
+        s += "Damage: "+ dmg +"\n";
+        s += "Recompensa: 2 XP+\n";
         return s;
     }
     
