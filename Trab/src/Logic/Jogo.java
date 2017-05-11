@@ -196,10 +196,13 @@ public class Jogo implements Serializable {
         switch (i) {
             case 1:
                 gameData.getPersonagem().addXP(1);
+                break;
             case 2:
                 gameData.getPersonagem().addFood(1);
+                break;
             case 3:
                 gameData.getPersonagem().addHealth(2);
+                break;
 
         }
     }
@@ -227,15 +230,21 @@ public class Jogo implements Serializable {
     public int getHpPersonagem() {
         return gameData.getPersonagem().getHp();
     }
+    
+    public boolean hasHeal()
+    {
+        return gameData.getPersonagem().hasHeal();
+    }
+    
+    public void Healing()
+    {
+        gameData.getPersonagem().Healing(state);
+    }
 
     public void addMsg(String s) {
         gameData.addMsg(s);
     }
-
-//    public void clearMsg()
-//    {
-//        gameData.clearMsg();
-//    }
+    
     public String getMsg() {
         return gameData.getMsg();
     }

@@ -105,7 +105,7 @@ public class TextUI {
     public void uiAwaitCardCardSelectionOnCurrentColumn() {
         ArrayList<Carta> c;
         Scanner sc = new Scanner(System.in);
-        int op, cont = 0;
+        int op, cont = 0, aux;
         String option1;
 
         for (int i = 0; i < 50; i++) {
@@ -120,8 +120,14 @@ public class TextUI {
         }
 
         do {
+            aux=2;
             System.out.println("Escolha Uma Carta ( 1 - " + (c.size()) + ")");
             System.out.println("0 - Salvar Jogo");
+            if(jogo.hasHeal())
+            {
+                System.out.println("3 - Healing");
+                aux=3;
+            }
 
             option1 = sc.next();
 
@@ -133,7 +139,8 @@ public class TextUI {
 
         } while (op < 0 || op > c.size());
 
-        if (op == 0) {
+        if (op == 0) 
+        {
             if (!jogo.exportarJogo()) {
                 System.out.println("Nao foi possivel gravar o jogo");
             } else {
@@ -141,6 +148,10 @@ public class TextUI {
                 sair = true;
             }
             return;
+        }
+        else if(op==3)
+        {
+            jogo.Healing();
         }
         Carta temp = c.get(op - 1);
 
@@ -226,6 +237,8 @@ public class TextUI {
             if (!jogo.AOS_TraidingSelection(c)) {
                 //TODO: tratar erro
             }
+            
+            System.out.println(jogo.getMsg());
 
         } while (!skip);
     }
@@ -233,13 +246,16 @@ public class TextUI {
     private void uiAwaitAttack() {
         Scanner sc = new Scanner(System.in);
         String option1;
-        int c, i = 0, aux = 2;
+        int c, i, aux;
         boolean end = false;
         do {
 
             do {
                 i = 0;
+                aux=2;
                 System.out.println(jogo.getPersonagem());
+                System.out.println(jogo.getMonstroAlvo());
+                System.out.println(jogo.getMsg());
                 System.out.println("\n=== Escolha uma opcao ===\n");
                 System.out.println("Resultado dos dados: ");
 
@@ -379,7 +395,9 @@ public class TextUI {
             System.out.println(jogo.getMonstroAlvo());
 
             if (!jogo.getSpells().isEmpty()) {
+                System.out.println("0 - Continuar");
                 System.out.println("Spells:");
+
                 for (Spell d : jogo.getSpells()) {
                     System.out.println("Spell " + ++i + ": " + d);
                 }
@@ -393,14 +411,16 @@ public class TextUI {
                 }
 
             } else {
-                c = 0;
+                c = -2;
                 break;
             }
 
-        } while (c < 1 || c > i);
-        if (jogo.AS_ChooseSpell(c)) {
+        } while (c < 0 || c > i);
+        if (jogo.AS_ChooseSpell(c)) 
+        {
             jogo.EndBatle();
-        } else {
+        } else 
+        {
             jogo.ProxRonda();
         }
 

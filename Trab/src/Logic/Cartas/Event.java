@@ -7,6 +7,7 @@ package Logic.Cartas;
 
 import Logic.GameData;
 import LogicaJogo.States.AwaitCardCardSelectionOnCurrentColumn;
+import LogicaJogo.States.GameOver;
 import LogicaJogo.States.IStates;
 import LogicaJogo.States.StateAdapter;
 import java.io.Serializable;
@@ -63,6 +64,8 @@ public class Event extends AdaptadorCartas implements Serializable
     @Override
     public IStates addRwd() {
         getGame().getPersonagem().addXP(2);
+        if(!getGame().getCaverna().getAreaAtual().proxColuna())
+            return new GameOver(gd);
         return new AwaitCardCardSelectionOnCurrentColumn(gd);
     }
 

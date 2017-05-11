@@ -6,7 +6,6 @@
 package LogicaJogo.States;
 
 import Logic.Cartas.Carta;
-import Logic.Dado;
 
 /**
  *

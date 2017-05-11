@@ -35,6 +35,7 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
     @Override
     public IStates ResolveSelectedTreasureCard() {
         int ran = 1 + (int) (Math.random() * ((6 - 1) + 1));
+        ran=3;//TODO: retirar
         getGame().addMsg("Resultado do lancamento do dado: " + ran + "\n");
 
         if (getGame().getCaverna().getAreaAtual().getMonsterDefeated()) {
@@ -48,24 +49,31 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
         switch (ran) {
             case 1:
                 getGame().getPersonagem().addArmor(1);
+                getGame().addMsg("Recebeste 1 Armor\n");
                 break;
             case 2:
                 getGame().getPersonagem().addXP(2);
+                getGame().addMsg("Recebeste 2 XP\n");
                 break;
             case 3:
                 getGame().getPersonagem().addSpell(new Fire(getGame()));
+                getGame().addMsg("Recebeste o spell Fire\n");
                 break;
             case 4:
                 getGame().getPersonagem().addSpell(new Ice(getGame()));
+                getGame().addMsg("Recebeste o spell Ice\n");
                 break;
             case 5:
                 getGame().getPersonagem().addSpell(new Poison(getGame()));
+                getGame().addMsg("Recebeste o spell Poison\n");
                 break;
             case 6:
                 getGame().getPersonagem().addSpell(new Healing(getGame()));
+                getGame().addMsg("Recebeste o spell Healing\n");
                 break;
         }
-        getGame().getCaverna().getAreaAtual().proxColuna();
+        if(!getGame().getCaverna().getAreaAtual().proxColuna())
+            return new GameOver(getGame());
 
         return new AwaitCardCardSelectionOnCurrentColumn(getGame());
     }
@@ -77,24 +85,24 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
 
         switch (ran) {
             case 1:
-                getGame().getPersonagem().addFood(1);
-                getGame().addMsg("Recebeste 1 FOOD\n");
+                if(getGame().getPersonagem().addFood(1))
+                    getGame().addMsg("Recebeste 1 FOOD\n");
                 break;
             case 2:
-                getGame().getPersonagem().addHealth(2);
-                getGame().addMsg("Recebeste 2 HP\n");
+                if(getGame().getPersonagem().addHealth(2))
+                    getGame().addMsg("Recebeste 2 HP\n");
                 break;
             case 3:
-                getGame().getPersonagem().addGold(2);
-                getGame().addMsg("Recebeste 2 GOLD\n");
+                if(getGame().getPersonagem().addGold(2))
+                    getGame().addMsg("Recebeste 2 GOLD\n");
                 break;
             case 4:
-                getGame().getPersonagem().addXP(2);
-                getGame().addMsg("Recebeste 2 XP\n");
+                if(getGame().getPersonagem().addXP(2))
+                    getGame().addMsg("Recebeste 2 XP\n");
                 break;
             case 5:
-                getGame().getPersonagem().addArmor(1);
-                getGame().addMsg("Recebeste 1 ARMOR\n");
+                if(getGame().getPersonagem().addArmor(1))
+                    getGame().addMsg("Recebeste 1 ARMOR\n");
                 break;
             case 6:
                 getGame().setMonstroAlvo(c);
@@ -107,7 +115,8 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
 
                 return new AwaitAttack(getGame());
         }
-        getGame().getCaverna().getAreaAtual().proxColuna();
+        if(!getGame().getCaverna().getAreaAtual().proxColuna())
+            return new GameOver(getGame());
         return this;
     }
 
@@ -128,10 +137,13 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
     @Override
     public IStates ResolveSelectedTrapCard() {
         boolean flag = false;
-        int ran = 1 + (int) (Math.random() * ((6 - 1) + 1));//TODO: maostrar ao utilizador o resultado e consequencia
+        int ran = 1 + (int) (Math.random() * ((6 - 1) + 1));
         getGame().addMsg("Resultado do lancamento do dado: " + ran + "\n");
 
         if (skillCheck()) {
+            if(!getGame().getCaverna().getAreaAtual().proxColuna())
+                return new GameOver(getGame());
+            
             return this;
         }
 
@@ -146,25 +158,29 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
                 if (!getGame().getPersonagem().loseGold(1)) {
                     flag = true;
                 }
-                getGame().addMsg("Perdeste 1 GOLD\n");
+                else
+                    getGame().addMsg("Perdeste 1 GOLD\n");
                 break;
             case 3:
                 if (!getGame().getPersonagem().loseArmor(1)) {
                     flag = true;
                 }
-                getGame().addMsg("Perdeste 1 ARMOR\n");
+                else
+                    getGame().addMsg("Perdeste 1 ARMOR\n");
                 break;
             case 4:
                 if (!getGame().getPersonagem().loseHp(1)) {
                     return new GameOver(getGame());
                 }
-                getGame().addMsg("Perdeste 1 HP\n");
+                else
+                    getGame().addMsg("Perdeste 1 HP\n");
                 break;
             case 5:
                 if (!getGame().getPersonagem().addXP(-1)) {
                     flag = true;
                 }
-                getGame().addMsg("Perdeste 1 XP\n");
+                else
+                    getGame().addMsg("Perdeste 1 XP\n");
                 break;
             case 6:
                 if (!getGame().getPersonagem().loseHp(2)) {
@@ -176,23 +192,20 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
                 }
                 
                 getGame().getCaverna().Pit();
-
-                getGame().addMsg("Perdeste 2 HP, e Foste Movido para "
-                        + "o Nivel "+getGame().getCaverna().getAreaAtual()+"\n");
-                
-                
-                
+                getGame().addMsg("Perdeste 2 HP, e Foste Movido para " + " a area "+getGame().getCaverna().getNumArea()+" do nivel " + getGame().getCaverna().getNivel() + "\n");
                 break;
         }
 
         if (flag) {
-            getGame().addMsg("Infelizmente nao tens atributos suficientes para poderes sofrer a consequencias...\n Vais assim perde 2 de HP \n");
+            getGame().addMsg("Infelizmente nao tens atributos suficientes para poderes sofrer a consequencias...\n Vais assim perder 2 de HP \n");
             if (!getGame().getPersonagem().loseHp(2)) {
                 return new GameOver(getGame());
             }
         }
 
-        getGame().getCaverna().getAreaAtual().proxColuna();
+        if(!getGame().getCaverna().getAreaAtual().proxColuna())
+            return new GameOver(getGame());
+        
         return this;//TODO
     }
 

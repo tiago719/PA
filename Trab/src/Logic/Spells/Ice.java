@@ -21,6 +21,12 @@ public class Ice extends Spell implements Serializable{
     }
 
     @Override
+    public String nome()
+    {
+        return "Ice";
+    }
+    
+    @Override
     public String toString() {
         return "Ice  Spell: In  combat,  freeze  a  Monster  for  one  turn.  The  Monster  does  not  counter­attack.";
     }

@@ -20,6 +20,12 @@ public class Healing extends Spell implements Serializable{
     }
     
     @Override
+    public String nome()
+    {
+        return "Healing";
+    }
+    
+    @Override
     public String toString(){
         return "Healing  Spell: Gain  8  HP  in  Combat  or  before  resolving  a  Room  card";
     }

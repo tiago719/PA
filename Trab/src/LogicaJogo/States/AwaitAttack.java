@@ -52,8 +52,8 @@ public class AwaitAttack extends StateAdapter implements IStates, Serializable
         } else
         {
             getGame().getCaverna().getAreaAtual().setMonsterDefeated(true);
+            getGame().addMsg("O monstro foi derrotado\n");
             getGame().getMonstroAlvo().addRwd();
-            getGame().getCaverna().getAreaAtual().proxColuna();
             return new AwaitCardCardSelectionOnCurrentColumn(getGame());
         }
     }

@@ -5,6 +5,7 @@ import LogicaJogo.States.AwaitCardCardSelectionOnCurrentColumn;
 import LogicaJogo.States.IStates;
 import java.util.ArrayList;
 import Logic.Spells.*;
+import LogicaJogo.States.GameOver;
 import java.io.Serializable;
 
 public class GameData implements Constants, Serializable {
@@ -104,33 +105,44 @@ public class GameData implements Constants, Serializable {
 
     public IStates Treasure() {
         int ran = 1 + (int) (Math.random() * ((6 - 1) + 1));
-        if (Caverna.getAreaAtual().getMonsterDefeated()) {
-            Personagem.addGold(2);
+        addMsg("Resultado do lancamento do dado: " + ran + "\n");
+
+        if (getCaverna().getAreaAtual().getMonsterDefeated()) {
+            addMsg("Como ja derrotaste um monstro nesta ronda recebes 2 de Gold\n");
+            getPersonagem().addGold(2);
         } else {
-            Personagem.addGold(1);
+            addMsg("Como ainda nao derrotaste um monstro nesta ronda recebes apenas 1 de Gold\n");
+            getPersonagem().addGold(1);
         }
 
         switch (ran) {
             case 1:
-                Personagem.addArmor(1);
+                getPersonagem().addArmor(1);
+                addMsg("Recebeste 1 Armor\n");
                 break;
             case 2:
-                Personagem.addXP(2);
+                getPersonagem().addXP(2);
+                addMsg("Recebeste 2 XP\n");
                 break;
             case 3:
-                Personagem.addSpell(new Fire(this));
+                getPersonagem().addSpell(new Fire(this));
+                addMsg("Recebeste o spell Fire\n");
                 break;
             case 4:
-                Personagem.addSpell(new Ice(this));
+                getPersonagem().addSpell(new Ice(this));
+                addMsg("Recebeste o spell Ice\n");
                 break;
             case 5:
-                Personagem.addSpell(new Poison(this));
+                getPersonagem().addSpell(new Poison(this));
+                addMsg("Recebeste o spell Poison\n");
                 break;
             case 6:
-                Personagem.addSpell(new Healing(this));
+                getPersonagem().addSpell(new Healing(this));
+                addMsg("Recebeste o spell Healing\n");
                 break;
         }
-        getCaverna().getAreaAtual().proxColuna();
+        if(!getCaverna().getAreaAtual().proxColuna())
+            return new GameOver(this);
 
         return new AwaitCardCardSelectionOnCurrentColumn(this);
     }
@@ -140,8 +152,11 @@ public class GameData implements Constants, Serializable {
             case -1:
                 //TODO: menssagem de erro
                 break;
-            case 0:
+            case -2:
                 //TODO: sem spells
+                break;
+            case 0:
+                //TODO: nao usou nenhum spell dos que tinha
                 break;
             default:
                 getPersonagem().getSpells().get(c - 1).Efeito(this, s);
@@ -166,7 +181,7 @@ public class GameData implements Constants, Serializable {
         msg += s;
     }
 
-//    public void clearMsg() {
+//   public void clearMsg() {
 //        msg = "\n";
 //    }
 

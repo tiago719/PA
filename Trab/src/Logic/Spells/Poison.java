@@ -20,6 +20,11 @@ public class Poison extends Spell implements Serializable{
     }
     
     @Override
+    public String nome()
+    {
+        return "Poison";
+    }
+    @Override
     public String toString(){
         return "Poison  Spell: In  Combat,  for  the  remainder  of  the  Combat  sequence,  inict 5  extra  damage  per  turn";
     }
