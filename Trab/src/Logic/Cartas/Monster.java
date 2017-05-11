@@ -26,10 +26,6 @@ public class Monster extends AdaptadorCartas implements Serializable {
     public Monster(GameData g) {
         super(g);
         int level = g.getCaverna().getNivel();
-        if (g.getCaverna().isLastArea()) 
-        {
-            level++;
-        }
         dmg = Constants.InfoMonster[level - 1][0];
         rwd = Constants.InfoMonster[level - 1][1];
         hp = g.getCaverna().getNumArea() + (1 + (int) (Math.random() * ((6 - 1) + 1)));
