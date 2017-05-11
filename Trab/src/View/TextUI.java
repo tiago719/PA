@@ -264,6 +264,7 @@ public class TextUI {
                 aux=2;
                 System.out.println(jogo.getPersonagem());
                 System.out.println(jogo.getMonstroAlvo());
+                System.out.println(jogo.getMsg());
                 System.out.println("\n=== Escolha uma opcao ===\n");
                 System.out.println("Resultado dos dados: ");
 
@@ -403,7 +404,9 @@ public class TextUI {
             System.out.println(jogo.getMonstroAlvo());
 
             if (!jogo.getSpells().isEmpty()) {
+                System.out.println("0 - Continuar");
                 System.out.println("Spells:");
+
                 for (Spell d : jogo.getSpells()) {
                     System.out.println("Spell " + ++i + ": " + d);
                 }
@@ -417,14 +420,16 @@ public class TextUI {
                 }
 
             } else {
-                c = 0;
+                c = -2;
                 break;
             }
 
-        } while (c < 1 || c > i);
-        if (jogo.AS_ChooseSpell(c)) {
+        } while (c < 0 || c > i);
+        if (jogo.AS_ChooseSpell(c)) 
+        {
             jogo.EndBatle();
-        } else {
+        } else 
+        {
             jogo.ProxRonda();
         }
 

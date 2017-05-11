@@ -15,8 +15,8 @@ public class Area implements Serializable
 
     public Area(GameData g)
     {
-        Baralho = new ArrayList<>();
         GameData = g;
+        Baralho = new ArrayList<>();
         geraBaralho();
         MonsterDefeated = false;
         Collections.shuffle(Baralho);
@@ -128,7 +128,7 @@ public class Area implements Serializable
         return coluna;
     }
 
-    public void proxColuna()
+    public boolean proxColuna()
     {
         int ultimaColuna = 4;
         if (getGame().getCaverna().isLastArea())
@@ -139,10 +139,11 @@ public class Area implements Serializable
         if (coluna < ultimaColuna)
         {
             coluna++;
+            return true;
         } else
         {
             coluna = 1;
-            getGame().getCaverna().proxArea();
+            return getGame().getCaverna().proxArea();
         }
     }
 

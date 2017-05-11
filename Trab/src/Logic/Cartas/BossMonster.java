@@ -82,7 +82,7 @@ public class BossMonster extends AdaptadorCartas implements Serializable{
     @Override
     public IStates addRwd() {
         if (getGame().getCaverna().getNivel() == 5) {
-            System.out.println("||||||||||||||VENCEU||||||||||||||||||||\n");//TODO: QUANDO ACABA JOGO, TIRAR LINHA        
+            getGame().addMsg("||||||||||||||VENCEU||||||||||||||||||||\n");      
             return new GameOver(getGame());
         } else {
             getGame().getPersonagem().addGold(GoldRwd);

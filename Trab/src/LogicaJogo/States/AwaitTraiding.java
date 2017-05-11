@@ -21,7 +21,9 @@ public class AwaitTraiding extends StateAdapter implements IStates, Serializable
     @Override
     public IStates skipMerchant()
     {
-        getGame().getCaverna().getAreaAtual().proxColuna();
+        if(!getGame().getCaverna().getAreaAtual().proxColuna())
+            return new GameOver(getGame());
+        
         return new AwaitCardCardSelectionOnCurrentColumn(getGame());
     }
 }

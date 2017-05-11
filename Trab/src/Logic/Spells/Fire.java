@@ -7,6 +7,7 @@ package Logic.Spells;
 
 import Logic.GameData;
 import LogicaJogo.States.AwaitCardCardSelectionOnCurrentColumn;
+import LogicaJogo.States.GameOver;
 import LogicaJogo.States.IStates;
 import java.io.Serializable;
 
@@ -28,7 +29,7 @@ public class Fire extends Spell implements Serializable{
     
     @Override
     public String toString(){
-        return "Fireball  Spell: In  combat,  inict 8  damage  to  a  Monster";
+        return "Fire  Spell: In  combat,  inict 8  damage  to  a  Monster";
     }
 
     @Override
@@ -40,9 +41,7 @@ public class Fire extends Spell implements Serializable{
         else
         {
             g.getCaverna().getAreaAtual().setMonsterDefeated(true);
-            g.getMonstroAlvo().addRwd();
-            getGame().getCaverna().getAreaAtual().proxColuna();//TODO: ACHO QUE NAO PASSA AQUI (TESTAR)
-            return new AwaitCardCardSelectionOnCurrentColumn(g);
+            return g.getMonstroAlvo().addRwd();
         }
     }
     

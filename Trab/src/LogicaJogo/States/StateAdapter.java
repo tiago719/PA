@@ -82,7 +82,9 @@ public class StateAdapter implements IStates, Serializable{
                 getGame().getPersonagem().addSpell(new Healing(getGame()));
                 break;
         }
-        getGame().getCaverna().getAreaAtual().proxColuna();
+        if(!getGame().getCaverna().getAreaAtual().proxColuna())
+            return new GameOver(getGame());
+        
         return new AwaitCardCardSelectionOnCurrentColumn(getGame());
     }
     

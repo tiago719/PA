@@ -9,6 +9,7 @@ import Logic.Constants;
 import static Logic.Constants.InfoMonster;
 import Logic.GameData;
 import LogicaJogo.States.AwaitCardCardSelectionOnCurrentColumn;
+import LogicaJogo.States.GameOver;
 import LogicaJogo.States.IStates;
 import java.io.Serializable;
 
@@ -24,7 +25,8 @@ public class Monster extends AdaptadorCartas implements Serializable {
     public Monster(GameData g) {
         super(g);
         int level = g.getCaverna().getNivel();
-        if (g.getCaverna().isLastArea()) {
+        if (g.getCaverna().isLastArea()) 
+        {
             level++;
         }
         dmg = Constants.InfoMonster[level - 1][0];
@@ -52,7 +54,9 @@ public class Monster extends AdaptadorCartas implements Serializable {
     @Override
     public IStates addRwd() {
         getGame().getPersonagem().addXP(rwd);
-        getGame().getCaverna().getAreaAtual().proxColuna();
+        if(!getGame().getCaverna().getAreaAtual().proxColuna())
+            return new GameOver(gd);
+        
         return new AwaitCardCardSelectionOnCurrentColumn(getGame());
     }
 

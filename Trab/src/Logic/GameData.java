@@ -5,6 +5,7 @@ import LogicaJogo.States.AwaitCardCardSelectionOnCurrentColumn;
 import LogicaJogo.States.IStates;
 import java.util.ArrayList;
 import Logic.Spells.*;
+import LogicaJogo.States.GameOver;
 import java.io.Serializable;
 
 public class GameData implements Constants, Serializable {
@@ -142,7 +143,8 @@ public class GameData implements Constants, Serializable {
                 addMsg("Recebeste o spell Healing\n");
                 break;
         }
-        getCaverna().getAreaAtual().proxColuna();
+        if(!getCaverna().getAreaAtual().proxColuna())
+            return new GameOver(this);
 
         return new AwaitCardCardSelectionOnCurrentColumn(this);
     }
@@ -152,8 +154,11 @@ public class GameData implements Constants, Serializable {
             case -1:
                 //TODO: menssagem de erro
                 break;
-            case 0:
+            case -2:
                 //TODO: sem spells
+                break;
+            case 0:
+                //TODO: nao usou nenhum spell dos que tinha
                 break;
             default:
                 getPersonagem().getSpells().get(c - 1).Efeito(this, s);

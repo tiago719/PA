@@ -86,7 +86,7 @@ public final class Personagem implements Serializable
         } else
         {
             food = 6;
-            gd.addMsg("Nao pode obter mais FOOD");
+            gd.addMsg("Nao pode obter mais FOOD\n");
             return false;
         }
     }
@@ -138,7 +138,7 @@ public final class Personagem implements Serializable
             {
                 xp += i;
             }
-           
+
             gd.addMsg("A personagem tem agora " + xp + " XP e esta no rank " + rank + "\n");
         } //se passa para rank seguinte
         else if (xp + i >= 6)
@@ -155,7 +155,6 @@ public final class Personagem implements Serializable
                 xp = 0;
             }
             gd.addMsg("A personagem tem agora " + xp + " XP e esta no rank " + rank + "\n");
-
 
         } //se nao passa para prox rank
         else
@@ -293,6 +292,12 @@ public final class Personagem implements Serializable
 
     public void addSpell(Spell s)
     {
+        if(spells.size()>=2)
+        {
+            spells.remove(1);
+            spells.add(s);
+            return;
+        }
         spells.add(s);
     }
 
@@ -330,25 +335,25 @@ public final class Personagem implements Serializable
 
     public boolean sellAnySpell()
     {
-        if(spells.size()!=0)
+        if (spells.size() != 0)
         {
             int rand = 0 + (int) (Math.random() * ((spells.size() - 0) + 1));
-            Spell temp=spells.get(rand);
+            Spell temp = spells.get(rand);
             spells.remove(rand);
             gold += 4;
             gd.addMsg("Foi removido o spell " + temp.nome() + ".\n");
             return true;
         }
-        
+
         gd.addMsg("Nao tem spells para remover.\n");
         return false;
     }
-    
+
     public boolean Healing(IStates s)
     {
-        for(int i=0;i<spells.size();i++)
+        for (int i = 0; i < spells.size(); i++)
         {
-            if(spells.get(i) instanceof Healing)
+            if (spells.get(i) instanceof Healing)
             {
                 spells.get(i).Efeito(gd, s);
                 return true;
@@ -411,7 +416,7 @@ public final class Personagem implements Serializable
 
     public boolean loseArmor(int a)
     {
-        if(a<=0)
+        if (a <= 0)
         {
             return false;
         }
@@ -447,45 +452,49 @@ public final class Personagem implements Serializable
     {
         return xp;
     }
-    
+
     public boolean hasPoison()
     {
         return poison;
     }
-    
+
     public void setPoison(boolean p)
     {
-        poison=p;
+        poison = p;
     }
-    
+
     public boolean hasHeal()
     {
-        for(int i=0;i<spells.size();i++)
+        for (int i = 0; i < spells.size(); i++)
         {
-            if(spells.get(i) instanceof Healing)
+            if (spells.get(i) instanceof Healing)
             {
                 return true;
             }
         }
-        
+
         return false;
     }
 
-    
     @Override
-    public String toString(){
+    public String toString()
+    {
         String s = "Personagem: \n";
-        s += "HP: "+hp+"\n";
-        s += "Armor: "+armor+"\n";
-        s += "Gold: "+gold+"\n";
-        s += "Food: "+food+"\n";
-        s += "Rank: "+rank+"\n";
-        s += "XP: "+xp+"\n";
+        s += "HP: " + hp + "\n";
+        s += "Armor: " + armor + "\n";
+        s += "Gold: " + gold + "\n";
+        s += "Food: " + food + "\n";
+        s += "Rank: " + rank + "\n";
+        s += "XP: " + xp + "\n";
+        s+="Spells:\n";
+
+        for (Spell d : getSpells())
+        {
+            s += "Spell " + d + "\n";
+        }
         return s;
     }
-    
-    
-    
+
     //true = morto
     /*public boolean DeffendMonstro(int soma, int hpMonstro)
     {

@@ -35,6 +35,7 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
     @Override
     public IStates ResolveSelectedTreasureCard() {
         int ran = 1 + (int) (Math.random() * ((6 - 1) + 1));
+        ran=3;//TODO: retirar
         getGame().addMsg("Resultado do lancamento do dado: " + ran + "\n");
 
         if (getGame().getCaverna().getAreaAtual().getMonsterDefeated()) {
@@ -71,7 +72,8 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
                 getGame().addMsg("Recebeste o spell Healing\n");
                 break;
         }
-        getGame().getCaverna().getAreaAtual().proxColuna();
+        if(!getGame().getCaverna().getAreaAtual().proxColuna())
+            return new GameOver(getGame());
 
         return new AwaitCardCardSelectionOnCurrentColumn(getGame());
     }
@@ -113,7 +115,8 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
 
                 return new AwaitAttack(getGame());
         }
-        getGame().getCaverna().getAreaAtual().proxColuna();
+        if(!getGame().getCaverna().getAreaAtual().proxColuna())
+            return new GameOver(getGame());
         return this;
     }
 
@@ -138,7 +141,9 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
         getGame().addMsg("Resultado do lancamento do dado: " + ran + "\n");
 
         if (skillCheck()) {
-            getGame().getCaverna().getAreaAtual().proxColuna();
+            if(!getGame().getCaverna().getAreaAtual().proxColuna())
+                return new GameOver(getGame());
+            
             return this;
         }
 
@@ -198,7 +203,9 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
             }
         }
 
-        getGame().getCaverna().getAreaAtual().proxColuna();
+        if(!getGame().getCaverna().getAreaAtual().proxColuna())
+            return new GameOver(getGame());
+        
         return this;//TODO
     }
 
