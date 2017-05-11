@@ -134,7 +134,7 @@ public class TextUI {
             System.out.println("0 - Salvar Jogo");
             if(jogo.hasHeal())
             {
-                System.out.println("1 - Healing");
+                System.out.println("3 - Healing");
                 aux=3;
             }
 
@@ -148,7 +148,8 @@ public class TextUI {
 
         } while (op < 0 || op > c.size());
 
-        if (op == 0) {
+        if (op == 0) 
+        {
             if (!jogo.exportarJogo()) {
                 System.out.println("Nao foi possivel gravar o jogo");
             } else {
@@ -156,6 +157,10 @@ public class TextUI {
             }
             sair = true;
             return;
+        }
+        else if(op==3)
+        {
+            jogo.Healing();
         }
         Carta temp = c.get(op - 1);
 

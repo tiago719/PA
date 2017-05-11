@@ -63,6 +63,7 @@ public class Event extends AdaptadorCartas implements Serializable
     @Override
     public IStates addRwd() {
         getGame().getPersonagem().addXP(2);
+        getGame().getCaverna().getAreaAtual().proxColuna();
         return new AwaitCardCardSelectionOnCurrentColumn(gd);
     }
 

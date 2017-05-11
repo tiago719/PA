@@ -20,6 +20,8 @@ public abstract class Spell implements Serializable {
         gd = g;
     }
     
+    public abstract String nome();
+   
     public abstract IStates Efeito(GameData g, IStates s);
     
     public GameData getGame()

@@ -236,6 +236,11 @@ public class Jogo implements Serializable {
     {
         return gameData.getPersonagem().hasHeal();
     }
+    
+    public void Healing()
+    {
+        gameData.getPersonagem().Healing(state);
+    }
 
     public void addMsg(String s) {
         gameData.addMsg(s);

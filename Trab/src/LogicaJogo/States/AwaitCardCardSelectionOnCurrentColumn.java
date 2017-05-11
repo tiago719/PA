@@ -134,7 +134,7 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
     @Override
     public IStates ResolveSelectedTrapCard() {
         boolean flag = false;
-        int ran = 1 + (int) (Math.random() * ((6 - 1) + 1));//TODO: maostrar ao utilizador o resultado e consequencia
+        int ran = 1 + (int) (Math.random() * ((6 - 1) + 1));
         getGame().addMsg("Resultado do lancamento do dado: " + ran + "\n");
 
         if (skillCheck()) {
@@ -187,9 +187,7 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
                 }
                 
                 getGame().getCaverna().Pit();
-
-                getGame().addMsg("Perdeste 2 HP, e Foste Movido para "
-                        + "o Nivel "+getGame().getCaverna().getAreaAtual()+"\n");
+                getGame().addMsg("Perdeste 2 HP, e Foste Movido para " + " a area "+getGame().getCaverna().getNumArea()+" do nivel " + getGame().getCaverna().getNivel() + "\n");
                 break;
         }
 

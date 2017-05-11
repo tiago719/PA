@@ -21,6 +21,12 @@ public class Fire extends Spell implements Serializable{
     }
     
     @Override
+    public String nome()
+    {
+        return "Fire";
+    }
+    
+    @Override
     public String toString(){
         return "Fireball  Spell: In  combat,  inict 8  damage  to  a  Monster";
     }

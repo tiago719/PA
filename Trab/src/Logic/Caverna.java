@@ -101,7 +101,7 @@ public class Caverna implements Serializable {
 
     public void Pit() {
         areaL++;
-        Areas.add(new Area(getGame(), getAreaAtual().getBaralho(), getAreaAtual().getMonsterDefeated()));
+        Areas.add(new Area(getGame(), getAreaAtual().getBaralho(), getAreaAtual().getMonsterDefeated(), getAreaAtual().getColuna()));
     }
     
     @Override

@@ -21,6 +21,7 @@ public class AwaitSpellChoose extends StateAdapter implements IStates, Serializa
 
     @Override
     public IStates EndBattle() {
+        getGame().addMsg("O monstro foi derrotado\n");
         getGame().getCaverna().getAreaAtual().proxColuna();
         return new AwaitCardCardSelectionOnCurrentColumn(getGame());
 
@@ -36,7 +37,8 @@ public class AwaitSpellChoose extends StateAdapter implements IStates, Serializa
 
         int retirar = (dmg - armor);
         if (retirar > 0) {
-            if (!getGame().getPersonagem().loseHp(retirar)) {
+            if (!getGame().getPersonagem().loseHp(retirar)) 
+            {
                 return new GameOver(getGame());
             }
         }

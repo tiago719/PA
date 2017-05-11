@@ -2,6 +2,7 @@ package Logic;
 
 import static Logic.Constants.NivelDificuldade;
 import Logic.Spells.*;
+import LogicaJogo.States.IStates;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -11,7 +12,7 @@ public final class Personagem implements Serializable
     private final GameData gd;
     private boolean poison;
     private int armor, hp, gold, food, rank, xp;
-    ArrayList<Spell> spells;
+    private ArrayList<Spell> spells;
 
     public Personagem(int dificuldade, GameData gamedata)
     {
@@ -297,7 +298,7 @@ public final class Personagem implements Serializable
 
     public boolean buyAnySpell()
     {
-        int rand = 1 + (int) (Math.random() * ((5 - 1) + 1));//TODO:print
+        int rand = 1 + (int) (Math.random() * ((5 - 1) + 1));
         gd.addMsg("Resultado do lancamento do dado: " + rand);
 
         if ((gold - 8) < 0)
@@ -329,12 +330,31 @@ public final class Personagem implements Serializable
 
     public boolean sellAnySpell()
     {
-        int rand = 0 + (int) (Math.random() * ((spells.size() - 0) + 1));
-        spells.remove(rand);
-        gold += 4;
-
-        return true;
-
+        if(spells.size()!=0)
+        {
+            int rand = 0 + (int) (Math.random() * ((spells.size() - 0) + 1));
+            Spell temp=spells.get(rand);
+            spells.remove(rand);
+            gold += 4;
+            gd.addMsg("Foi removido o spell " + temp.nome() + ".\n");
+            return true;
+        }
+        
+        gd.addMsg("Nao tem spells para remover.\n");
+        return false;
+    }
+    
+    public boolean Healing(IStates s)
+    {
+        for(int i=0;i<spells.size();i++)
+        {
+            if(spells.get(i) instanceof Healing)
+            {
+                spells.get(i).Efeito(gd, s);
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean loseFood(int f)
@@ -407,7 +427,7 @@ public final class Personagem implements Serializable
 
     public boolean loseHp(int h)
     {
-        if (hp - h < 0)
+        if (hp - h <= 0)
         {
             hp = 0;
             return false;
