@@ -18,13 +18,16 @@ import java.io.Serializable;
  */
 public class Event extends AdaptadorCartas implements Serializable
 { 
-    private int hp, dmg;
+    private int hp, dmg, rwd;
     private boolean ice;
     
     public Event(GameData g)
     {
         super(g);
         ice=false;
+        hp=g.getCaverna().getNumArea()+1 + (int) (Math.random() * ((6 - 1) + 1));
+        dmg=g.getCaverna().getNivel()*2;
+        rwd=2;
     }
     
     @Override
@@ -33,7 +36,7 @@ public class Event extends AdaptadorCartas implements Serializable
        String s = "Carta: EVENT\n";
         s += "HP Atual do Monstro: "+ hp +"\n";
         s += "Damage: "+ dmg +"\n";
-        s += "Recompensa: 2 XP+\n";
+        s += "Recompensa: " + rwd +" XP\n";
         return s;
     }
     
