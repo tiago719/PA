@@ -21,6 +21,7 @@ public class Monster extends AdaptadorCartas implements Serializable {
 
     private int hp;
     private final int dmg, rwd;
+    private boolean ice;
 
     public Monster(GameData g) {
         super(g);
@@ -32,6 +33,7 @@ public class Monster extends AdaptadorCartas implements Serializable {
         dmg = Constants.InfoMonster[level - 1][0];
         rwd = Constants.InfoMonster[level - 1][1];
         hp = g.getCaverna().getNumArea() + (1 + (int) (Math.random() * ((6 - 1) + 1)));
+        ice=false;
     }
 
     public Monster(GameData g, boolean event) {
@@ -100,6 +102,18 @@ public class Monster extends AdaptadorCartas implements Serializable {
     @Override
     public int getHP() {
         return hp;
+    }
+    
+    @Override
+    public void setIce(boolean i)
+    {
+        ice=i;
+    }
+    
+    @Override
+    public boolean getIce()
+    {
+        return ice;
     }
 
 }

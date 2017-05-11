@@ -36,4 +36,8 @@ public abstract class Carta implements Serializable{
     public abstract IStates addRwd();
     
     public abstract String infoCarta();
+    
+    public abstract void setIce(boolean i);
+    
+    public abstract boolean getIce();
 }

@@ -17,13 +17,15 @@ import java.io.Serializable;
  * @author Tiago Coutinho
  */
 public class Event extends AdaptadorCartas implements Serializable
-{
-    
+{ 
     private int hp, dmg;
+    private boolean ice;
     
     public Event(GameData g)
     {
         super(g);
+        ice=false;
+
     }
     
     @Override
@@ -68,5 +70,17 @@ public class Event extends AdaptadorCartas implements Serializable
             return new GameOver(gd);
         return new AwaitCardCardSelectionOnCurrentColumn(gd);
     }
+    @Override
+    public void setIce(boolean i)
+    {
+        ice=i;
+    }
+    
+    @Override
+    public boolean getIce()
+    {
+        return ice;
+    }
+    
 
 }

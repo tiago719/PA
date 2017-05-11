@@ -356,6 +356,7 @@ public final class Personagem implements Serializable
             if (spells.get(i) instanceof Healing)
             {
                 spells.get(i).Efeito(gd, s);
+                spells.remove(i);
                 return true;
             }
         }

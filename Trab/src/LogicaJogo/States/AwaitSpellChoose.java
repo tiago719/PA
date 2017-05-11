@@ -22,6 +22,7 @@ public class AwaitSpellChoose extends StateAdapter implements IStates, Serializa
     @Override
     public IStates EndBattle() {
         getGame().addMsg("O monstro foi derrotado\n");
+        
         return new AwaitCardCardSelectionOnCurrentColumn(getGame());
 
     }

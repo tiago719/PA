@@ -23,7 +23,7 @@ public class Ice extends Spell implements Serializable{
     @Override
     public String nome()
     {
-        return "Ice";
+        return "Poison";
     }
     
     @Override

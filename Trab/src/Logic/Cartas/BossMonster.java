@@ -19,6 +19,7 @@ public class BossMonster extends AdaptadorCartas implements Serializable{
 
     private int hp;
     private final int dmg, XpRwd, GoldRwd;
+    private boolean ice;
 
     public BossMonster(GameData g) {
         super(g);
@@ -27,6 +28,7 @@ public class BossMonster extends AdaptadorCartas implements Serializable{
         dmg = InfoBossMonster[level - 1][1];
         XpRwd = InfoBossMonster[level - 1][2];
         GoldRwd = InfoBossMonster[level - 1][3];
+        ice=false;
     }
 
     @Override
@@ -92,6 +94,18 @@ public class BossMonster extends AdaptadorCartas implements Serializable{
             
         }
 
+    }
+    
+    @Override
+    public void setIce(boolean i)
+    {
+        ice=i;
+    }
+    
+    @Override
+    public boolean getIce()
+    {
+        return ice;
     }
 
 }
