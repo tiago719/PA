@@ -9,13 +9,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-/**
- *
- * @author Tiago Coutinho
- */
 public class Jogo implements Serializable {
 
     private GameData gameData;
@@ -38,7 +32,8 @@ public class Jogo implements Serializable {
         state = s;
     }
 
-    // Methods that are intended to be used by the user interfaces and that are delegated in the current state of the finite state machine 
+    //TODO: QUERES MANTER ESTE COMENTARIO?
+    //Methods that are intended to be used by the user interfaces and that are delegated in the current state of the finite state machine 
     public void setDifficultLevel(Integer valueOf) {
         setState(getState().setDifficultLevel(valueOf));
     }
@@ -108,9 +103,6 @@ public class Jogo implements Serializable {
     }
 
 
-    /* public void setMonster(Monster M) {
-        gameData.setMonster(M);
-    }*/
     // Methods retrieve data from the game
     public boolean AA_Reroll(int c) {
         if (gameData.getDados().size() < c || c <= 0) {
@@ -155,11 +147,6 @@ public class Jogo implements Serializable {
         return 1;
     }
 
-    /*
-    public Monster getMonstroAlvo() {
-        return gameData.getMonstroAlvo();
-    }*/
-
     public ArrayList<Spell> getSpells() {
         return gameData.getPersonagem().getSpells();
     }
@@ -192,7 +179,6 @@ public class Jogo implements Serializable {
         return gameData.getDados().get(i);
     }
 
-    //TODO: QUANDO NAO PODE ADICIONAR MAIS XP(POR EXEMPLO) ADICIONA 1 HP, CRIAR MSG AVISAR USER
     public void AOS_OptionSelected(int i) {
         switch (i) {
             case 1:

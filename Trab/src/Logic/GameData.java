@@ -24,8 +24,6 @@ public class GameData implements Constants, Serializable {
         dificuldade = 2;
         Personagem = new Personagem(dificuldade, this);
         Caverna = new Caverna(startingArea, this);
-        //MonstroAlvo = null;
-        //BossMonstroAlvo=null;
         dados = new ArrayList<>();
         dados.add(new Dado());
         MonstroAlvo = null;
@@ -162,7 +160,9 @@ public class GameData implements Constants, Serializable {
                 break;
             default:
                 getPersonagem().getSpells().get(c - 1).Efeito(this, s);
+                addMsg("Foi romovido o SPELL "+ getPersonagem().getSpells().get(c - 1).nome());
                 getPersonagem().getSpells().remove(c - 1);
+                break;
 
         }
         if (getMonstroAlvo().getHP() <= 0) {
