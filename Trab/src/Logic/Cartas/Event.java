@@ -17,19 +17,26 @@ import java.io.Serializable;
  * @author Tiago Coutinho
  */
 public class Event extends AdaptadorCartas implements Serializable
-{
-    
-    private int hp, dmg;
+{ 
+    private int hp, dmg, rwd;
+    private boolean ice;
     
     public Event(GameData g)
     {
         super(g);
+        ice=false;
+        hp=g.getCaverna().getNumArea()+1 + (int) (Math.random() * ((6 - 1) + 1));
+        dmg=g.getCaverna().getNivel()*2;
+        rwd=2;
     }
     
     @Override
     public String toString() 
     {
-        String s = "Carta: EVENT\n";
+       String s = "Carta: EVENT\n";
+        s += "HP Atual do Monstro: "+ hp +"\n";
+        s += "Damage: "+ dmg +"\n";
+        s += "Recompensa: " + rwd +" XP\n";
         return s;
     }
     
@@ -68,5 +75,17 @@ public class Event extends AdaptadorCartas implements Serializable
             return new GameOver(gd);
         return new AwaitCardCardSelectionOnCurrentColumn(gd);
     }
+    @Override
+    public void setIce(boolean i)
+    {
+        ice=i;
+    }
+    
+    @Override
+    public boolean getIce()
+    {
+        return ice;
+    }
+    
 
 }

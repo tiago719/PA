@@ -243,7 +243,7 @@ public class Jogo implements Serializable {
     public boolean exportarJogo() {
         try {
             Export ex = new Export();
-            ObjectOutputStream out = null;
+            ObjectOutputStream out;
 
             out = ex.abreFObjectosEscrita(Constants.nomeFicheiro);
             out.writeObject(this.gameData);
@@ -260,7 +260,7 @@ public class Jogo implements Serializable {
     public boolean continuarJogo() throws ClassNotFoundException {
         try {
             Export ex = new Export();
-            ObjectInputStream in = null;
+            ObjectInputStream in;
 
             in = ex.abreFObjectosLeitura(Constants.nomeFicheiro);
             this.gameData = (GameData) in.readObject();

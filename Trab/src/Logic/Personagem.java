@@ -294,7 +294,8 @@ public final class Personagem implements Serializable
     {
         if(spells.size()>=2)
         {
-            spells.remove(1);
+            int rand = 0 + (int) (Math.random() * ((1 - 0) + 0));
+            spells.remove(rand);
             spells.add(s);
             return;
         }
@@ -303,7 +304,7 @@ public final class Personagem implements Serializable
 
     public boolean buyAnySpell()
     {
-        int rand = 1 + (int) (Math.random() * ((5 - 1) + 1));
+        int rand = 1 + (int) (Math.random() * ((4 - 1) + 1));
         gd.addMsg("Resultado do lancamento do dado: " + rand);
 
         if ((gold - 8) < 0)
@@ -314,19 +315,16 @@ public final class Personagem implements Serializable
         switch (rand)
         {
             case 1:
-                spells.add(new Fire(gd));
+                addSpell(new Fire(gd));
                 break;
             case 2:
-                spells.add(new Fire(gd));
+                addSpell(new Healing(gd));
                 break;
             case 3:
-                spells.add(new Ice(gd));
+                addSpell(new Ice(gd));
                 break;
             case 4:
-                spells.add(new Poison(gd));
-                break;
-            case 5:
-                spells.add(new Healing(gd));
+                addSpell(new Poison(gd));
                 break;
         }
         gold -= 8;
@@ -334,18 +332,38 @@ public final class Personagem implements Serializable
     }
 
     public boolean sellAnySpell()
-    {
-        if (spells.size() != 0)
+    {//TODO: este algoritmo nao esta muito bom, mas antes dava erro - se quiseres podes mudar
+        if (!spells.isEmpty())
         {
-            int rand = 0 + (int) (Math.random() * ((spells.size() - 0) + 1));
-            Spell temp = spells.get(rand);
-            spells.remove(rand);
+            Spell temp;
+            if(spells.size()==1)
+            {
+                spells.remove(0);
+            }
+            else
+            {
+                int rand= 0 + (int) (Math.random() * ((spells.size() - 0) + 1));
+                if(rand==0)
+                {
+                    temp = spells.get(rand);
+                    spells.remove(0);
+                    gd.addMsg("Foi removido o spell " + temp.nome() + ".\n");
+
+                }
+                else if(rand==1)
+                {
+                    temp = spells.get(1);
+                    spells.remove(1);
+                    gd.addMsg("Foi removido o spell " + temp.nome() + ".\n");
+        
+                }
+            }
+//            int rand = 0 + (int) (Math.random() * ((spells.size() - 0) + 1));
             gold += 4;
-            gd.addMsg("Foi removido o spell " + temp.nome() + ".\n");
             return true;
         }
 
-        gd.addMsg("Nao tem spells para remover.\n");
+        gd.addMsg("Nao tem spells para vender.\n");
         return false;
     }
 
@@ -356,6 +374,7 @@ public final class Personagem implements Serializable
             if (spells.get(i) instanceof Healing)
             {
                 spells.get(i).Efeito(gd, s);
+                spells.remove(i);
                 return true;
             }
         }
