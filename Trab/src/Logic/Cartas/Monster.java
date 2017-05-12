@@ -32,12 +32,12 @@ public class Monster extends AdaptadorCartas implements Serializable {
         ice=false;
     }
 
-    public Monster(GameData g, boolean event) {
+    /*public Monster(GameData g, boolean event) {
         super(g);
         dmg = g.getCaverna().getNumArea() * 2;
         rwd = 2;
         hp = g.getCaverna().getNumArea() + (1 + (int) (Math.random() * ((6 - 1) + 1)));
-    }
+    }*/
 
     @Override
     public int getDmg() {

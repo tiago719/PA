@@ -332,18 +332,38 @@ public final class Personagem implements Serializable
     }
 
     public boolean sellAnySpell()
-    {
+    {//TODO: este algoritmo nao esta muito bom, mas antes dava erro - se quiseres podes mudar
         if (!spells.isEmpty())
         {
-            int rand = 0 + (int) (Math.random() * ((spells.size() - 0) + 1));
-            Spell temp = spells.get(rand);
-            spells.remove(rand);
+            Spell temp;
+            if(spells.size()==1)
+            {
+                spells.remove(0);
+            }
+            else
+            {
+                int rand= 0 + (int) (Math.random() * ((spells.size() - 0) + 1));
+                if(rand==0)
+                {
+                    temp = spells.get(rand);
+                    spells.remove(0);
+                    gd.addMsg("Foi removido o spell " + temp.nome() + ".\n");
+
+                }
+                else if(rand==1)
+                {
+                    temp = spells.get(1);
+                    spells.remove(1);
+                    gd.addMsg("Foi removido o spell " + temp.nome() + ".\n");
+        
+                }
+            }
+//            int rand = 0 + (int) (Math.random() * ((spells.size() - 0) + 1));
             gold += 4;
-            gd.addMsg("Foi removido o spell " + temp.nome() + ".\n");
             return true;
         }
 
-        gd.addMsg("Nao tem spells para remover.\n");
+        gd.addMsg("Nao tem spells para vender.\n");
         return false;
     }
 

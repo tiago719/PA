@@ -116,7 +116,8 @@ public class TextUI
                     try
                     {
                         //retomar jogo
-                        jogo.continuarJogo();
+                        if(!jogo.continuarJogo())
+                            System.out.println("Nao existe nenhum jogo gravado");
                     } catch (ClassNotFoundException ex)
                     {
                         Logger.getLogger(TextUI.class.getName()).log(Level.SEVERE, null, ex);
