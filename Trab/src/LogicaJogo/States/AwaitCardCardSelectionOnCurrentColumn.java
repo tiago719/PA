@@ -80,7 +80,7 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
 
     @Override
     public IStates ResolveSelectedEventCard(Carta c) {
-        int ran = 1 + (int) (Math.random() * ((6 - 1) + 1));//TODO: maostrar ao utilizador o resultado
+        int ran = 1 + (int) (Math.random() * ((6 - 1) + 1));
         getGame().addMsg("Resultado do lancamento do dado (EVENT CARD): " + ran + "\n");
 
         switch (ran) {

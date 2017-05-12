@@ -1,22 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Logic.Cartas;
 
 import Logic.Constants;
-import static Logic.Constants.InfoMonster;
 import Logic.GameData;
 import LogicaJogo.States.AwaitCardCardSelectionOnCurrentColumn;
 import LogicaJogo.States.GameOver;
 import LogicaJogo.States.IStates;
 import java.io.Serializable;
 
-/**
- *
- * @author edu_f
- */
 public class Monster extends AdaptadorCartas implements Serializable {
 
     private int hp;
@@ -25,10 +15,10 @@ public class Monster extends AdaptadorCartas implements Serializable {
     public Monster(GameData g) {
         super(g);
         int level = g.getCaverna().getNivel();
-        if (g.getCaverna().isLastArea()) 
-        {
-            level++;
-        }
+//        if (g.getCaverna().isLastArea()) 
+//        {
+//            level++;
+//        }
         dmg = Constants.InfoMonster[level - 1][0];
         rwd = Constants.InfoMonster[level - 1][1];
         hp = g.getCaverna().getNumArea() + (1 + (int) (Math.random() * ((6 - 1) + 1)));

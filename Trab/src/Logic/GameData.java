@@ -160,7 +160,9 @@ public class GameData implements Constants, Serializable {
                 break;
             default:
                 getPersonagem().getSpells().get(c - 1).Efeito(this, s);
+                addMsg("Foi romovido o SPELL "+ getPersonagem().getSpells().get(c - 1).nome());
                 getPersonagem().getSpells().remove(c - 1);
+                break;
 
         }
         if (getMonstroAlvo().getHP() <= 0) {
