@@ -28,21 +28,21 @@ public class Area implements Serializable {
     }
 
     public final void geraBaralho() {
-//        Baralho.add(new Monster(GameData));
-//        Baralho.add(new Treasure(GameData));
-//        Baralho.add(new Merchant(GameData));
-//        Baralho.add(new Resting(GameData));
-//        Baralho.add(new Event(GameData));
-//        Baralho.add(new Trap(GameData));
-Baralho.add(new Treasure(GameData));
-Baralho.add(new Monster(GameData));
-Baralho.add(new Monster(GameData));
-Baralho.add(new Monster(GameData));
-Baralho.add(new Monster(GameData));
-Baralho.add(new Monster(GameData));
+        Baralho.add(new Monster(GameData));
+        Baralho.add(new Treasure(GameData));
+        Baralho.add(new Merchant(GameData));
+        Baralho.add(new Resting(GameData));
+        Baralho.add(new Event(GameData));
+        Baralho.add(new Trap(GameData));
+//Baralho.add(new Treasure(GameData));
+//Baralho.add(new Monster(GameData));
+//Baralho.add(new Monster(GameData));
+//Baralho.add(new Monster(GameData));
+//Baralho.add(new Monster(GameData));
+//Baralho.add(new Monster(GameData));
 //TODO: METER NORAML (TESTES)
 
-        //Collections.shuffle(Baralho);
+        Collections.shuffle(Baralho);
 
         if (getGame().getCaverna().isLastArea()) 
             Baralho.add(new BossMonster(GameData));
