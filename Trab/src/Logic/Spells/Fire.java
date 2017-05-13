@@ -1,6 +1,7 @@
 package Logic.Spells;
 
 import Logic.GameData;
+import LogicaJogo.States.AwaitAttack;
 import LogicaJogo.States.IStates;
 import java.io.Serializable;
 
@@ -22,15 +23,15 @@ public class Fire extends Spell implements Serializable{
     }
 
     @Override
-    public IStates Efeito(GameData g, IStates s) {
-        if (!g.getMonstroAlvo().Deffend(8))
+    public IStates Efeito() {
+        if (!getGame().getMonstroAlvo().Deffend(8))
         {
-            return s;
+            return super.MonstroAtaca();
         }
-        else
+        else//se morre
         {
-            g.getCaverna().getAreaAtual().setMonsterDefeated(true);
-            return g.getMonstroAlvo().addRwd();
+            getGame().getCaverna().getAreaAtual().setMonsterDefeated(true);
+            return getGame().getMonstroAlvo().addRwd();
         }
     }
     

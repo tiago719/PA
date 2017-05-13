@@ -14,7 +14,7 @@ public class Ice extends Spell implements Serializable{
     @Override
     public String nome()
     {
-        return "Poison";
+        return "Ice";
     }
     
     @Override
@@ -23,8 +23,8 @@ public class Ice extends Spell implements Serializable{
     }
 
     @Override
-    public IStates Efeito(GameData g, IStates s) {
-        return new AwaitAttack(g);
+    public IStates Efeito() {
+        return new AwaitAttack(getGame());
     }
 
 }

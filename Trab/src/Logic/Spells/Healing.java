@@ -6,6 +6,7 @@
 package Logic.Spells;
 
 import Logic.GameData;
+import LogicaJogo.States.AwaitAttack;
 import LogicaJogo.States.IStates;
 import java.io.Serializable;
 
@@ -31,9 +32,9 @@ public class Healing extends Spell implements Serializable{
     }
 
     @Override
-    public IStates Efeito(GameData g, IStates s) {
-        g.getPersonagem().addHealth(8);
-        return s;
+    public IStates Efeito() {
+        getGame().getPersonagem().addHealth(8);
+        return super.MonstroAtaca();
     }
     
     

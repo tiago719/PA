@@ -1,6 +1,9 @@
 package Logic.Spells;
 
+import Logic.Dado;
 import Logic.GameData;
+import LogicaJogo.States.AwaitAttack;
+import LogicaJogo.States.GameOver;
 import LogicaJogo.States.IStates;
 import java.io.Serializable;
 
@@ -13,11 +16,16 @@ public abstract class Spell implements Serializable {
     
     public abstract String nome();
    
-    public abstract IStates Efeito(GameData g, IStates s);
+    public abstract IStates Efeito();
     
     public GameData getGame()
     {
         return gd;
     }
+    
+    public IStates MonstroAtaca(){
+        return gd.MonstroAtaca();
+    }
+
     
 }
