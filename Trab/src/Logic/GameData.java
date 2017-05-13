@@ -147,19 +147,19 @@ public class GameData implements Constants, Serializable {
         return new AwaitCardCardSelectionOnCurrentColumn(this);
     }
 
-    public boolean AS_ChooseSpell(int c, IStates s) {
+    public IStates AS_ChooseSpell(int c, IStates s) {
+        IStates temp=s;
         switch (c) {
             case -1:
                 //TODO: menssagem de erro
                 break;
             case -2:
-                //TODO: sem spells
-                break;
+                return s.ProxRonda();
             case 0:
                 //TODO: nao usou nenhum spell dos que tinha
                 break;
             default:
-                getPersonagem().getSpells().get(c - 1).Efeito(this, s);
+                temp = getPersonagem().getSpells().get(c - 1).Efeito(this, s);
                 addMsg("Foi romovido o SPELL "+ getPersonagem().getSpells().get(c - 1).nome());
                 getPersonagem().getSpells().remove(c - 1);
                 break;
@@ -167,9 +167,9 @@ public class GameData implements Constants, Serializable {
         }
         if (getMonstroAlvo().getHP() <= 0) {
             getCaverna().getAreaAtual().setMonsterDefeated(true);
-            return true;
+            return new GameOver(this);
         } else {
-            return false;
+            return temp;
         }
     }
 

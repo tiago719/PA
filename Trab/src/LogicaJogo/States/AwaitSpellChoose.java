@@ -20,16 +20,16 @@ public class AwaitSpellChoose extends StateAdapter implements IStates, Serializa
         super(g);
     }
 
-    @Override
-    public IStates EndBattle() {
-        getGame().addMsg("O monstro foi derrotado\n");
-        
-        if(getGame().getCaverna().getNumArea()==14 && getGame().getMonstroAlvo() instanceof BossMonster)
-            return new GameOver(getGame());
-        
-        return new AwaitCardCardSelectionOnCurrentColumn(getGame());
-
-    }
+//    @Override
+//    public IStates EndBattle() {
+//        getGame().addMsg("O monstro foi derrotado\n");
+//        
+//        if(getGame().getCaverna().getNumArea()==14 && getGame().getMonstroAlvo() instanceof BossMonster)
+//            return new GameOver(getGame());
+//        
+//        return new AwaitCardCardSelectionOnCurrentColumn(getGame());
+//
+//    }
 
     @Override
     public IStates ProxRonda() {

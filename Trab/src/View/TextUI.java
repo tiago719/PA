@@ -491,13 +491,8 @@ public class TextUI
             }
 
         } while (c < 0 || c > i);
-        if (jogo.AS_ChooseSpell(c))
-        {
-            jogo.EndBatle();
-        } else
-        {
-            jogo.ProxRonda();
-        }
+        jogo.AS_ChooseSpell(c);
+        
 
     }
 
