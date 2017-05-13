@@ -5,83 +5,62 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Area implements Serializable
-{
+public class Area implements Serializable {
 
     private ArrayList<Carta> Baralho;
     private GameData GameData;
     private boolean MonsterDefeated;
     private int coluna;
 
-    public Area(GameData g)
-    {
+    public Area(GameData g) {
         GameData = g;
         Baralho = new ArrayList<>();
         geraBaralho();
         MonsterDefeated = false;
-        Collections.shuffle(Baralho);
-        ordena();
         coluna = 1;
     }
 
-    public Area(GameData GameData, ArrayList<Carta> baralho, boolean MonsterDefeated, int coluna)
-    {
+    public Area(GameData GameData, ArrayList<Carta> baralho, boolean MonsterDefeated, int coluna) {
         Baralho = baralho;
         this.GameData = GameData;
         this.MonsterDefeated = MonsterDefeated;
         this.coluna = coluna;
     }
 
-    public final void geraBaralho()
-    {
-        Baralho.add(new Monster(GameData));
-        Baralho.add(new Treasure(GameData));
-        Baralho.add(new Merchant(GameData));
-        Baralho.add(new Resting(GameData));
-        Baralho.add(new Event(GameData));
-        Baralho.add(new Trap(GameData));
-        if (GameData.getCaverna().isLastArea())
-        {
+    public final void geraBaralho() {
+//        Baralho.add(new Monster(GameData));
+//        Baralho.add(new Treasure(GameData));
+//        Baralho.add(new Merchant(GameData));
+//        Baralho.add(new Resting(GameData));
+//        Baralho.add(new Event(GameData));
+//        Baralho.add(new Trap(GameData));
+Baralho.add(new Treasure(GameData));
+Baralho.add(new Monster(GameData));
+Baralho.add(new Monster(GameData));
+Baralho.add(new Monster(GameData));
+Baralho.add(new Monster(GameData));
+Baralho.add(new Monster(GameData));
+//TODO: METER NORAML (TESTES)
+
+        //Collections.shuffle(Baralho);
+
+        if (getGame().getCaverna().isLastArea()) 
             Baralho.add(new BossMonster(GameData));
-            //GameData.setBossMonster(bm);
-        }
-        //TODO: adicionar todas cartas
+        
     }
 
-    public void ordena()
-    {
-        if (getGame().getCaverna().isLastArea())
-        {
-            Carta temp;
-            for (int i = 0; i < Baralho.size(); i++)
-            {
-                if (Baralho.get(i) instanceof BossMonster)
-                {
-                    temp=Baralho.get(6);
-                    Baralho.set(6,Baralho.get(i));
-                    Baralho.set(i, temp);
-                    return;
-                }
-            }
-        }
-    }
-
-    public GameData getGame()
-    {
+    public GameData getGame() {
         return GameData;
     }
 
-    public Carta getCartaBaralho(int i)
-    {
+    public Carta getCartaBaralho(int i) {
         return Baralho.get(i);
     }
 
-    public ArrayList<Carta> getCartasColuna()
-    {
+    public ArrayList<Carta> getCartasColuna() {
         ArrayList<Carta> c = new ArrayList<>();
 
-        switch (getGame().getCaverna().getAreaAtual().getColuna())
-        {
+        switch (getGame().getCaverna().getAreaAtual().getColuna()) {
             case 1:
                 c.add(Baralho.get(0));
                 break;
@@ -103,45 +82,36 @@ public class Area implements Serializable
         return c;
     }
 
-    public boolean getMonsterDefeated()
-    {
+    public boolean getMonsterDefeated() {
         return MonsterDefeated;
     }
 
-    public void setMonsterDefeated(boolean b)
-    {
+    public void setMonsterDefeated(boolean b) {
         MonsterDefeated = b;
     }
 
-    public void setBaralho(ArrayList<Carta> b)
-    {
+    public void setBaralho(ArrayList<Carta> b) {
         this.Baralho = b;
     }
 
-    public ArrayList<Carta> getBaralho()
-    {
+    public ArrayList<Carta> getBaralho() {
         return Baralho;
     }
 
-    public int getColuna()
-    {
+    public int getColuna() {
         return coluna;
     }
 
-    public boolean proxColuna()
-    {
+    public boolean proxColuna() {
         int ultimaColuna = 4;
-        if (getGame().getCaverna().isLastArea())
-        {
+        if (getGame().getCaverna().isLastArea()) {
             ultimaColuna = 5;
         }
 
-        if (coluna < ultimaColuna)
-        {
+        if (coluna < ultimaColuna) {
             coluna++;
             return true;
-        } else
-        {
+        } else {
             coluna = 1;
             return getGame().getCaverna().proxArea();
         }

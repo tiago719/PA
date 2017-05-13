@@ -131,10 +131,10 @@ public class StateAdapter implements IStates, Serializable{
         return this;
     }
 
-    @Override
-    public IStates EndBattle() {
-        return this;
-    }
+//    @Override
+//    public IStates EndBattle() {
+//        return this;
+//    }
 
     @Override
     public IStates ProxRonda() {

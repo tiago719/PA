@@ -35,7 +35,7 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
     @Override
     public IStates ResolveSelectedTreasureCard() {
         int ran = 1 + (int) (Math.random() * ((6 - 1) + 1));
-
+        ran = 4 ; //TODO: TIRAR TESTES
         getGame().addMsg("Resultado do lancamento do dado: " + ran + "\n");
 
         if (getGame().getCaverna().getAreaAtual().getMonsterDefeated()) {

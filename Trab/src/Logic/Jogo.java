@@ -70,9 +70,9 @@ public class Jogo implements Serializable {
         setState(getState().GameOver());
     }
 
-    public void EndBatle() {
-        setState(getState().EndBattle());
-    }
+//    public void EndBatle() {
+//        setState(getState().EndBattle());
+//    }
 
     public void ProxRonda() {
         setState(getState().ProxRonda());
@@ -163,8 +163,8 @@ public class Jogo implements Serializable {
         return gameData.getCaverna().getAreaAtual().getCartasColuna();
     }
 
-    public boolean AS_ChooseSpell(int c) {
-        return gameData.AS_ChooseSpell(c, state);
+    public void AS_ChooseSpell(int c) {
+        state = gameData.AS_ChooseSpell(c, state);
     }
 
     public boolean AnyCritical() {

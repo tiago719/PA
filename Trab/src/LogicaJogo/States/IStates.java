@@ -50,7 +50,7 @@ public interface IStates {
     IStates VoltaAwaitAttack();
             
     //spells
-    IStates EndBattle();
+    //IStates EndBattle();
     IStates ProxRonda();
 
     IStates GameOver();
