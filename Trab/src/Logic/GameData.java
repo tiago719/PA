@@ -5,6 +5,7 @@ import LogicaJogo.States.AwaitCardCardSelectionOnCurrentColumn;
 import LogicaJogo.States.IStates;
 import java.util.ArrayList;
 import Logic.Spells.*;
+import LogicaJogo.States.AwaitAttack;
 import LogicaJogo.States.GameOver;
 import java.io.Serializable;
 
@@ -154,23 +155,18 @@ public class GameData implements Constants, Serializable {
                 //TODO: menssagem de erro
                 break;
             case -2:
-                return s.ProxRonda();
+                return MonstroAtaca();
             case 0:
                 //TODO: nao usou nenhum spell dos que tinha
                 break;
             default:
-                temp = getPersonagem().getSpells().get(c - 1).Efeito(this, s);
+                temp = getPersonagem().getSpells().get(c - 1).Efeito();
                 addMsg("Foi romovido o SPELL "+ getPersonagem().getSpells().get(c - 1).nome());
                 getPersonagem().getSpells().remove(c - 1);
                 break;
 
         }
-        if (getMonstroAlvo().getHP() <= 0) {
-            getCaverna().getAreaAtual().setMonsterDefeated(true);
-            return new GameOver(this);
-        } else {
-            return temp;
-        }
+        return temp;
     }
 
     public String getMsg() {
@@ -181,6 +177,23 @@ public class GameData implements Constants, Serializable {
 
     public void addMsg(String s) {
         msg += s;
+    }
+    
+    public IStates MonstroAtaca(){
+        //Monstro ataca
+
+        int dmg = getMonstroAlvo().getDmg();
+
+        int armor = getPersonagem().getArmor();
+
+        int retirar = (dmg - armor);
+        if (retirar > 0 && !getPersonagem().loseHp(retirar)) {
+            return new GameOver(this);
+        }
+        for (Dado d : getDados()){
+            d.lancaDado();
+        }
+        return new AwaitAttack(this);
     }
 
 //   public void clearMsg() {

@@ -5,7 +5,6 @@
  */
 package LogicaJogo.States;
 
-import Logic.Cartas.BossMonster;
 import Logic.Dado;
 import Logic.GameData;
 import java.io.Serializable;
@@ -31,26 +30,26 @@ public class AwaitSpellChoose extends StateAdapter implements IStates, Serializa
 //
 //    }
 
-    @Override
-    public IStates ProxRonda() {
-        //Monstro ataca
-
-        int dmg = getGame().getMonstroAlvo().getDmg();
-
-        int armor = getGame().getPersonagem().getArmor();
-
-        int retirar = (dmg - armor);
-        if (retirar > 0) {
-            if (!getGame().getPersonagem().loseHp(retirar)) 
-            {
-                return new GameOver(getGame());
-            }
-        }
-        for (Dado d : getGame().getDados()){
-            d.lancaDado();
-        }
-        return new AwaitAttack(getGame());
-    }
+//    @Override
+//    public IStates ProxRonda() {
+//        //Monstro ataca
+//
+//        int dmg = getGame().getMonstroAlvo().getDmg();
+//
+//        int armor = getGame().getPersonagem().getArmor();
+//
+//        int retirar = (dmg - armor);
+//        if (retirar > 0) {
+//            if (!getGame().getPersonagem().loseHp(retirar)) 
+//            {
+//                return new GameOver(getGame());
+//            }
+//        }
+//        for (Dado d : getGame().getDados()){
+//            d.lancaDado();
+//        }
+//        return new AwaitAttack(getGame());
+//    }
     
     @Override
     public IStates GameOver()
