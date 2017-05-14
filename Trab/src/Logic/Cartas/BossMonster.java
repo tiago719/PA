@@ -90,7 +90,7 @@ public class BossMonster extends AdaptadorCartas implements Serializable{
             getGame().getPersonagem().addGold(GoldRwd);
             getGame().getPersonagem().addXP(XpRwd);
             getGame().addMsg("Derrotou o Boss Monster. Vai receber as seguintes recompensas:\n" + XpRwd + " de XP\n" + GoldRwd + " de Gold\n Treasure Time!\n");
-            return getGame().Treasure();//TODO: MANDAR PARA TREASURE
+            return getGame().Treasure();
             
         }
 

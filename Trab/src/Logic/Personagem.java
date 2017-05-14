@@ -6,16 +6,14 @@ import LogicaJogo.States.IStates;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public final class Personagem implements Serializable
-{
+public final class Personagem implements Serializable {
 
     private final GameData gd;
     private boolean poison;
     private int armor, hp, gold, food, rank, xp;
     private ArrayList<Spell> spells;
 
-    public Personagem(int dificuldade, GameData gamedata)
-    {
+    public Personagem(int dificuldade, GameData gamedata) {
         setStats(dificuldade);
         spells = new ArrayList<>();
         rank = 1;
@@ -23,110 +21,87 @@ public final class Personagem implements Serializable
         gd = gamedata;
     }
 
-    public int getArmor()
-    {
+    public int getArmor() {
         return armor;
     }
 
-    public void setArmor(int armor)
-    {
+    public void setArmor(int armor) {
         this.armor = armor;
     }
 
-    public int getHp()
-    {
+    public int getHp() {
         return hp;
     }
 
-    public void setHp(int hp)
-    {
+    public void setHp(int hp) {
         this.hp = hp;
     }
 
-    public int getGold()
-    {
+    public int getGold() {
         return gold;
     }
 
-    public void setGold(int gold)
-    {
+    public void setGold(int gold) {
         this.gold = gold;
     }
 
-    public int getFood()
-    {
+    public int getFood() {
         return food;
     }
 
-    public void setFood(int food)
-    {
+    public void setFood(int food) {
         this.food = food;
     }
 
-    public int getRank()
-    {
+    public int getRank() {
         return rank;
     }
 
-    public void setRank(int rank)
-    {
+    public void setRank(int rank) {
         this.rank = rank;
     }
 
-    public boolean addFood(int i)
-    {
-        if (i < 0)
-        {
+    public boolean addFood(int i) {
+        if (i < 0) {
             return false;
         }
-        if (food + i <= 6)
-        {
+        if (food + i <= 6) {
             food += i;
             return true;
-        } else
-        {
+        } else {
             food = 6;
             gd.addMsg("Nao pode obter mais FOOD\n");
             return false;
         }
     }
 
-    public boolean addHealth(int i)
-    {
-        if (i < 0)
-        {
+    public boolean addHealth(int i) {
+        if (i < 0) {
             return false;
         }
-        if (hp + i <= 20)
-        {
+        if (hp + i <= 20) {
             hp += i;
             return true;
-        } else
-        {
+        } else {
             hp = 20;
             gd.addMsg("Nao pode obter mais HEALTH");
             return false;
         }
     }
 
-    public boolean addXP(int i)
-    { //TODO: retorna sempre true; Considerar mudar de boolean para void
+    public boolean addXP(int i) {
         int aux;
         //se rank = 4 adiciona 1hp
-        if (rank == 4)
-        {
+        if (rank == 4) {
             addHealth(1);
             gd.addMsg("Limite de XP atingido, adicionado 1 HP!");
             return true;
         } //se esta a retirar xp
-        else if (i < 0)
-        {
+        else if (i < 0) {
             //se baixa de rank
-            if (xp + i < 0)
-            {
+            if (xp + i < 0) {
                 //se esta no 1º rank
-                if (rank == 1)
-                {
+                if (rank == 1) {
                     xp = 0;
                     return true;
                 }
@@ -134,166 +109,116 @@ public final class Personagem implements Serializable
                 aux = xp + i;
                 xp = 6 + aux;//continua com 6xp do rank anterior - o xp retirado a mais do rank atual(6 + (1 - 3))
             } //se nao passa para rank anterior
-            else
-            {
+            else {
                 xp += i;
             }
 
             gd.addMsg("A personagem tem agora " + xp + " XP e esta no rank " + rank + "\n");
         } //se passa para rank seguinte
-        else if (xp + i >= 6)
-        {
+        else if (xp + i >= 6) {
             gd.addDado();
             gd.addMsg("Foi adicionado um novo dado a personagem\n");
             rank++;
-            if (xp + i > 6)
-            {
+            if (xp + i > 6) {
                 xp = xp + i - 6;//fica com o xp recebido a mais (5+2=7   7-6 = 1 <- fica com 1xp)
             } //se xp + i = 6
-            else
-            {
+            else {
                 xp = 0;
             }
             gd.addMsg("A personagem tem agora " + xp + " XP e esta no rank " + rank + "\n");
 
         } //se nao passa para prox rank
-        else
-        {
+        else {
             //gd.addMsg("Foi adicionado " + i + " XP\n");
             xp += i;
         }
         return true;
     }
 
-    public boolean addGold(int g)
-    {
-        if (g < 0)
-        {
+    public boolean addGold(int g) {
+        if (g < 0) {
             return false;
-        } else if (gold + g <= 20)
-        {
+        } else if (gold + g <= 20) {
             gold += g;
             return true;
-        } else
-        {
+        } else {
             gold = 20;
             gd.addMsg("Nao pode ganhar mais GOLD");
             return false;
         }
     }
 
-    public boolean addArmor(int a)
-    {
-        if (a < 0)
-        {
+    public boolean addArmor(int a) {
+        if (a < 0) {
             return false;
-        } else if (armor + a <= 5)
-        {
+        } else if (armor + a <= 5) {
             armor += a;
             return true;
-        } else
-        {
+        } else {
             armor = 5;
             gd.addMsg("Nao pode obter mais ARMOR");
             return false;
         }
     }
 
-    public void setStats(int dificuldade)
-    {
+    public void setStats(int dificuldade) {
         armor = NivelDificuldade[dificuldade - 1][0];
         hp = NivelDificuldade[dificuldade - 1][1];
         gold = NivelDificuldade[dificuldade - 1][2];
         food = NivelDificuldade[dificuldade - 1][3];
     }
 
-    public boolean buyRation()
-    {
-        if (gold >= 1)
-        {
-            if (addFood(1))
-            {
+    public void buyRation() {
+        if (gold >= 1) {
+            if (addFood(1)) {
                 gold--;
-                return true;
             }
-            return false;
-        } else
-        {
+        } else {
             gd.addMsg("GOLD Insuficiente");
-            return false;
         }
     }
 
-    public boolean buyPotion()
-    {
-        if (gold >= 1)
-        {
-            if (addHealth(1))
-            {
+    public void buyPotion() {
+        if (gold >= 1) {
+            if (addHealth(1)) {
                 gold--;
-                return true;
             }
-            return false;
-        } else
-        {
+        } else {
             gd.addMsg("GOLD Insuficiente");
-            return false;
         }
     }
 
-    public boolean buyBigPotion()
-    {
-        if (gold >= 3)
-        {
-            if (addHealth(4))
-            {
+    public void buyBigPotion() {
+        if (gold >= 3) {
+            if (addHealth(4)) {
                 gold -= 3;
-                return true;
             }
-            return false;
-        } else
-        {
+        } else {
             gd.addMsg("GOLD Insuficiente");
-            return false;
         }
     }
 
-    public boolean buyArmor()
-    {
-        if (gold >= 6)
-        {
-            if (addArmor(1))
-            {
+    public void buyArmor() {
+        if (gold >= 6) {
+            if (addArmor(1)) {
                 gold -= 6;
-                return true;
             }
-            return false;
-        } else
-        {
+        } else {
             gd.addMsg("GOLD Insuficiente");
-            return false;
         }
     }
 
-    public boolean sellArmor()
-    {
-        if (armor > 0)
-        {
-            if (addGold(4))
-            {
+    public void sellArmor() {
+        if (armor > 0) {
+            if (addGold(4)) {
                 armor--;
-                return true;
             }
-            return false;
         }
         gd.addMsg("Nao tem Armor");
-        return false;
     }
 
-    public void addSpell(Spell s)
-    {
-        if(spells.size()>=2)
-        {
+    public void addSpell(Spell s) {
+        if (spells.size() >= 2) {
             int rand = 0 + (int) (Math.random() * ((1 - 0) + 0));
             spells.remove(rand);
             spells.add(s);
@@ -302,18 +227,15 @@ public final class Personagem implements Serializable
         spells.add(s);
     }
 
-    public boolean buyAnySpell()
-    {
+    public void buyAnySpell() {
         int rand = 1 + (int) (Math.random() * ((4 - 1) + 1));
         gd.addMsg("Resultado do lancamento do dado: " + rand);
 
-        if ((gold - 8) < 0)
-        {
-            return false;
+        if ((gold - 8) < 0) {
+            gd.addMsg("GOLD Insuficiente");
         }
 
-        switch (rand)
-        {
+        switch (rand) {
             case 1:
                 addSpell(new Fire(gd));
                 break;
@@ -328,51 +250,25 @@ public final class Personagem implements Serializable
                 break;
         }
         gold -= 8;
-        return true;
     }
 
-    public boolean sellAnySpell()
-    {//TODO: este algoritmo nao esta muito bom, mas antes dava erro - se quiseres podes mudar
-        if (!spells.isEmpty())
-        {
-            Spell temp;
-            if(spells.size()==1)
-            {
-                spells.remove(0);
-            }
-            else
-            {
-                int rand= 0 + (int) (Math.random() * ((spells.size() - 0) + 1));
-                if(rand==0)
-                {
-                    temp = spells.get(rand);
-                    spells.remove(0);
-                    gd.addMsg("Foi removido o spell " + temp.nome() + ".\n");
+    public void sellAnySpell() {
+        int rand;
+        if (!spells.isEmpty()) {
+            rand = (int) (Math.random() * (spells.size() - 1 - 0)) + 0;
 
-                }
-                else if(rand==1)
-                {
-                    temp = spells.get(1);
-                    spells.remove(1);
-                    gd.addMsg("Foi removido o spell " + temp.nome() + ".\n");
-        
-                }
-            }
-//            int rand = 0 + (int) (Math.random() * ((spells.size() - 0) + 1));
+            gd.addMsg("Foi removido o spell " + spells.get(rand) + ".\n");
+            spells.remove(rand);
+
             gold += 4;
-            return true;
         }
 
         gd.addMsg("Nao tem spells para vender.\n");
-        return false;
     }
 
-    public boolean Healing(IStates s)
-    {
-        for (int i = 0; i < spells.size(); i++)
-        {
-            if (spells.get(i) instanceof Healing)
-            {
+    public boolean Healing(IStates s) {
+        for (int i = 0; i < spells.size(); i++) {
+            if (spells.get(i) instanceof Healing) {
                 spells.get(i).Efeito();
                 spells.remove(i);
                 return true;
@@ -381,113 +277,86 @@ public final class Personagem implements Serializable
         return false;
     }
 
-    public boolean loseFood(int f)
-    {
-        if (f <= 0)
-        {
+    public boolean loseFood(int f) {
+        if (f <= 0) {
             return false;
         }
-        if (food - f < 0)
-        {
+        if (food - f < 0) {
             return false;
-        } else
-        {
+        } else {
             food -= f;
             return true;
         }
     }
 
-    public boolean TradeXpForFeat()
-    {
-        if (xp <= 0)
-        {
-            if (rank == 1)
-            {
+    public boolean TradeXpForFeat() {
+        if (xp <= 0) {
+            if (rank == 1) {
                 return false;
-            } else
-            {
+            } else {
                 xp = 5;
                 rank--;
                 return true;
             }
-        } else
-        {
+        } else {
             xp--;
             return true;
         }
     }
 
-    public boolean loseGold(int g)
-    {
-        if (g <= 0)
-        {
+    public boolean loseGold(int g) {
+        if (g <= 0) {
             return false;
         }
-        if (gold - g < 0)
-        {
+        if (gold - g < 0) {
             return false;
-        } else
-        {
+        } else {
             gold -= g;
             return true;
         }
     }
 
-    public boolean loseArmor(int a)
-    {
-        if (a <= 0)
-        {
+    public boolean loseArmor(int a) {
+        if (a <= 0) {
             return false;
         }
-        if (armor - a < 0)
-        {
+        if (armor - a < 0) {
             return false;
-        } else
-        {
+        } else {
             armor -= a;
             return true;
         }
     }
 
-    public boolean loseHp(int h)
-    {
-        if (hp - h <= 0)
-        {
+    public boolean loseHp(int h) {
+        if (hp - h <= 0) {
             hp = 0;
             return false;
-        } else
-        {
+        } else {
             hp -= h;
             return true;
         }
     }
 
-    public ArrayList<Spell> getSpells()
-    {
+    public ArrayList<Spell> getSpells() {
         return spells;
     }
 
-    public int getXp()
-    {
+    public int getXp() {
         return xp;
     }
 
-    public boolean hasPoison()
-    {
+    public boolean hasPoison() {
         return poison;
     }
 
-    public void setPoison(boolean p)
-    {
+    public void setPoison(boolean p) {
         poison = p;
     }
 
-    public boolean hasHeal()
-    {
-        for (int i = 0; i < spells.size(); i++)
-        {
-            if (spells.get(i) instanceof Healing)
-            {
+    public boolean hasHeal() {
+        for (int i = 0; i < spells.size(); i++) {
+            if (spells.get(i) instanceof Healing) {
                 return true;
             }
         }
@@ -496,8 +365,7 @@ public final class Personagem implements Serializable
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         String s = "Personagem: \n";
         s += "HP: " + hp + "\n";
         s += "Armor: " + armor + "\n";
@@ -505,10 +373,9 @@ public final class Personagem implements Serializable
         s += "Food: " + food + "\n";
         s += "Rank: " + rank + "\n";
         s += "XP: " + xp + "\n";
-        s+="Spells:\n";
+        s += "Spells:\n";
 
-        for (Spell d : getSpells())
-        {
+        for (Spell d : getSpells()) {
             s += "Spell " + d + "\n";
         }
         return s;

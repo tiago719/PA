@@ -94,7 +94,7 @@ public class StateAdapter implements IStates, Serializable{
     }
 
     @Override
-    public IStates OptionSelected() {
+    public IStates OptionSelected(int i) {
         return this;
     }
     
@@ -162,5 +162,10 @@ public class StateAdapter implements IStates, Serializable{
 //    public IStates ResolveSelectedBossMonsterCard(Carta c) {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 //    }
+
+    @Override
+    public IStates BuySellMerchant(int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

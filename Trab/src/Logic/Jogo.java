@@ -3,6 +3,7 @@ package Logic;
 import Logic.Cartas.Carta;
 import Logic.Spells.Spell;
 import LogicaJogo.States.AwaitBegining;
+import LogicaJogo.States.AwaitCardCardSelectionOnCurrentColumn;
 import LogicaJogo.States.IStates;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -32,8 +33,6 @@ public class Jogo implements Serializable {
         state = s;
     }
 
-    //TODO: QUERES MANTER ESTE COMENTARIO?
-    //Methods that are intended to be used by the user interfaces and that are delegated in the current state of the finite state machine 
     public void setDifficultLevel(Integer valueOf) {
         setState(getState().setDifficultLevel(valueOf));
     }
@@ -46,12 +45,15 @@ public class Jogo implements Serializable {
         setState(getState().start());
     }
 
-    public void RestingOptionSelected() {
-        setState(getState().OptionSelected());
+    public void RestingOptionSelected(int i) {
+        setState(getState().OptionSelected(i));
     }
 
-    public void MerchantOptionSelected() {
-        setState(getState().skipMerchant());
+    public void MerchantOptionSelected(int i) {
+        if (i==8)
+            setState(getState().skipMerchant());
+        else
+            setState(getState().BuySellMerchant(i));
     }
 
     public void AtacaMonstro() {
@@ -69,10 +71,6 @@ public class Jogo implements Serializable {
     public void GameOver() {
         setState(getState().GameOver());
     }
-
-//    public void EndBatle() {
-//        setState(getState().EndBattle());
-//    }
 
     public void ProxRonda() {
         setState(getState().ProxRonda());
@@ -102,8 +100,6 @@ public class Jogo implements Serializable {
         setState(getState().ResolveSelectedRestingCard());
     }
 
-
-    // Methods retrieve data from the game
     public boolean AA_Reroll(int c) {
         if (gameData.getDados().size() < c || c <= 0) {
             return false;
@@ -179,59 +175,51 @@ public class Jogo implements Serializable {
         return gameData.getDados().get(i);
     }
 
-    public void AOS_OptionSelected(int i) {
-        switch (i) {
-            case 1:
-                gameData.getPersonagem().addXP(1);
-                break;
-            case 2:
-                gameData.getPersonagem().addFood(1);
-                break;
-            case 3:
-                gameData.getPersonagem().addHealth(2);
-                break;
-
-        }
-    }
-
-    public boolean AOS_TraidingSelection(int i) {
-        switch (i) {
-            case 1:
-                return gameData.getPersonagem().buyRation();
-            case 2:
-                return gameData.getPersonagem().buyPotion();
-            case 3:
-                return gameData.getPersonagem().buyBigPotion();
-            case 4:
-                return gameData.getPersonagem().buyArmor();
-            case 5:
-                return gameData.getPersonagem().buyAnySpell();
-            case 6:
-                return gameData.getPersonagem().sellArmor();
-            case 7:
-                return gameData.getPersonagem().sellAnySpell();
-        }
-        return false;
-    }
+//    public void AOS_TraidingSelection(int i) {
+//        switch (i) {
+//            case 1:
+//                gameData.getPersonagem().buyRation();
+//                break;
+//            case 2:
+//                gameData.getPersonagem().buyPotion();
+//                break;
+//            case 3:
+//                gameData.getPersonagem().buyBigPotion();
+//                break;
+//            case 4:
+//                gameData.getPersonagem().buyArmor();
+//                break;
+//            case 5:
+//                gameData.getPersonagem().buyAnySpell();
+//                break;
+//            case 6:
+//                gameData.getPersonagem().sellArmor();
+//                break;
+//            case 7:
+//                gameData.getPersonagem().sellAnySpell();
+//                break;
+//            case 8:
+//                return new AwaitCardCardSelectionOnCurrentColumn(getGame());
+//                break;
+//        }
+//    }
 
     public int getHpPersonagem() {
         return gameData.getPersonagem().getHp();
     }
-    
-    public boolean hasHeal()
-    {
+
+    public boolean hasHeal() {
         return gameData.getPersonagem().hasHeal();
     }
-    
-    public void Healing()
-    {
+
+    public void Healing() {
         gameData.getPersonagem().Healing(state);
     }
 
     public void addMsg(String s) {
         gameData.addMsg(s);
     }
-    
+
     public String getMsg() {
         return gameData.getMsg();
     }
