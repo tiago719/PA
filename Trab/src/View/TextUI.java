@@ -224,7 +224,7 @@ public class TextUI {
 
             jogo.MerchantOptionSelected(c);
 
-        } while (c < 0 || c > 7);
+        } while (c < 0 || c > 8);
 
         System.out.println(jogo.getMsg());
 
@@ -294,7 +294,7 @@ public class TextUI {
                         }
 
                     } while (c < 1 || c > i);
-                    jogo.AA_Reroll(c);//TODO: interpretar erro
+                    jogo.AA_Reroll(c);
                     break;
             }
         } while (!end);
@@ -303,73 +303,49 @@ public class TextUI {
     private void uiAwaitFeats() {
         Scanner sc = new Scanner(System.in);
         String option1;
-        int c, e, i = 0;
-        boolean continuar = true;
+        int c, e, i;
+
         do {
+            i = 0;
+            System.out.println("\n"+jogo.getMsg()+"\n");
+            System.out.println("\nFeats: Escolha uma opcao\n");
+            System.out.println("ATENCAO: Custo: 2 HP ou 1 XP");
 
-            do {
-                i = 0;
-                System.out.println("\nFeats: Escolha uma opcao\n");
-                System.out.println("ATENCAO: Custo: 2 HP ou 1 XP");
+            System.out.println("0 : Sair");
 
-                System.out.println("0 : Sair");
-
-                System.out.println("Escolha o dado que pretende fazer Feat: ");
-                for (Dado d : jogo.getDados()) {
-                    System.out.println(++i + " : " + d);
-                }
-
-                System.out.println("\n0 - Sair ");
-
-                option1 = sc.next();
-
-                try {
-                    c = (int) Integer.parseInt(option1);
-                } catch (Exception ex) {
-                    c = -1;
-                    break;
-                }
-
-            } while (c < 0 || c > i);
-
-            if (c == 0) {
-                jogo.VoltaAwaitAttack();
-                return;
+            System.out.println("Escolha o dado que pretende fazer Feat: ");
+            for (Dado d : jogo.getDados()) {
+                System.out.println(++i + " : " + d);
             }
 
-            do {
-                System.out.println("Forma de pagamento: 2 HP ou 1 XP");
-                System.out.println("Opcao 1: 2 HP");
-                System.out.println("Opcao 2: 1 XP");
-                option1 = sc.next();
+            System.out.println("\n0 - Sair ");
 
-                try {
-                    e = (int) Integer.parseInt(option1);
-                } catch (Exception ex) {
-                    e = -1;
-                }
+            option1 = sc.next();
 
-            } while (e != 1 && e != 2);
-
-            switch (jogo.AA_Feat(c, e)) {
-                case -3:
-                    System.out.println("Nao tem xp suficiente");
-                    break;
-                case -2:
-                    jogo.GameOver();
-                    continuar = false;
-                    break;
-                case -1:
-                    System.out.println("Quando um dado foi lancado novamente atraves de um Feat, nao e possivel voltar a lancar");
-                    continuar = true;
-                    break;
-                case 1:
-                    System.out.println("Sucesso a featar o dado");
-                    jogo.VoltaAwaitAttack();
-                    continuar = false;
-                    break;
+            try {
+                c = (int) Integer.parseInt(option1);
+            } catch (Exception ex) {
+                c = -1;
+                break;
             }
-        } while (continuar);
+
+        } while (c < 0 || c > i);
+
+        do {
+            System.out.println("Forma de pagamento: 2 HP ou 1 XP");
+            System.out.println("Opcao 1: 2 HP");
+            System.out.println("Opcao 2: 1 XP");
+            option1 = sc.next();
+
+            try {
+                e = (int) Integer.parseInt(option1);
+            } catch (Exception ex) {
+                e = -1;
+            }
+
+        } while (e != 1 && e != 2);
+
+        jogo.FeatsOptionSelected(c, e);
     }
 
     private void uiAwaitSpellChoose() {

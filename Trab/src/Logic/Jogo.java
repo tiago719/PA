@@ -64,8 +64,11 @@ public class Jogo implements Serializable {
         setState(getState().Feats());
     }
 
-    public void VoltaAwaitAttack() {
-        setState(getState().VoltaAwaitAttack());
+    public void FeatsOptionSelected(int d, int custo) {
+        if (d == 0)
+            setState(getState().VoltaAwaitAttack());
+        else
+            setState(getState().FeatSelected(d, custo));
     }
 
     public void GameOver() {
@@ -107,6 +110,7 @@ public class Jogo implements Serializable {
 
         Dado temp = gameData.getDado(c - 1);
         if (temp.getFace() != 6) {
+            getGame().addMsg("Dado escolhido nao Critico.");
             return false;
         }
         gameData.getDado(c - 1).lancaDado();
