@@ -27,7 +27,7 @@ public interface IStates {
     //merchant
     IStates ResolveSelectedMerchantCard();
     IStates skipMerchant();
-    IStates BuySellMerchant();
+    IStates BuySellMerchant(int i);
     
     //event
     IStates ResolveSelectedEventCard(Carta c);
@@ -49,6 +49,8 @@ public interface IStates {
             
     //feats
     IStates VoltaAwaitAttack();
+    IStates FeatSelected(int d, int custo);
+
             
     //spells
     //IStates EndBattle();

@@ -3,7 +3,6 @@ package Logic;
 import Logic.Cartas.Carta;
 import Logic.Spells.Spell;
 import LogicaJogo.States.AwaitBegining;
-import LogicaJogo.States.AwaitCardCardSelectionOnCurrentColumn;
 import LogicaJogo.States.IStates;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -64,8 +63,11 @@ public class Jogo implements Serializable {
         setState(getState().Feats());
     }
 
-    public void VoltaAwaitAttack() {
-        setState(getState().VoltaAwaitAttack());
+    public void FeatsOptionSelected(int d, int custo) {
+        if (d == 0)
+            setState(getState().VoltaAwaitAttack());
+        else
+            setState(getState().FeatSelected(d, custo));
     }
 
     public void GameOver() {
@@ -107,40 +109,11 @@ public class Jogo implements Serializable {
 
         Dado temp = gameData.getDado(c - 1);
         if (temp.getFace() != 6) {
+            getGame().addMsg("Dado escolhido nao Critico.");
             return false;
         }
         gameData.getDado(c - 1).lancaDado();
         return true;
-    }
-
-    // 1 sucesso
-    // -1 feated
-    // -2 gameOver
-    // -3 nao tem xp
-    public int AA_Feat(int d, int custo) {
-        Dado temp = gameData.getDado(d - 1);
-
-        if (temp.getFeated()) {
-            return -1;
-        }
-
-        switch (custo) {
-            case 1:
-                if (!gameData.getPersonagem().loseHp(2)) {
-                    return -2;
-                }
-                break;
-            case 2:
-                if (!gameData.getPersonagem().TradeXpForFeat()) {
-                    return -3;
-                }
-                break;
-        }
-
-        gameData.getDado(d - 1).setFeated(true);
-        gameData.getDado(d - 1).clearSomatorio();
-        gameData.getDado(d - 1).lancaDado();
-        return 1;
     }
 
     public ArrayList<Spell> getSpells() {
@@ -174,35 +147,6 @@ public class Jogo implements Serializable {
     public Dado getDado(int i) {
         return gameData.getDados().get(i);
     }
-
-//    public void AOS_TraidingSelection(int i) {
-//        switch (i) {
-//            case 1:
-//                gameData.getPersonagem().buyRation();
-//                break;
-//            case 2:
-//                gameData.getPersonagem().buyPotion();
-//                break;
-//            case 3:
-//                gameData.getPersonagem().buyBigPotion();
-//                break;
-//            case 4:
-//                gameData.getPersonagem().buyArmor();
-//                break;
-//            case 5:
-//                gameData.getPersonagem().buyAnySpell();
-//                break;
-//            case 6:
-//                gameData.getPersonagem().sellArmor();
-//                break;
-//            case 7:
-//                gameData.getPersonagem().sellAnySpell();
-//                break;
-//            case 8:
-//                return new AwaitCardCardSelectionOnCurrentColumn(getGame());
-//                break;
-//        }
-//    }
 
     public int getHpPersonagem() {
         return gameData.getPersonagem().getHp();
