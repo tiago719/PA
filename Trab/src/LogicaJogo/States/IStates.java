@@ -19,7 +19,7 @@ public interface IStates {
     
     //Resting Card
     IStates ResolveSelectedRestingCard();
-    IStates OptionSelected();
+    IStates OptionSelected(int i);
     
     //treasure
     IStates ResolveSelectedTreasureCard();
@@ -27,6 +27,7 @@ public interface IStates {
     //merchant
     IStates ResolveSelectedMerchantCard();
     IStates skipMerchant();
+    IStates BuySellMerchant();
     
     //event
     IStates ResolveSelectedEventCard(Carta c);

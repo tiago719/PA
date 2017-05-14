@@ -35,7 +35,6 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
     @Override
     public IStates ResolveSelectedTreasureCard() {
         int ran = 1 + (int) (Math.random() * ((6 - 1) + 1));
-        ran = 4; //TODO: TIRAR TESTES
         getGame().addMsg("Resultado do lancamento do dado: " + ran + "\n");
 
         if (getGame().getCaverna().getAreaAtual().getMonsterDefeated()) {
@@ -124,7 +123,7 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
     public boolean skillCheck() {
         int ran = 1 + (int) (Math.random() * ((6 - 1) + 1));
 
-        if (ran <= getGame().getPersonagem().getRank())//TODO: maostrar ao utilizador o resultado
+        if (ran <= getGame().getPersonagem().getRank())
         {
             getGame().addMsg("Suceddo no Skill Check. A trap vai ser ignorada\n");
             return true;
@@ -206,7 +205,7 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
         if(!getGame().getCaverna().getAreaAtual().proxColuna())
             return new GameOver(getGame());
         
-        return this;//TODO
+        return this;
     }
 
     @Override
@@ -229,8 +228,5 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
 //        }
 //         return new AwaitAttack(getGame());
 //    }
-    @Override
-    public IStates OptionSelected() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
 }

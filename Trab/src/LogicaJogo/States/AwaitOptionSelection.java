@@ -31,7 +31,21 @@ public class AwaitOptionSelection extends StateAdapter implements IStates, Seria
 //    }
 
     @Override
-    public IStates OptionSelected() {
+    public IStates OptionSelected(int i) {
+         switch (i) {
+            case 1:
+                getGame().getPersonagem().addXP(1);
+                break;
+            case 2:
+                getGame().getPersonagem().addFood(1);
+                break;
+            case 3:
+                getGame().getPersonagem().addHealth(2);
+                break;
+
+        }
+        
+        
         if(!getGame().getCaverna().getAreaAtual().proxColuna())
             return new GameOver(getGame());
         
