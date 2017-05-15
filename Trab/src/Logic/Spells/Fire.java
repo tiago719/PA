@@ -30,8 +30,10 @@ public class Fire extends Spell implements Serializable{
         }
         else//se morre
         {
+            getGame().getPersonagem().setPoison(false);
             getGame().getCaverna().getAreaAtual().setMonsterDefeated(true);
             return getGame().getMonstroAlvo().addRwd();
+            
         }
     }
     

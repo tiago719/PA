@@ -35,6 +35,10 @@ public class Dado implements Serializable {
         totalDado=0;
     }
     
+    public void addSomatorio(int i){
+        totalDado+=i;
+    }
+    
     public boolean getFeated()
     {
         return feated;
@@ -59,7 +63,7 @@ public class Dado implements Serializable {
     
     @Override
     public String toString(){
-        return "Valor do Dado: " + face;
+        return "Face do Dado: " + face + " | Somatorio: " + totalDado;
     }
     
     

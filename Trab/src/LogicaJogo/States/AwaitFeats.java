@@ -42,8 +42,7 @@ public class AwaitFeats extends StateAdapter implements IStates, Serializable
             if (dado.getFeated())
                 cont++;
         }
-        if (cont == getGame().getDados().size() ){
-            getGame().addMsg("Nenhum dado disponivel para fazer Feat.");
+        if (getGame().AnyDiceNotFeated()){
             return new AwaitAttack(getGame());
         }
         
@@ -72,9 +71,10 @@ public class AwaitFeats extends StateAdapter implements IStates, Serializable
                 break;
         }
 
-        getGame().getDado(d - 1).setFeated(true);
-        getGame().getDado(d - 1).clearSomatorio();
-        getGame().getDado(d - 1).lancaDado();
+        temp.setFeated(true);
+        temp.addSomatorio(temp.getFace()*-1);
+        temp.lancaDado();
+        getGame().addMsg("Novo valor do dado "+ d +": "+temp.getFace()+".");
         return new AwaitFeats(getGame());
     }
     

@@ -139,6 +139,10 @@ public class Jogo implements Serializable {
     public boolean AnyCritical() {
         return gameData.AnyCritical();
     }
+    
+    public boolean AnyDiceNotFeated() {
+        return gameData.AnyDiceNotFeated();
+    }
 
     public ArrayList<Dado> getDados() {
         return gameData.getDados();

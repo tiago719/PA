@@ -113,6 +113,8 @@ public class Area implements Serializable {
             return true;
         } else {
             coluna = 1;
+            
+            
             return getGame().getCaverna().proxArea();
         }
     }
