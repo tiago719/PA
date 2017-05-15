@@ -114,8 +114,6 @@ public class Area implements Serializable {
         } else {
             coluna = 1;
             
-            if (!getGame().getPersonagem().loseFood(1))
-                getGame().getPersonagem().loseHp(2);
             
             return getGame().getCaverna().proxArea();
         }

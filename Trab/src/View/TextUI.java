@@ -113,11 +113,6 @@ public class TextUI {
         for (int i = 0; i < 50; i++) {
             System.out.println();
         }
-        
-        if (jogo.getPersonagem().getHp()<=0){//TODO: NAO DEVIA ESTAR AQUI TALVEZ
-            jogo.GameOver();
-            return;
-        }
             
 
         System.out.println(jogo);
