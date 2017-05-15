@@ -113,6 +113,12 @@ public class TextUI {
         for (int i = 0; i < 50; i++) {
             System.out.println();
         }
+        
+        if (jogo.getPersonagem().getHp()<=0){//TODO: NAO DEVIA ESTAR AQUI TALVEZ
+            jogo.GameOver();
+            return;
+        }
+            
 
         System.out.println(jogo);
         System.out.println("Escolha uma carta da coluna em que se encontra\n");
@@ -239,7 +245,7 @@ public class TextUI {
 
             do {
                 i = 0;
-                aux = 2;
+                aux = 1;
                 System.out.println(jogo.getPersonagem());
                 System.out.println(jogo.getMonstroAlvo());
                 System.out.println(jogo.getMsg());
@@ -250,11 +256,17 @@ public class TextUI {
                     System.out.println("Dado " + ++i + ": " + d);
                 }
 
+                System.out.println("0 - Sair");
+
                 System.out.println("1 - Atacar");
-                System.out.println("2 - Feats");
+
+                if (jogo.AnyDiceNotFeated()) {
+                    System.out.println(aux + " - Feats");
+                    aux++;
+                }
                 if (jogo.AnyCritical()) {
-                    System.out.println("3 - Reroll");
-                    aux = 3;
+                    System.out.println(aux + " - Reroll");
+                    aux++;
                 }
 
                 option1 = sc.next();
@@ -265,7 +277,11 @@ public class TextUI {
                     c = -1;
                 }
 
-            } while (c < 1 || c > aux);
+            } while (c < 0 || c > aux);
+
+            if (!jogo.AnyDiceNotFeated() && c == 2) {
+                c++;//c=3;
+            }
 
             switch (c) {
                 case 1:
@@ -278,10 +294,13 @@ public class TextUI {
                     break;
                 case 3:
                     do {
+                        System.out.println("0 - Sair");
                         System.out.println("Escolha o dado que pretende fazer reroll: ");
                         i = 0;
                         for (Dado d : jogo.getDados()) {
-                            System.out.println(++i + ": " + d);
+                            if (d.getFace() == 6) {
+                                System.out.println(++i + ": " + d);
+                            }
                         }
                         //TODO: adicionar opcao de sair/nao escolher dado
 
@@ -293,8 +312,10 @@ public class TextUI {
                             c = -1;
                         }
 
-                    } while (c < 1 || c > i);
-                    jogo.AA_Reroll(c);
+                    } while (c < 0 || c > i);
+                    if (c != 0) {
+                        jogo.AA_Reroll(c);
+                    }                        
                     break;
             }
         } while (!end);
@@ -307,7 +328,7 @@ public class TextUI {
 
         do {
             i = 0;
-            System.out.println("\n"+jogo.getMsg()+"\n");
+            System.out.println("\n" + jogo.getMsg() + "\n");
             System.out.println("\nFeats: Escolha uma opcao\n");
             System.out.println("ATENCAO: Custo: 2 HP ou 1 XP");
 

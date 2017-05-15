@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 public class GameData implements Constants, Serializable {
 
-    private int dificuldade, startingArea, coluna;
+    private int dificuldade, startingArea;
     private final Personagem Personagem;
     //private Monster MonstroAlvo;
     //private BossMonster BossMonstroAlvo;
@@ -39,7 +39,6 @@ public class GameData implements Constants, Serializable {
     public void setMonstroAlvo(Monster MonstroAlvo) {
         this.MonstroAlvo = MonstroAlvo;
     }*/
-
     public int getDificuldade() {
         return dificuldade;
     }
@@ -142,14 +141,15 @@ public class GameData implements Constants, Serializable {
                 addMsg("Recebeste o spell Healing\n");
                 break;
         }
-        if(!getCaverna().getAreaAtual().proxColuna())
+        if (!getCaverna().getAreaAtual().proxColuna()) {
             return new GameOver(this);
+        }
 
         return new AwaitCardCardSelectionOnCurrentColumn(this);
     }
 
     public IStates AS_ChooseSpell(int c, IStates s) {
-        IStates temp=s;
+        IStates temp = s;
         switch (c) {
             case -1:
                 //TODO: menssagem de erro
@@ -161,7 +161,7 @@ public class GameData implements Constants, Serializable {
                 break;
             default:
                 temp = getPersonagem().getSpells().get(c - 1).Efeito();
-                addMsg("Foi romovido o SPELL "+ getPersonagem().getSpells().get(c - 1).nome());
+                addMsg("Foi romovido o SPELL " + getPersonagem().getSpells().get(c - 1).nome());
                 getPersonagem().getSpells().remove(c - 1);
                 break;
 
@@ -178,8 +178,8 @@ public class GameData implements Constants, Serializable {
     public void addMsg(String s) {
         msg += s;
     }
-    
-    public IStates MonstroAtaca(){
+
+    public IStates MonstroAtaca() {
         //Monstro ataca
 
         int dmg = getMonstroAlvo().getDmg();
@@ -190,23 +190,24 @@ public class GameData implements Constants, Serializable {
         if (retirar > 0 && !getPersonagem().loseHp(retirar)) {
             return new GameOver(this);
         }
-        for (Dado d : getDados()){
+        for (Dado d : getDados()) {
             d.lancaDado();
         }
         return new AwaitAttack(this);
     }
 
-//   public void clearMsg() {
-//        msg = "\n";
-//    }
 
-    /*
-    void setMonster(Monster M) {
-        MonstroAlvo= M;
+    public boolean AnyDiceNotFeated() {
+        int cont = 0;
+        for (Dado dado : dados) {
+            if (dado.getFeated()) {
+                cont++;
+            }
+        }
+        if (cont == dados.size()) {
+            addMsg("Nenhum dado disponivel para fazer Feat.");
+            return false;
+        }
+        return true;
     }
-    
-    void setBossMonster(BossMonster BM)
-    {
-        BossMonstroAlvo=BM;
-    }*/
 }

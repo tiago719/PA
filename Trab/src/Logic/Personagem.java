@@ -91,6 +91,7 @@ public final class Personagem implements Serializable {
 
     public boolean addXP(int i) {
         int aux;
+        i=6;
         //se rank = 4 adiciona 1hp
         if (rank == 4) {
             addHealth(1);
@@ -119,12 +120,8 @@ public final class Personagem implements Serializable {
             gd.addDado();
             gd.addMsg("Foi adicionado um novo dado a personagem\n");
             rank++;
-            if (xp + i > 6) {
-                xp = xp + i - 6;//fica com o xp recebido a mais (5+2=7   7-6 = 1 <- fica com 1xp)
-            } //se xp + i = 6
-            else {
-                xp = 0;
-            }
+            xp = xp + i - 6;//fica com o xp recebido a mais (5+2=7   7-6 = 1 <- fica com 1xp)
+            
             gd.addMsg("A personagem tem agora " + xp + " XP e esta no rank " + rank + "\n");
 
         } //se nao passa para prox rank
