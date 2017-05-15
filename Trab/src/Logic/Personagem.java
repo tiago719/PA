@@ -266,7 +266,7 @@ public final class Personagem implements Serializable {
     public boolean Healing(IStates s) {
         for (int i = 0; i < spells.size(); i++) {
             if (spells.get(i) instanceof Healing) {
-                spells.get(i).Efeito();
+                addHealth(8);
                 spells.remove(i);
                 return true;
             }
