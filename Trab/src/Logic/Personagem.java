@@ -91,7 +91,7 @@ public final class Personagem implements Serializable {
 
     public boolean addXP(int i) {
         int aux;
-        i=6;
+        //i=6;
         //se rank = 4 adiciona 1hp
         if (rank == 4) {
             addHealth(1);

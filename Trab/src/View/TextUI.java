@@ -297,7 +297,6 @@ public class TextUI {
                                 System.out.println(++i + ": " + d);
                             }
                         }
-                        //TODO: adicionar opcao de sair/nao escolher dado
 
                         option1 = sc.next();
 
