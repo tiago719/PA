@@ -30,9 +30,9 @@ public class Poison extends Spell implements Serializable{
     }
 
     @Override
-    public IStates Efeito() {
+    public int Efeito() {
         getGame().getPersonagem().setPoison(true);
-        return super.MonstroAtaca();
+        return 2;
     }
     
     

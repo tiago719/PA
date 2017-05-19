@@ -256,12 +256,10 @@ public class TextUI {
                 System.out.println("1 - Atacar");
 
                 if (jogo.AnyDiceNotFeated()) {
-                    System.out.println(aux + " - Feats");
-                    aux++;
+                    System.out.println(++aux + " - Feats");
                 }
                 if (jogo.AnyCritical()) {
-                    System.out.println(aux + " - Reroll");
-                    aux++;
+                    System.out.println(++aux + " - Reroll");
                 }
 
                 option1 = sc.next();
@@ -275,7 +273,7 @@ public class TextUI {
             } while (c < 0 || c > aux);
 
             if (!jogo.AnyDiceNotFeated() && c == 2) {
-                c++;//c=3;
+                c=3;
             }
 
             switch (c) {
@@ -394,7 +392,7 @@ public class TextUI {
             }
 
         } while (c < 0 || c > i);
-        jogo.AS_ChooseSpell(c);
+        jogo.ChooseSpell(c);
 
     }
 

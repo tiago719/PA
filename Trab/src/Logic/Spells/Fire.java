@@ -23,16 +23,16 @@ public class Fire extends Spell implements Serializable{
     }
 
     @Override
-    public IStates Efeito() {
+    public int Efeito() {
         if (!getGame().getMonstroAlvo().Deffend(8))
         {
-            return super.MonstroAtaca();
+            return 1;//monstro ataca
         }
         else//se morre
         {
             getGame().getPersonagem().setPoison(false);
             getGame().getCaverna().getAreaAtual().setMonsterDefeated(true);
-            return getGame().getMonstroAlvo().addRwd();
+            return 2;//addRwd
             
         }
     }

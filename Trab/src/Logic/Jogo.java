@@ -132,8 +132,8 @@ public class Jogo implements Serializable {
         return gameData.getCaverna().getAreaAtual().getCartasColuna();
     }
 
-    public void AS_ChooseSpell(int c) {
-        state = gameData.AS_ChooseSpell(c, state);
+    public void ChooseSpell(int c) {
+        setState(getState().ChooseSpell(c));
     }
 
     public boolean AnyCritical() {

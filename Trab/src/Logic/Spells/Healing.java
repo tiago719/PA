@@ -32,9 +32,9 @@ public class Healing extends Spell implements Serializable{
     }
 
     @Override
-    public IStates Efeito() {
+    public int Efeito() {
         getGame().getPersonagem().addHealth(8);
-        return super.MonstroAtaca();
+        return 2;
     }
     
     

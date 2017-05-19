@@ -33,7 +33,7 @@ public abstract class Carta implements Serializable{
     
     public abstract int getDmg();
 
-    public abstract IStates addRwd();
+    public abstract int addRwd();
     
     public abstract String infoCarta();
     

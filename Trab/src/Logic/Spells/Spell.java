@@ -16,16 +16,16 @@ public abstract class Spell implements Serializable {
     
     public abstract String nome();
    
-    public abstract IStates Efeito();
+    public abstract int Efeito();
     
     public GameData getGame()
     {
         return gd;
     }
     
-    public IStates MonstroAtaca(){
-        return gd.MonstroAtaca();
-    }
+//    public IStates MonstroAtaca(){
+//        return gd.MonstroAtaca();
+//    }
 
     
 }

@@ -173,4 +173,72 @@ public class StateAdapter implements IStates, Serializable{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public IStates ChooseSpell(int c) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    // 0 - morto 
+    // 1 - column selection
+    // 2 - treasure
+    public IStates DecideState(int c) {
+        switch (c){
+            case 0:
+                return new GameOver(getGame());
+                
+            case 1:
+                return new AwaitCardCardSelectionOnCurrentColumn(getGame());
+                
+            case 2:
+                return Treasure();
+        }
+        return new AwaitCardCardSelectionOnCurrentColumn(getGame());
+    }
+    
+    public IStates Treasure() {
+        int ran = 1 + (int) (Math.random() * ((6 - 1) + 1));
+        getGame().addMsg("Resultado do lancamento do dado: " + ran + "\n");
+
+        if (getGame().getCaverna().getAreaAtual().getMonsterDefeated()) {
+            getGame().addMsg("Como ja derrotaste um monstro nesta ronda recebes 2 de Gold\n");
+            getGame().getPersonagem().addGold(2);
+        } else {
+            getGame().addMsg("Como ainda nao derrotaste um monstro nesta ronda recebes apenas 1 de Gold\n");
+            getGame().getPersonagem().addGold(1);
+        }
+
+        switch (ran) {
+            case 1:
+                getGame().getPersonagem().addArmor(1);
+                getGame().addMsg("Recebeste 1 Armor\n");
+                break;
+            case 2:
+                getGame().getPersonagem().addXP(2);
+                getGame().addMsg("Recebeste 2 XP\n");
+                break;
+            case 3:
+                getGame().getPersonagem().addSpell(new Fire(getGame()));
+                getGame().addMsg("Recebeste o spell Fire\n");
+                break;
+            case 4:
+                getGame().getPersonagem().addSpell(new Ice(getGame()));
+                getGame().addMsg("Recebeste o spell Ice\n");
+                break;
+            case 5:
+                getGame().getPersonagem().addSpell(new Poison(getGame()));
+                getGame().addMsg("Recebeste o spell Poison\n");
+                break;
+            case 6:
+                getGame().getPersonagem().addSpell(new Healing(getGame()));
+                getGame().addMsg("Recebeste o spell Healing\n");
+                break;
+        }
+        if (!getGame().getCaverna().getAreaAtual().proxColuna()) {
+            return new GameOver(getGame());
+        }
+
+        return new AwaitCardCardSelectionOnCurrentColumn(getGame());
+    }
+
 }

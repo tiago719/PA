@@ -50,7 +50,7 @@ public class AdaptadorCartas extends Carta implements Serializable{
     }
 
     @Override
-    public IStates addRwd() {
+    public int addRwd() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

@@ -53,6 +53,11 @@ public interface IStates {
 
             
     //spells
+    IStates ChooseSpell(int c);
+    
+    
+    IStates DecideState(int c);
+    
     //IStates EndBattle();
     IStates ProxRonda();
 

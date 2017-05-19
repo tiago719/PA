@@ -23,8 +23,8 @@ public class Ice extends Spell implements Serializable{
     }
 
     @Override
-    public IStates Efeito() {
-        return new AwaitAttack(getGame());
+    public int Efeito() {
+        return 3;
     }
 
 }
