@@ -82,15 +82,15 @@ public class BossMonster extends AdaptadorCartas implements Serializable{
     }
 
     @Override
-    public IStates addRwd() {
+    public int addRwd() {
         if (getGame().getCaverna().getNivel() == 5) {
             getGame().addMsg("||||||||||||||VENCEU||||||||||||||||||||\n");      
-            return new GameOver(getGame());
+            return 0;
         } else {
             getGame().getPersonagem().addGold(GoldRwd);
             getGame().getPersonagem().addXP(XpRwd);
             getGame().addMsg("Derrotou o Boss Monster. Vai receber as seguintes recompensas:\n" + XpRwd + " de XP\n" + GoldRwd + " de Gold\n Treasure Time!\n");
-            return getGame().Treasure();
+            return 2;
             
         }
 

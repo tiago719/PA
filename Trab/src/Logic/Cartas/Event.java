@@ -69,11 +69,11 @@ public class Event extends AdaptadorCartas implements Serializable
     }
 
     @Override
-    public IStates addRwd() {
+    public int addRwd() {
         getGame().getPersonagem().addXP(2);
         if(!getGame().getCaverna().getAreaAtual().proxColuna())
-            return new GameOver(gd);
-        return new AwaitCardCardSelectionOnCurrentColumn(gd);
+            return 0;
+        return 1;
     }
     @Override
     public void setIce(boolean i)

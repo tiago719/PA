@@ -35,20 +35,11 @@ public class AwaitFeats extends StateAdapter implements IStates, Serializable
     @Override
     public IStates FeatSelected(int d, int custo)
     {
-        int cont = 0;
-        Dado temp;
-                
-        for(Dado dado: getGame().getDados()){
-            if (dado.getFeated())
-                cont++;
-        }
-        if (getGame().AnyDiceNotFeated()){
-            return new AwaitAttack(getGame());
-        }
+        Dado dadoSelecionado;
         
-        temp = getGame().getDado(d - 1);
+        dadoSelecionado = getGame().getDado(d - 1);
         
-        if (temp.getFeated()) {
+        if (dadoSelecionado.getFeated()) {
             getGame().addMsg("Dado ja Feated!");
             return new AwaitFeats(getGame());
         }
@@ -71,10 +62,14 @@ public class AwaitFeats extends StateAdapter implements IStates, Serializable
                 break;
         }
 
-        temp.setFeated(true);
-        temp.addSomatorio(temp.getFace()*-1);
-        temp.lancaDado();
-        getGame().addMsg("Novo valor do dado "+ d +": "+temp.getFace()+".");
+        dadoSelecionado.setFeated(true);
+        dadoSelecionado.addSomatorio(dadoSelecionado.getFace()*-1);
+        dadoSelecionado.lancaDado();
+        getGame().addMsg("Novo valor do dado "+ d +": "+dadoSelecionado.getFace()+".");
+        
+        if (!getGame().AnyDiceNotFeated())
+            return new AwaitAttack(getGame());
+        
         return new AwaitFeats(getGame());
     }
     

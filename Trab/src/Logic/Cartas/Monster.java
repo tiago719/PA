@@ -40,12 +40,12 @@ public class Monster extends AdaptadorCartas implements Serializable {
     }
 
     @Override
-    public IStates addRwd() {
+    public int addRwd() {
         getGame().getPersonagem().addXP(rwd);
         if(!getGame().getCaverna().getAreaAtual().proxColuna())
-            return new GameOver(gd);
+            return 0;
         
-        return new AwaitCardCardSelectionOnCurrentColumn(getGame());
+        return 1;
     }
 
     @Override
