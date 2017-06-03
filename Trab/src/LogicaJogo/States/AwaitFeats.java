@@ -29,7 +29,7 @@ public class AwaitFeats extends StateAdapter implements IStates, Serializable
     @Override
     public IStates VoltaAwaitAttack()
     {
-        return new AwaitAttack(getGame());
+        return new AwaitBattleOption(getGame());
     }
     
     @Override
@@ -68,7 +68,7 @@ public class AwaitFeats extends StateAdapter implements IStates, Serializable
         getGame().addMsg("Novo valor do dado "+ d +": "+dadoSelecionado.getFace()+".");
         
         if (!getGame().AnyDiceNotFeated())
-            return new AwaitAttack(getGame());
+            return new AwaitBattleOption(getGame());
         
         return new AwaitFeats(getGame());
     }

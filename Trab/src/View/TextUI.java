@@ -418,7 +418,7 @@ public class TextUI {
                 uiAwaitOptionSelection();
             } else if (state instanceof AwaitTraiding) {
                 uiAwaitTrading();
-            } else if (state instanceof AwaitAttack) {
+            } else if (state instanceof AwaitBattleOption) {
                 uiAwaitAttack();
             } else if (state instanceof AwaitFeats) {
                 uiAwaitFeats();

@@ -41,7 +41,7 @@ public class AwaitSpellChoose extends StateAdapter implements IStates, Serializa
                 temp = DecideState(getGame().getMonstroAlvo().addRwd());
                 break;
             case 3:
-                temp = new AwaitAttack(getGame());
+                temp = new AwaitBattleOption(getGame());
                 break;
         }
         getGame().addMsg("Foi romovido o SPELL " + getGame().getPersonagem().getSpells().get(c - 1).nome());
@@ -63,7 +63,7 @@ public class AwaitSpellChoose extends StateAdapter implements IStates, Serializa
         for (Dado d : getGame().getDados()) {
             d.lancaDado();
         }
-        return new AwaitAttack(getGame());
+        return new AwaitBattleOption(getGame());
     }
     
     

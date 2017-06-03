@@ -112,7 +112,7 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
 
                 getGame().addMsg("Azar, vais ter de enfrentar um monstro! \n");
 
-                return new AwaitAttack(getGame());
+                return new AwaitBattleOption(getGame());
         }
         if(!getGame().getCaverna().getAreaAtual().proxColuna())
             return new GameOver(getGame());
@@ -215,7 +215,7 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
         for (Dado d : getGame().getDados()) {
             d.lancaDado();
         }
-        return new AwaitAttack(getGame());
+        return new AwaitBattleOption(getGame());
     }
 
 //    @Override

@@ -2,7 +2,7 @@ package Logic.Spells;
 
 import Logic.Dado;
 import Logic.GameData;
-import LogicaJogo.States.AwaitAttack;
+import LogicaJogo.States.AwaitBattleOption;
 import LogicaJogo.States.GameOver;
 import LogicaJogo.States.IStates;
 import java.io.Serializable;

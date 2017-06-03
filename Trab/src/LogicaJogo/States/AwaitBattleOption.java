@@ -5,10 +5,10 @@ import Logic.Dado;
 import Logic.GameData;
 import java.io.Serializable;
 
-public class AwaitAttack extends StateAdapter implements IStates, Serializable
+public class AwaitBattleOption extends StateAdapter implements IStates, Serializable
 {
    
-    public AwaitAttack(GameData g)
+    public AwaitBattleOption(GameData g)
     {
         super(g);
     }

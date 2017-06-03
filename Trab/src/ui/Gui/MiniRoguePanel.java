@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 import javax.imageio.ImageIO;
+import javax.swing.Box;
 import javax.swing.JPanel;
 
 /**
@@ -95,10 +96,33 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
     }
 
     private ObservableGame observableGame;
+    
+    private DungeonPanel dungeonPanel;
+    private CardsPanel cardsPanel;
+    private CharacterStatsPanel characterStatsPanel;
 
     public MiniRoguePanel(ObservableGame j)
     {
         observableGame = j;
+        
+        observableGame.addObserver(this);
+        
+        setupComponents(); 
+        setupLayout();
+        
+        update(observableGame, null);       
+    }
+    
+    public void setupComponents()
+    {
+       
+        
+        
+    }
+    
+    public void setupLayout()
+    {
+         Box LeftBox = Box.createVerticalBox();
     }
 
     @Override
