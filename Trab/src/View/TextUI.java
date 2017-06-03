@@ -26,7 +26,8 @@ public class TextUI {
         int f;
         Scanner sc = new Scanner(System.in);
         while (true) {
-            do {
+            do 
+            {
                 System.out.println("\n=== Bem-vindo ao Mini-Rogue ===\n");
                 System.out.println("0 - Sair");
                 System.out.println("1 - Escolher area inicial");
