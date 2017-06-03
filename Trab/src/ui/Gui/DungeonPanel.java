@@ -25,9 +25,10 @@ public class DungeonPanel extends JPanel implements Constants
     
     @Override
     public void paintComponent(Graphics g)
-    {
+    {  
+       super.paintComponent(g);
         
-         /*...*/
+        g.drawImage(MiniRoguePanel.getTheDungeonImage(),BORDER_X ,BORDER_Y , DIM_X_DUNGEON, DIM_Y_DUNGEON, this);
     }
             
 }

@@ -14,20 +14,34 @@ import javax.swing.JPanel;
  *
  * @author Tiago Coutinho
  */
-public class AwaitTraidingPanel extends JPanel implements Observer 
+public class AwaitTraidingPanel extends JPanel implements Observer
 {
+
     private ObservableGame observableGame;
 
-    public AwaitTraidingPanel(ObservableGame observableGame) 
+    public AwaitTraidingPanel(ObservableGame observableGame)
     {
-        this.observableGame=observableGame;
+        this.observableGame = observableGame;
+        observableGame.addObserver(this);
+
+        setupComponents();
+        setupLayout();
+    }
+
+    public void setupComponents()
+    {
+
+    }
+
+    public void setupLayout()
+    {
+
     }
 
     @Override
     public void update(Observable o, Object arg)
     {
-        //TODO: fazer isto
+        setVisible(observableGame.getState() instanceof AwaitTraidingPanel);
     }
 
-    
 }

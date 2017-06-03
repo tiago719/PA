@@ -9,6 +9,8 @@ import Logic.ObservableGame;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JPanel;
+import LogicaJogo.States.AwaitBegining;
+import javax.swing.JButton;
 
 /**
  *
@@ -17,16 +19,35 @@ import javax.swing.JPanel;
 public class AwaitBeginingPanel extends JPanel implements Observer 
 {
     private ObservableGame observableGame;
-
+    
+    JButton start=new JButton("Start");
+    JButton load = new JButton("Load");
+    
     public AwaitBeginingPanel(ObservableGame observableGame) 
     {
         this.observableGame=observableGame;
+        
+        observableGame.addObserver(this);
+        
+        setupComponents();
+        setupLayout();
     }
+    
+    public void setupComponents()
+    {
+        
+    }
+    
+    public void setupLayout()
+    {
+        
+    }
+    
 
     @Override
     public void update(Observable o, Object arg)
     {
-        //TODO: fazer isto
+         setVisible(observableGame.getState() instanceof AwaitBegining ); 
     }
 
     

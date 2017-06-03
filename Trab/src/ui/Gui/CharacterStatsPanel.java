@@ -26,8 +26,9 @@ public class CharacterStatsPanel extends JPanel implements Constants
     @Override
     public void paintComponent(Graphics g)
     {
+        super.paintComponent(g);
         
-         /*...*/
+        g.drawImage(MiniRoguePanel.getCharacterStats(),BORDER_X ,BORDER_Y , DIM_X_STATS, DIM_Y_STATS, this);
     }
             
 }

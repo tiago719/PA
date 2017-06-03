@@ -26,7 +26,7 @@ public class AwaitCardCardSelectionOnCurrentColumnPanel extends JPanel implement
     @Override
     public void update(Observable o, Object arg)
     {
-        //TODO: fazer isto
+        setVisible(observableGame.getState() instanceof AwaitCardCardSelectionOnCurrentColumnPanel ); 
     }
 
     
