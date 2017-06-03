@@ -14,36 +14,42 @@ import java.util.Observable;
  */
 public class ObservableGame extends Observable
 {
+
     private Jogo GameModel;
-    
+
     public ObservableGame()
     {
         GameModel = new Jogo();
     }
-    
+
     public void setGameModel(Jogo gameModel)
-    {        
+    {
         this.GameModel = gameModel;
-        
+
         setChanged();
         notifyObservers();
-    }   
-    
-    public GameData getGameData() {
+    }
+
+    public GameData getGameData()
+    {
         return GameModel.getGame();
     }
 
     public IStates getState()
     {
         return GameModel.getState();
-    }     
-    
+    }
+
     // Methods retrieve data from the game
-    
     
     //...
     
-    
     // Methods that are intended to be used by the user interfaces and that are delegated in the current state of the finite state machine 
+    public void startGame()
+    {
+        GameModel.comecar();
 
+        setChanged();
+        notifyObservers();
+    }
 }
