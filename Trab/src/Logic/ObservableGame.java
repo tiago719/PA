@@ -70,4 +70,12 @@ public class ObservableGame extends Observable
         notifyObservers();
     }
     
+    public void ResolveRestingCard(int a)
+    {
+        GameModel.RestingOptionSelected(a);
+
+        setChanged();
+        notifyObservers();
+    }
+    
 }

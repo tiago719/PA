@@ -18,7 +18,7 @@ public interface IStates {
     IStates start();
     
     //Resting Card
-    IStates ResolveSelectedRestingCard();
+    IStates ResolveSelectedRestingCard();//TODO:Isto esta a ser Usado?
     IStates OptionSelected(int i);
     
     //treasure

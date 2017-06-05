@@ -99,7 +99,7 @@ public class Jogo implements Serializable {
     }
 
     public void resting() {
-        setState(getState().ResolveSelectedRestingCard());
+        setState(getState().ResolveSelectedRestingCard());//TODO:Isto esta a ser usado?
     }
 
     public boolean AA_Reroll(int c) {

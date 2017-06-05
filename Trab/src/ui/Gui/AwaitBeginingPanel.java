@@ -34,7 +34,7 @@ public class AwaitBeginingPanel extends JPanel implements Observer
 
     private ObservableGame observableGame;
 
-    JButton start = new JButton("Start");
+    JButton start;
     JSpinner dificuldades;
    
 
@@ -44,15 +44,16 @@ public class AwaitBeginingPanel extends JPanel implements Observer
 
         observableGame.addObserver(this);
 
-        SpinnerListModel SM = new SpinnerListModel(Constants.dificuldades);
-        dificuldades = new JSpinner(SM);
-
         setupComponents();
         setupLayout();
     }
 
     public void setupComponents()
     {
+        start = new JButton("Start");
+        SpinnerListModel SM = new SpinnerListModel(Constants.dificuldades);
+        dificuldades = new JSpinner(SM);
+        
         start.addActionListener(new ActionListener()
         {
             @Override
@@ -76,13 +77,12 @@ public class AwaitBeginingPanel extends JPanel implements Observer
 
     public void setupLayout()
     {
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 
-        start.setAlignmentX(Component.CENTER_ALIGNMENT);
+        start.setAlignmentX(Component.LEFT_ALIGNMENT);
+        dificuldades.setAlignmentX(Component.RIGHT_ALIGNMENT);
 
-        add(Box.createVerticalGlue());
         add(start);
-        add(Box.createVerticalGlue());
         add(dificuldades);
     }
 
