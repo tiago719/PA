@@ -7,6 +7,7 @@ package ui.Gui;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,16 +15,18 @@ import java.awt.Toolkit;
  */
 public interface Constants
 {
-    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    static final String[] dificuldades = {"1 - Casual","2 - Normal","3 - Hard","4 - Impossible"};
+    
+    static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     
     static final int DIM_X_FRAME = (int) screenSize.getWidth();
     static final int DIM_Y_FRAME = (int) screenSize.getHeight();
     
-    static final int DIM_X_STATS = 200;
-    static final int DIM_Y_STATS = 400;
+    static final int DIM_X_STATS = 251;
+    static final int DIM_Y_STATS = 432;
     
-    static final int DIM_X_DUNGEON = 200;
-    static final int DIM_Y_DUNGEON = 400;
+    static final int DIM_X_DUNGEON = 336;
+    static final int DIM_Y_DUNGEON = 477;
     
     static final int BORDER_X = 10;
     static final int BORDER_Y = 10;

@@ -9,6 +9,7 @@ import Logic.ObservableGame;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import static java.awt.PageAttributes.ColorType.COLOR;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Observable;
@@ -100,11 +101,11 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
     }
 
     private ObservableGame observableGame;
-    
+
     private DungeonPanel dungeonPanel;
     private CardsPanel cardsPanel;
     private CharacterStatsPanel characterStatsPanel;
-    
+
     private AwaitBattleOptionPanel awaitBattleOptionPanel;
     private AwaitBeginingPanel awaitBeginingPanel;
     private AwaitCardCardSelectionOnCurrentColumnPanel awaitCardCardSelectionOnCurrentColumnPanel;
@@ -117,21 +118,21 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
     public MiniRoguePanel(ObservableGame j)
     {
         observableGame = j;
-        
+
         observableGame.addObserver(this);
-        
-        setupComponents(); 
+
+        setupComponents();
         setupLayout();
-        
-        update(observableGame, null);       
+
+        update(observableGame, null);
     }
-    
+
     public void setupComponents()
     {
         dungeonPanel = new DungeonPanel(observableGame);
         cardsPanel = new CardsPanel(observableGame);
         characterStatsPanel = new CharacterStatsPanel(observableGame);
-        
+
         awaitBattleOptionPanel = new AwaitBattleOptionPanel(observableGame);
         awaitBeginingPanel = new AwaitBeginingPanel(observableGame);
         awaitCardCardSelectionOnCurrentColumnPanel = new AwaitCardCardSelectionOnCurrentColumnPanel(observableGame);
@@ -140,46 +141,39 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
         awaitSpellChoosePanel = new AwaitSpellChoosePanel(observableGame);
         awaitTraidingPanel = new AwaitTraidingPanel(observableGame);
         gameOverPanel = new GameOverPanel(observableGame);
-        
+
     }
-    
+
     public void setupLayout()
     {
         Box LeftBox = Box.createVerticalBox();
-        
-        LeftBox.add(Box.createVerticalGlue());
+        LeftBox.setMaximumSize(new Dimension(DIM_X_STATS+BORDER_X*2, DIM_Y_STATS));
+        LeftBox.setMinimumSize(new Dimension(DIM_X_STATS+BORDER_X*2, DIM_Y_STATS));
+        LeftBox.setPreferredSize(new Dimension(DIM_X_STATS+BORDER_X*2, DIM_Y_STATS));
+        LeftBox.setBorder(new LineBorder(Color.DARK_GRAY));
+
         LeftBox.add(dungeonPanel);
-        LeftBox.add(Box.createVerticalGlue());
-        
+
         Box MidBox = Box.createVerticalBox();
-        
-        MidBox.add(Box.createVerticalGlue());
+
         MidBox.add(cardsPanel);
-        MidBox.add(Box.createVerticalGlue());
-        
+        MidBox.setBorder(new LineBorder(Color.BLUE));
+
         Box RightBox = Box.createVerticalBox();
-        
-        RightBox.add(Box.createVerticalGlue());
+
         RightBox.add(characterStatsPanel);
-        RightBox.add(Box.createVerticalGlue());
-        
-        
+
         Box center = Box.createHorizontalBox();
-        center.setBorder(new LineBorder(Color.DARK_GRAY));
-        
-        center.add(Box.createHorizontalGlue());
+
         center.add(LeftBox);
-        center.add(Box.createHorizontalGlue());
         center.add(MidBox);
-        center.add(Box.createHorizontalGlue());
-        center.add(RightBox);     
-        center.add(Box.createHorizontalGlue());
+        center.add(RightBox);
 
         JPanel south = new JPanel();
         south.setMinimumSize(new Dimension(DIM_X_FRAME, DIM_Y_FRAME));
         south.setPreferredSize(new Dimension(DIM_X_SOUTH_PANEL, DIM_Y_SOUTH_PANEL));
         south.setBorder(new LineBorder(Color.DARK_GRAY));
-        
+
         south.add(awaitBattleOptionPanel);
         south.add(awaitBeginingPanel);
         south.add(awaitCardCardSelectionOnCurrentColumnPanel);//TODO: será que este vem mesmo para aqui?
@@ -188,10 +182,11 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
         south.add(awaitSpellChoosePanel);
         south.add(awaitTraidingPanel);
         south.add(gameOverPanel); //TODO: será que este vem mesmo para aqui?
-        
+
         setLayout(new BorderLayout());
-        add(center, BorderLayout.CENTER);   
+        add(center, BorderLayout.CENTER);
         add(south, BorderLayout.SOUTH);
+
     }
 
     @Override

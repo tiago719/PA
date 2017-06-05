@@ -28,7 +28,7 @@ public class AwaitBegining extends StateAdapter implements IStates, Serializable
 
     @Override
     public IStates setDifficultLevel(int level) {
-        getGame().setDificuldade(level);
+            getGame().setDificuldade(level);
         return this;
     }
 

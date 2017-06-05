@@ -30,7 +30,7 @@ public class GameData implements Constants, Serializable {
 
     public void setDificuldade(int dificuldade) {
         this.dificuldade = dificuldade;
-        Personagem.setStats(dificuldade);
+            Personagem.setStats(dificuldade);
     }
 
     public int getStartingArea() {

@@ -6,8 +6,10 @@
 package ui.Gui;
 
 import Logic.ObservableGame;
+import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -20,6 +22,8 @@ public class CharacterStatsPanel extends JPanel implements Constants
     public CharacterStatsPanel(ObservableGame observableGame)
     {
         this.observableGame=observableGame;
+        
+         this.setBorder(new LineBorder(Color.DARK_GRAY));//TODO:TIRAR
 
     }
     
@@ -28,7 +32,8 @@ public class CharacterStatsPanel extends JPanel implements Constants
     {
         super.paintComponent(g);
         
-        g.drawImage(MiniRoguePanel.getCharacterStats(),BORDER_X ,BORDER_Y , DIM_X_STATS, DIM_Y_STATS, this);
+        g.drawImage(MiniRoguePanel.getCharacterStats(),getWidth()-DIM_X_STATS-BORDER_X ,getHeight()/2-(DIM_Y_STATS/2) , DIM_X_STATS, DIM_Y_STATS, this);
+        
     }
             
 }

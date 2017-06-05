@@ -52,4 +52,22 @@ public class ObservableGame extends Observable
         setChanged();
         notifyObservers();
     }
+    
+    public void setDificultyLevel(int a)
+    {
+        
+        GameModel.setDifficultLevel(a);
+        
+        setChanged();
+        notifyObservers();
+    }
+    
+    public void setStartingArea(int a)
+    {
+        GameModel.setStartingArea(a);
+
+        setChanged();
+        notifyObservers();
+    }
+    
 }
