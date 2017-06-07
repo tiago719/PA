@@ -7,9 +7,12 @@ package ui.Gui;
 
 import Logic.ObservableGame;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
+import static ui.Gui.Constants.DIM_X_FRAME;
+import static ui.Gui.Constants.DIM_Y_FRAME;
 
 /**
  *
@@ -23,8 +26,11 @@ public class CharacterStatsPanel extends JPanel implements Constants
     {
         this.observableGame=observableGame;
         
-         this.setBorder(new LineBorder(Color.DARK_GRAY));//TODO:TIRAR
-
+        setMinimumSize(new Dimension(DIM_X_STATS, DIM_Y_STATS));
+        setPreferredSize(new Dimension(DIM_X_STATS, DIM_Y_STATS));
+        setMaximumSize(new Dimension(DIM_X_STATS, DIM_Y_STATS));
+        
+        setAlignmentX(LEFT_ALIGNMENT);
     }
     
     @Override
@@ -32,7 +38,7 @@ public class CharacterStatsPanel extends JPanel implements Constants
     {
         super.paintComponent(g);
         
-        g.drawImage(MiniRoguePanel.getCharacterStats(),getWidth()-DIM_X_STATS-BORDER_X ,getHeight()/2-(DIM_Y_STATS/2) , DIM_X_STATS, DIM_Y_STATS, this);
+        g.drawImage(MiniRoguePanel.getCharacterStats(),0,0, DIM_X_STATS, DIM_Y_STATS, this);
         
     }
             

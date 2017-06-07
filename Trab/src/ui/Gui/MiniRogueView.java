@@ -45,7 +45,7 @@ public class MiniRogueView extends JFrame implements Observer, Constants
         Container cp = getContentPane(); 
                
         panel = new MiniRoguePanel(observableGame);
-        //frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
         cp.add(panel, BorderLayout.CENTER);
                
         setLocation(x, y); 
@@ -59,6 +59,6 @@ public class MiniRogueView extends JFrame implements Observer, Constants
     @Override
     public void update(Observable o, Object arg)
     {
-        //TODO: fazer isto
+        repaint();
     }
 }
