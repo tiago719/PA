@@ -6,10 +6,6 @@
 package Logic.Cartas;
 
 import Logic.GameData;
-import LogicaJogo.States.AwaitCardCardSelectionOnCurrentColumn;
-import LogicaJogo.States.GameOver;
-import LogicaJogo.States.IStates;
-import LogicaJogo.States.StateAdapter;
 import java.io.Serializable;
 
 /**
