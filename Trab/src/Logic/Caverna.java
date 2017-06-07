@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 public class Caverna implements Serializable
 {
-
     private GameData GameData;
     private int areaL/*level*/, areaC;
     private final ArrayList<Area> Areas;
