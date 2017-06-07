@@ -17,13 +17,10 @@ public interface Constants
 {
     static final String[] dificuldades = {"1 - Casual","2 - Normal","3 - Hard","4 - Impossible"};
     
-    static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+   // static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     
-    static final int DIM_X_FRAME = (int) screenSize.getWidth();
-    static final int DIM_Y_FRAME = (int) screenSize.getHeight();
-    
-    static final int DIM_X_STATS = 251;
-    static final int DIM_Y_STATS = 432;
+    static final int DIM_X_FRAME = 500;//(int) screenSize.getWidth();
+    static final int DIM_Y_FRAME = 250;//(int) screenSize.getHeight();
     
     static final int DIM_X_DUNGEON = 336;
     static final int DIM_Y_DUNGEON = 477;
@@ -31,7 +28,10 @@ public interface Constants
     static final int BORDER_X = 10;
     static final int BORDER_Y = 10;
     
-    static final int DIM_X_SOUTH_PANEL = DIM_X_FRAME;
-    static final int DIM_Y_SOUTH_PANEL = 65;
+    static final int DIM_X_STATS = 661;
+    static final int DIM_Y_STATS = 228;
+    
+    static final int DIM_X_SOUTH_PANEL = DIM_X_STATS;
+    static final int DIM_Y_SOUTH_PANEL = DIM_Y_STATS;
 
 }
