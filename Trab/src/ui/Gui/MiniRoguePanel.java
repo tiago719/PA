@@ -84,7 +84,7 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
         try
         {
             TheDungeonImage = ImageIO.read(Resources.getResourceFile("images/TheDungeon.JPG"));
-            CharacterStatsImage = ImageIO.read(Resources.getResourceFile("images/CharacterStats.JPG"));
+            CharacterStatsImage = ImageIO.read(Resources.getResourceFile("images/STATS.png"));
             BackCardImage = ImageIO.read(Resources.getResourceFile("images/BackCard.JPG"));
             BossMonsterImage = ImageIO.read(Resources.getResourceFile("images/BossMonster.JPG"));
             EventImage = ImageIO.read(Resources.getResourceFile("images/Event.JPG"));
@@ -161,7 +161,14 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
 
         Box RightBox = Box.createVerticalBox();
 
-        RightBox.add(characterStatsPanel);
+        RightBox.add(awaitBattleOptionPanel);
+        RightBox.add(awaitBeginingPanel);
+        RightBox.add(awaitCardCardSelectionOnCurrentColumnPanel);
+        RightBox.add(awaitFeatsPanel);
+        RightBox.add(awaitOptionSelectionPanel);
+        RightBox.add(awaitSpellChoosePanel);
+        RightBox.add(awaitTraidingPanel);
+        RightBox.add(gameOverPanel);
 
         Box center = Box.createHorizontalBox();
 
@@ -174,14 +181,7 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
         south.setPreferredSize(new Dimension(DIM_X_SOUTH_PANEL, DIM_Y_SOUTH_PANEL));
         south.setBorder(new LineBorder(Color.DARK_GRAY));
 
-        south.add(awaitBattleOptionPanel);
-        south.add(awaitBeginingPanel);
-        south.add(awaitCardCardSelectionOnCurrentColumnPanel);//TODO: será que este vem mesmo para aqui?
-        south.add(awaitFeatsPanel);
-        south.add(awaitOptionSelectionPanel);
-        south.add(awaitSpellChoosePanel);
-        south.add(awaitTraidingPanel);
-        south.add(gameOverPanel); //TODO: será que este vem mesmo para aqui?
+        south.add(characterStatsPanel);
 
         setLayout(new BorderLayout());
         add(center, BorderLayout.CENTER);
