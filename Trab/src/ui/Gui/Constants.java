@@ -33,5 +33,24 @@ public interface Constants
     
     static final int DIM_X_SOUTH_PANEL = DIM_X_STATS*2;
     static final int DIM_Y_SOUTH_PANEL = DIM_Y_STATS;
+    
+    //String RESTIN = "RestingCard";
+    String PATH_IMG_RESTING = "imagensficheiros/Homer.JPG";
 
+    //String BOSS = "BossCard";
+    String PATH_IMG_BOSS = "imagensficheiros/BossMonster.JPG";
+
+//    String EVENT = "BossCard";
+    String PATH_IMG_EVENT = "imagensficheiros/Event.JPG";
+    
+//    String MERCHANTCARD = "BossCard";
+    String PATH_IMG_MERCHANT = "imagensficheiros/Merchant.JPG";
+    
+    String PATH_IMG_MONSTER = "imagensficheiros/Monster.JPG";
+    
+    String PATH_IMG_TRAP = "imagensficheiros/Trap.JPG";    
+    
+    String PATH_IMG_TREASURE = "Images/Treasure.JPG";
+
+    
 }

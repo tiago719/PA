@@ -5,7 +5,9 @@
  */
 package Logic;
 
+import Logic.Cartas.Carta;
 import LogicaJogo.States.IStates;
+import java.util.ArrayList;
 import java.util.Observable;
 
 /**
@@ -33,6 +35,10 @@ public class ObservableGame extends Observable
     public GameData getGameData()
     {
         return GameModel.getGame();
+    }
+    
+    public ArrayList<Carta> getBaralhoAreaAtual(){
+        return GameModel.getBaralhoAreaAtual();
     }
 
     public IStates getState()
@@ -77,5 +83,7 @@ public class ObservableGame extends Observable
         setChanged();
         notifyObservers();
     }
+    
+    
     
 }
