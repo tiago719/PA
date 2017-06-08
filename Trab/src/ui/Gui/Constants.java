@@ -31,7 +31,7 @@ public interface Constants
     static final int DIM_X_STATS = 661;
     static final int DIM_Y_STATS = 228;
     
-    static final int DIM_X_SOUTH_PANEL = DIM_X_STATS;
+    static final int DIM_X_SOUTH_PANEL = DIM_X_STATS*2;
     static final int DIM_Y_SOUTH_PANEL = DIM_Y_STATS;
 
 }

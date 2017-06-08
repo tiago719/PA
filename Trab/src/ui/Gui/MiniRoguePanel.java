@@ -9,6 +9,7 @@ import Logic.ObservableGame;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import static java.awt.PageAttributes.ColorType.COLOR;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -84,7 +85,7 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
         try
         {
             TheDungeonImage = ImageIO.read(Resources.getResourceFile("images/TheDungeon.JPG"));
-            CharacterStatsImage = ImageIO.read(Resources.getResourceFile("images/STATS.png"));
+            CharacterStatsImage = ImageIO.read(Resources.getResourceFile("images/CharacterStats.JPG"));
             BackCardImage = ImageIO.read(Resources.getResourceFile("images/BackCard.JPG"));
             BossMonsterImage = ImageIO.read(Resources.getResourceFile("images/BossMonster.JPG"));
             EventImage = ImageIO.read(Resources.getResourceFile("images/Event.JPG"));
@@ -147,10 +148,9 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
     public void setupLayout()
     {
         Box LeftBox = Box.createVerticalBox();
-        LeftBox.setMaximumSize(new Dimension(DIM_X_STATS+BORDER_X*2, DIM_Y_STATS));
-        LeftBox.setMinimumSize(new Dimension(DIM_X_STATS+BORDER_X*2, DIM_Y_STATS));
-        LeftBox.setPreferredSize(new Dimension(DIM_X_STATS+BORDER_X*2, DIM_Y_STATS));
-        LeftBox.setBorder(new LineBorder(Color.DARK_GRAY));
+        LeftBox.setMaximumSize(new Dimension(DIM_X_DUNGEON, DIM_Y_DUNGEON));
+        LeftBox.setMinimumSize(new Dimension(DIM_X_DUNGEON, DIM_Y_DUNGEON));
+        LeftBox.setPreferredSize(new Dimension(DIM_X_DUNGEON, DIM_Y_DUNGEON));
 
         LeftBox.add(dungeonPanel);
 
@@ -159,33 +159,40 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
         MidBox.add(cardsPanel);
         MidBox.setBorder(new LineBorder(Color.BLUE));
 
-        Box RightBox = Box.createVerticalBox();
-
-        RightBox.add(awaitBattleOptionPanel);
-        RightBox.add(awaitBeginingPanel);
-        RightBox.add(awaitCardCardSelectionOnCurrentColumnPanel);
-        RightBox.add(awaitFeatsPanel);
-        RightBox.add(awaitOptionSelectionPanel);
-        RightBox.add(awaitSpellChoosePanel);
-        RightBox.add(awaitTraidingPanel);
-        RightBox.add(gameOverPanel);
-
         Box center = Box.createHorizontalBox();
 
         center.add(LeftBox);
         center.add(MidBox);
-        center.add(RightBox);
 
         JPanel south = new JPanel();
-        south.setMinimumSize(new Dimension(DIM_X_FRAME, DIM_Y_FRAME));
+        south.setMinimumSize(new Dimension(DIM_X_SOUTH_PANEL, DIM_Y_SOUTH_PANEL));
         south.setPreferredSize(new Dimension(DIM_X_SOUTH_PANEL, DIM_Y_SOUTH_PANEL));
-        south.setBorder(new LineBorder(Color.DARK_GRAY));
-
-        south.add(characterStatsPanel);
+        south.setBorder(new LineBorder(Color.GREEN));
+        south.setLayout(new GridLayout());
+        
+        Box StatsBox = Box.createHorizontalBox();
+        StatsBox.add(characterStatsPanel);
+        StatsBox.setBorder(new LineBorder(Color.YELLOW));
+        
+        Box StateBox = Box.createVerticalBox();
+        StateBox.add(awaitBattleOptionPanel);
+        StateBox.add(awaitBeginingPanel);
+        StateBox.add(awaitCardCardSelectionOnCurrentColumnPanel);
+        StateBox.add(awaitFeatsPanel);
+        StateBox.add(awaitOptionSelectionPanel);
+        StateBox.add(awaitSpellChoosePanel);
+        StateBox.add(awaitTraidingPanel);
+        StateBox.add(gameOverPanel);
+        StateBox.setBorder(new LineBorder(Color.RED));
+        
+        south.add(StatsBox);
+        south.add(StateBox);
 
         setLayout(new BorderLayout());
         add(center, BorderLayout.CENTER);
         add(south, BorderLayout.SOUTH);
+        
+        validate();
 
     }
 
