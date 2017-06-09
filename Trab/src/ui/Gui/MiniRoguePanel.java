@@ -9,6 +9,7 @@ import Logic.ObservableGame;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import static java.awt.PageAttributes.ColorType.COLOR;
 import java.awt.image.BufferedImage;
@@ -160,7 +161,6 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
         MidBox.setBorder(new LineBorder(Color.BLUE));
 
         Box center = Box.createHorizontalBox();
-
         center.add(LeftBox);
         center.add(MidBox);
 
@@ -189,6 +189,8 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
         south.add(StateBox);
 
         setLayout(new BorderLayout());
+//        setLayout(new GridLayout(2,2,0,0));
+center.setSize(900, 500);
         add(center, BorderLayout.CENTER);
         add(south, BorderLayout.SOUTH);
         

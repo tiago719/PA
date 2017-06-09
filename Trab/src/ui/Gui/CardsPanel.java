@@ -23,17 +23,25 @@ public class CardsPanel extends JPanel implements Constants, Observer {
         this.observableGame = observableGame;
         observableGame.addObserver(this);
         
-        setMaximumSize(new Dimension(384*5,555));
-        setPreferredSize(new Dimension(384*5,555));
-        setMinimumSize(new Dimension(384*5,555));
-        setLayout(new GridLayout(1,5,10,0));
+        setMaximumSize(new Dimension((DIM_X_COLUNA)*5,DIM_Y_COLUNA));
+        setPreferredSize(new Dimension((DIM_X_COLUNA)*5,DIM_Y_COLUNA));
+        setMinimumSize(new Dimension((DIM_X_COLUNA)*5,DIM_Y_COLUNA));
+        setAlignmentX(CENTER_ALIGNMENT);
+                setAlignmentY(CENTER_ALIGNMENT);
+        
+        setLayout(new GridLayout(1,5,0,0));
         //setLayout(new BorderLayout());
-        ArrayList<Box> ColunaCartas = new ArrayList<>();
+        ArrayList<JP_ColunaCartas> ColunaCartas = new ArrayList<>();
         for (int i =0; i< 5; i++){
-            ColunaCartas.add(Box.createVerticalBox());
-            ColunaCartas.get(i).add(new JP_ColunaCartas(i, observableGame));
-            ColunaCartas.get(i).setBorder(new LineBorder(Color.YELLOW));
-            add(ColunaCartas.get(i));
+            Box b = Box.createVerticalBox();
+            JP_ColunaCartas aux = new JP_ColunaCartas(i, observableGame);
+            ColunaCartas.add(aux);
+            
+            
+            b.add(aux);
+            b.setBorder(new LineBorder(Color.YELLOW));
+            b.setSize(new Dimension(DIM_X_COLUNA, DIM_Y_COLUNA));
+            add(b);
         }
             
         
@@ -53,7 +61,7 @@ public class CardsPanel extends JPanel implements Constants, Observer {
 //            }
 //                add(new ImagemCarta(MiniRoguePanel.getRestingImage(), this.observableGame));
 //            if (c instanceof BossMonster) {
-//                CartasJP.add(new ImagemCarta(MiniRoguePanel.getRestingImage(), this.observableGame));
+//                CartasJP.add(new ImagemCarta(MiniRoguePanel.getRestingmage(), this.observableGame));
 //            }
 //                add(new ImagemCarta(MiniRoguePanel.getBossMonsterImage(), observableGame));
 //            if (c instanceof Event) {
