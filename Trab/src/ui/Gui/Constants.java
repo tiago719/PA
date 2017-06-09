@@ -58,6 +58,12 @@ public interface Constants
     
     static final int DIM_X_CARTA = (144*DIM_X_FRAME)/1366;
     static final int DIM_Y_CARTA = (223*DIM_Y_FRAME)/768;//262
+    
+    static final int DIM_X_WELCOME = (715*DIM_X_FRAME)/1366;
+    static final int DIM_Y_WELCOME = (320*DIM_Y_FRAME)/768;//262
+    
+  //  static final int CORD_X_START_WELCOME = (500*DIM_X_FRAME)/1366;
+  //  static final int CORD_Y_START_WELCOME = (300*DIM_Y_FRAME)/768;
  
 //    static final int DIM_X_COLUNA = 245;
 //    static final int DIM_Y_COLUNA = 354;

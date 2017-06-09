@@ -85,7 +85,7 @@ public class StateAdapter implements IStates, Serializable{
         if(!getGame().getCaverna().getAreaAtual().proxColuna())
             return new GameOver(getGame());
         
-        return new AwaitCardCardSelectionOnCurrentColumn(getGame());
+        return new AwaitCardSelectionOnCurrentColumn(getGame());
     }
     
     @Override
@@ -188,12 +188,12 @@ public class StateAdapter implements IStates, Serializable{
                 return new GameOver(getGame());
                 
             case 1:
-                return new AwaitCardCardSelectionOnCurrentColumn(getGame());
+                return new AwaitCardSelectionOnCurrentColumn(getGame());
                 
             case 2:
                 return Treasure();
         }
-        return new AwaitCardCardSelectionOnCurrentColumn(getGame());
+        return new AwaitCardSelectionOnCurrentColumn(getGame());
     }
     
     public IStates Treasure() {
@@ -238,7 +238,7 @@ public class StateAdapter implements IStates, Serializable{
             return new GameOver(getGame());
         }
 
-        return new AwaitCardCardSelectionOnCurrentColumn(getGame());
+        return new AwaitCardSelectionOnCurrentColumn(getGame());
     }
 
 }

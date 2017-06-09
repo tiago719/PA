@@ -60,6 +60,7 @@ public class AwaitBeginingPanel extends JPanel implements Observer
             public void actionPerformed(ActionEvent ev)
             {
                 observableGame.startGame();
+                
             }
         });
 

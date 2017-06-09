@@ -412,7 +412,7 @@ public class TextUI {
 
             if (state instanceof AwaitBegining) {
                 uiAwaitBeggining();
-            } else if (state instanceof AwaitCardCardSelectionOnCurrentColumn) {
+            } else if (state instanceof AwaitCardSelectionOnCurrentColumn) {
                 uiAwaitCardCardSelectionOnCurrentColumn();
             } else if (state instanceof AwaitOptionSelection) {
                 uiAwaitOptionSelection();
