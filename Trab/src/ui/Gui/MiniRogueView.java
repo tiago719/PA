@@ -40,7 +40,7 @@ public class MiniRogueView extends JFrame implements Observer, Constants
 
         observableGame=j;
                   
-        j.addObserver(this);
+        observableGame.addObserver(this);
         
         Container cp = getContentPane(); 
                
