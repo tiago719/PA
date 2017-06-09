@@ -17,19 +17,19 @@ public interface Constants
 {
     static final String[] dificuldades = {"1 - Casual","2 - Normal","3 - Hard","4 - Impossible"};
     
-   // static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     
-    static final int DIM_X_FRAME = 500;//(int) screenSize.getWidth();
-    static final int DIM_Y_FRAME = 250;//(int) screenSize.getHeight();
+    static final int DIM_X_FRAME = (int) screenSize.getWidth();
+    static final int DIM_Y_FRAME = (int) screenSize.getHeight();
     
-    static final int DIM_X_DUNGEON = 336;
-    static final int DIM_Y_DUNGEON = 477;
+    static final int DIM_X_DUNGEON = (336*DIM_X_FRAME)/1366;
+    static final int DIM_Y_DUNGEON = (477*DIM_Y_FRAME)/768;
     
     static final int BORDER_X = 10;
     static final int BORDER_Y = 10;
     
-    static final int DIM_X_STATS = 661;
-    static final int DIM_Y_STATS = 228;
+    static final int DIM_X_STATS = (661*DIM_X_FRAME)/1366;
+    static final int DIM_Y_STATS = (228*DIM_Y_FRAME)/768;
     
     static final int DIM_X_SOUTH_PANEL = DIM_X_STATS*2;
     static final int DIM_Y_SOUTH_PANEL = DIM_Y_STATS;
@@ -53,8 +53,15 @@ public interface Constants
     String PATH_IMG_TREASURE = "Images/Treasure.JPG";
 
     
-    static final int DIM_X_COLUNA = 384;
-    static final int DIM_Y_COLUNA = 555;
+    static final int DIM_X_COLUNA = (205*DIM_X_FRAME)/1366;
+    static final int DIM_Y_COLUNA = DIM_Y_DUNGEON;
+    
+    static final int DIM_X_CARTA = (144*DIM_X_FRAME)/1366;
+    static final int DIM_Y_CARTA = (223*DIM_Y_FRAME)/768;//262
+ 
+//    static final int DIM_X_COLUNA = 245;
+//    static final int DIM_Y_COLUNA = 354;
+
 
     
     
