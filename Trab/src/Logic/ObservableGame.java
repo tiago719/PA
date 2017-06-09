@@ -16,7 +16,6 @@ import java.util.Observable;
  */
 public class ObservableGame extends Observable
 {
-
     private Jogo GameModel;
 
     public ObservableGame()
@@ -48,7 +47,15 @@ public class ObservableGame extends Observable
 
     // Methods retrieve data from the game
     
-    //...
+    public int getSizeBaralho()
+    {
+        return GameModel.getSizeBaralho();
+    }
+    
+    public ArrayList<Carta> getCartasColuna()
+    {
+        return GameModel.getCartasColuna();
+    }
     
     // Methods that are intended to be used by the user interfaces and that are delegated in the current state of the finite state machine 
     public void startGame()

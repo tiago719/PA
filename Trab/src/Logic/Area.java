@@ -48,6 +48,11 @@ public class Area implements Serializable {
             Baralho.add(new BossMonster(GameData));
         
     }
+    
+    public int getSizeBaralho()
+    {
+        return Baralho.size();
+    }
 
     public GameData getGame() {
         return GameData;
