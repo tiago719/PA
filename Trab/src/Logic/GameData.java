@@ -111,4 +111,9 @@ public class GameData implements Constants, Serializable {
         }
         return true;
     }
+    
+    public int getSizeBaralho()
+    {
+        return Caverna.getAreaAtual().getSizeBaralho();
+    }
 }
