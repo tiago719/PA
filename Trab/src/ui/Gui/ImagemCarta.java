@@ -23,11 +23,14 @@ public class ImagemCarta extends JPanel implements Constants{
     private boolean show;
     BufferedImage img;
     ObservableGame observableGame;
+    int width, height;
 
-    ImagemCarta(BufferedImage Image, ObservableGame observableGame) {
+    ImagemCarta(BufferedImage Image, ObservableGame observableGame, int width, int height) {
         this.img = Image;
         this.observableGame = observableGame;
         this.show = false;
+        this.width=width;
+        this.height=height;
         
         addMouseListener(new ClickListener());
     }
@@ -36,7 +39,7 @@ public class ImagemCarta extends JPanel implements Constants{
     {
         super.paintComponent(g);
         
-        g.drawImage(img, 384, 552, this);
+        g.drawImage(img, 0, 0,width,height, this);
 
     }    
     

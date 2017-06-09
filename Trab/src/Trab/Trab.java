@@ -5,7 +5,9 @@
  */
 package Trab;
 
+import Logic.Jogo;
 import Logic.ObservableGame;
+import View.TextUI;
 import ui.Gui.MiniRogueView;
 
 /**

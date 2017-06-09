@@ -53,4 +53,9 @@ public interface Constants
     String PATH_IMG_TREASURE = "Images/Treasure.JPG";
 
     
+    static final int DIM_X_COLUNA = 384;
+    static final int DIM_Y_COLUNA = 555;
+
+    
+    
 }
