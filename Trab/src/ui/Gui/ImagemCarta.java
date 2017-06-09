@@ -21,18 +21,20 @@ import javax.swing.JPanel;
  */
 public class ImagemCarta extends JPanel implements Constants{
     
-    private boolean show;
+    //private boolean show;
     BufferedImage img;
     ObservableGame observableGame;
     boolean duasCartas;
 
-    ImagemCarta(BufferedImage Image, ObservableGame observableGame, boolean duasCartas) {
-        this.img = Image;
+    ImagemCarta(ObservableGame observableGame, boolean duasCartas) {
         this.observableGame = observableGame;
-        this.show = false;
+        //this.show = false;
         this.duasCartas = duasCartas;
+        
         setAlignmentX(CENTER_ALIGNMENT);
-                setAlignmentY(CENTER_ALIGNMENT);
+        setAlignmentY(CENTER_ALIGNMENT);
+        
+        img = MiniRoguePanel.getBackCardImage();
         
         addMouseListener(new ClickListener());
     }
