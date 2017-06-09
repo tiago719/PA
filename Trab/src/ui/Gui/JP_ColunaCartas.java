@@ -36,13 +36,23 @@ public class JP_ColunaCartas extends JPanel implements Constants, Observer {
         observableGame.addObserver(this);
 
         cartas = new ArrayList<>();
-        cartas.add(new ImagemCarta(MiniRoguePanel.getRestingImage(), this.observableGame, true));
-        cartas.add(new ImagemCarta(MiniRoguePanel.getTrapImage(), this.observableGame, true));
+        if (pos == 1 || pos == 3){
+            cartas.add(new ImagemCarta(this.observableGame, true));
+            cartas.add(new ImagemCarta(this.observableGame, true));
+        }
+        else
+          cartas.add(new ImagemCarta(this.observableGame, false));  
+            
 
         setMaximumSize(new Dimension(DIM_X_COLUNA, DIM_Y_COLUNA));
         setPreferredSize(new Dimension(DIM_X_COLUNA, DIM_Y_COLUNA));
         setMinimumSize(new Dimension(DIM_X_COLUNA, DIM_Y_COLUNA));
         setLayout(new GridLayout(cartas.size(),1,0,0));
+        
+        
+        for(ImagemCarta c : cartas)
+            add(c);
+        
 //        setAlignmentX(CENTER_ALIGNMENT);
 //        setAlignmentY(CENTER_ALIGNMENT);
 //        Box box = Box.createHorizontalBox();
@@ -51,12 +61,12 @@ public class JP_ColunaCartas extends JPanel implements Constants, Observer {
 //        box.setMinimumSize(new Dimension(DIM_X_COLUNA, DIM_Y_COLUNA));
 //        box.add(Box.createHorizontalGlue());
 
-        add(cartas.get(0));
+//        add(cartas.get(0));
 //        box.add(Box.createHorizontalGlue());
 //        setLayout(new BorderLayout());
 //        add(box, BorderLayout.CENTER);
 //        add(Box.createHorizontalGlue());
-        add(cartas.get(1));
+//        add(cartas.get(1));
 
     }
 
