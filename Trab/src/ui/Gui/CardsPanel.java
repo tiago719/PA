@@ -2,6 +2,7 @@ package ui.Gui;
 
 import Logic.Cartas.*;
 import Logic.ObservableGame;
+import LogicaJogo.States.AwaitBegining;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -19,8 +20,10 @@ public class CardsPanel extends JPanel implements Constants, Observer {
 
     private ObservableGame observableGame;
 
-    public CardsPanel(ObservableGame observableGame) {
+    public CardsPanel(ObservableGame observableGame) 
+    {
         this.observableGame = observableGame;
+        setVisible(!(observableGame.getState() instanceof AwaitBegining));
         observableGame.addObserver(this);
 
         setMaximumSize(new Dimension((DIM_X_COLUNA) * 5, DIM_Y_COLUNA));
@@ -42,11 +45,14 @@ public class CardsPanel extends JPanel implements Constants, Observer {
             add(b);
         }
 
+
+
     }
 
     @Override
     public void update(Observable o, Object arg) {
         repaint();
+        setVisible(!(observableGame.getState() instanceof AwaitBegining));
     }
 
 //    @Override

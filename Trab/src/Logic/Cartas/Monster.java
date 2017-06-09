@@ -2,7 +2,7 @@ package Logic.Cartas;
 
 import Logic.Constants;
 import Logic.GameData;
-import LogicaJogo.States.AwaitCardCardSelectionOnCurrentColumn;
+import LogicaJogo.States.AwaitCardSelectionOnCurrentColumn;
 import LogicaJogo.States.GameOver;
 import LogicaJogo.States.IStates;
 import java.io.Serializable;

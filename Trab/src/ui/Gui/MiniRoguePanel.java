@@ -29,7 +29,7 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
 {
 
     static private BufferedImage TheDungeonImage = null, CharacterStatsImage = null, BackCardImage = null, BossMonsterImage = null,
-            EventImage = null, MerchantImage = null, MonsterImage = null, RestingImage = null, TrapImage = null, TreasureImage = null;
+            EventImage = null, MerchantImage = null, MonsterImage = null, RestingImage = null, TrapImage = null, TreasureImage = null, WelcomeImage=null;
 
     public static BufferedImage getTheDungeonImage()
     {
@@ -80,6 +80,11 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
     {
         return TreasureImage;
     }
+    
+    public static BufferedImage getWelcomeImage()
+    {
+        return WelcomeImage;
+    }
 
     static
     {
@@ -95,6 +100,7 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
             RestingImage = ImageIO.read(Resources.getResourceFile("images/Resting.JPG"));
             TrapImage = ImageIO.read(Resources.getResourceFile("images/Trap.JPG"));
             TreasureImage = ImageIO.read(Resources.getResourceFile("images/Treasure.JPG"));
+            WelcomeImage = ImageIO.read(Resources.getResourceFile("images/MiniRogue.png"));
 
         } catch (IOException e)
         {
@@ -110,12 +116,13 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
 
     private AwaitBattleOptionPanel awaitBattleOptionPanel;
     private AwaitBeginingPanel awaitBeginingPanel;
-    private AwaitCardCardSelectionOnCurrentColumnPanel awaitCardCardSelectionOnCurrentColumnPanel;
+    private AwaitCardSelectionOnCurrentColumnPanel awaitCardCardSelectionOnCurrentColumnPanel;
     private AwaitFeatsPanel awaitFeatsPanel;
     private AwaitOptionSelectionPanel awaitOptionSelectionPanel;
     private AwaitSpellChoosePanel awaitSpellChoosePanel;
     private AwaitTraidingPanel awaitTraidingPanel;
     private GameOverPanel gameOverPanel;
+    private WelcomePanel welcomePanel;
 
     public MiniRoguePanel(ObservableGame j)
     {
@@ -134,10 +141,11 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
         dungeonPanel = new DungeonPanel(observableGame);
         cardsPanel = new CardsPanel(observableGame);
         characterStatsPanel = new CharacterStatsPanel(observableGame);
+        welcomePanel = new WelcomePanel(observableGame);
 
         awaitBattleOptionPanel = new AwaitBattleOptionPanel(observableGame);
         awaitBeginingPanel = new AwaitBeginingPanel(observableGame);
-        awaitCardCardSelectionOnCurrentColumnPanel = new AwaitCardCardSelectionOnCurrentColumnPanel(observableGame);
+        awaitCardCardSelectionOnCurrentColumnPanel = new AwaitCardSelectionOnCurrentColumnPanel(observableGame);
         awaitFeatsPanel = new AwaitFeatsPanel(observableGame);
         awaitOptionSelectionPanel = new AwaitOptionSelectionPanel(observableGame);
         awaitSpellChoosePanel = new AwaitSpellChoosePanel(observableGame);
@@ -156,8 +164,17 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
         LeftBox.add(dungeonPanel);
 
         Box MidBox = Box.createVerticalBox();
+        
+        Box b = Box.createHorizontalBox();
+        b.add(Box.createHorizontalGlue());
+        b.add(Box.createVerticalGlue());
+        b.add(welcomePanel);
+        b.add(Box.createHorizontalGlue());
+        b.add(Box.createVerticalGlue());
 
         MidBox.add(cardsPanel);
+        MidBox.add(b);
+        welcomePanel.setBorder(new LineBorder(Color.darkGray));
         MidBox.setBorder(new LineBorder(Color.BLUE));
 
         Box center = Box.createHorizontalBox();

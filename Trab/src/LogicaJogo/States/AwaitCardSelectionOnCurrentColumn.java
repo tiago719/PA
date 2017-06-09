@@ -16,9 +16,9 @@ import java.io.Serializable;
  *
  * @author edu_f
  */
-public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implements IStates, Serializable{
+public class AwaitCardSelectionOnCurrentColumn extends StateAdapter implements IStates, Serializable{
 
-    public AwaitCardCardSelectionOnCurrentColumn(GameData g) {
+    public AwaitCardSelectionOnCurrentColumn(GameData g) {
         super(g);
     }
 
@@ -74,7 +74,7 @@ public class AwaitCardCardSelectionOnCurrentColumn extends StateAdapter implemen
         if(!getGame().getCaverna().getAreaAtual().proxColuna())
             return new GameOver(getGame());
 
-        return new AwaitCardCardSelectionOnCurrentColumn(getGame());
+        return new AwaitCardSelectionOnCurrentColumn(getGame());
     }
 
     @Override

@@ -36,7 +36,7 @@ public class AwaitBegining extends StateAdapter implements IStates, Serializable
     public IStates start() {
         if (getGame().intialize())
         {
-            return new AwaitCardCardSelectionOnCurrentColumn(getGame());
+            return new AwaitCardSelectionOnCurrentColumn(getGame());
         }
         return this;
 

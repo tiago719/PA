@@ -179,6 +179,11 @@ public class Jogo implements Serializable {
     public ArrayList<Carta> getBaralhoAreaAtual(){
         return gameData.getCaverna().getAreaAtual().getBaralho();
     }
+    
+    public int getSizeBaralho()
+    {
+        return gameData.getSizeBaralho();
+    }
 
     public boolean exportarJogo() {
         try {
