@@ -29,7 +29,7 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
 {
 
     static private BufferedImage TheDungeonImage = null, CharacterStatsImage = null, BackCardImage = null, BossMonsterImage = null,
-            EventImage = null, MerchantImage = null, MonsterImage = null, RestingImage = null, TrapImage = null, TreasureImage = null;
+            EventImage = null, MerchantImage = null, MonsterImage = null, RestingImage = null, TrapImage = null, TreasureImage = null, WelcomeImage=null;
 
     public static BufferedImage getTheDungeonImage()
     {
@@ -80,6 +80,11 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
     {
         return TreasureImage;
     }
+    
+    public static BufferedImage getWelcomeImage()
+    {
+        return TreasureImage;
+    }
 
     static
     {
@@ -95,6 +100,7 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
             RestingImage = ImageIO.read(Resources.getResourceFile("images/Resting.JPG"));
             TrapImage = ImageIO.read(Resources.getResourceFile("images/Trap.JPG"));
             TreasureImage = ImageIO.read(Resources.getResourceFile("images/Treasure.JPG"));
+            WelcomeImage = ImageIO.read(Resources.getResourceFile("images/MiniRogue.png"));
 
         } catch (IOException e)
         {
