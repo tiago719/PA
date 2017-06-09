@@ -30,11 +30,12 @@ public class JP_ColunaCartas extends JPanel implements Constants, Observer {
 
     ObservableGame observableGame;
     ArrayList<ImagemCarta> cartas;
+    final int pos;
 
     JP_ColunaCartas(int pos, ObservableGame observableGame) {
         this.observableGame = observableGame;
         observableGame.addObserver(this);
-
+        this.pos = pos;
         cartas = new ArrayList<>();
         if (pos == 1 || pos == 3){
             cartas.add(new ImagemCarta(this.observableGame, true));
@@ -73,6 +74,10 @@ public class JP_ColunaCartas extends JPanel implements Constants, Observer {
     @Override
     public void update(Observable o, Object arg) {
         repaint();
+        
+//        if (pos == observableGame.get)
+        
+        
     }
 
 }
