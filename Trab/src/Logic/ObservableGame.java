@@ -57,6 +57,7 @@ public class ObservableGame extends Observable
         return GameModel.getCartasColuna();
     }
     
+
     public boolean hasHeal()
     {
         return GameModel.hasHeal();
@@ -75,6 +76,10 @@ public class ObservableGame extends Observable
     public Dado getDado(int index)
     {
         return GameModel.getDado(index);
+
+    public int getNumColunaAtual() {
+        return GameModel.getColuna();
+
     }
     
     // Methods that are intended to be used by the user interfaces and that are delegated in the current state of the finite state machine 
@@ -166,6 +171,8 @@ public class ObservableGame extends Observable
         setChanged();
         notifyObservers();
     }
+
+
     
     public void MerchantOptionSelected(int option)
     {
