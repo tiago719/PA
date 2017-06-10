@@ -72,7 +72,6 @@ public class ImagemCarta extends JPanel implements Constants, Observer {
     void setImg(BufferedImage img, Carta c) {
         this.img = img;
         this.carta = c;
-//        this.clickAble = clickAble;
     }
 
     @Override

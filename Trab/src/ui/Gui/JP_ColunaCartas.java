@@ -42,7 +42,7 @@ public class JP_ColunaCartas extends JPanel implements Constants, Observer {
             cartas.add(new ImagemCarta(this.observableGame, true, pos));
             cartas.add(new ImagemCarta(this.observableGame, true, pos));
         }
-        else
+        else if(pos!=5 || (pos==5 && observableGame.isLastArea()))
           cartas.add(new ImagemCarta(this.observableGame, false, pos));  
             
 
@@ -94,6 +94,8 @@ public class JP_ColunaCartas extends JPanel implements Constants, Observer {
                     ICtemp.setImg(MiniRoguePanel.getEventImage(),CartaTemp);
                 if (CartaTemp instanceof Trap)
                     ICtemp.setImg(MiniRoguePanel.getTrapImage(),CartaTemp);
+                if (CartaTemp instanceof Merchant)
+                    ICtemp.setImg(MiniRoguePanel.getMerchantImage(),CartaTemp);
                 
             }
         }
