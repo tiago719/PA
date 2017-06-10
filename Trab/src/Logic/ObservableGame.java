@@ -57,6 +57,10 @@ public class ObservableGame extends Observable
         return GameModel.getCartasColuna();
     }
     
+    public int getNumColunaAtual() {
+        return GameModel.getColuna();
+    }
+    
     // Methods that are intended to be used by the user interfaces and that are delegated in the current state of the finite state machine 
     public void startGame()
     {
@@ -90,6 +94,8 @@ public class ObservableGame extends Observable
         setChanged();
         notifyObservers();
     }
+
+
     
     
     

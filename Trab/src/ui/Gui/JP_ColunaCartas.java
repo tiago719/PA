@@ -5,6 +5,7 @@
  */
 package ui.Gui;
 
+import Logic.Cartas.*;
 import Logic.ObservableGame;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -30,14 +31,14 @@ public class JP_ColunaCartas extends JPanel implements Constants, Observer {
 
     ObservableGame observableGame;
     ArrayList<ImagemCarta> cartas;
-    final int pos;
+    final int Coluna;
 
     JP_ColunaCartas(int pos, ObservableGame observableGame) {
         this.observableGame = observableGame;
         observableGame.addObserver(this);
-        this.pos = pos;
+        this.Coluna = pos;
         cartas = new ArrayList<>();
-        if (pos == 1 || pos == 3){
+        if (pos == 2 || pos == 4){
             cartas.add(new ImagemCarta(this.observableGame, true));
             cartas.add(new ImagemCarta(this.observableGame, true));
         }
@@ -73,9 +74,27 @@ public class JP_ColunaCartas extends JPanel implements Constants, Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        repaint();
         
-//        if (pos == observableGame.get)
+//        repaint();
+        if (Coluna == observableGame.getNumColunaAtual()){
+            ArrayList<Carta> Baralho = observableGame.getCartasColuna();
+            for (int i=0; i< Baralho.size(); i++){
+                if (Baralho.get(i) instanceof Resting)
+                    cartas.get(i).setImg(MiniRoguePanel.getRestingImage());
+                if (Baralho.get(i) instanceof Monster)
+                    cartas.get(i).setImg(MiniRoguePanel.getMonsterImage());
+                if (Baralho.get(i) instanceof BossMonster)
+                    cartas.get(i).setImg(MiniRoguePanel.getBossMonsterImage());
+                if (Baralho.get(i) instanceof Treasure)
+                    cartas.get(i).setImg(MiniRoguePanel.getTreasureImage());
+                if (Baralho.get(i) instanceof Event)
+                    cartas.get(i).setImg(MiniRoguePanel.getEventImage());
+                if (Baralho.get(i) instanceof Trap)
+                    cartas.get(i).setImg(MiniRoguePanel.getTrapImage());
+                
+            }
+        }
+        
         
         
     }
