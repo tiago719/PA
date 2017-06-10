@@ -12,6 +12,8 @@ import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.Box;
 import javax.swing.JPanel;
 
@@ -19,7 +21,7 @@ import javax.swing.JPanel;
  *
  * @author edu_f
  */
-public class ImagemCarta extends JPanel implements Constants{
+public class ImagemCarta extends JPanel implements Constants, Observer{
     
     //private boolean show;
     BufferedImage img;
@@ -28,6 +30,8 @@ public class ImagemCarta extends JPanel implements Constants{
 
     ImagemCarta(ObservableGame observableGame, boolean duasCartas) {
         this.observableGame = observableGame;
+        
+        observableGame.addObserver(this);
         //this.show = false;
         this.duasCartas = duasCartas;
         
@@ -54,6 +58,12 @@ public class ImagemCarta extends JPanel implements Constants{
             g.drawImage(img, 10, (getHeight()/2)-(DIM_Y_CARTA/2)
                     ,DIM_X_CARTA-10,(getHeight()/2), this);
     }    
+
+    @Override
+    public void update(Observable o, Object arg)
+    {
+        //TODO: fazer 
+    }
     
     class ClickListener extends MouseAdapter 
     {

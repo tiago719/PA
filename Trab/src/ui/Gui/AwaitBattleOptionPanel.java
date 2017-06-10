@@ -7,8 +7,12 @@ package ui.Gui;
 
 import Logic.ObservableGame;
 import LogicaJogo.States.AwaitBegining;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /**
@@ -17,7 +21,7 @@ import javax.swing.JPanel;
  */
 public class AwaitBattleOptionPanel extends JPanel implements Observer
 {
-
+    private JButton Atacar, Rerrol, Feats;
     private ObservableGame observableGame;
 
     public AwaitBattleOptionPanel(ObservableGame observableGame)
@@ -31,17 +35,50 @@ public class AwaitBattleOptionPanel extends JPanel implements Observer
 
     public void setupComponents()
     {
-
+        Atacar=new JButton("Ration");  
+        Atacar.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent ev)
+            {
+                observableGame.AtacaMonstro();
+            }
+        });
+        
+        Rerrol=new JButton("Rerrol");  
+        Rerrol.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent ev)
+            {
+                //observableGame.ReroolOptionSelected();TODO: falta fazer
+            }
+        });
+        
+        Feats=new JButton("Feats");  
+        Feats.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent ev)
+            {
+                observableGame.Feats();
+            }
+        });
     }
 
     public void setupLayout()
     {
-
+        setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+        
+        add(Atacar);
+        add(Rerrol);
+        add(Feats);
     }
 
     @Override
     public void update(Observable o, Object arg)
     {
+        Rerrol.setVisible(observableGame.AnyCritical());
         setVisible(observableGame.getState() instanceof AwaitBattleOptionPanel);
     }
 

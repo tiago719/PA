@@ -17,9 +17,11 @@ import ui.Gui.MiniRogueView;
 public class Trab {
     
     public static void main(String[] args) {
-//        TextUI textUI = new TextUI(new Jogo());
-//        textUI.run();  
+        /*
+        TextUI textUI = new TextUI(new Jogo());
+        textUI.run();  */
 //TODO: MUDAR PARA TEXTO
+
         ObservableGame ob = new ObservableGame();        
         new MiniRogueView(ob);
 
