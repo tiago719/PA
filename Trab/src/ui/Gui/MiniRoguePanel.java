@@ -207,7 +207,7 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
 
         setLayout(new BorderLayout());
 //        setLayout(new GridLayout(2,2,0,0));
-center.setSize(900, 500);
+        center.setSize(900, 500);
         add(center, BorderLayout.CENTER);
         add(south, BorderLayout.SOUTH);
         

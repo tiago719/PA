@@ -6,7 +6,9 @@
 package ui.Gui;
 
 import Logic.ObservableGame;
+import LogicaJogo.States.AwaitBattleOption;
 import LogicaJogo.States.AwaitBegining;
+import LogicaJogo.States.AwaitCardSelectionOnCurrentColumn;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
@@ -28,6 +30,8 @@ public class AwaitBattleOptionPanel extends JPanel implements Observer
     {
         this.observableGame = observableGame;
         observableGame.addObserver(this);
+        
+        setVisible(observableGame.getState() instanceof AwaitBattleOption);
 
         setupComponents();
         setupLayout();
@@ -79,7 +83,7 @@ public class AwaitBattleOptionPanel extends JPanel implements Observer
     public void update(Observable o, Object arg)
     {
         Rerrol.setVisible(observableGame.AnyCritical());
-        setVisible(observableGame.getState() instanceof AwaitBattleOptionPanel);
+        setVisible(observableGame.getState() instanceof AwaitBattleOption);
     }
 
 }

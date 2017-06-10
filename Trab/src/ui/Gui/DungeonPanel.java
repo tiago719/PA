@@ -7,6 +7,7 @@ package ui.Gui;
 
 import Logic.ObservableGame;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JPanel;
@@ -24,14 +25,27 @@ public class DungeonPanel extends JPanel implements Constants, Observer
         this.observableGame=observableGame;
         
         observableGame.addObserver(this);
+        
+        setupComponents();
+        setupLayout();
 
+    }
+    
+    public void setupComponents()
+    {
+        
+    }
+    
+    public void setupLayout()
+    {
+        //setLayout(new GridLayout(5,4,DIM_X_BETWEEN, DIM_Y_BETWEEN));
     }
     
     @Override
     public void paintComponent(Graphics g)
     {  
        super.paintComponent(g);
-        
+       
         g.drawImage(MiniRoguePanel.getTheDungeonImage(),0,0, DIM_X_DUNGEON, DIM_Y_DUNGEON, this);
     }
 

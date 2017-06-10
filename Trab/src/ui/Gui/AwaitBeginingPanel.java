@@ -10,6 +10,7 @@ import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JPanel;
 import LogicaJogo.States.AwaitBegining;
+import LogicaJogo.States.AwaitCardSelectionOnCurrentColumn;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -43,6 +44,8 @@ public class AwaitBeginingPanel extends JPanel implements Observer
         this.observableGame = observableGame;
 
         observableGame.addObserver(this);
+        
+        setVisible(observableGame.getState() instanceof AwaitBegining); 
 
         setupComponents();
         setupLayout();

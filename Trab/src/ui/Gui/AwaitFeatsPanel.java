@@ -6,8 +6,11 @@
 package ui.Gui;
 
 import Logic.ObservableGame;
+import LogicaJogo.States.AwaitCardSelectionOnCurrentColumn;
+import LogicaJogo.States.AwaitFeats;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -20,7 +23,6 @@ import javax.swing.JPanel;
  */
 public class AwaitFeatsPanel extends JPanel implements Observer
 {
-
     private ArrayList<JButton> Dados;
     private JButton Cancelar;
     private ObservableGame observableGame;
@@ -29,6 +31,10 @@ public class AwaitFeatsPanel extends JPanel implements Observer
     {
         this.observableGame = observableGame;
         observableGame.addObserver(this);
+        
+        Dados=new ArrayList<>();
+        
+        setVisible(observableGame.getState() instanceof AwaitFeats); 
 
         setupComponents();
         setupLayout();
@@ -37,41 +43,48 @@ public class AwaitFeatsPanel extends JPanel implements Observer
     public void setupComponents()
     {
         Cancelar=new JButton("Cancelar");
-        Cancelar.addActionListener(new ActionListener()
-        {
-            @Override
-                public void actionPerformed(ActionEvent ev)
-                {
-                    observableGame.FeatsOptionSelected(0, 1);
-
-                }
-        });
-        int i,j;
+        Cancelar.addMouseListener(new ActionListener(observableGame, 0));
+        
+        int i;
         for (i = 0; i < observableGame.getDados().size(); i++)
         {
-//            Dados.add(new JButton("Dados " + i + ": " + observableGame.getDado(i).getFace()));
-/*            Dados.get(i).addActionListener(new ActionListener()
-            {
-                @Override
-                public void actionPerformed(ActionEvent ev)
-                {
-                    //TODO: comecar aqui
-                   // observableGame.FeatsOptionSelected(i, 1);//TODO: Mudar a segunda variavel desta func
-
-                }
-            });*/
+            Dados.add(new JButton("Dado " + (i+1) + ": " + observableGame.getDados().get(i).getFace()));
+            
+            Dados.get(i).addMouseListener(new ActionListener(observableGame,i));
         }
     }
 
     public void setupLayout()
     {
-
+        add(Cancelar);
+        for(int i=0;i<Dados.size();i++)
+        {
+            add(Dados.get(i));
+        }
     }
 
     @Override
     public void update(Observable o, Object arg)
     {
-        setVisible(observableGame.getState() instanceof AwaitFeatsPanel);
+        setVisible(observableGame.getState() instanceof AwaitFeats);
     }
+}
 
+class ActionListener  extends MouseAdapter
+{
+    private int i;
+    private ObservableGame observableGame;
+    
+    public ActionListener(ObservableGame o,int i)
+    {
+        this.i=i;
+        observableGame=o;
+    }
+    
+    @Override
+    public void mousePressed(MouseEvent ev)
+    {
+       observableGame.FeatsOptionSelected(i, 1);//TODO: Mudar a segunda variavel desta func
+
+    }
 }
