@@ -36,7 +36,7 @@ public class CardsPanel extends JPanel implements Constants, Observer {
         ArrayList<JP_ColunaCartas> ColunaCartas = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             Box b = Box.createVerticalBox();
-            JP_ColunaCartas aux = new JP_ColunaCartas(i, observableGame);
+            JP_ColunaCartas aux = new JP_ColunaCartas(i+1, observableGame);
             ColunaCartas.add(aux);
 
             b.add(aux);
