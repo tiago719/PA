@@ -155,6 +155,10 @@ public class Jogo implements Serializable {
     public int getHpPersonagem() {
         return gameData.getPersonagem().getHp();
     }
+    
+    public boolean isLastArea() {
+        return gameData.getCaverna().isLastArea();
+    }
 
     public boolean hasHeal() {
         return gameData.getPersonagem().hasHeal();

@@ -51,8 +51,8 @@ public class Caverna implements Serializable
 
     public boolean isLastArea()
     {
-        int a = MapaNiveis[areaL].length;
-        int b = areaC;
+//        int a = MapaNiveis[areaL].length;
+//        int b = areaC;
 
         return MapaNiveis[areaL].length == areaC + 1;
     }
