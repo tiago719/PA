@@ -15,65 +15,59 @@ import java.util.Observable;
  *
  * @author Tiago Coutinho
  */
-public class ObservableGame extends Observable
-{
+public class ObservableGame extends Observable {
+
     private Jogo GameModel;
 
-    public ObservableGame()
-    {
+    public ObservableGame() {
         GameModel = new Jogo();
     }
 
-    public void setGameModel(Jogo gameModel)
-    {
+    public void setGameModel(Jogo gameModel) {
         this.GameModel = gameModel;
 
         setChanged();
         notifyObservers();
     }
 
-    public GameData getGameData()
-    {
+    public GameData getGameData() {
         return GameModel.getGame();
     }
-    
-    public ArrayList<Carta> getBaralhoAreaAtual(){
+
+    public ArrayList<Carta> getBaralhoAreaAtual() {
         return GameModel.getBaralhoAreaAtual();
     }
 
-    public IStates getState()
-    {
+    public IStates getState() {
         return GameModel.getState();
     }
 
     // Methods retrieve data from the game
-    
-    public int getSizeBaralho()
-    {
+    public int getSizeBaralho() {
         return GameModel.getSizeBaralho();
     }
-    
-    public ArrayList<Carta> getCartasColuna()
-    {
+
+    public ArrayList<Carta> getCartasColuna() {
         return GameModel.getCartasColuna();
     }
-    
 
-    public boolean hasHeal()
-    {
+    public boolean hasHeal() {
         return GameModel.hasHeal();
     }
-    
-    public boolean AnyCritical()
-    {
+
+    public boolean AnyCritical() {
         return GameModel.AnyCritical();
     }
-    
-    public ArrayList<Dado> getDados()
-    {
+
+    public ArrayList<Dado> getDados() {
         return GameModel.getDados();
     }
 
+
+    public Dado getDado(int index) {
+        return GameModel.getDado(index);
+    }
+  
     public ArrayList<Spell> getSpells()
     {
         return GameModel.getSpells();
@@ -83,156 +77,133 @@ public class ObservableGame extends Observable
         return GameModel.getColuna();
 
     }
-    
+
     // Methods that are intended to be used by the user interfaces and that are delegated in the current state of the finite state machine 
-    public void startGame()
-    {
+    public void startGame() {
         GameModel.comecar();
 
         setChanged();
         notifyObservers();
     }
-    
-    public void setDificultyLevel(int a)
-    {
-        
+
+    public void setDificultyLevel(int a) {
+
         GameModel.setDifficultLevel(a);
-        
+
         setChanged();
         notifyObservers();
     }
-    
-    public void setStartingArea(int a)
-    {
+
+    public void setStartingArea(int a) {
         GameModel.setStartingArea(a);
 
         setChanged();
         notifyObservers();
     }
-    
-    public void SelectedRestingCard()
-    {
+
+    public void SelectedRestingCard() {
         GameModel.resting();
-        
+
         setChanged();
         notifyObservers();
     }
-    
-    public void SelectedMonsterCard(Carta c)
-    {
+
+    public void SelectedMonsterCard(Carta c) {
         GameModel.monster(c);
-        
+
         setChanged();
         notifyObservers();
     }
-    
-    public void SelectedBoosMonsterCard(Carta c)
-    {
+
+    public void SelectedBoosMonsterCard(Carta c) {
         GameModel.monster(c);
-        
+
         setChanged();
         notifyObservers();
     }
-    
-    public void SelectedEventCard(Carta c)
-    {
+
+    public void SelectedEventCard(Carta c) {
         GameModel.event(c);
-        
+
         setChanged();
         notifyObservers();
     }
-    
-    public void SelectedMerchantCard()
-    {
+
+    public void SelectedMerchantCard() {
         GameModel.merchant();
-        
+
         setChanged();
         notifyObservers();
     }
-    
-    public void SelectedTrapCard()
-    {
+
+    public void SelectedTrapCard() {
         GameModel.trap();
-        
+
         setChanged();
         notifyObservers();
     }
-    
-    public void SelectedTreasureCard()
-    {
+
+    public void SelectedTreasureCard() {
         GameModel.treasure();
-        
+
         setChanged();
         notifyObservers();
     }
-    
-    public void ResolveRestingCard(int a)
-    {
+
+    public void ResolveRestingCard(int a) {
         GameModel.RestingOptionSelected(a);
 
         setChanged();
         notifyObservers();
     }
 
-
-    
-    public void MerchantOptionSelected(int option)
-    {
+    public void MerchantOptionSelected(int option) {
         GameModel.MerchantOptionSelected(option);
 
         setChanged();
         notifyObservers();
     }
-    
-    
-    public void AtacaMonstro()
-    {
+
+    public void AtacaMonstro() {
         GameModel.AtacaMonstro();
 
         setChanged();
         notifyObservers();
     }
-    
-    public void Feats()
-    {
+
+    public void Feats() {
         GameModel.Feats();
 
         setChanged();
         notifyObservers();
     }
-    
-    public void FeatsOptionSelected(int indexDado,int custo)
-    {
+
+    public void FeatsOptionSelected(int indexDado, int custo) {
         GameModel.FeatsOptionSelected(indexDado, custo);
 
         setChanged();
         notifyObservers();
     }
-    
-    public void ReroolOptionSelected(int c)
-    {
+
+    public void ReroolOptionSelected(int c) {
         GameModel.AA_Reroll(c);
 
         setChanged();
         notifyObservers();
     }
-    
-    public void ChooseSpell(int indexVetorSpells)
-    {
+
+    public void ChooseSpell(int indexVetorSpells) {
         GameModel.ChooseSpell(indexVetorSpells);
 
         setChanged();
         notifyObservers();
     }
-    
-    public void GameOver()
-    {
+
+    public void GameOver() {
         GameModel.GameOver();
 
         setChanged();
         notifyObservers();
     }
-    
-    
-    
+
 }
