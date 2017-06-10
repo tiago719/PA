@@ -57,8 +57,29 @@ public class ObservableGame extends Observable
         return GameModel.getCartasColuna();
     }
     
+
+    public boolean hasHeal()
+    {
+        return GameModel.hasHeal();
+    }
+    
+    public boolean AnyCritical()
+    {
+        return GameModel.AnyCritical();
+    }
+    
+    public ArrayList<Dado> getDados()
+    {
+        return GameModel.getDados();
+    }
+    
+    public Dado getDado(int index)
+    {
+        return GameModel.getDado(index);
+
     public int getNumColunaAtual() {
         return GameModel.getColuna();
+
     }
     
     // Methods that are intended to be used by the user interfaces and that are delegated in the current state of the finite state machine 
@@ -87,6 +108,62 @@ public class ObservableGame extends Observable
         notifyObservers();
     }
     
+    public void SelectedRestingCard()
+    {
+        GameModel.resting();
+        
+        setChanged();
+        notifyObservers();
+    }
+    
+    public void SelectedMonsterCard(Carta c)
+    {
+        GameModel.monster(c);
+        
+        setChanged();
+        notifyObservers();
+    }
+    
+    public void SelectedBoosMonsterCard(Carta c)
+    {
+        GameModel.monster(c);
+        
+        setChanged();
+        notifyObservers();
+    }
+    
+    public void SelectedEventCard(Carta c)
+    {
+        GameModel.event(c);
+        
+        setChanged();
+        notifyObservers();
+    }
+    
+    public void SelectedMerchantCard()
+    {
+        GameModel.merchant();
+        
+        setChanged();
+        notifyObservers();
+    }
+    
+    public void SelectedTrapCard()
+    {
+        GameModel.trap();
+        
+        setChanged();
+        notifyObservers();
+    }
+    
+    public void SelectedTreasureCard()
+    {
+        GameModel.treasure();
+        
+        setChanged();
+        notifyObservers();
+    }
+    
     public void ResolveRestingCard(int a)
     {
         GameModel.RestingOptionSelected(a);
@@ -96,6 +173,63 @@ public class ObservableGame extends Observable
     }
 
 
+    
+    public void MerchantOptionSelected(int option)
+    {
+        GameModel.MerchantOptionSelected(option);
+
+        setChanged();
+        notifyObservers();
+    }
+    
+    
+    public void AtacaMonstro()
+    {
+        GameModel.AtacaMonstro();
+
+        setChanged();
+        notifyObservers();
+    }
+    
+    public void Feats()
+    {
+        GameModel.Feats();
+
+        setChanged();
+        notifyObservers();
+    }
+    
+    public void FeatsOptionSelected(int indexDado,int custo)
+    {
+        GameModel.FeatsOptionSelected(indexDado, custo);
+
+        setChanged();
+        notifyObservers();
+    }
+    
+    public void ReroolOptionSelected(int c)
+    {
+        GameModel.AA_Reroll(c);
+
+        setChanged();
+        notifyObservers();
+    }
+    
+    public void ChooseSpell(int indexVetorSpells)
+    {
+        GameModel.ChooseSpell(indexVetorSpells);
+
+        setChanged();
+        notifyObservers();
+    }
+    
+    public void GameOver()
+    {
+        GameModel.GameOver();
+
+        setChanged();
+        notifyObservers();
+    }
     
     
     

@@ -35,6 +35,7 @@ public class ImagemCarta extends JPanel implements Constants, Observer{
 
     ImagemCarta(ObservableGame observableGame, boolean duasCartas) {
         this.observableGame = observableGame;
+
         observableGame.addObserver(this);
         //this.show = false;
         this.duasCartas = duasCartas;
@@ -84,9 +85,9 @@ public class ImagemCarta extends JPanel implements Constants, Observer{
     }    
 
     @Override
+
     public void update(Observable o, Object arg) {
         repaint();
-        
     }
     
     class ClickListener extends MouseAdapter 

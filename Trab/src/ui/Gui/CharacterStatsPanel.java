@@ -9,6 +9,8 @@ import Logic.ObservableGame;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 import static ui.Gui.Constants.DIM_X_FRAME;
@@ -18,13 +20,14 @@ import static ui.Gui.Constants.DIM_Y_FRAME;
  *
  * @author Tiago Coutinho
  */
-public class CharacterStatsPanel extends JPanel implements Constants 
+public class CharacterStatsPanel extends JPanel implements Constants, Observer
 {
     private ObservableGame observableGame;
     
     public CharacterStatsPanel(ObservableGame observableGame)
     {
         this.observableGame=observableGame;
+        observableGame.addObserver(this);
         
         setMinimumSize(new Dimension(DIM_X_STATS, DIM_Y_STATS));
         setPreferredSize(new Dimension(DIM_X_STATS, DIM_Y_STATS));
@@ -40,6 +43,12 @@ public class CharacterStatsPanel extends JPanel implements Constants
         
         g.drawImage(MiniRoguePanel.getCharacterStats(),0,0, DIM_X_STATS, DIM_Y_STATS, this);
         
+    }
+
+    @Override
+    public void update(Observable o, Object arg)
+    {
+        //TODO: fazer
     }
             
 }
