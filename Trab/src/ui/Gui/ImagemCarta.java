@@ -37,11 +37,13 @@ public class ImagemCarta extends JPanel implements Constants, Observer {
     ObservableGame observableGame;
     private Carta carta;
     boolean duasCartas;
+    int posColuna;
 
 //    JP_CartaMaximizada CartaMaximizada;
-    ImagemCarta(ObservableGame observableGame, boolean duasCartas) {
+    ImagemCarta(ObservableGame observableGame, boolean duasCartas, 
+            int posColuna) {
         this.observableGame = observableGame;
-
+        this.posColuna = posColuna;
         observableGame.addObserver(this);
         //this.show = false;
         this.duasCartas = duasCartas;
@@ -70,6 +72,7 @@ public class ImagemCarta extends JPanel implements Constants, Observer {
     void setImg(BufferedImage img, Carta c) {
         this.img = img;
         this.carta = c;
+//        this.clickAble = clickAble;
     }
 
     @Override
@@ -93,6 +96,9 @@ public class ImagemCarta extends JPanel implements Constants, Observer {
 
         @Override
         public void mousePressed(MouseEvent e) {
+            if (posColuna!=observableGame.getNumColunaAtual())
+                return;
+            
 //            CartaMaximizada.setVisible(true);
 //            CartaMaximizada.setImg(img);
 //            CartaMaximizada.update(null, null);

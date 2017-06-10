@@ -39,11 +39,11 @@ public class JP_ColunaCartas extends JPanel implements Constants, Observer {
         this.Coluna = pos;
         cartas = new ArrayList<>();
         if (pos == 2 || pos == 4){
-            cartas.add(new ImagemCarta(this.observableGame, true));
-            cartas.add(new ImagemCarta(this.observableGame, true));
+            cartas.add(new ImagemCarta(this.observableGame, true, pos));
+            cartas.add(new ImagemCarta(this.observableGame, true, pos));
         }
         else
-          cartas.add(new ImagemCarta(this.observableGame, false));  
+          cartas.add(new ImagemCarta(this.observableGame, false, pos));  
             
 
         setMaximumSize(new Dimension(DIM_X_COLUNA, DIM_Y_COLUNA));
@@ -83,7 +83,7 @@ public class JP_ColunaCartas extends JPanel implements Constants, Observer {
                 ImagemCarta ICtemp = cartas.get(i);
                 
                 if (CartaTemp instanceof Resting)
-                    ICtemp.setImg(MiniRoguePanel.getRestingImage(),CartaTemp );
+                    ICtemp.setImg(MiniRoguePanel.getRestingImage(),CartaTemp);
                 if (CartaTemp instanceof Monster)
                     ICtemp.setImg(MiniRoguePanel.getMonsterImage(),CartaTemp);
                 if (CartaTemp instanceof BossMonster)
