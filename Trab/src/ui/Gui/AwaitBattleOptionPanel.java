@@ -39,7 +39,7 @@ public class AwaitBattleOptionPanel extends JPanel implements Observer
 
     public void setupComponents()
     {
-        Atacar=new JButton("Ration");  
+        Atacar=new JButton("Atacar");  
         Atacar.addActionListener(new ActionListener()
         {
             @Override

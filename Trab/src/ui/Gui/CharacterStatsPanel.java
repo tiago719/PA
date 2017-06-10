@@ -7,10 +7,13 @@ package ui.Gui;
 
 import static Logic.Constants.MaxGold;
 import Logic.ObservableGame;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -25,63 +28,77 @@ import static ui.Gui.Constants.DIM_Y_FRAME;
  */
 public class CharacterStatsPanel extends JPanel implements Constants, Observer
 {
+
     private ObservableGame observableGame;
     private JPanel GoldStats;
     private ArrayList<JPanel> GoldP;
-    
+
     public CharacterStatsPanel(ObservableGame observableGame)
     {
-        this.observableGame=observableGame;
+        this.observableGame = observableGame;
         observableGame.addObserver(this);
-        
-        setMinimumSize(new Dimension(DIM_X_STATS, DIM_Y_STATS));
-        setPreferredSize(new Dimension(DIM_X_STATS, DIM_Y_STATS));
-        setMaximumSize(new Dimension(DIM_X_STATS, DIM_Y_STATS));
-                
+
+        GoldP = new ArrayList<>();
+
         setupComponents();
         setupLayout();
     }
-    
+
     public void setupComponents()
     {
-        GoldStats=new JPanel();
-        GoldStats.setBorder(new LineBorder(Color.YELLOW));
-        GoldStats.setMinimumSize(new Dimension(DIM_X_GOLD_PANEL, DIM_Y_GOLD_PANEL));
-        GoldStats.setPreferredSize(new Dimension(DIM_X_GOLD_PANEL, DIM_Y_GOLD_PANEL));
-        GoldStats.setMaximumSize(new Dimension(DIM_X_GOLD_PANEL, DIM_Y_GOLD_PANEL));
-        
-        GoldP=new ArrayList<>();
-        
-        for(int i=0;i<MaxGold;i++)
+        GoldStats = new JPanel();
+    }
+
+    public void setupLayout()
+    {
+        setMinimumSize(new Dimension(DIM_X_STATS, DIM_Y_STATS));
+        setPreferredSize(new Dimension(DIM_X_STATS, DIM_Y_STATS));
+        setMaximumSize(new Dimension(DIM_X_STATS, DIM_Y_STATS));
+
+        setBorder(new LineBorder(Color.GRAY));
+        addGoldStats();
+
+        add(GoldStats);
+        //setAlignmentX(LEFT_ALIGNMENT);
+    }
+
+    public void addGoldStats()
+    {
+        GoldStats.setBorder(new LineBorder(Color.RED));
+
+        for (int i = 0; i < MaxGold; i++)
         {
             GoldP.add(new JPanel());
             GoldP.get(i).setBorder(new LineBorder(Color.BLACK));
+        }
+
+        GoldStats.setLayout(new GridLayout(1, MaxGold, DIM_X_BETWEEN, DIM_Y_BETWEEN));
+        GoldStats.setVisible(true);
+        
+        //GoldStats.set;
+        
+        GoldStats.setLocation(START_X_GOLD_PANEL, START_Y_GOLD_PANEL);
+        GoldStats.setMinimumSize(new Dimension(DIM_X_GOLD_PANEL, DIM_Y_GOLD_PANEL));
+        GoldStats.setPreferredSize(new Dimension(DIM_X_GOLD_PANEL, DIM_Y_GOLD_PANEL));
+        GoldStats.setMaximumSize(new Dimension(DIM_X_GOLD_PANEL, DIM_Y_GOLD_PANEL));
+
+        for (int i = 0; i < GoldP.size(); i++)
+        {
             GoldP.get(i).setMinimumSize(new Dimension(DIM_X_QUADRICULA, DIM_Y_QUADRICULA));
             GoldP.get(i).setPreferredSize(new Dimension(DIM_X_QUADRICULA, DIM_Y_QUADRICULA));
             GoldP.get(i).setMaximumSize(new Dimension(DIM_X_QUADRICULA, DIM_Y_QUADRICULA));
-        }
-    }
-    
-    public void setupLayout()
-    {
-        GoldStats.setLayout(new GridLayout(1,MaxGold,DIM_X_BETWEEN, DIM_Y_BETWEEN));
-        
-        for(int i=0;i<GoldP.size();i++)
-        {
             GoldStats.add(GoldP.get(i));
+
         }
-        
-        add(GoldStats);
-        setAlignmentX(LEFT_ALIGNMENT);
     }
-    
+
     @Override
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
-        
-        g.drawImage(MiniRoguePanel.getCharacterStats(),0,0, DIM_X_STATS, DIM_Y_STATS, this);
-        
+        g.drawImage(MiniRoguePanel.getCharacterStats(), 0, 0, DIM_X_STATS, DIM_Y_STATS, this);
+                GoldStats.setVisible(true);
+
     }
 
     @Override
@@ -89,5 +106,5 @@ public class CharacterStatsPanel extends JPanel implements Constants, Observer
     {
         //TODO: fazer
     }
-            
+
 }

@@ -41,9 +41,9 @@ public class AwaitOptionSelectionPanel extends JPanel implements Observer
     {
         setVisible(observableGame.getState() instanceof AwaitOptionSelectionPanel);
 
-        RYW=new JButton("Reinforce your Weapon: + 1 CP");
-        SFR=new JButton("Search for Ration: + 1 FOOD");
-        HEAL=new JButton("Heal: + 2 HP");
+        RYW=new JButton("Reinforce your Weapon");
+        SFR=new JButton("Search for Ration");
+        HEAL=new JButton("Heal");
 
         RYW.addActionListener(new ActionListener()
         {
