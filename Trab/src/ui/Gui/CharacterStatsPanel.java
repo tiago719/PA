@@ -6,6 +6,7 @@
 package ui.Gui;
 
 import static Logic.Constants.MaxGold;
+import static Logic.Constants.MaxHP;
 import Logic.ObservableGame;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -31,8 +32,8 @@ public class CharacterStatsPanel extends JPanel implements Constants, Observer
 {
 
     private ObservableGame observableGame;
-    private JLabel GoldStats;
-    private ArrayList<JLabel> GoldP;
+    private JLabel GoldStats, HpStats;
+    private ArrayList<JLabel> GoldP, HpP;
 
     public CharacterStatsPanel(ObservableGame observableGame)
     {
@@ -40,6 +41,7 @@ public class CharacterStatsPanel extends JPanel implements Constants, Observer
         observableGame.addObserver(this);
 
         GoldP = new ArrayList<>();
+        HpP=new ArrayList<>();
 
         setupComponents();
         setupLayout();
@@ -48,6 +50,7 @@ public class CharacterStatsPanel extends JPanel implements Constants, Observer
     public void setupComponents()
     {
         GoldStats = new JLabel();
+        HpStats= new JLabel();
     }
 
     public void setupLayout()
@@ -57,11 +60,13 @@ public class CharacterStatsPanel extends JPanel implements Constants, Observer
         setMaximumSize(new Dimension(DIM_X_STATS, DIM_Y_STATS));
         setLayout(null);
         GoldStats.setBounds(START_X_GOLD_PANEL, START_Y_GOLD_PANEL, DIM_X_GOLD_PANEL, DIM_Y_GOLD_PANEL);
+        HpStats.setBounds(START_X_HP_PANEL, START_Y_HP_PANEL, DIM_X_HP_PANEL, DIM_Y_HP_PANEL);
         setBorder(new LineBorder(Color.GRAY));
         addGoldStats();
+        addHpStats();
 
         add(GoldStats);
-        //setAlignmentX(LEFT_ALIGNMENT);
+        add(HpStats);
     }
 
     public void addGoldStats()
@@ -92,6 +97,34 @@ public class CharacterStatsPanel extends JPanel implements Constants, Observer
             GoldStats.add(GoldP.get(i));
 
         }
+    }
+    
+    public void addHpStats()
+    {
+        HpStats.setBorder(new LineBorder(Color.RED));
+
+        for (int i = 0; i < MaxHP; i++)
+        {
+            HpP.add(new JLabel());
+            HpP.get(i).setBorder(new LineBorder(Color.BLACK));
+        }
+
+        HpStats.setLayout(new GridLayout(1, MaxHP, DIM_X_BETWEEN, DIM_Y_BETWEEN));
+        HpStats.setVisible(true);
+
+        HpStats.setMinimumSize(new Dimension(DIM_X_GOLD_PANEL, DIM_Y_GOLD_PANEL));
+        HpStats.setPreferredSize(new Dimension(DIM_X_GOLD_PANEL, DIM_Y_GOLD_PANEL));
+        HpStats.setMaximumSize(new Dimension(DIM_X_GOLD_PANEL, DIM_Y_GOLD_PANEL));
+
+        for (int i = 0; i < HpP.size(); i++)
+        {
+            HpP.get(i).setMinimumSize(new Dimension(DIM_X_QUADRICULA, DIM_Y_QUADRICULA));
+            HpP.get(i).setPreferredSize(new Dimension(DIM_X_QUADRICULA, DIM_Y_QUADRICULA));
+            HpP.get(i).setMaximumSize(new Dimension(DIM_X_QUADRICULA, DIM_Y_QUADRICULA));
+            HpStats.add(HpP.get(i));
+
+        }
+
     }
 
     @Override
