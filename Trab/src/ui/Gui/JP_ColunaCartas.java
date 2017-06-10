@@ -79,18 +79,21 @@ public class JP_ColunaCartas extends JPanel implements Constants, Observer {
         if (Coluna == observableGame.getNumColunaAtual()){
             ArrayList<Carta> Baralho = observableGame.getCartasColuna();
             for (int i=0; i< Baralho.size(); i++){
-                if (Baralho.get(i) instanceof Resting)
-                    cartas.get(i).setImg(MiniRoguePanel.getRestingImage());
-                if (Baralho.get(i) instanceof Monster)
-                    cartas.get(i).setImg(MiniRoguePanel.getMonsterImage());
-                if (Baralho.get(i) instanceof BossMonster)
-                    cartas.get(i).setImg(MiniRoguePanel.getBossMonsterImage());
-                if (Baralho.get(i) instanceof Treasure)
-                    cartas.get(i).setImg(MiniRoguePanel.getTreasureImage());
-                if (Baralho.get(i) instanceof Event)
-                    cartas.get(i).setImg(MiniRoguePanel.getEventImage());
-                if (Baralho.get(i) instanceof Trap)
-                    cartas.get(i).setImg(MiniRoguePanel.getTrapImage());
+                Carta CartaTemp = Baralho.get(i);
+                ImagemCarta ICtemp = cartas.get(i);
+                
+                if (CartaTemp instanceof Resting)
+                    ICtemp.setImg(MiniRoguePanel.getRestingImage(),CartaTemp );
+                if (CartaTemp instanceof Monster)
+                    ICtemp.setImg(MiniRoguePanel.getMonsterImage(),CartaTemp);
+                if (CartaTemp instanceof BossMonster)
+                    ICtemp.setImg(MiniRoguePanel.getBossMonsterImage(),CartaTemp);
+                if (CartaTemp instanceof Treasure)
+                    ICtemp.setImg(MiniRoguePanel.getTreasureImage(),CartaTemp);
+                if (CartaTemp instanceof Event)
+                    ICtemp.setImg(MiniRoguePanel.getEventImage(),CartaTemp);
+                if (CartaTemp instanceof Trap)
+                    ICtemp.setImg(MiniRoguePanel.getTrapImage(),CartaTemp);
                 
             }
         }
