@@ -205,5 +205,13 @@ public class ObservableGame extends Observable {
         setChanged();
         notifyObservers();
     }
+    
+    public void Heal()
+    {
+        GameModel.Healing();
+        
+        setChanged();
+        notifyObservers();
+    }
 
 }

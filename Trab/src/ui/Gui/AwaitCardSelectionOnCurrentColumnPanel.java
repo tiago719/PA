@@ -8,6 +8,7 @@ package ui.Gui;
 import Logic.ObservableGame;
 import LogicaJogo.States.AwaitCardSelectionOnCurrentColumn;
 import java.awt.Component;
+import java.awt.event.ActionEvent;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.BoxLayout;
@@ -21,7 +22,7 @@ import javax.swing.JPanel;
 public class AwaitCardSelectionOnCurrentColumnPanel extends JPanel implements Observer 
 {
     private ObservableGame observableGame;
-    JButton heal;
+    private JButton heal;
 
     public AwaitCardSelectionOnCurrentColumnPanel(ObservableGame observableGame) 
     {
@@ -36,6 +37,16 @@ public class AwaitCardSelectionOnCurrentColumnPanel extends JPanel implements Ob
      void setupComponents()
      {
         heal = new JButton("Heal");
+        
+        heal.addActionListener(new java.awt.event.ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent ev)
+            {
+                observableGame.Heal();
+                
+            }
+        });
      }
      
      void setupLayout()

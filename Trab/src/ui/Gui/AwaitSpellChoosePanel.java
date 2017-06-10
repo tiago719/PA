@@ -42,7 +42,7 @@ public class AwaitSpellChoosePanel extends JPanel implements Observer
     public void setupComponents()
     {
         Continuar=new JButton("Continuar");
-        Continuar.addMouseListener(new ActionListener(observableGame, 0));
+        Continuar.addMouseListener(new ActionListener2(observableGame, -2));
         
         for (int i = 0; i < observableGame.getSpells().size(); i++)
         {
