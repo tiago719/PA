@@ -65,16 +65,16 @@ public interface Constants
     static final int DIM_X_WELCOME = (715*DIM_X_FRAME)/1366;
     static final int DIM_Y_WELCOME = (320*DIM_Y_FRAME)/768;//262
     
-    static final int DIM_X_BETWEEN = (2*DIM_X_FRAME)/1366;
+    static final int DIM_X_BETWEEN = (3*DIM_X_FRAME)/1366;
     static final int DIM_Y_BETWEEN = (5*DIM_Y_FRAME)/768;
     
-    static final int DIM_X_QUADRICULA = (24*DIM_X_FRAME)/1366;
-    static final int DIM_Y_QUADRICULA = (30*DIM_Y_FRAME)/768;
+    static final int DIM_X_QUADRICULA = (26*DIM_X_FRAME)/1366;
+    static final int DIM_Y_QUADRICULA = (24*DIM_Y_FRAME)/768;
     
-    static final int DIM_X_GOLD_PANEL = (600*DIM_X_FRAME)/1366;
-    static final int DIM_Y_GOLD_PANEL = ((DIM_Y_QUADRICULA+2)*DIM_Y_FRAME)/768;
+    static final int DIM_X_GOLD_PANEL = DIM_X_QUADRICULA*21+DIM_X_BETWEEN*22;
+    static final int DIM_Y_GOLD_PANEL = ((DIM_Y_QUADRICULA+4)*DIM_Y_FRAME)/768;
     
-    static final int START_X_GOLD_PANEL = (20*DIM_X_FRAME)/1366;
-    static final int START_Y_GOLD_PANEL = (10*DIM_Y_FRAME)/768;
+    static final int START_X_GOLD_PANEL = (40*DIM_X_FRAME)/1366;
+    static final int START_Y_GOLD_PANEL = (94*DIM_Y_FRAME)/768;
   
 }
