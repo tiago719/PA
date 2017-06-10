@@ -6,6 +6,7 @@
 package Logic;
 
 import Logic.Cartas.Carta;
+import Logic.Spells.Spell;
 import LogicaJogo.States.IStates;
 import java.util.ArrayList;
 import java.util.Observable;
@@ -62,8 +63,14 @@ public class ObservableGame extends Observable {
         return GameModel.getDados();
     }
 
+
     public Dado getDado(int index) {
         return GameModel.getDado(index);
+    }
+  
+    public ArrayList<Spell> getSpells()
+    {
+        return GameModel.getSpells();
     }
 
     public int getNumColunaAtual() {
