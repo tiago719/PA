@@ -27,7 +27,7 @@ public class AwaitCardSelectionOnCurrentColumnPanel extends JPanel implements Ob
     {
         this.observableGame=observableGame;
         observableGame.addObserver(this);
-        setVisible(observableGame.getState() instanceof AwaitCardSelectionOnCurrentColumnPanel ); 
+        setVisible(observableGame.getState() instanceof AwaitCardSelectionOnCurrentColumn); 
         
         setupComponents();
         setupLayout();
@@ -50,7 +50,8 @@ public class AwaitCardSelectionOnCurrentColumnPanel extends JPanel implements Ob
     @Override
     public void update(Observable o, Object arg)
     {
-        setVisible(observableGame.getState() instanceof AwaitCardSelectionOnCurrentColumn && observableGame.hasHeal()); 
+        heal.setVisible(observableGame.hasHeal());
+        setVisible(observableGame.getState() instanceof AwaitCardSelectionOnCurrentColumn); 
     }
 
     

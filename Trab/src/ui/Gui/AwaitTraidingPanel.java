@@ -6,6 +6,8 @@
 package ui.Gui;
 
 import Logic.ObservableGame;
+import LogicaJogo.States.AwaitBattleOption;
+import LogicaJogo.States.AwaitTraiding;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
@@ -29,6 +31,8 @@ public class AwaitTraidingPanel extends JPanel implements Observer
     {
         this.observableGame = observableGame;
         observableGame.addObserver(this);
+        
+        setVisible(observableGame.getState() instanceof AwaitTraiding);
 
         setupComponents();
         setupLayout();
@@ -139,7 +143,7 @@ public class AwaitTraidingPanel extends JPanel implements Observer
     @Override
     public void update(Observable o, Object arg)
     {
-        setVisible(observableGame.getState() instanceof AwaitTraidingPanel);
+        setVisible(observableGame.getState() instanceof AwaitTraiding);
     }
 
 }

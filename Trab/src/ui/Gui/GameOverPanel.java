@@ -6,6 +6,7 @@
 package ui.Gui;
 
 import Logic.ObservableGame;
+import LogicaJogo.States.AwaitTraiding;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JPanel;
@@ -21,6 +22,9 @@ public class GameOverPanel extends JPanel implements Observer
     public GameOverPanel(ObservableGame observableGame) 
     {
         this.observableGame=observableGame;
+        observableGame.addObserver(this);
+        
+        setVisible(observableGame.getState() instanceof AwaitTraiding);
     }
 
     @Override

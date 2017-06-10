@@ -6,6 +6,8 @@
 package ui.Gui;
 
 import Logic.ObservableGame;
+import LogicaJogo.States.AwaitFeats;
+import LogicaJogo.States.AwaitOptionSelection;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,6 +30,8 @@ public class AwaitOptionSelectionPanel extends JPanel implements Observer
     {
         this.observableGame = observableGame;
         observableGame.addObserver(this);
+        
+        setVisible(observableGame.getState() instanceof AwaitOptionSelection); 
 
         setupComponents();
         setupLayout();
@@ -86,7 +90,7 @@ public class AwaitOptionSelectionPanel extends JPanel implements Observer
     @Override
     public void update(Observable o, Object arg)
     {
-        setVisible(observableGame.getState() instanceof AwaitOptionSelectionPanel);
+        setVisible(observableGame.getState() instanceof AwaitOptionSelection);
     }
 
 }

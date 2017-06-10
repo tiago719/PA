@@ -61,18 +61,17 @@ public interface Constants
     
     static final int DIM_X_CARTA_MAX = (384*DIM_X_FRAME)/1366;
     static final int DIM_Y_CARTA_MAX = (554*DIM_Y_FRAME)/768;//262
-
-    
+ 
     static final int DIM_X_WELCOME = (715*DIM_X_FRAME)/1366;
     static final int DIM_Y_WELCOME = (320*DIM_Y_FRAME)/768;//262
     
-  //  static final int CORD_X_START_WELCOME = (500*DIM_X_FRAME)/1366;
-  //  static final int CORD_Y_START_WELCOME = (300*DIM_Y_FRAME)/768;
- 
-//    static final int DIM_X_COLUNA = 245;
-//    static final int DIM_Y_COLUNA = 354;
-
-
+    static final int DIM_X_BETWEEN = 2;//(2*DIM_X_FRAME)/1366;
+    static final int DIM_Y_BETWEEN = 5;//(5*DIM_Y_FRAME)/768;
     
+    static final int DIM_X_QUADRICULA = 5;//(5*DIM_X_FRAME)/1366;
+    static final int DIM_Y_QUADRICULA = 5;//(5*DIM_Y_FRAME)/768;
     
+    static final int DIM_X_GOLD_PANEL = (600*DIM_X_FRAME)/1366;
+    static final int DIM_Y_GOLD_PANEL = DIM_Y_QUADRICULA+2;//(5*DIM_Y_FRAME)/768;
+  
 }
