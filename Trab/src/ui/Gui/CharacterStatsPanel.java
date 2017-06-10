@@ -17,6 +17,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 import static ui.Gui.Constants.DIM_X_FRAME;
@@ -30,8 +31,8 @@ public class CharacterStatsPanel extends JPanel implements Constants, Observer
 {
 
     private ObservableGame observableGame;
-    private JPanel GoldStats;
-    private ArrayList<JPanel> GoldP;
+    private JLabel GoldStats;
+    private ArrayList<JLabel> GoldP;
 
     public CharacterStatsPanel(ObservableGame observableGame)
     {
@@ -46,7 +47,7 @@ public class CharacterStatsPanel extends JPanel implements Constants, Observer
 
     public void setupComponents()
     {
-        GoldStats = new JPanel();
+        GoldStats = new JLabel();
     }
 
     public void setupLayout()
@@ -54,7 +55,8 @@ public class CharacterStatsPanel extends JPanel implements Constants, Observer
         setMinimumSize(new Dimension(DIM_X_STATS, DIM_Y_STATS));
         setPreferredSize(new Dimension(DIM_X_STATS, DIM_Y_STATS));
         setMaximumSize(new Dimension(DIM_X_STATS, DIM_Y_STATS));
-
+        setLayout(null);
+        GoldStats.setBounds(START_X_GOLD_PANEL, START_Y_GOLD_PANEL, DIM_X_GOLD_PANEL, DIM_Y_GOLD_PANEL);
         setBorder(new LineBorder(Color.GRAY));
         addGoldStats();
 
@@ -68,7 +70,7 @@ public class CharacterStatsPanel extends JPanel implements Constants, Observer
 
         for (int i = 0; i < MaxGold; i++)
         {
-            GoldP.add(new JPanel());
+            GoldP.add(new JLabel());
             GoldP.get(i).setBorder(new LineBorder(Color.BLACK));
         }
 
@@ -77,7 +79,7 @@ public class CharacterStatsPanel extends JPanel implements Constants, Observer
         
         //GoldStats.set;
         
-        GoldStats.setLocation(START_X_GOLD_PANEL, START_Y_GOLD_PANEL);
+        //GoldStats.setLocation(START_X_GOLD_PANEL, START_Y_GOLD_PANEL);
         GoldStats.setMinimumSize(new Dimension(DIM_X_GOLD_PANEL, DIM_Y_GOLD_PANEL));
         GoldStats.setPreferredSize(new Dimension(DIM_X_GOLD_PANEL, DIM_Y_GOLD_PANEL));
         GoldStats.setMaximumSize(new Dimension(DIM_X_GOLD_PANEL, DIM_Y_GOLD_PANEL));
@@ -104,7 +106,7 @@ public class CharacterStatsPanel extends JPanel implements Constants, Observer
     @Override
     public void update(Observable o, Object arg)
     {
-        //TODO: fazer
+        //GoldP.get(1).re;
     }
 
 }
