@@ -42,9 +42,11 @@ public class JP_ColunaCartas extends JPanel implements Constants, Observer {
             cartas.add(new ImagemCarta(this.observableGame, true, pos));
             cartas.add(new ImagemCarta(this.observableGame, true, pos));
         }
-        else if(pos!=5 || (pos==5 && observableGame.isLastArea()))
+        else
           cartas.add(new ImagemCarta(this.observableGame, false, pos));  
-            
+        
+        if (pos == 5)
+            cartas.get(0).setVisible(false);
 
         setMaximumSize(new Dimension(DIM_X_COLUNA, DIM_Y_COLUNA));
         setPreferredSize(new Dimension(DIM_X_COLUNA, DIM_Y_COLUNA));
@@ -72,11 +74,23 @@ public class JP_ColunaCartas extends JPanel implements Constants, Observer {
 
     }
 
+    public void giraCartas(){
+        for(ImagemCarta c: cartas){
+            c.setImg(MiniRoguePanel.getBackCardImage(), null);
+        }
+        update(observableGame, ABORT);
+    }
+    
     @Override
     public void update(Observable o, Object arg) {
         
 //        repaint();
         if (Coluna == observableGame.getNumColunaAtual()){
+//            if (observableGame.isLastArea() && Coluna == 5)
+//                cartas.get(0).setVisible(true);
+//            else if(Coluna == 5)
+//                cartas.get(0).setVisible(false);
+            
             ArrayList<Carta> Baralho = observableGame.getCartasColuna();
             for (int i=0; i< Baralho.size(); i++){
                 Carta CartaTemp = Baralho.get(i);
@@ -102,6 +116,10 @@ public class JP_ColunaCartas extends JPanel implements Constants, Observer {
         
         
         
+    }
+
+    void showBoss(boolean b) {
+        cartas.get(0).setVisible(b);
     }
 
 }

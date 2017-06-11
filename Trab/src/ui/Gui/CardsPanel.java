@@ -19,13 +19,17 @@ import javax.swing.border.LineBorder;
 public class CardsPanel extends JPanel implements Constants, Observer {
 
     private ObservableGame observableGame;
+    private int numAreaAtual;
+    ArrayList<JP_ColunaCartas> ColunaCartas;
 
     public CardsPanel(ObservableGame observableGame) 
     {
         this.observableGame = observableGame;
         setVisible(!(observableGame.getState() instanceof AwaitBegining));
         observableGame.addObserver(this);
-
+        
+        numAreaAtual = observableGame.getNumAreaAtual();
+        
         setMaximumSize(new Dimension((DIM_X_COLUNA) * 5, DIM_Y_COLUNA));
         setPreferredSize(new Dimension((DIM_X_COLUNA) * 5, DIM_Y_COLUNA));
         setMinimumSize(new Dimension((DIM_X_COLUNA) * 5, DIM_Y_COLUNA));
@@ -33,7 +37,7 @@ public class CardsPanel extends JPanel implements Constants, Observer {
         setAlignmentY(CENTER_ALIGNMENT);
 
         setLayout(new GridLayout(1, 5, 0, 0));
-        ArrayList<JP_ColunaCartas> ColunaCartas = new ArrayList<>();
+        ColunaCartas = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             Box b = Box.createVerticalBox();
             JP_ColunaCartas aux = new JP_ColunaCartas(i+1, observableGame);
@@ -53,6 +57,18 @@ public class CardsPanel extends JPanel implements Constants, Observer {
     public void update(Observable o, Object arg) {
         repaint();
         setVisible(!(observableGame.getState() instanceof AwaitBegining));
+        
+        if (numAreaAtual != observableGame.getNumAreaAtual()){
+            numAreaAtual = observableGame.getNumAreaAtual();
+            for (JP_ColunaCartas c : ColunaCartas){
+                c.giraCartas();
+            }
+        }
+        
+        if (observableGame.isLastArea())
+            ColunaCartas.get(4).showBoss(true);
+        else
+            ColunaCartas.get(4).showBoss(false);
     }
 
 //    @Override

@@ -8,6 +8,7 @@ package ui.Gui;
 import Logic.Cartas.BossMonster;
 import Logic.Cartas.Carta;
 import Logic.Cartas.Event;
+import Logic.Cartas.Merchant;
 import Logic.Cartas.Monster;
 import Logic.Cartas.Resting;
 import Logic.Cartas.Trap;
@@ -121,7 +122,10 @@ class okListener extends MouseAdapter {
             o.SelectedEventCard(carta);
         }
         if (carta instanceof Trap) {
-            o.SelectedEventCard(carta);
+            o.SelectedTrapCard();
+        }
+        if (carta instanceof Merchant) {
+            o.SelectedMerchantCard();
         }
         pai.dispose();
     }
