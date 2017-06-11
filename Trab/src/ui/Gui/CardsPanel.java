@@ -48,9 +48,6 @@ public class CardsPanel extends JPanel implements Constants, Observer {
             b.setSize(new Dimension(DIM_X_COLUNA, DIM_Y_COLUNA));
             add(b);
         }
-
-
-
     }
 
     @Override
@@ -64,17 +61,15 @@ public class CardsPanel extends JPanel implements Constants, Observer {
                 c.giraCartas();
             }
         }
-        
         if (observableGame.isLastArea())
             ColunaCartas.get(4).showBoss(true);
         else
             ColunaCartas.get(4).showBoss(false);
     }
 
-//    @Override
-//    public void paintComponent( Graphics g)
-//    {
-//        super.paintComponent(g);
-//        
-//    }
+    @Override
+    public void paintComponent( Graphics g)
+    {
+        super.paintComponent(g);        
+    }
 }

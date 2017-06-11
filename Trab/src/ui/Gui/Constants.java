@@ -161,4 +161,8 @@ public interface Constants
     
     static final int START_X_AREA_PANEL_POPUP = (20*DIM_X_FRAME)/1366;
     static final int START_Y_AREA_PANEL_POPUP = (206*DIM_Y_FRAME)/768;
+    
+    static final int DIM_X_CARDSPANEL =(1000*DIM_X_FRAME)/1366;
+    static final int DIM_Y_CARDSPANEL =(1000*DIM_X_FRAME)/768;
+
 }
