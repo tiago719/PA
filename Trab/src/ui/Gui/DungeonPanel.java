@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
@@ -30,16 +31,16 @@ import static ui.Gui.Constants.DIM_Y_QUADRICULA;
  *
  * @author Tiago Coutinho
  */
-public class DungeonPanel extends JPanel implements Constants, Observer
-{
+public class DungeonPanel extends JPanel implements Constants, Observer {
 
     private ObservableGame observableGame;
     private JLabel AreaAtual, HpMonster;
     private Map<Integer, JLabel> AreaP;
     private Map<Integer, JLabel> HpMonsterP;
 
-    public DungeonPanel(ObservableGame observableGame)
-    {
+    private int HPMonsterToken, AreaToken;
+
+    public DungeonPanel(ObservableGame observableGame) {
         this.observableGame = observableGame;
 
         observableGame.addObserver(this);
@@ -52,14 +53,12 @@ public class DungeonPanel extends JPanel implements Constants, Observer
 
     }
 
-    public void setupComponents()
-    {
+    public void setupComponents() {
         AreaAtual = new JLabel();
         HpMonster = new JLabel();
     }
 
-    public void setupLayout()
-    {
+    public void setupLayout() {
         setMinimumSize(new Dimension(DIM_X_DUNGEON, DIM_Y_DUNGEON));
         setPreferredSize(new Dimension(DIM_X_DUNGEON, DIM_Y_DUNGEON));
         setMaximumSize(new Dimension(DIM_X_DUNGEON, DIM_Y_DUNGEON));
@@ -74,36 +73,32 @@ public class DungeonPanel extends JPanel implements Constants, Observer
 
         add(AreaAtual);
         add(HpMonster);
+
+        HPMonsterToken = -1;
+        AreaToken = 1;
+        AreaP.get(AreaToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage()));
     }
 
-    public void addHpMonster()
-    {
+    public void addHpMonster() {
         int i, j, a = 30;
         HpMonsterP.put(0, new JLabel());
         HpMonsterP.get(0).setBorder(new LineBorder(Color.BLACK));
         HpMonsterP.get(0).setMinimumSize(new Dimension(DIM_X_QUADRICULA_MONSTER, DIM_Y_QUADRICULA_MONSTER));
         HpMonsterP.get(0).setPreferredSize(new Dimension(DIM_X_QUADRICULA_MONSTER, DIM_Y_QUADRICULA_MONSTER));
         HpMonsterP.get(0).setMaximumSize(new Dimension(DIM_X_QUADRICULA_MONSTER, DIM_Y_QUADRICULA_MONSTER));
-        HpMonster.add( new JLabel());
-        HpMonster.add( new JLabel());
-        HpMonster.add(HpMonsterP.get(0));
-        for (i = 0; i < 10; i++)
-        {
-            for (j = 0; j < 3; j++)
-            {
+
+        for (i = 0; i < 10; i++) {
+            for (j = 0; j < 3; j++) {
                 int tr = -1;
-                if (j == 0)
-                {
+                if (j == 0) {
                     HpMonsterP.put(a, new JLabel());
                     tr = a;
                 }
-                if (j == 1)
-                {
+                if (j == 1) {
                     HpMonsterP.put(a - 10, new JLabel());
                     tr = a - 10;
                 }
-                if (j == 2)
-                {
+                if (j == 2) {
                     HpMonsterP.put(a - 20, new JLabel());
                     tr = a - 20;
                 }
@@ -115,7 +110,10 @@ public class DungeonPanel extends JPanel implements Constants, Observer
             }
             a--;
         }
-
+        HpMonster.add(new JLabel());
+        HpMonster.add(new JLabel());
+        HpMonster.add(HpMonsterP.get(0));
+        
         HpMonster.setBorder(new LineBorder(Color.RED));
 
         HpMonster.setLayout(new GridLayout(11, 3, DIM_X_BETWEEN_MONSTER, DIM_Y_BETWEEN_MONSTER));
@@ -126,20 +124,16 @@ public class DungeonPanel extends JPanel implements Constants, Observer
         HpMonster.setMaximumSize(new Dimension(DIM_X_HPMONSTER_PANEL, DIM_Y_HPMONSTER_PANEL));
     }
 
-    public void addAreaAtual()
-    {
+    public void addAreaAtual() {
         AreaAtual.setBorder(new LineBorder(Color.RED));
         int aux = 1;
-        for (int i = 0; i < MAXAREA; i++)
-        {
+        for (int i = 0; i < MAXAREA; i++) {
             JLabel temp = new JLabel();
             AreaAtual.add(temp);
-            if (i == 2 || i == 3 || i == 6 || i == 7 || i == 11 || i == 15)
-            {
+            if (i == 2 || i == 3 || i == 6 || i == 7 || i == 11 || i == 15) {
 //                AreaP.put(dec--, temp);
                 continue;
-            } else
-            {
+            } else {
                 AreaP.put(aux, temp);
                 aux++;
             }
@@ -159,17 +153,30 @@ public class DungeonPanel extends JPanel implements Constants, Observer
     }
 
     @Override
-    public void paintComponent(Graphics g)
-    {
+    public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
         g.drawImage(MiniRoguePanel.getTheDungeonImage(), 0, 0, DIM_X_DUNGEON, DIM_Y_DUNGEON, this);
     }
 
     @Override
-    public void update(Observable o, Object arg)
-    {
-        //TODO:fazer
+    public void update(Observable o, Object arg) {
+        if (observableGame.getNumAreaAtual() != AreaToken) {
+            AreaP.get(AreaToken).setIcon(null);
+            AreaToken = observableGame.getNumAreaAtual();
+            AreaP.get(AreaToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage()));
+        }
+        if (observableGame.isMonsterSet()) {
+            if (observableGame.getMonsterHP() != HPMonsterToken) {
+                try {
+                    HpMonsterP.get(HPMonsterToken).setIcon(null);
+                } catch (Exception e) {
+                }
+                HPMonsterToken = observableGame.getMonsterHP();
+                HpMonsterP.get(HPMonsterToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage()));
+            }
+        }
+
     }
 
 }

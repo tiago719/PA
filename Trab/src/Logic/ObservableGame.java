@@ -111,6 +111,14 @@ public class ObservableGame extends Observable {
         return GameModel.getPerFood();
     }
     
+    public int getMonsterHP(){
+        return GameModel.getMonsterHP();
+    }
+    
+    public boolean isMonsterSet(){
+        return GameModel.getMonstroAlvo()!=null;
+    }
+    
     // Methods that are intended to be used by the user interfaces and that are delegated in the current state of the finite state machine 
     public void startGame() {
         GameModel.comecar();
