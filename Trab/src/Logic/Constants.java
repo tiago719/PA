@@ -19,6 +19,6 @@ public interface Constants {
     public static final int MaxXP=36+1;
     public static final int MaxHP=20+1;
     public static final int MaxFood=6+1;
-    public static final int MaxArmor=6+1;
+    public static final int MaxArmor=5+1;
     
 }

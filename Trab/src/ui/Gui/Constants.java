@@ -66,15 +66,87 @@ public interface Constants
     static final int DIM_Y_WELCOME = (320*DIM_Y_FRAME)/768;//262
     
     static final int DIM_X_BETWEEN = (4*DIM_X_FRAME)/1366;
-    static final int DIM_Y_BETWEEN = (5*DIM_Y_FRAME)/768;
+    static final int DIM_Y_BETWEEN = (3*DIM_Y_FRAME)/768;
     
     static final int DIM_X_QUADRICULA = (27*DIM_X_FRAME)/1366;
     static final int DIM_Y_QUADRICULA = (24*DIM_Y_FRAME)/768;
     
-    static final int DIM_X_GOLD_PANEL = DIM_X_QUADRICULA*21+DIM_X_BETWEEN*22-(48*DIM_X_FRAME)/1366;
+    //gold
+    static final int DIM_X_GOLD_PANEL = DIM_X_QUADRICULA*21+DIM_X_BETWEEN*22-((48*DIM_X_FRAME)/1366);
     static final int DIM_Y_GOLD_PANEL = ((DIM_Y_QUADRICULA+4)*DIM_Y_FRAME)/768;
     
     static final int START_X_GOLD_PANEL = (40*DIM_X_FRAME)/1366;
     static final int START_Y_GOLD_PANEL = (94*DIM_Y_FRAME)/768;
+     
+    //hp
+    static final int DIM_X_HP_PANEL = DIM_X_GOLD_PANEL;
+    static final int DIM_Y_HP_PANEL = DIM_Y_GOLD_PANEL;
+    
+    static final int START_X_HP_PANEL = (40*DIM_X_FRAME)/1366;
+    static final int START_Y_HP_PANEL = (140*DIM_Y_FRAME)/768;
+    
+    //armor
+    
+    static final int DIM_X_ARMOR_PANEL = DIM_X_QUADRICULA*6+DIM_X_BETWEEN*7-((17*DIM_X_FRAME)/1366);
+    static final int DIM_Y_ARMOR_PANEL = DIM_Y_GOLD_PANEL;
+    
+    static final int START_X_ARMOR_PANEL = START_X_GOLD_PANEL;
+    static final int START_Y_ARMOR_PANEL = (186*DIM_Y_FRAME)/768;
+    
+    //spells
+    
+    static final int DIM_X_SPELLS_PANEL = DIM_X_QUADRICULA*8+DIM_X_BETWEEN*9-((21*DIM_X_FRAME)/1366);
+    static final int DIM_Y_SPELLS_PANEL = DIM_Y_GOLD_PANEL;
+    
+    static final int START_X_SPELLS_PANEL = START_X_ARMOR_PANEL+DIM_X_ARMOR_PANEL;
+    static final int START_Y_SPELLS_PANEL = START_Y_ARMOR_PANEL;
+    
+    //food
+    
+    static final int DIM_X_FOOD_PANEL = DIM_X_QUADRICULA*7+DIM_X_BETWEEN*8-((20*DIM_X_FRAME)/1366);;
+    static final int DIM_Y_FOOD_PANEL = DIM_Y_GOLD_PANEL;
+    
+    static final int START_X_FOOD_PANEL = START_X_SPELLS_PANEL+DIM_X_SPELLS_PANEL;
+    static final int START_Y_FOOD_PANEL = START_Y_ARMOR_PANEL;
+    
+    //xp
+    
+    static final int DIM_X_XP_PANEL = DIM_X_QUADRICULA*21+DIM_X_BETWEEN*22-((47*DIM_X_FRAME)/1366);
+    static final int DIM_Y_XP_PANEL = DIM_Y_GOLD_PANEL*2+DIM_Y_BETWEEN;
+    
+    static final int START_X_XP_PANEL = START_X_GOLD_PANEL;
+    static final int START_Y_XP_PANEL = (14*DIM_Y_FRAME)/768;
+    
+    //HpMonster
+    static final int MAXHPMONSTER = 33;
+    
+    static final int DIM_X_QUADRICULA_MONSTER = (39*DIM_X_FRAME)/1366;
+    static final int DIM_Y_QUADRICULA_MONSTER = (35*DIM_Y_FRAME)/768;
+    
+    static final int DIM_X_BETWEEN_MONSTER = (4*DIM_X_FRAME)/1366;
+    static final int DIM_Y_BETWEEN_MONSTER = (6*DIM_Y_FRAME)/768;
+    
+    static final int DIM_X_HPMONSTER_PANEL = DIM_X_QUADRICULA_MONSTER*3+DIM_X_BETWEEN_MONSTER*4-((8*DIM_X_FRAME)/1366);
+    static final int DIM_Y_HPMONSTER_PANEL = DIM_Y_QUADRICULA_MONSTER*11+DIM_Y_BETWEEN_MONSTER*12;
+    
+    static final int START_X_HPMONSTER_PANEL = (207*DIM_X_FRAME)/1366;
+    static final int START_Y_HPMONSTER_PANEL = (28*DIM_Y_FRAME)/768;
+    
+    //AreaAtual
+    
+    static final int MAXAREA = 20;
+    
+    static final int DIM_X_QUADRICULA_AREA = (36*DIM_X_FRAME)/1366;
+    static final int DIM_Y_QUADRICULA_AREA = (28*DIM_Y_FRAME)/768;
+    
+    static final int DIM_X_BETWEEN_AREA = (4*DIM_X_FRAME)/1366;
+    static final int DIM_Y_BETWEEN_AREA = (24*DIM_Y_FRAME)/768;
+    
+    static final int DIM_X_AREA_PANEL = DIM_X_QUADRICULA_AREA*4+DIM_X_BETWEEN_AREA*5-((5*DIM_X_FRAME)/1366);
+    static final int DIM_Y_AREA_PANEL = DIM_Y_QUADRICULA_AREA*5+DIM_Y_BETWEEN_AREA*6;
+    
+    static final int START_X_AREA_PANEL = (15*DIM_X_FRAME)/1366;
+    static final int START_Y_AREA_PANEL = (178*DIM_Y_FRAME)/768;
+    
   
 }
