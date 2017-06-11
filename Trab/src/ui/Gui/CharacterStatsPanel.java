@@ -37,14 +37,8 @@ public class CharacterStatsPanel extends JPanel implements Constants, Observer
 {
 
     private ObservableGame observableGame;
-
-    private JLabel GoldStats;
-    private ArrayList<JLabel> GoldP;
-    
     private int xpToken, goldToken, hpToken, armorToken, spellsToken[], foodToken;
     private ImageIcon goldIcon;
-    
-
     private JLabel GoldStats, HpStats, ArmorStats, SpellsStats, FoodStats, XpStats;
     private ArrayList<JLabel> GoldP, HpP, ArmorP, SpellsP, FoodP, XpP;
 
