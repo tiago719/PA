@@ -43,8 +43,7 @@ public class AwaitCardSelectionOnCurrentColumnPanel extends JPanel implements Ob
             @Override
             public void actionPerformed(ActionEvent ev)
             {
-                observableGame.Heal();
-                
+                observableGame.Heal();   
             }
         });
      }

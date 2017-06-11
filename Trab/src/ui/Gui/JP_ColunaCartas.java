@@ -127,6 +127,13 @@ public class JP_ColunaCartas extends JPanel implements Constants, Observer {
 
     }
 
+    @Override
+    protected void paintComponent(Graphics g)
+    {
+        super.paintComponent(g);
+    }
+
+    
     void showBoss(boolean b) {
         cartas.get(0).setVisible(b);
     }

@@ -30,7 +30,7 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
 {
 
     static private BufferedImage TheDungeonImage = null, CharacterStatsImage = null, BackCardImage = null, BossMonsterImage = null,
-            EventImage = null, MerchantImage = null, MonsterImage = null, RestingImage = null, TrapImage = null, TreasureImage = null, WelcomeImage=null, TokenImage=null;
+            EventImage = null, MerchantImage = null, MonsterImage = null, RestingImage = null, TrapImage = null, TreasureImage = null, WelcomeImage=null, TokenImage=null, BackgroundImage=null;
     static private ArrayList<BufferedImage> dadosImage = new ArrayList<>();
 
     public static BufferedImage getTheDungeonImage()
@@ -97,6 +97,11 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
     {
         return WelcomeImage;
     }
+    
+    public static BufferedImage getBackgroundImage()
+    {
+        return BackgroundImage;
+    }
 
     static
     {
@@ -114,12 +119,14 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
             TreasureImage = ImageIO.read(Resources.getResourceFile("images/Treasure.JPG"));
             WelcomeImage = ImageIO.read(Resources.getResourceFile("images/MiniRogue.png"));
             TokenImage = ImageIO.read(Resources.getResourceFile("images/Token.png"));
+            BackgroundImage=ImageIO.read(Resources.getResourceFile("images/Fundo.jpg"));
             
             dadosImage.add(ImageIO.read(Resources.getResourceFile("images/d1.png")));
             dadosImage.add(ImageIO.read(Resources.getResourceFile("images/d2.png")));
             dadosImage.add(ImageIO.read(Resources.getResourceFile("images/d3.png")));
             dadosImage.add(ImageIO.read(Resources.getResourceFile("images/d4.png")));
             dadosImage.add(ImageIO.read(Resources.getResourceFile("images/d5.png")));
+            dadosImage.add(ImageIO.read(Resources.getResourceFile("images/d6.png")));
             
 
         } catch (IOException e)
@@ -129,7 +136,6 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
     }
 
     private ObservableGame observableGame;
-
     private DungeonPanel dungeonPanel;
     private CardsPanel cardsPanel;
     private CharacterStatsPanel characterStatsPanel;
