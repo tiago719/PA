@@ -11,6 +11,7 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.MenuBar;
+import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JFrame;
@@ -24,17 +25,17 @@ public class MiniRogueView extends JFrame implements Observer, Constants
     ObservableGame observableGame;
     MiniRoguePanel panel;
     
-    public MiniRogueView( ObservableGame j) 
+    public MiniRogueView( ObservableGame j) throws IOException 
     {
         this( j, 0,0, DIM_X_FRAME, DIM_Y_FRAME);
     }
     
-    public MiniRogueView( ObservableGame j, int x, int y ) 
+    public MiniRogueView( ObservableGame j, int x, int y ) throws IOException 
     {
         this( j, x,y, DIM_X_FRAME, DIM_Y_FRAME);
     }
     
-    public MiniRogueView( ObservableGame j, int x, int y, int width, int height)
+    public MiniRogueView( ObservableGame j, int x, int y, int width, int height) throws IOException
     {
         super("Mini Rogue");
 

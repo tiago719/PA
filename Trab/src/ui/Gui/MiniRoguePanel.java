@@ -144,7 +144,7 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
     private GameOverPanel gameOverPanel;
     private WelcomePanel welcomePanel;
 
-    public MiniRoguePanel(ObservableGame j)
+    public MiniRoguePanel(ObservableGame j) throws IOException
     {
         observableGame = j;
 
@@ -156,7 +156,7 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
         update(observableGame, null);
     }
 
-    public void setupComponents()
+    public void setupComponents() throws IOException
     {
         dungeonPanel = new DungeonPanel(observableGame);
         cardsPanel = new CardsPanel(observableGame);
