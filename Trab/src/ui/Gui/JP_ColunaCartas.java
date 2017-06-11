@@ -38,25 +38,26 @@ public class JP_ColunaCartas extends JPanel implements Constants, Observer {
         observableGame.addObserver(this);
         this.Coluna = pos;
         cartas = new ArrayList<>();
-        if (pos == 2 || pos == 4){
+        if (pos == 2 || pos == 4) {
             cartas.add(new ImagemCarta(this.observableGame, true, pos));
             cartas.add(new ImagemCarta(this.observableGame, true, pos));
+        } else {
+            cartas.add(new ImagemCarta(this.observableGame, false, pos));
         }
-        else
-          cartas.add(new ImagemCarta(this.observableGame, false, pos));  
-        
-        if (pos == 5)
+
+        if (pos == 5) {
             cartas.get(0).setVisible(false);
+        }
 
         setMaximumSize(new Dimension(DIM_X_COLUNA, DIM_Y_COLUNA));
         setPreferredSize(new Dimension(DIM_X_COLUNA, DIM_Y_COLUNA));
         setMinimumSize(new Dimension(DIM_X_COLUNA, DIM_Y_COLUNA));
-        setLayout(new GridLayout(cartas.size(),1,0,0));
-        
-        
-        for(ImagemCarta c : cartas)
+        setLayout(new GridLayout(cartas.size(), 1, 0, 0));
+
+        for (ImagemCarta c : cartas) {
             add(c);
-        
+        }
+
 //        setAlignmentX(CENTER_ALIGNMENT);
 //        setAlignmentY(CENTER_ALIGNMENT);
 //        Box box = Box.createHorizontalBox();
@@ -64,58 +65,66 @@ public class JP_ColunaCartas extends JPanel implements Constants, Observer {
 //        box.setPreferredSize(new Dimension(DIM_X_COLUNA, DIM_Y_COLUNA));
 //        box.setMinimumSize(new Dimension(DIM_X_COLUNA, DIM_Y_COLUNA));
 //        box.add(Box.createHorizontalGlue());
-
 //        add(cartas.get(0));
 //        box.add(Box.createHorizontalGlue());
 //        setLayout(new BorderLayout());
 //        add(box, BorderLayout.CENTER);
 //        add(Box.createHorizontalGlue());
 //        add(cartas.get(1));
-
     }
 
-    public void giraCartas(){
-        for(ImagemCarta c: cartas){
+    public void giraCartas() {
+        for (ImagemCarta c : cartas) {
             c.setImg(MiniRoguePanel.getBackCardImage(), null);
         }
         update(observableGame, ABORT);
     }
-    
+
     @Override
     public void update(Observable o, Object arg) {
-        
+
 //        repaint();
-        if (Coluna == observableGame.getNumColunaAtual()){
+        try {
+
+            if (Coluna == observableGame.getNumColunaAtual()) {
 //            if (observableGame.isLastArea() && Coluna == 5)
 //                cartas.get(0).setVisible(true);
 //            else if(Coluna == 5)
 //                cartas.get(0).setVisible(false);
-            
-            ArrayList<Carta> Baralho = observableGame.getCartasColuna();
-            for (int i=0; i< Baralho.size(); i++){
-                Carta CartaTemp = Baralho.get(i);
-                ImagemCarta ICtemp = cartas.get(i);
-                
-                if (CartaTemp instanceof Resting)
-                    ICtemp.setImg(MiniRoguePanel.getRestingImage(),CartaTemp);
-                if (CartaTemp instanceof Monster)
-                    ICtemp.setImg(MiniRoguePanel.getMonsterImage(),CartaTemp);
-                if (CartaTemp instanceof BossMonster)
-                    ICtemp.setImg(MiniRoguePanel.getBossMonsterImage(),CartaTemp);
-                if (CartaTemp instanceof Treasure)
-                    ICtemp.setImg(MiniRoguePanel.getTreasureImage(),CartaTemp);
-                if (CartaTemp instanceof Event)
-                    ICtemp.setImg(MiniRoguePanel.getEventImage(),CartaTemp);
-                if (CartaTemp instanceof Trap)
-                    ICtemp.setImg(MiniRoguePanel.getTrapImage(),CartaTemp);
-                if (CartaTemp instanceof Merchant)
-                    ICtemp.setImg(MiniRoguePanel.getMerchantImage(),CartaTemp);
-                
+
+                ArrayList<Carta> Baralho = observableGame.getCartasColuna();
+                for (int i = 0; i < Baralho.size(); i++) {
+                    Carta CartaTemp = Baralho.get(i);
+                    ImagemCarta ICtemp = cartas.get(i);
+
+                    if (CartaTemp instanceof Resting) {
+                        ICtemp.setImg(MiniRoguePanel.getRestingImage(), CartaTemp);
+                    }
+                    if (CartaTemp instanceof Monster) {
+                        ICtemp.setImg(MiniRoguePanel.getMonsterImage(), CartaTemp);
+                    }
+                    if (CartaTemp instanceof BossMonster) {
+                        ICtemp.setImg(MiniRoguePanel.getBossMonsterImage(), CartaTemp);
+                    }
+                    if (CartaTemp instanceof Treasure) {
+                        ICtemp.setImg(MiniRoguePanel.getTreasureImage(), CartaTemp);
+                    }
+                    if (CartaTemp instanceof Event) {
+                        ICtemp.setImg(MiniRoguePanel.getEventImage(), CartaTemp);
+                    }
+                    if (CartaTemp instanceof Trap) {
+                        ICtemp.setImg(MiniRoguePanel.getTrapImage(), CartaTemp);
+                    }
+                    if (CartaTemp instanceof Merchant) {
+                        ICtemp.setImg(MiniRoguePanel.getMerchantImage(), CartaTemp);
+                    }
+
+                }
             }
+
+        } catch (Exception e) {
         }
-        
-        
-        
+
     }
 
     void showBoss(boolean b) {
