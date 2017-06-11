@@ -111,8 +111,8 @@ public interface Constants
     
     //xp
     
-    static final int DIM_X_XP_PANEL = DIM_X_QUADRICULA*21+DIM_X_BETWEEN*22-((47*DIM_X_FRAME)/1366);
-    static final int DIM_Y_XP_PANEL = DIM_Y_GOLD_PANEL*2+DIM_Y_BETWEEN;
+    static final int DIM_X_XP_PANEL = DIM_X_QUADRICULA*18+DIM_X_BETWEEN*19-((13*DIM_X_FRAME)/1366);
+    static final int DIM_Y_XP_PANEL = DIM_Y_GOLD_PANEL;
     
     static final int START_X_XP_PANEL = START_X_GOLD_PANEL;
     static final int START_Y_XP_PANEL = (14*DIM_Y_FRAME)/768;
@@ -148,5 +148,17 @@ public interface Constants
     static final int START_X_AREA_PANEL = (15*DIM_X_FRAME)/1366;
     static final int START_Y_AREA_PANEL = (178*DIM_Y_FRAME)/768;
     
-  
+    //AreaAtualPopup
+    
+    static final int DIM_X_QUADRICULA_AREA_POPUP = (37*DIM_X_FRAME)/1366;
+    static final int DIM_Y_QUADRICULA_AREA_POPUP = (32*DIM_Y_FRAME)/768;
+    
+    static final int DIM_X_BETWEEN_AREA_POPUP = (7*DIM_X_FRAME)/1366;
+    static final int DIM_Y_BETWEEN_AREA_POPUP = (29*DIM_Y_FRAME)/768;
+    
+    static final int DIM_X_AREA_PANEL_POPUP = DIM_X_QUADRICULA_AREA_POPUP*4+DIM_X_BETWEEN_AREA_POPUP*5-((4*DIM_X_FRAME)/1366);
+    static final int DIM_Y_AREA_PANEL_POPUP = DIM_Y_QUADRICULA_AREA_POPUP*5+DIM_Y_BETWEEN_AREA_POPUP*6;
+    
+    static final int START_X_AREA_PANEL_POPUP = (20*DIM_X_FRAME)/1366;
+    static final int START_Y_AREA_PANEL_POPUP = (206*DIM_Y_FRAME)/768;
 }

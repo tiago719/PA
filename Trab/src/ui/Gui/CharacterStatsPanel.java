@@ -119,13 +119,13 @@ public class CharacterStatsPanel extends JPanel implements Constants, Observer
     {
         XpStats.setBorder(new LineBorder(Color.RED));
 
-        for (int i = 0; i < 42; i++)
+        for (int i = 0; i < 19; i++)
         {
             XpP.add(new JLabel());
             XpP.get(i).setBorder(new LineBorder(Color.BLACK));
         }
 
-        XpStats.setLayout(new GridLayout(2, 21, DIM_X_BETWEEN, DIM_Y_BETWEEN));
+        XpStats.setLayout(new GridLayout(1, 19, DIM_X_BETWEEN, DIM_Y_BETWEEN));
         XpStats.setVisible(true);
 
         XpStats.setMinimumSize(new Dimension(DIM_X_XP_PANEL, DIM_Y_XP_PANEL));

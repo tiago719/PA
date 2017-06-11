@@ -8,6 +8,7 @@ package Trab;
 import Logic.Jogo;
 import Logic.ObservableGame;
 import View.TextUI;
+import java.io.IOException;
 import ui.Gui.MiniRogueView;
 
 /**
@@ -16,7 +17,7 @@ import ui.Gui.MiniRogueView;
  */
 public class Trab {
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         /*
         TextUI textUI = new TextUI(new Jogo());
         textUI.run();  */
