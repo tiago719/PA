@@ -131,6 +131,10 @@ public class Jogo implements Serializable {
     public ArrayList<Carta> getCartasColuna() {
         return gameData.getCaverna().getAreaAtual().getCartasColuna();
     }
+    
+    public int getNumAreaAtual() {
+        return gameData.getCaverna().getNumArea();
+    }
 
     public void ChooseSpell(int c) {
         setState(getState().ChooseSpell(c));

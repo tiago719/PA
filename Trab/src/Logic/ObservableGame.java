@@ -77,6 +77,11 @@ public class ObservableGame extends Observable {
         return GameModel.getColuna();
 
     }
+    
+    public int getNumAreaAtual() {
+        return GameModel.getNumAreaAtual();
+    }
+    
 
     public boolean isLastArea() {
         return GameModel.isLastArea();
@@ -219,5 +224,7 @@ public class ObservableGame extends Observable {
         setChanged();
         notifyObservers();
     }
+
+
 
 }

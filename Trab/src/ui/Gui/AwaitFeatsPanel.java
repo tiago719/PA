@@ -14,7 +14,9 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -23,7 +25,7 @@ import javax.swing.JPanel;
  */
 public class AwaitFeatsPanel extends JPanel implements Observer
 {
-    private ArrayList<JButton> Dados;
+    private ArrayList<JLabel> Dados;
     private JButton Cancelar;
     private ObservableGame observableGame;
 
@@ -48,7 +50,7 @@ public class AwaitFeatsPanel extends JPanel implements Observer
         int i;
         for (i = 0; i < observableGame.getDados().size(); i++)
         {
-            Dados.add(new JButton("Dado " + (i+1) + ": " + observableGame.getDados().get(i).getFace()));
+            Dados.add(new JLabel(new ImageIcon(MiniRoguePanel.getDadosImage().get(observableGame.getDados().get(i).getFace()))));
             
             Dados.get(i).addMouseListener(new ActionListener(observableGame,i));
         }
@@ -84,7 +86,7 @@ class ActionListener  extends MouseAdapter
     @Override
     public void mousePressed(MouseEvent ev)
     {
-       observableGame.FeatsOptionSelected(i, 1);//TODO: Mudar a segunda variavel desta func
+       observableGame.FeatsOptionSelected(i, 1);//TODO: Mudar a segunda variavel desta func ( 1 - HP 2 - XP)
 
     }
 }

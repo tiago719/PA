@@ -16,10 +16,13 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Point;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
@@ -34,8 +37,17 @@ public class CharacterStatsPanel extends JPanel implements Constants, Observer
 {
 
     private ObservableGame observableGame;
+
+    private JLabel GoldStats;
+    private ArrayList<JLabel> GoldP;
+    
+    private int xpToken, goldToken, hpToken, armorToken, spellsToken[], foodToken;
+    private ImageIcon goldIcon;
+    
+
     private JLabel GoldStats, HpStats, ArmorStats, SpellsStats, FoodStats, XpStats;
     private ArrayList<JLabel> GoldP, HpP, ArmorP, SpellsP, FoodP, XpP;
+
 
     public CharacterStatsPanel(ObservableGame observableGame)
     {
@@ -89,6 +101,20 @@ public class CharacterStatsPanel extends JPanel implements Constants, Observer
         
         add(XpStats);
         add(GoldStats);
+
+        //setAlignmentX(LEFT_ALIGNMENT);
+        
+        xpToken = observableGame.getGameData().getPersonagem().getXp();//TODO: MUDAR ISTO PARA METEDOS NOVOS
+        goldToken = observableGame.getGameData().getPersonagem().getGold();
+        hpToken = observableGame.getGameData().getPersonagem().getHp();
+        armorToken = observableGame.getGameData().getPersonagem().getArmor();
+//        spellsToken[0] = ;
+//        spellsToken[1] = 3;
+        foodToken = observableGame.getGameData().getPersonagem().getFood();
+        
+        
+        GoldP.get(goldToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage()));
+
         add(HpStats);
         add(ArmorStats);
         add(SpellsStats);
@@ -120,6 +146,7 @@ public class CharacterStatsPanel extends JPanel implements Constants, Observer
             XpStats.add(XpP.get(i));
 
         }
+
     }
 
     public void addGoldStats()
@@ -270,6 +297,13 @@ public class CharacterStatsPanel extends JPanel implements Constants, Observer
     @Override
     public void update(Observable o, Object arg)
     {
+        if(observableGame.getGameData().getPersonagem().getGold() != goldToken){
+            GoldP.get(goldToken).setIcon(null);
+            goldToken = observableGame.getGameData().getPersonagem().getGold();
+            GoldP.get(goldToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage()));
+        }
+        
+        
         //GoldP.get(1).re;
     }
 
