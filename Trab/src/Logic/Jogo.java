@@ -264,5 +264,9 @@ public class Jogo implements Serializable {
         return s;
     }
 
+    int getMonsterHP() {
+        return gameData.getMonstroAlvo().getHP();
+    }
+
     
 }
