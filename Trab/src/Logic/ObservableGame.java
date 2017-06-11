@@ -85,9 +85,31 @@ public class ObservableGame extends Observable {
 
     public boolean isLastArea() {
         return GameModel.isLastArea();
-
+    }
+    
+    public int getPerXP(){
+        return GameModel.getPerXP();
+    }
+    
+    public int getPerGold(){
+        return GameModel.getPerGold();
     }
 
+    public int getPerHP(){
+        return GameModel.getPerHP();
+    }
+
+    public int getPerArmor(){
+        return GameModel.getPerArmor();
+    }
+
+    public ArrayList<Spell> getPerSpells(){
+        return GameModel.getPerSpells();
+    }
+
+    public int getPerFood(){
+        return GameModel.getPerFood();
+    }
     
     // Methods that are intended to be used by the user interfaces and that are delegated in the current state of the finite state machine 
     public void startGame() {
@@ -204,7 +226,7 @@ public class ObservableGame extends Observable {
     }
 
     public void ChooseSpell(int indexVetorSpells) {
-        GameModel.ChooseSpell(indexVetorSpells);
+        GameModel.ChooseSpell(indexVetorSpells+1);
 
         setChanged();
         notifyObservers();

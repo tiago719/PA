@@ -19,6 +19,9 @@ public final class Personagem implements Serializable {
         rank = 1;
         xp = 0;
         gd = gamedata;
+        
+        addSpell(new Fire(gd));//TODO:TIRAR (TESTES)
+        addSpell(new Fire(gd));//TODO:TIRAR (TESTES)
     }
 
     public int getArmor() {
@@ -121,7 +124,8 @@ public final class Personagem implements Serializable {
             gd.addMsg("Foi adicionado um novo dado a personagem\n");
             rank++;
             xp = xp + i - 6;//fica com o xp recebido a mais (5+2=7   7-6 = 1 <- fica com 1xp)
-            
+            if (rank==4)
+                xp=0;
             gd.addMsg("A personagem tem agora " + xp + " XP e esta no rank " + rank + "\n");
 
         } //se nao passa para prox rank
@@ -230,6 +234,7 @@ public final class Personagem implements Serializable {
 
         if ((gold - 8) < 0) {
             gd.addMsg("GOLD Insuficiente");
+            return;
         }
 
         switch (rand) {

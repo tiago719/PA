@@ -192,6 +192,35 @@ public class Jogo implements Serializable {
     {
         return gameData.getSizeBaralho();
     }
+    
+    int getPerXP() {
+        int rank = gameData.getPersonagem().getRank();
+        if (rank == 1){
+            return gameData.getPersonagem().getXp();
+        }else
+            return gameData.getPersonagem().getXp()+((rank-1)*6);
+    }
+
+    int getPerGold() {
+        return gameData.getPersonagem().getGold();
+    }
+
+    int getPerHP() {
+        return gameData.getPersonagem().getHp();
+    }
+
+    int getPerArmor() {
+        return gameData.getPersonagem().getArmor();
+    }
+
+    ArrayList<Spell> getPerSpells() {
+        return gameData.getPersonagem().getSpells();
+    }
+
+    int getPerFood() {
+        return gameData.getPersonagem().getFood();
+    }
+    
 
     public boolean exportarJogo() {
         try {
@@ -234,4 +263,6 @@ public class Jogo implements Serializable {
 
         return s;
     }
+
+    
 }

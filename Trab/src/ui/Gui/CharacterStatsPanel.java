@@ -10,6 +10,7 @@ import static Logic.Constants.MaxFood;
 import static Logic.Constants.MaxGold;
 import static Logic.Constants.MaxHP;
 import Logic.ObservableGame;
+import Logic.Spells.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -33,91 +34,93 @@ import static ui.Gui.Constants.DIM_Y_FRAME;
  *
  * @author Tiago Coutinho
  */
-public class CharacterStatsPanel extends JPanel implements Constants, Observer
-{
+public class CharacterStatsPanel extends JPanel implements Constants, Observer {
 
     private ObservableGame observableGame;
-    private int xpToken, goldToken, hpToken, armorToken, spellsToken[], foodToken;
+    private int xpToken, goldToken, hpToken, armorToken, foodToken;
+    ArrayList<Integer> spellsToken;
     private ImageIcon goldIcon;
     private JLabel GoldStats, HpStats, ArmorStats, SpellsStats, FoodStats, XpStats;
     private ArrayList<JLabel> GoldP, HpP, ArmorP, SpellsP, FoodP, XpP;
 
-
-    public CharacterStatsPanel(ObservableGame observableGame)
-    {
+    public CharacterStatsPanel(ObservableGame observableGame) {
         this.observableGame = observableGame;
         observableGame.addObserver(this);
 
         GoldP = new ArrayList<>();
-        HpP=new ArrayList<>();
-        ArmorP=new ArrayList<>();
-        SpellsP=new ArrayList<>();
-        FoodP=new ArrayList<>();
-        XpP=new ArrayList<>();
+        HpP = new ArrayList<>();
+        ArmorP = new ArrayList<>();
+        SpellsP = new ArrayList<>();
+        FoodP = new ArrayList<>();
+        XpP = new ArrayList<>();
+
+        spellsToken = new ArrayList<>();
 
         setupComponents();
         setupLayout();
     }
 
-    public void setupComponents()
-    {
+    public void setupComponents() {
         GoldStats = new JLabel();
-        HpStats= new JLabel();
-        ArmorStats= new JLabel();
-        SpellsStats= new JLabel();
-        FoodStats= new JLabel();
-        XpStats= new JLabel();
-        
+        HpStats = new JLabel();
+        ArmorStats = new JLabel();
+        SpellsStats = new JLabel();
+        FoodStats = new JLabel();
+        XpStats = new JLabel();
+
     }
 
-    public void setupLayout()
-    {
+    public void setupLayout() {
         setMinimumSize(new Dimension(DIM_X_STATS, DIM_Y_STATS));
         setPreferredSize(new Dimension(DIM_X_STATS, DIM_Y_STATS));
         setMaximumSize(new Dimension(DIM_X_STATS, DIM_Y_STATS));
         setLayout(null);
-        
+
         GoldStats.setBounds(START_X_GOLD_PANEL, START_Y_GOLD_PANEL, DIM_X_GOLD_PANEL, DIM_Y_GOLD_PANEL);
         HpStats.setBounds(START_X_HP_PANEL, START_Y_HP_PANEL, DIM_X_HP_PANEL, DIM_Y_HP_PANEL);
         ArmorStats.setBounds(START_X_ARMOR_PANEL, START_Y_ARMOR_PANEL, DIM_X_ARMOR_PANEL, DIM_Y_ARMOR_PANEL);
         SpellsStats.setBounds(START_X_SPELLS_PANEL, START_Y_SPELLS_PANEL, DIM_X_SPELLS_PANEL, DIM_Y_SPELLS_PANEL);
         FoodStats.setBounds(START_X_FOOD_PANEL, START_Y_FOOD_PANEL, DIM_X_FOOD_PANEL, DIM_Y_FOOD_PANEL);
         XpStats.setBounds(START_X_XP_PANEL, START_Y_XP_PANEL, DIM_X_XP_PANEL, DIM_Y_XP_PANEL);
-       
+
         setBorder(new LineBorder(Color.GRAY));
-        
+
         addXpStats();
         addGoldStats();
         addHpStats();
         addArmorStats();
         addSpellsStats();
         addFoodStats();
-        
+
         add(XpStats);
         add(GoldStats);
 
         //setAlignmentX(LEFT_ALIGNMENT);
-        
-        xpToken = observableGame.getGameData().getPersonagem().getXp();//TODO: MUDAR ISTO PARA METEDOS NOVOS
-        goldToken = observableGame.getGameData().getPersonagem().getGold();
-        hpToken = observableGame.getGameData().getPersonagem().getHp();
-        armorToken = observableGame.getGameData().getPersonagem().getArmor();
-//        spellsToken[0] = ;
-//        spellsToken[1] = 3;
-        foodToken = observableGame.getGameData().getPersonagem().getFood();
-        
-        
+        xpToken = observableGame.getPerXP();
+        goldToken = observableGame.getPerGold();
+        hpToken = observableGame.getPerHP();
+        armorToken = observableGame.getPerArmor();
+
+        spellsToken.add(null);
+        spellsToken.add(null);
+
+        foodToken = observableGame.getPerFood();
+
         GoldP.get(goldToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage()));
+        HpP.get(hpToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage()));
+        ArmorP.get(armorToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage()));
+        XpP.get(xpToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage()));
+        FoodP.get(foodToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage()));
 
         add(HpStats);
         add(ArmorStats);
         add(SpellsStats);
         add(FoodStats);
     }
-    
-    public void addXpStats()
-    {
+
+    public void addXpStats() {
         XpStats.setBorder(new LineBorder(Color.RED));
+
 
         for (int i = 0; i < 19; i++)
         {
@@ -132,8 +135,7 @@ public class CharacterStatsPanel extends JPanel implements Constants, Observer
         XpStats.setPreferredSize(new Dimension(DIM_X_XP_PANEL, DIM_Y_XP_PANEL));
         XpStats.setMaximumSize(new Dimension(DIM_X_XP_PANEL, DIM_Y_XP_PANEL));
 
-        for (int i = 0; i < XpP.size(); i++)
-        {
+        for (int i = 0; i < XpP.size(); i++) {
             XpP.get(i).setMinimumSize(new Dimension(DIM_X_QUADRICULA, DIM_Y_QUADRICULA));
             XpP.get(i).setPreferredSize(new Dimension(DIM_X_QUADRICULA, DIM_Y_QUADRICULA));
             XpP.get(i).setMaximumSize(new Dimension(DIM_X_QUADRICULA, DIM_Y_QUADRICULA));
@@ -143,25 +145,22 @@ public class CharacterStatsPanel extends JPanel implements Constants, Observer
 
     }
 
-    public void addGoldStats()
-    {
+    public void addGoldStats() {
         GoldStats.setBorder(new LineBorder(Color.RED));
 
-        for (int i = 0; i < MaxGold; i++)
-        {
+        for (int i = 0; i < MaxGold; i++) {
             GoldP.add(new JLabel());
             GoldP.get(i).setBorder(new LineBorder(Color.BLACK));
         }
 
         GoldStats.setLayout(new GridLayout(1, MaxGold, DIM_X_BETWEEN, DIM_Y_BETWEEN));
         GoldStats.setVisible(true);
-        
+
         GoldStats.setMinimumSize(new Dimension(DIM_X_GOLD_PANEL, DIM_Y_GOLD_PANEL));
         GoldStats.setPreferredSize(new Dimension(DIM_X_GOLD_PANEL, DIM_Y_GOLD_PANEL));
         GoldStats.setMaximumSize(new Dimension(DIM_X_GOLD_PANEL, DIM_Y_GOLD_PANEL));
 
-        for (int i = 0; i < GoldP.size(); i++)
-        {
+        for (int i = 0; i < GoldP.size(); i++) {
             GoldP.get(i).setMinimumSize(new Dimension(DIM_X_QUADRICULA, DIM_Y_QUADRICULA));
             GoldP.get(i).setPreferredSize(new Dimension(DIM_X_QUADRICULA, DIM_Y_QUADRICULA));
             GoldP.get(i).setMaximumSize(new Dimension(DIM_X_QUADRICULA, DIM_Y_QUADRICULA));
@@ -169,13 +168,11 @@ public class CharacterStatsPanel extends JPanel implements Constants, Observer
 
         }
     }
-    
-    public void addHpStats()
-    {
+
+    public void addHpStats() {
         HpStats.setBorder(new LineBorder(Color.RED));
 
-        for (int i = 0; i < MaxHP; i++)
-        {
+        for (int i = 0; i < MaxHP; i++) {
             HpP.add(new JLabel());
             HpP.get(i).setBorder(new LineBorder(Color.BLACK));
         }
@@ -187,8 +184,7 @@ public class CharacterStatsPanel extends JPanel implements Constants, Observer
         HpStats.setPreferredSize(new Dimension(DIM_X_GOLD_PANEL, DIM_Y_GOLD_PANEL));
         HpStats.setMaximumSize(new Dimension(DIM_X_GOLD_PANEL, DIM_Y_GOLD_PANEL));
 
-        for (int i = 0; i < HpP.size(); i++)
-        {
+        for (int i = 0; i < HpP.size(); i++) {
             HpP.get(i).setMinimumSize(new Dimension(DIM_X_QUADRICULA, DIM_Y_QUADRICULA));
             HpP.get(i).setPreferredSize(new Dimension(DIM_X_QUADRICULA, DIM_Y_QUADRICULA));
             HpP.get(i).setMaximumSize(new Dimension(DIM_X_QUADRICULA, DIM_Y_QUADRICULA));
@@ -198,12 +194,10 @@ public class CharacterStatsPanel extends JPanel implements Constants, Observer
 
     }
 
-    public void addArmorStats()
-    {
+    public void addArmorStats() {
         ArmorStats.setBorder(new LineBorder(Color.RED));
 
-        for (int i = 0; i < MaxArmor; i++)
-        {
+        for (int i = 0; i < MaxArmor; i++) {
             ArmorP.add(new JLabel());
             ArmorP.get(i).setBorder(new LineBorder(Color.BLACK));
         }
@@ -215,8 +209,7 @@ public class CharacterStatsPanel extends JPanel implements Constants, Observer
         ArmorStats.setPreferredSize(new Dimension(DIM_X_ARMOR_PANEL, DIM_Y_ARMOR_PANEL));
         ArmorStats.setMaximumSize(new Dimension(DIM_X_ARMOR_PANEL, DIM_Y_ARMOR_PANEL));
 
-        for (int i = 0; i < ArmorP.size(); i++)
-        {
+        for (int i = 0; i < ArmorP.size(); i++) {
             ArmorP.get(i).setMinimumSize(new Dimension(DIM_X_QUADRICULA, DIM_Y_QUADRICULA));
             ArmorP.get(i).setPreferredSize(new Dimension(DIM_X_QUADRICULA, DIM_Y_QUADRICULA));
             ArmorP.get(i).setMaximumSize(new Dimension(DIM_X_QUADRICULA, DIM_Y_QUADRICULA));
@@ -225,13 +218,11 @@ public class CharacterStatsPanel extends JPanel implements Constants, Observer
         }
 
     }
-    
-    public void addSpellsStats()
-    {
+
+    public void addSpellsStats() {
         SpellsStats.setBorder(new LineBorder(Color.RED));
 
-        for (int i = 0; i < 8; i++)
-        {
+        for (int i = 0; i < 8; i++) {
             SpellsP.add(new JLabel());
             SpellsP.get(i).setBorder(new LineBorder(Color.BLACK));
         }
@@ -243,8 +234,7 @@ public class CharacterStatsPanel extends JPanel implements Constants, Observer
         SpellsStats.setPreferredSize(new Dimension(DIM_X_SPELLS_PANEL, DIM_Y_SPELLS_PANEL));
         SpellsStats.setMaximumSize(new Dimension(DIM_X_SPELLS_PANEL, DIM_Y_SPELLS_PANEL));
 
-        for (int i = 0; i < SpellsP.size(); i++)
-        {
+        for (int i = 0; i < SpellsP.size(); i++) {
             SpellsP.get(i).setMinimumSize(new Dimension(DIM_X_QUADRICULA, DIM_Y_QUADRICULA));
             SpellsP.get(i).setPreferredSize(new Dimension(DIM_X_QUADRICULA, DIM_Y_QUADRICULA));
             SpellsP.get(i).setMaximumSize(new Dimension(DIM_X_QUADRICULA, DIM_Y_QUADRICULA));
@@ -252,13 +242,11 @@ public class CharacterStatsPanel extends JPanel implements Constants, Observer
         }
 
     }
-    
-    public void addFoodStats()
-    {
+
+    public void addFoodStats() {
         FoodStats.setBorder(new LineBorder(Color.RED));
 
-        for (int i = 0; i < MaxFood; i++)
-        {
+        for (int i = 0; i < MaxFood; i++) {
             FoodP.add(new JLabel());
             FoodP.get(i).setBorder(new LineBorder(Color.BLACK));
         }
@@ -270,8 +258,7 @@ public class CharacterStatsPanel extends JPanel implements Constants, Observer
         FoodStats.setPreferredSize(new Dimension(DIM_X_FOOD_PANEL, DIM_Y_FOOD_PANEL));
         FoodStats.setMaximumSize(new Dimension(DIM_X_FOOD_PANEL, DIM_Y_FOOD_PANEL));
 
-        for (int i = 0; i < FoodP.size(); i++)
-        {
+        for (int i = 0; i < FoodP.size(); i++) {
             FoodP.get(i).setMinimumSize(new Dimension(DIM_X_QUADRICULA, DIM_Y_QUADRICULA));
             FoodP.get(i).setPreferredSize(new Dimension(DIM_X_QUADRICULA, DIM_Y_QUADRICULA));
             FoodP.get(i).setMaximumSize(new Dimension(DIM_X_QUADRICULA, DIM_Y_QUADRICULA));
@@ -279,25 +266,105 @@ public class CharacterStatsPanel extends JPanel implements Constants, Observer
         }
 
     }
-    
+
     @Override
-    public void paintComponent(Graphics g)
-    {
+    public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(MiniRoguePanel.getCharacterStats(), 0, 0, DIM_X_STATS, DIM_Y_STATS, this);
 
     }
 
     @Override
-    public void update(Observable o, Object arg)
-    {
-        if(observableGame.getGameData().getPersonagem().getGold() != goldToken){
+    public void update(Observable o, Object arg) {
+        if (observableGame.getPerGold() != goldToken) {
             GoldP.get(goldToken).setIcon(null);
-            goldToken = observableGame.getGameData().getPersonagem().getGold();
+            goldToken = observableGame.getPerGold();
             GoldP.get(goldToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage()));
         }
-        
-        
+        if (observableGame.getPerArmor() != armorToken) {
+            ArmorP.get(armorToken).setIcon(null);
+            armorToken = observableGame.getPerArmor();
+            ArmorP.get(armorToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage()));
+        }
+
+        if (observableGame.getPerFood() != foodToken) {
+            FoodP.get(foodToken).setIcon(null);
+            foodToken = observableGame.getPerFood();
+            FoodP.get(foodToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage()));
+        }
+
+        if (observableGame.getPerHP() != hpToken) {
+            HpP.get(hpToken).setIcon(null);
+            hpToken = observableGame.getPerHP();
+            HpP.get(hpToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage()));
+        }
+
+        if (observableGame.getPerXP() != xpToken) {
+            XpP.get(xpToken).setIcon(null);
+            xpToken = observableGame.getPerXP();
+            XpP.get(xpToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage()));
+        }
+
+//        for (int i = 0; i< observableGame.getPerSpells().size(); i++){
+//            Spell c = observableGame.getPerSpells().get(i);
+//        spellsToken.set(0, null);
+//        spellsToken.set(1, null);
+        try {
+            SpellsP.get(spellsToken.get(0)).setIcon(null);
+            SpellsP.get(spellsToken.get(1)).setIcon(null);
+        } catch (Exception e) {
+        }
+        for (Integer c : spellsToken)        
+            c = null;
+        for (int i = 0; i< spellsToken.size(); i++)
+            spellsToken.set(i, null);
+//        for (JLabel c:SpellsP ){
+//            c.setIcon(null);
+//        }
+
+        int aux=0;
+        for (Spell c : observableGame.getPerSpells()) {
+            if (c instanceof Fire) {
+                spellsToken.set(aux, 0);
+                if (spellsToken.get(0) == spellsToken.get(aux) && aux != 0) {
+                    spellsToken.set(aux, 1);
+                }
+            }
+            if (c instanceof Ice) {
+                spellsToken.set(aux, 2);
+                if (spellsToken.get(0) == spellsToken.get(aux) && aux != 0) {
+                    spellsToken.set(aux, 3);
+                }
+            }
+            if (c instanceof Poison) {
+                spellsToken.set(aux, 4);
+                if (spellsToken.get(0) == spellsToken.get(aux) && aux != 0) {
+                    spellsToken.set(aux, 5);
+                }
+            }
+            if (c instanceof Healing) {
+                spellsToken.set(aux, 6);
+                if (spellsToken.get(0) == spellsToken.get(aux) && aux != 0) {
+                    spellsToken.set(aux, 7);
+                }
+            }
+
+            aux++;
+        }
+        try {
+            SpellsP.get(spellsToken.get(0)).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage()));
+            SpellsP.get(spellsToken.get(1)).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage()));
+        } catch (Exception e) {
+        }
+       
+
+        if (observableGame.getPerXP()
+                != xpToken) {
+            XpP.get(xpToken).setIcon(null);
+            xpToken = observableGame.getPerXP();
+            XpP.get(xpToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage()));
+        }
+
         //GoldP.get(1).re;
     }
 
