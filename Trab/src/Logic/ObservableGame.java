@@ -234,7 +234,7 @@ public class ObservableGame extends Observable {
     }
 
     public void ChooseSpell(int indexVetorSpells) {
-        GameModel.ChooseSpell(indexVetorSpells+1);
+        GameModel.ChooseSpell(indexVetorSpells);
 
         setChanged();
         notifyObservers();

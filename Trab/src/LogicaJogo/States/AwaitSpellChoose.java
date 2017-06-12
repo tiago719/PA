@@ -30,7 +30,7 @@ public class AwaitSpellChoose extends StateAdapter implements IStates, Serializa
                 return MonstroAtaca();
             case 0:
                 //TODO: nao usou nenhum spell dos que tinha
-                break;
+                return MonstroAtaca();
 
         }
         switch (getGame().getPersonagem().getSpells().get(c - 1).Efeito()){
