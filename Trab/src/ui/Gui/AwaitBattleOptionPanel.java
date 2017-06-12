@@ -59,7 +59,13 @@ public class AwaitBattleOptionPanel extends JPanel implements Observer {
         rerol = new JPanel();
         
         Box b1=Box.createHorizontalBox();
-        estado.setLayout(new GridLayout(2,1));
+        Box b2=Box.createHorizontalBox();
+        Box b3=Box.createHorizontalBox();
+        Box b4=Box.createHorizontalBox();
+        Box b5=Box.createHorizontalBox();
+        Box b6=Box.createHorizontalBox();
+        
+        setLayout(new GridLayout(3,1));
         rerol.setLayout(new GridLayout(2,1));
         estado.add(b1);
         rerol.add(b1);
@@ -107,10 +113,18 @@ public class AwaitBattleOptionPanel extends JPanel implements Observer {
 
         rerol.setVisible(false);
         rerol.add(Cancelar);
-        estado.add(Atacar);
-        estado.add(Rerrol);
-        estado.add(Feats);
-        add(estado);
+//        b3.add(b1);
+        b4.add(Atacar);
+        b5.add(Rerrol);
+        b6.add(Feats);
+//        estado.add(b2);
+        add(b2);
+        add(b1);
+        add(b4);
+        add(b5);
+        add(b6);
+        
+        
         add(rerol);
     }
 
@@ -150,7 +164,7 @@ public class AwaitBattleOptionPanel extends JPanel implements Observer {
         private JPanel estado, rerrol;
 
 
-        public Rerrol(int i, Box estado, Box rerrol) {
+        public Rerrol(int i, JPanel estado, JPanel rerrol) {
 
             this.i = i;
             this.estado = estado;
