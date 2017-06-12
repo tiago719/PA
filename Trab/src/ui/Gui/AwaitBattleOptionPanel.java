@@ -39,7 +39,7 @@ public class AwaitBattleOptionPanel extends JPanel implements Observer {
     private ObservableGame observableGame;
     private ArrayList<JLabel> Dados;
     private JButton Cancelar;
-    private JPanel estado, rerol;
+    private Box estado, rerol;
 
     public AwaitBattleOptionPanel(ObservableGame observableGame) {
         this.observableGame = observableGame;
@@ -55,27 +55,27 @@ public class AwaitBattleOptionPanel extends JPanel implements Observer {
         Dados = new ArrayList<>();
         Cancelar = new JButton("Cancelar");
 
-        estado = new JPanel();
-        rerol = new JPanel();
-        
-        Box b1=Box.createHorizontalBox();
-        Box b2=Box.createHorizontalBox();
-        Box b3=Box.createHorizontalBox();
-        Box b4=Box.createHorizontalBox();
-        Box b5=Box.createHorizontalBox();
-        Box b6=Box.createHorizontalBox();
-        
-        setLayout(new GridLayout(3,1));
-        rerol.setLayout(new GridLayout(2,1));
-        estado.add(b1);
-        rerol.add(b1);
-        
-        for (int i = 0; i < 4; i++)
-        {
+//        estado = new JPanel();
+//        rerol = new JPanel();
+
+        rerol = Box.createHorizontalBox();
+        estado = Box.createHorizontalBox();
+        Box dados = Box.createHorizontalBox();
+
+        Box atacar = Box.createHorizontalBox();
+        Box rerrol = Box.createHorizontalBox();
+        Box feats = Box.createHorizontalBox();
+
+        setLayout(new GridLayout(3, 1));
+//        rerol.setLayout(new GridLayout(2, 1));
+//        estado.add(b1);
+//        rerol.add(b1);
+
+        for (int i = 0; i < 4; i++) {
             Dados.add(new JLabel());
             Dados.get(i).setVisible(false);
             Dados.get(i).addMouseListener(new Rerrol(i, estado, rerol));
-            b1.add(Dados.get(i));
+            dados.add(Dados.get(i));
         }
 
         Cancelar.addActionListener(new ActionListener() {
@@ -114,20 +114,18 @@ public class AwaitBattleOptionPanel extends JPanel implements Observer {
         rerol.setVisible(false);
         rerol.add(Cancelar);
 //        b3.add(b1);
-        b4.add(Atacar);
-        b5.add(Rerrol);
-        b6.add(Feats);
+        atacar.add(Atacar);
+        //rerrol.add(Rerrol);
+        feats.add(Feats);
 //        estado.add(b2);
-        add(b2);
-        add(b1);
-        add(b4);
-        add(b5);
-        add(b6);
-        
-        
-        add(rerol);
-    }
+        add(dados);
 
+        add(atacar);
+       // add(rerrol);
+        add(feats);
+
+//        add(rerol);
+    }
 
     public void setupLayout() {
 
@@ -161,10 +159,9 @@ public class AwaitBattleOptionPanel extends JPanel implements Observer {
     class Rerrol extends MouseAdapter {
 
         private int i;
-        private JPanel estado, rerrol;
+        private Box estado, rerrol;
 
-
-        public Rerrol(int i, JPanel estado, JPanel rerrol) {
+        public Rerrol(int i, Box estado, Box rerrol) {
 
             this.i = i;
             this.estado = estado;
