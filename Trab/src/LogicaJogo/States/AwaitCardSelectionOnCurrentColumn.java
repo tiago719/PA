@@ -137,7 +137,6 @@ public class AwaitCardSelectionOnCurrentColumn extends StateAdapter implements I
     public IStates ResolveSelectedTrapCard() {
         boolean flag = false;
         int ran = 1 + (int) (Math.random() * ((6 - 1) + 1));
-        ran = 6;//TODO: TIRAR (TESTES)
         getGame().addMsg("Resultado do lancamento do dado: " + ran + "\n");
 
         if (skillCheck()) {

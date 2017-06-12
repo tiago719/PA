@@ -70,8 +70,9 @@ public class MiniRogueView extends JFrame implements Observer, Constants {
         menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
         menuItem.getAccessibleContext().setAccessibleDescription("Stops Game");
         menuItem.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent ev) {
-                observableGame.selectGameOver();
+                observableGame.GameOver();
             }
         }
         );
