@@ -39,7 +39,7 @@ public class AwaitBattleOptionPanel extends JPanel implements Observer {
     private ObservableGame observableGame;
     private ArrayList<JLabel> Dados;
     private JButton Cancelar;
-    private Box estado, rerol;
+    private Box estado;
 
     public AwaitBattleOptionPanel(ObservableGame observableGame) {
         this.observableGame = observableGame;
@@ -53,38 +53,21 @@ public class AwaitBattleOptionPanel extends JPanel implements Observer {
 
     public void setupComponents() {
         Dados = new ArrayList<>();
-        Cancelar = new JButton("Cancelar");
-
-//        estado = new JPanel();
-//        rerol = new JPanel();
-
-        rerol = Box.createHorizontalBox();
+        
         estado = Box.createHorizontalBox();
         Box dados = Box.createHorizontalBox();
 
         Box atacar = Box.createHorizontalBox();
-        Box rerrol = Box.createHorizontalBox();
         Box feats = Box.createHorizontalBox();
 
-        setLayout(new GridLayout(3, 1));
-//        rerol.setLayout(new GridLayout(2, 1));
-//        estado.add(b1);
-//        rerol.add(b1);
 
         for (int i = 0; i < 4; i++) {
             Dados.add(new JLabel());
             Dados.get(i).setVisible(false);
-            Dados.get(i).addMouseListener(new Rerrol(i, estado, rerol));
+            Dados.get(i).addMouseListener(new Rerrol(i));
             dados.add(Dados.get(i));
         }
 
-        Cancelar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ev) {
-                estado.setVisible(true);
-                rerol.setVisible(false);
-            }
-        });
 
         Atacar = new JButton("Atacar");
         Atacar.addActionListener(new ActionListener() {
@@ -94,14 +77,6 @@ public class AwaitBattleOptionPanel extends JPanel implements Observer {
             }
         });
 
-        Rerrol = new JButton("Rerrol");
-        Rerrol.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ev) {
-                estado.setVisible(false);
-                rerol.setVisible(true);
-            }
-        });
 
         Feats = new JButton("Feats");
         Feats.addActionListener(new ActionListener() {
@@ -111,35 +86,23 @@ public class AwaitBattleOptionPanel extends JPanel implements Observer {
             }
         });
 
-        rerol.setVisible(false);
-        rerol.add(Cancelar);
-//        b3.add(b1);
         atacar.add(Atacar);
-        //rerrol.add(Rerrol);
         feats.add(Feats);
-//        estado.add(b2);
         add(dados);
-
         add(atacar);
-       // add(rerrol);
         add(feats);
 
-//        add(rerol);
     }
 
     public void setupLayout() {
+        setLayout(new GridLayout(3, 1));
 
-//        setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
     }
 
     @Override
     public void update(Observable o, Object arg) {
         if (observableGame.getState() instanceof AwaitBattleOption) {
             setVisible(true);
-            estado.setVisible(true);
-            rerol.setVisible(false);
-
-            Rerrol.setVisible(observableGame.AnyCritical());
 
             for (int i = 0; i < observableGame.getDados().size(); i++) {
                 Dados.get(i).setVisible(true);
@@ -159,20 +122,15 @@ public class AwaitBattleOptionPanel extends JPanel implements Observer {
     class Rerrol extends MouseAdapter {
 
         private int i;
-        private Box estado, rerrol;
 
-        public Rerrol(int i, Box estado, Box rerrol) {
+        public Rerrol(int i) {
 
             this.i = i;
-            this.estado = estado;
-            this.rerrol = rerrol;
         }
 
         @Override
         public void mousePressed(MouseEvent ev) {
             observableGame.ReroolOptionSelected(i + 1);
-            estado.setVisible(true);
-            rerrol.setVisible(false);
         }
 
     }
