@@ -6,6 +6,7 @@
 package LogicaJogo.States;
 
 import Logic.Cartas.Carta;
+import Logic.Caverna;
 import Logic.GameData;
 import Logic.Spells.Fire;
 import Logic.Spells.Healing;
@@ -244,6 +245,7 @@ public class StateAdapter implements IStates, Serializable{
     @Override
     public IStates VoltaInicio() {
         getGame().setDificuldade(2);
+        getGame().setCaverna(new Caverna(1, getGame()));
         return new AwaitBegining(getGame());
     }
 

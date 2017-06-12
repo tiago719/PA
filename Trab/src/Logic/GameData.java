@@ -8,7 +8,7 @@ public class GameData implements Constants, Serializable {
 
     private int dificuldade, startingArea;
     private final Personagem Personagem;
-    private final Caverna Caverna;
+    private Caverna Caverna;
     private ArrayList<Dado> dados;
     private Carta MonstroAlvo;
     private String msg;
@@ -115,5 +115,9 @@ public class GameData implements Constants, Serializable {
     public int getSizeBaralho()
     {
         return Caverna.getAreaAtual().getSizeBaralho();
+    }
+
+    public void setCaverna(Caverna caverna) {
+        this.Caverna = caverna;
     }
 }
