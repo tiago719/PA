@@ -9,7 +9,10 @@ import Logic.ObservableGame;
 import LogicaJogo.States.AwaitBattleOption;
 import LogicaJogo.States.AwaitBegining;
 import LogicaJogo.States.AwaitCardSelectionOnCurrentColumn;
+
 import java.awt.Graphics;
+
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -36,7 +39,7 @@ public class AwaitBattleOptionPanel extends JPanel implements Observer {
     private ObservableGame observableGame;
     private ArrayList<JLabel> Dados;
     private JButton Cancelar;
-    private Box estado, rerol;
+    private JPanel estado, rerol;
 
     public AwaitBattleOptionPanel(ObservableGame observableGame) {
         this.observableGame = observableGame;
@@ -51,14 +54,22 @@ public class AwaitBattleOptionPanel extends JPanel implements Observer {
     public void setupComponents() {
         Dados = new ArrayList<>();
         Cancelar = new JButton("Cancelar");
-        estado = Box.createHorizontalBox();
-        rerol = Box.createHorizontalBox();
 
-        for (int i = 0; i < 4; i++) {
+        estado = new JPanel();
+        rerol = new JPanel();
+        
+        Box b1=Box.createHorizontalBox();
+        estado.setLayout(new GridLayout(2,1));
+        rerol.setLayout(new GridLayout(2,1));
+        estado.add(b1);
+        rerol.add(b1);
+        
+        for (int i = 0; i < 4; i++)
+        {
             Dados.add(new JLabel());
             Dados.get(i).setVisible(false);
             Dados.get(i).addMouseListener(new Rerrol(i, estado, rerol));
-            rerol.add(Dados.get(i));
+            b1.add(Dados.get(i));
         }
 
         Cancelar.addActionListener(new ActionListener() {
@@ -103,7 +114,9 @@ public class AwaitBattleOptionPanel extends JPanel implements Observer {
         add(rerol);
     }
 
+
     public void setupLayout() {
+
 //        setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
     }
 
@@ -134,9 +147,11 @@ public class AwaitBattleOptionPanel extends JPanel implements Observer {
     class Rerrol extends MouseAdapter {
 
         private int i;
-        private Box estado, rerrol;
+        private JPanel estado, rerrol;
+
 
         public Rerrol(int i, Box estado, Box rerrol) {
+
             this.i = i;
             this.estado = estado;
             this.rerrol = rerrol;

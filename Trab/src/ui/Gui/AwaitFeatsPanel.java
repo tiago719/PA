@@ -9,6 +9,7 @@ import Logic.ObservableGame;
 import LogicaJogo.States.AwaitCardSelectionOnCurrentColumn;
 import LogicaJogo.States.AwaitFeats;
 import java.awt.BorderLayout;
+import static java.awt.BorderLayout.CENTER;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
@@ -60,6 +61,7 @@ public class AwaitFeatsPanel extends JPanel implements Observer {
 
     public void setupComponents() {
         Cancelar = new JButton("Cancelar");
+
         Cancelar.addMouseListener(new ActionListener(-2));
 
         group = new ButtonGroup();
@@ -97,6 +99,7 @@ public class AwaitFeatsPanel extends JPanel implements Observer {
         add(b1);
         add(b2);
         add(b3);
+
     }
 
     @Override

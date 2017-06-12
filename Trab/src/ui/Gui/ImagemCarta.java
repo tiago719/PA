@@ -32,39 +32,22 @@ import static ui.Gui.Constants.DIM_Y_FRAME;
  */
 public class ImagemCarta extends JLabel implements Constants, Observer {
 
-    //private boolean show;
     BufferedImage img;
     ObservableGame observableGame;
     private Carta carta;
     boolean duasCartas;
     int posColuna;
 
-//    JP_CartaMaximizada CartaMaximizada;
-    ImagemCarta(ObservableGame observableGame, boolean duasCartas,
-            int posColuna) {
+
+    ImagemCarta(ObservableGame observableGame, boolean duasCartas,int posColuna) {
         this.observableGame = observableGame;
         this.posColuna = posColuna;
         observableGame.addObserver(this);
-        //this.show = false;
+
         this.duasCartas = duasCartas;
 
-//        setAlignmentX(CENTER_ALIGNMENT);
-//        setAlignmentY(CENTER_ALIGNMENT);
         img = MiniRoguePanel.getBackCardImage();
 
-//        Box b = Box.createHorizontalBox();
-//        
-//        b.add(Box.createHorizontalGlue());
-//        b.add(Box.createVerticalGlue());
-//        CartaMaximizada = new  JP_CartaMaximizada(img, 0, 0, 500, 500, observableGame);
-//        b.add(CartaMaximizada);
-//        
-//        b.add(Box.createHorizontalGlue());
-//        b.add(Box.createVerticalGlue());        
-//        CartaMaximizada.setVisible(false);
-//        CartaMaximizada.setEnabled(false);
-//        
-//        add(b);
         addMouseListener(new ClickListener());
 
     }
@@ -99,14 +82,18 @@ public class ImagemCarta extends JLabel implements Constants, Observer {
                 return;
             }
 
+
+
             JDialog dialog = new JP_CartaMaximizada(img, observableGame, carta);
 
             dialog.setUndecorated(true);
+
             dialog.pack();
 
             dialog.setModal(true);
             dialog.setLocation(new Point((DIM_X_FRAME / 2) - (DIM_X_CARTA_MAX / 2), (DIM_Y_FRAME / 2) - (DIM_Y_CARTA_MAX / 2)));
             dialog.setVisible(true);
+
         }
 
         @Override
