@@ -20,17 +20,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
-import static ui.Gui.Constants.DIM_X_BETWEEN;
-import static ui.Gui.Constants.DIM_X_GOLD_PANEL;
-import static ui.Gui.Constants.DIM_X_QUADRICULA;
-import static ui.Gui.Constants.DIM_Y_BETWEEN;
-import static ui.Gui.Constants.DIM_Y_GOLD_PANEL;
-import static ui.Gui.Constants.DIM_Y_QUADRICULA;
 
-/**
- *
- * @author Tiago Coutinho
- */
 public class DungeonPanel extends JPanel implements Constants, Observer {
 
     private ObservableGame observableGame;
@@ -76,7 +66,7 @@ public class DungeonPanel extends JPanel implements Constants, Observer {
 
         HPMonsterToken = -1;
         AreaToken = 1;
-        AreaP.get(AreaToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage()));
+        AreaP.get(AreaToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage2()));
     }
 
     public void addHpMonster() {
@@ -164,7 +154,7 @@ public class DungeonPanel extends JPanel implements Constants, Observer {
         if (observableGame.getNumAreaAtual() != AreaToken) {
             AreaP.get(AreaToken).setIcon(null);
             AreaToken = observableGame.getNumAreaAtual();
-            AreaP.get(AreaToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage()));
+            AreaP.get(AreaToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage2()));
         }
         if (observableGame.isMonsterSet()) {
             if (observableGame.getMonsterHP() != HPMonsterToken) {
@@ -173,7 +163,7 @@ public class DungeonPanel extends JPanel implements Constants, Observer {
                 } catch (Exception e) {
                 }
                 HPMonsterToken = observableGame.getMonsterHP();
-                HpMonsterP.get(HPMonsterToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage()));
+                HpMonsterP.get(HPMonsterToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage2()));
             }
         }
 

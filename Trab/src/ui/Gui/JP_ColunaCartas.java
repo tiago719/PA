@@ -21,13 +21,14 @@ import java.util.Observable;
 import java.util.Observer;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
  *
  * @author edu_f
  */
-public class JP_ColunaCartas extends JPanel implements Constants, Observer {
+public class JP_ColunaCartas extends JLabel implements Constants, Observer {
 
     ObservableGame observableGame;
     ArrayList<ImagemCarta> cartas;

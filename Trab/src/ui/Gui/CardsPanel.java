@@ -70,6 +70,7 @@ public class CardsPanel extends JPanel implements Constants, Observer {
     @Override
     public void paintComponent( Graphics g)
     {
-        super.paintComponent(g);        
+        super.paintComponent(g);   
+        g.drawImage(MiniRoguePanel.getBackgroundImage(), 0, 0, DIM_X_BACKGROUND, DIM_Y_BACKGROUND, this);
     }
 }

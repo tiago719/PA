@@ -4,6 +4,7 @@ import Logic.Cartas.Carta;
 import Logic.Spells.Spell;
 import LogicaJogo.States.AwaitBegining;
 import LogicaJogo.States.IStates;
+import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -266,6 +267,38 @@ public class Jogo implements Serializable {
 
     int getMonsterHP() {
         return gameData.getMonstroAlvo().getHP();
+    }
+
+    boolean continuarJogo(File file) throws ClassNotFoundException {
+        try {
+            Export ex = new Export();
+            ObjectInputStream in;
+
+            in = ex.abreFObjectosLeitura(file);
+            this.gameData = (GameData) in.readObject();
+            this.state = (IStates) in.readObject();
+            return true;
+        } catch (IOException ex1) {
+            //Logger.getLogger(Jogo.class.getName()).log(Level.SEVERE, null, ex1);
+            return false;
+        }
+    }
+    
+    public boolean exportarJogo(File file) {
+        try {
+            Export ex = new Export();
+            ObjectOutputStream out;
+
+            out = ex.abreFObjectosEscrita(file);
+            out.writeObject(this.gameData);
+            out.writeObject(this.state);
+
+            return true;
+
+        } catch (IOException ex1) {
+            //Logger.getLogger(Jogo.class.getName()).log(Level.SEVERE, null, ex1);
+            return false;
+        }
     }
 
     
