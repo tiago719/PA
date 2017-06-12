@@ -87,7 +87,7 @@ public class JP_DungeonMaximizada extends JDialog implements Constants, java.awt
     
     public void addAreaAtual()
     {
-        AreaAtual.setBorder(new LineBorder(Color.RED));
+        //AreaAtual.setBorder(new LineBorder(Color.RED));
         int aux=1;
         for (int i = 0 ; i < MAXAREA; i++)
         {
@@ -101,8 +101,7 @@ public class JP_DungeonMaximizada extends JDialog implements Constants, java.awt
                 AreaP.put(aux, temp);
                 aux++;
             }
-            //AreaP.add(new JLabel());
-            AreaP.get(aux-1).setBorder(new LineBorder(Color.BLACK));
+            //AreaP.get(aux-1).setBorder(new LineBorder(Color.BLACK));
         }
 
         AreaAtual.setLayout(new GridLayout(5, 4, DIM_X_BETWEEN_AREA_POPUP, DIM_Y_BETWEEN_AREA_POPUP));

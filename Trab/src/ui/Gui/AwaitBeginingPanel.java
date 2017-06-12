@@ -64,6 +64,9 @@ public class AwaitBeginingPanel extends JPanel implements Observer, Constants {
 
     public void setupComponents() {
         Box b1 = Box.createHorizontalBox();
+        Box b2 = Box.createHorizontalBox();
+        Box b3 = Box.createHorizontalBox();
+
 
         start = new JButton("Start");
         setStartingArea = new JButton("Set Starting Area");
@@ -72,10 +75,12 @@ public class AwaitBeginingPanel extends JPanel implements Observer, Constants {
         dificuldades.setMinimumSize(new Dimension(90, 27));
         dificuldades.setMaximumSize(new Dimension(90, 27));
         b1.add(start);
-        b1.add(setStartingArea);
-        b1.add(dificuldades);
+        b2.add(setStartingArea);
+        b3.add(dificuldades);
 
         add(b1);
+        add(b2);
+        add(b3);
 
         start.addActionListener(new ActionListener() {
             @Override
@@ -108,11 +113,7 @@ public class AwaitBeginingPanel extends JPanel implements Observer, Constants {
     }
 
     public void setupLayout() {
-        setLayout(new GridLayout(1, 0));
-        setAlignmentX(CENTER_ALIGNMENT);
-//        add(start);
-//        add(dificuldades);
-//        add(setStartingArea);
+        setLayout(new GridLayout(3, 1));
     }
 
     @Override

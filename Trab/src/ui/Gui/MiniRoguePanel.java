@@ -202,8 +202,8 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants {
 
         MidBox.add(cardsPanel);
         MidBox.add(b);
-        welcomePanel.setBorder(new LineBorder(Color.darkGray));
-        MidBox.setBorder(new LineBorder(Color.BLUE));
+        //welcomePanel.setBorder(new LineBorder(Color.darkGray));
+        //MidBox.setBorder(new LineBorder(Color.BLUE));
 
         Box center = Box.createHorizontalBox();
         center.add(LeftBox);
@@ -212,12 +212,12 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants {
         JPanel south = new JPanel();
         south.setMinimumSize(new Dimension(DIM_X_SOUTH_PANEL, DIM_Y_SOUTH_PANEL));
         south.setPreferredSize(new Dimension(DIM_X_SOUTH_PANEL, DIM_Y_SOUTH_PANEL));
-        south.setBorder(new LineBorder(Color.GREEN));
+        //south.setBorder(new LineBorder(Color.GREEN));
         south.setLayout(new GridLayout());
 
         Box StatsBox = Box.createHorizontalBox();
         StatsBox.add(characterStatsPanel);
-        StatsBox.setBorder(new LineBorder(Color.YELLOW));
+        //StatsBox.setBorder(new LineBorder(Color.YELLOW));
 
         Box StateBox = Box.createVerticalBox();
         StateBox.add(awaitBattleOptionPanel);
@@ -228,7 +228,7 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants {
         StateBox.add(awaitSpellChoosePanel);
         StateBox.add(awaitTraidingPanel);
         StateBox.add(gameOverPanel);
-        StateBox.setBorder(new LineBorder(Color.RED));
+        //StateBox.setBorder(new LineBorder(Color.RED));
 
         south.add(StatsBox);
         south.add(StateBox);
