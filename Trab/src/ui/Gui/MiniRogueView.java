@@ -26,8 +26,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
-import javax.swing.filechooser.FileFilter;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -64,19 +62,6 @@ public class MiniRogueView extends JFrame implements Observer, Constants {
         menu.setMnemonic(KeyEvent.VK_A);
         menu.getAccessibleContext().setAccessibleDescription("Game MENU");
         menuBar.add(menu);
-
-//a group of JMenuItems
-        menuItem = new JMenuItem("Stop", KeyEvent.VK_G);
-        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
-        menuItem.getAccessibleContext().setAccessibleDescription("Stops Game");
-        menuItem.addActionListener(new java.awt.event.ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ev) {
-                observableGame.GameOver();
-            }
-        }
-        );
-        menu.add(menuItem);
 
         menuItem = new JMenuItem("Load");
         menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, ActionEvent.CTRL_MASK));
@@ -116,7 +101,6 @@ public class MiniRogueView extends JFrame implements Observer, Constants {
         );
         menu.add(menuItem);
 
-//a group of radio button menu items
         menu.addSeparator();
 
         menuItem = new JMenuItem("Exit");
@@ -130,18 +114,7 @@ public class MiniRogueView extends JFrame implements Observer, Constants {
             }
         });
         menu.add(menuItem);
-
-        menu = new JMenu("Help");
-        menu.setMnemonic(KeyEvent.VK_A);
-        menu.getAccessibleContext().setAccessibleDescription(
-                "It Helps");
-        menu.addActionListener(new java.awt.event.ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ev) {
-                JOptionPane.showMessageDialog(MiniRogueView.this, "HELP HELP HELP");
-            }
-        });
-        menuBar.add(menu);
+        
         setJMenuBar(menuBar);
 
         panel = new MiniRoguePanel(observableGame);
