@@ -23,7 +23,7 @@ public interface Constants
     static final int DIM_Y_FRAME = (int) screenSize.getHeight();
     
     static final int DIM_X_DUNGEON = (336*DIM_X_FRAME)/1366;
-    static final int DIM_Y_DUNGEON = (477*DIM_Y_FRAME)/768;
+    static final int DIM_Y_DUNGEON = (449*DIM_Y_FRAME)/768;
     
     static final int BORDER_X = 10;
     static final int BORDER_Y = 10;
@@ -124,20 +124,20 @@ public interface Constants
     static final int DIM_Y_QUADRICULA_MONSTER = (35*DIM_Y_FRAME)/768;
     
     static final int DIM_X_BETWEEN_MONSTER = (4*DIM_X_FRAME)/1366;
-    static final int DIM_Y_BETWEEN_MONSTER = (6*DIM_Y_FRAME)/768;
+    static final int DIM_Y_BETWEEN_MONSTER = (4*DIM_Y_FRAME)/768;
     
     static final int DIM_X_HPMONSTER_PANEL = DIM_X_QUADRICULA_MONSTER*3+DIM_X_BETWEEN_MONSTER*4-((8*DIM_X_FRAME)/1366);
-    static final int DIM_Y_HPMONSTER_PANEL = DIM_Y_QUADRICULA_MONSTER*11+DIM_Y_BETWEEN_MONSTER*12;
+    static final int DIM_Y_HPMONSTER_PANEL = DIM_Y_QUADRICULA_MONSTER*11+DIM_Y_BETWEEN_MONSTER*12-((4*DIM_X_FRAME)/768);
     
-    static final int START_X_HPMONSTER_PANEL = (207*DIM_X_FRAME)/1366;
-    static final int START_Y_HPMONSTER_PANEL = (28*DIM_Y_FRAME)/768;
+    static final int START_X_HPMONSTER_PANEL = (208*DIM_X_FRAME)/1366;
+    static final int START_Y_HPMONSTER_PANEL = (27*DIM_Y_FRAME)/768;
     
     //AreaAtual
     
     static final int MAXAREA = 20;
     
     static final int DIM_X_QUADRICULA_AREA = (36*DIM_X_FRAME)/1366;
-    static final int DIM_Y_QUADRICULA_AREA = (28*DIM_Y_FRAME)/768;
+    static final int DIM_Y_QUADRICULA_AREA = (26*DIM_Y_FRAME)/768;
     
     static final int DIM_X_BETWEEN_AREA = (4*DIM_X_FRAME)/1366;
     static final int DIM_Y_BETWEEN_AREA = (24*DIM_Y_FRAME)/768;
@@ -146,7 +146,7 @@ public interface Constants
     static final int DIM_Y_AREA_PANEL = DIM_Y_QUADRICULA_AREA*5+DIM_Y_BETWEEN_AREA*6;
     
     static final int START_X_AREA_PANEL = (15*DIM_X_FRAME)/1366;
-    static final int START_Y_AREA_PANEL = (178*DIM_Y_FRAME)/768;
+    static final int START_Y_AREA_PANEL = (165*DIM_Y_FRAME)/768;
     
     //AreaAtualPopup
     

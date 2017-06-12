@@ -18,6 +18,7 @@ import java.util.Observable;
 import java.util.Observer;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -33,6 +34,7 @@ public class AwaitBattleOptionPanel extends JPanel implements Observer
     private ObservableGame observableGame;
     private ArrayList<JLabel> Dados;
     private JButton Cancelar;
+    private Box estado, rerol;
 
     public AwaitBattleOptionPanel(ObservableGame observableGame)
     {
@@ -49,20 +51,16 @@ public class AwaitBattleOptionPanel extends JPanel implements Observer
     {
         Dados = new ArrayList<>();
         Cancelar = new JButton("Cancelar");
-        Box estado = Box.createHorizontalBox();
-        Box rerol = Box.createHorizontalBox();
-
+        estado = Box.createHorizontalBox();
+        rerol = Box.createHorizontalBox();
 
         for (int i = 0; i < 4; i++)
         {
             Dados.add(new JLabel());
             Dados.get(i).setVisible(false);
-            Dados.get(i).addMouseListener(new Rerrol(i));
+            Dados.get(i).addMouseListener(new Rerrol(i, estado, rerol));
             rerol.add(Dados.get(i));
         }
-
-        add(estado);
-        add(rerol);
 
         Cancelar.addActionListener(new ActionListener()
         {
@@ -73,7 +71,7 @@ public class AwaitBattleOptionPanel extends JPanel implements Observer
                 rerol.setVisible(false);
             }
         });
-        
+
         Atacar = new JButton("Atacar");
         Atacar.addActionListener(new ActionListener()
         {
@@ -104,11 +102,14 @@ public class AwaitBattleOptionPanel extends JPanel implements Observer
                 observableGame.Feats();
             }
         });
-        
-        
+
+        rerol.setVisible(false);
+        rerol.add(Cancelar);
         estado.add(Atacar);
         estado.add(Rerrol);
         estado.add(Feats);
+        add(estado);
+        add(rerol);
     }
 
     public void setupLayout()
@@ -119,23 +120,43 @@ public class AwaitBattleOptionPanel extends JPanel implements Observer
     @Override
     public void update(Observable o, Object arg)
     {
-        Rerrol.setVisible(observableGame.AnyCritical());
-        setVisible(observableGame.getState() instanceof AwaitBattleOption);
+        if (observableGame.getState() instanceof AwaitBattleOption)
+        {
+            setVisible(true);
+            estado.setVisible(true);
+            rerol.setVisible(false);
+
+            Rerrol.setVisible(observableGame.AnyCritical());
+
+            for (int i = 0; i < observableGame.getDados().size(); i++)
+            {
+                Dados.get(i).setVisible(true);
+                Dados.get(i).setIcon(new ImageIcon(MiniRoguePanel.getDadosImage().get(observableGame.getDados().get(i).getFace() - 1)));
+            }
+        }
+        else
+            setVisible(false);
     }
 
     class Rerrol extends MouseAdapter
     {
-        private int i;
 
-        public Rerrol(int i)
+        private int i;
+        private Box estado, rerrol;
+
+        public Rerrol(int i, Box estado, Box rerrol)
         {
             this.i = i;
+            this.estado=estado;
+            this.rerrol=rerrol;
         }
 
         @Override
         public void mousePressed(MouseEvent ev)
         {
-            observableGame.ReroolOptionSelected(i);
+            observableGame.ReroolOptionSelected(i+1);
+            estado.setVisible(true);
+            rerrol.setVisible(false);
         }
     }
 
