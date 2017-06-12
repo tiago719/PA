@@ -8,16 +8,26 @@ package ui.Gui;
 import Logic.ObservableGame;
 import LogicaJogo.States.AwaitCardSelectionOnCurrentColumn;
 import LogicaJogo.States.AwaitFeats;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+import javax.swing.Box;
+import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import static ui.Gui.Constants.DIM_X_COLUNA;
+import static ui.Gui.Constants.DIM_Y_COLUNA;
 
 /**
  *
@@ -28,6 +38,9 @@ public class AwaitFeatsPanel extends JPanel implements Observer
     private ArrayList<JLabel> Dados;
     private JButton Cancelar;
     private ObservableGame observableGame;
+    private ButtonGroup group; 
+    private JRadioButton hp, xp;
+    private JLabel preco;
 
     public AwaitFeatsPanel(ObservableGame observableGame)
     {
@@ -40,53 +53,88 @@ public class AwaitFeatsPanel extends JPanel implements Observer
 
         setupComponents();
         setupLayout();
+        
     }
-
+    
     public void setupComponents()
     {
         Cancelar=new JButton("Cancelar");
-        Cancelar.addMouseListener(new ActionListener(observableGame, 0));
+        Cancelar.addMouseListener(new ActionListener(-2));
         
-        int i;
-        for (i = 0; i < observableGame.getDados().size(); i++)
+        group= new ButtonGroup();
+        hp=new JRadioButton("2 HP");
+        xp=new JRadioButton("1 XP");
+        hp.setSelected(true);
+        preco=new JLabel("Preço");
+        hp.setVisible(true);
+        xp.setVisible(true);
+ 
+        for(int i=0;i<4;i++)
         {
-            Dados.add(new JLabel(new ImageIcon(MiniRoguePanel.getDadosImage().get(observableGame.getDados().get(i).getFace()))));
-            
-            Dados.get(i).addMouseListener(new ActionListener(observableGame,i));
+            Dados.add(new JLabel());
+            Dados.get(i).setVisible(false);
+            Dados.get(i).addMouseListener(new ActionListener(i));
         }
     }
 
     public void setupLayout()
     {
-        add(Cancelar);
+        Box b1 = Box.createHorizontalBox();
+        Box b2 = Box.createHorizontalBox();
+        Box b3 = Box.createHorizontalBox();
+        
+        group.add(hp);
+        group.add(xp);
+        b2.add(hp);
+        b2.add(xp);
+        
+        setLayout(new GridLayout(3 , 1));
+        b3.add(Cancelar);
+
         for(int i=0;i<Dados.size();i++)
         {
-            add(Dados.get(i));
+            b1.add(Dados.get(i));
         }
+        
+        add(b1);
+        add(b2);
+        add(b3);
     }
 
     @Override
     public void update(Observable o, Object arg)
     {
-        setVisible(observableGame.getState() instanceof AwaitFeats);
+        if(observableGame.getState() instanceof AwaitFeats)
+        {
+             setVisible(true);
+        
+            for(int i=0;i<observableGame.getDados().size();i++)
+            {
+                Dados.get(i).setVisible(true);
+                Dados.get(i).setIcon(new ImageIcon(MiniRoguePanel.getDadosImage().get(observableGame.getDados().get(i).getFace()-1)));
+            }
+        }
+        else
+            setVisible(false);
     }
-}
-
-class ActionListener  extends MouseAdapter
+    
+    class ActionListener  extends MouseAdapter
 {
     private int i;
-    private ObservableGame observableGame;
     
-    public ActionListener(ObservableGame o,int i)
+    public ActionListener(int i)
     {
         this.i=i;
-        observableGame=o;
     }
     
     @Override
     public void mousePressed(MouseEvent ev)
     {
-       observableGame.FeatsOptionSelected(i, 1);//TODO: Mudar a segunda variavel desta func ( 1 - HP 2 - XP)
+       if(hp.isSelected()==true)
+            observableGame.FeatsOptionSelected(i+1, 1);
+       else
+            observableGame.FeatsOptionSelected(i+1, 2);
 
     }
+}
 }

@@ -42,13 +42,13 @@ public class AwaitSpellChoosePanel extends JPanel implements Observer
     public void setupComponents()
     {
         Continuar=new JButton("Continuar");
-        Continuar.addMouseListener(new ActionListener2(observableGame, -2));
-        
-        for (int i = 0; i < observableGame.getSpells().size(); i++)
-        {
-            Spells.add(new JButton("Spell " + (i+1) + ": " + observableGame.getSpells().get(i)));
-            Spells.get(i).addMouseListener(new ActionListener2(observableGame,i));
-        }
+        Continuar.addMouseListener(new ActionListener2(observableGame, 0));
+        Spells.add(new JButton());
+        Spells.add(new JButton());
+        Spells.get(0).setVisible(false);
+        Spells.get(1).setVisible(false);
+        Spells.get(0).addMouseListener(new ActionListener2(observableGame,1));
+        Spells.get(1).addMouseListener(new ActionListener2(observableGame,2));
     }
 
     public void setupLayout()
@@ -64,6 +64,13 @@ public class AwaitSpellChoosePanel extends JPanel implements Observer
     public void update(Observable o, Object arg)
     {
         setVisible(observableGame.getState() instanceof AwaitSpellChoose);
+        Spells.get(0).setVisible(false);
+        Spells.get(1).setVisible(false);
+        for (int i = 0; i < observableGame.getSpells().size(); i++)
+        {
+            Spells.get(i).setText("Spell " + (i+1) + ": " + observableGame.getSpells().get(i).nome());
+            Spells.get(i).setVisible(true);
+        }
     }
 }
 

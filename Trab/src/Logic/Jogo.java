@@ -64,7 +64,7 @@ public class Jogo implements Serializable {
     }
 
     public void FeatsOptionSelected(int d, int custo) {
-        if (d == 0)
+        if (d == -1)
             setState(getState().VoltaAwaitAttack());
         else
             setState(getState().FeatSelected(d, custo));
