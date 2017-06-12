@@ -58,20 +58,6 @@ public class JP_ColunaCartas extends JLabel implements Constants, Observer {
         for (ImagemCarta c : cartas) {
             add(c);
         }
-
-//        setAlignmentX(CENTER_ALIGNMENT);
-//        setAlignmentY(CENTER_ALIGNMENT);
-//        Box box = Box.createHorizontalBox();
-//        box.setMaximumSize(new Dimension(DIM_X_COLUNA, DIM_Y_COLUNA));
-//        box.setPreferredSize(new Dimension(DIM_X_COLUNA, DIM_Y_COLUNA));
-//        box.setMinimumSize(new Dimension(DIM_X_COLUNA, DIM_Y_COLUNA));
-//        box.add(Box.createHorizontalGlue());
-//        add(cartas.get(0));
-//        box.add(Box.createHorizontalGlue());
-//        setLayout(new BorderLayout());
-//        add(box, BorderLayout.CENTER);
-//        add(Box.createHorizontalGlue());
-//        add(cartas.get(1));
     }
 
     public void giraCartas() {
@@ -84,14 +70,9 @@ public class JP_ColunaCartas extends JLabel implements Constants, Observer {
     @Override
     public void update(Observable o, Object arg) {
 
-//        repaint();
         try {
 
             if (Coluna == observableGame.getNumColunaAtual()) {
-//            if (observableGame.isLastArea() && Coluna == 5)
-//                cartas.get(0).setVisible(true);
-//            else if(Coluna == 5)
-//                cartas.get(0).setVisible(false);
 
                 ArrayList<Carta> Baralho = observableGame.getCartasColuna();
                 for (int i = 0; i < Baralho.size(); i++) {
