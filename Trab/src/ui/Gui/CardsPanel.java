@@ -60,6 +60,7 @@ public class CardsPanel extends JPanel implements Constants, Observer {
         if (observableGame.getState() instanceof GameOver) {
             for (JP_ColunaCartas c : ColunaCartas) {
                 c.setVisible(false);
+                c.giraCartas();
             }
 
             Image temp;
@@ -74,6 +75,7 @@ public class CardsPanel extends JPanel implements Constants, Observer {
         if (observableGame.getState() instanceof AwaitBegining) {
             for (JP_ColunaCartas c : ColunaCartas) {
                 c.setVisible(true);
+//                c.giraCartas();
             }
             bg = MiniRoguePanel.getBackgroundImage();
         }
