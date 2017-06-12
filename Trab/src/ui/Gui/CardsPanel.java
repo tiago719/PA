@@ -3,6 +3,7 @@ package ui.Gui;
 import Logic.Cartas.*;
 import Logic.ObservableGame;
 import LogicaJogo.States.AwaitBegining;
+import LogicaJogo.States.GameOver;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -25,7 +26,7 @@ public class CardsPanel extends JPanel implements Constants, Observer {
     public CardsPanel(ObservableGame observableGame) 
     {
         this.observableGame = observableGame;
-        setVisible(!(observableGame.getState() instanceof AwaitBegining));
+        setVisible(!(observableGame.getState() instanceof AwaitBegining || observableGame.getState() instanceof GameOver));
         observableGame.addObserver(this);
         
         numAreaAtual = observableGame.getNumAreaAtual();
@@ -44,7 +45,7 @@ public class CardsPanel extends JPanel implements Constants, Observer {
             ColunaCartas.add(aux);
 
             b.add(aux);
-            b.setBorder(new LineBorder(Color.YELLOW));
+            //b.setBorder(new LineBorder(Color.YELLOW));
             b.setSize(new Dimension(DIM_X_COLUNA, DIM_Y_COLUNA));
             add(b);
         }
@@ -53,7 +54,7 @@ public class CardsPanel extends JPanel implements Constants, Observer {
     @Override
     public void update(Observable o, Object arg) {
         repaint();
-        setVisible(!(observableGame.getState() instanceof AwaitBegining));
+        setVisible(!(observableGame.getState() instanceof AwaitBegining || observableGame.getState() instanceof GameOver));
         
         if (numAreaAtual != observableGame.getNumAreaAtual()){
             numAreaAtual = observableGame.getNumAreaAtual();
