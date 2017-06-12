@@ -8,11 +8,13 @@ package ui.Gui;
 import Logic.ObservableGame;
 import LogicaJogo.States.AwaitBattleOption;
 import LogicaJogo.States.AwaitSpellChoose;
+import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -41,23 +43,30 @@ public class AwaitSpellChoosePanel extends JPanel implements Observer
 
     public void setupComponents()
     {
+        Box b1=Box.createHorizontalBox();
+        Box b2=Box.createHorizontalBox();
+        Box b3=Box.createHorizontalBox();
+        
         Continuar=new JButton("Continuar");
         Continuar.addMouseListener(new ActionListener2(observableGame, 0));
+        b1.add(Continuar);
         Spells.add(new JButton());
         Spells.add(new JButton());
         Spells.get(0).setVisible(false);
         Spells.get(1).setVisible(false);
         Spells.get(0).addMouseListener(new ActionListener2(observableGame,1));
         Spells.get(1).addMouseListener(new ActionListener2(observableGame,2));
+        b2.add(Spells.get(0));
+        b3.add(Spells.get(1));
+        
+        add(b1);
+        add(b2);
+        add(b3);
     }
 
     public void setupLayout()
     {
-        add(Continuar);
-        for(int i=0;i<Spells.size();i++)
-        {
-            add(Spells.get(i));
-        }
+        setLayout(new GridLayout(3,1));
     }
 
     @Override

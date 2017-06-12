@@ -8,9 +8,12 @@ package ui.Gui;
 import Logic.ObservableGame;
 import LogicaJogo.States.AwaitCardSelectionOnCurrentColumn;
 import java.awt.Component;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.util.Observable;
 import java.util.Observer;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -36,6 +39,8 @@ public class AwaitCardSelectionOnCurrentColumnPanel extends JPanel implements Ob
     
      void setupComponents()
      {
+        Box b1=Box.createHorizontalBox();
+        
         heal = new JButton("Heal");
         
         heal.addActionListener(new java.awt.event.ActionListener()
@@ -46,15 +51,13 @@ public class AwaitCardSelectionOnCurrentColumnPanel extends JPanel implements Ob
                 observableGame.Heal();   
             }
         });
+        b1.add(heal);
+        add(b1);
      }
      
      void setupLayout()
      {
-        setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-
-        heal.setAlignmentX(Component.LEFT_ALIGNMENT);
-        
-        add(heal);
+        setLayout(new GridLayout(1,1));
      }
 
     @Override
