@@ -5,6 +5,7 @@
  */
 package Logic;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -40,5 +41,23 @@ public class Export {
     
     public void asd(){
         
+    }
+
+    ObjectInputStream abreFObjectosLeitura(File file) throws IOException {
+        try {
+            ObjectInputStream in = new ObjectInputStream(new FileInputStream(file.getAbsolutePath()));
+            return in;
+        } catch (IOException e) {
+            throw e;
+        }
+    }
+
+    ObjectOutputStream abreFObjectosEscrita(File file) throws IOException {
+        try {
+             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file.getAbsolutePath()));
+            return out;
+        } catch (IOException e) {
+            throw e;
+        }
     }
 }

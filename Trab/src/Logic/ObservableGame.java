@@ -8,6 +8,7 @@ package Logic;
 import Logic.Cartas.Carta;
 import Logic.Spells.Spell;
 import LogicaJogo.States.IStates;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Observable;
 
@@ -253,6 +254,23 @@ public class ObservableGame extends Observable {
         
         setChanged();
         notifyObservers();
+    }
+
+    public void selectGameOver() {
+        GameModel.GameOver();
+        setChanged();
+        notifyObservers();
+    }
+
+    public void LoadGame(File file) throws ClassNotFoundException {
+        GameModel.continuarJogo(file);
+        setChanged();
+        notifyObservers();
+    }
+
+    public void SaveGame(File file) {
+        GameModel.exportarJogo(file);
+        
     }
 
 

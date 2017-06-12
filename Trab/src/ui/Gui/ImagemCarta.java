@@ -30,7 +30,7 @@ import static ui.Gui.Constants.DIM_Y_FRAME;
  *
  * @author edu_f
  */
-public class ImagemCarta extends JPanel implements Constants, Observer {
+public class ImagemCarta extends JLabel implements Constants, Observer {
 
     //private boolean show;
     BufferedImage img;

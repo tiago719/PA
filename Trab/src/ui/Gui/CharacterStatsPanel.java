@@ -106,11 +106,11 @@ public class CharacterStatsPanel extends JPanel implements Constants, Observer {
 
         foodToken = observableGame.getPerFood();
 
-        GoldP.get(goldToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage()));
-        HpP.get(hpToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage()));
-        ArmorP.get(armorToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage()));
-        XpP.get(xpToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage()));
-        FoodP.get(foodToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage()));
+        GoldP.get(goldToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage1()));
+        HpP.get(hpToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage1()));
+        ArmorP.get(armorToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage1()));
+        XpP.get(xpToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage1()));
+        FoodP.get(foodToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage1()));
 
         add(HpStats);
         add(ArmorStats);
@@ -279,30 +279,30 @@ public class CharacterStatsPanel extends JPanel implements Constants, Observer {
         if (observableGame.getPerGold() != goldToken) {
             GoldP.get(goldToken).setIcon(null);
             goldToken = observableGame.getPerGold();
-            GoldP.get(goldToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage()));
+            GoldP.get(goldToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage1()));
         }
         if (observableGame.getPerArmor() != armorToken) {
             ArmorP.get(armorToken).setIcon(null);
             armorToken = observableGame.getPerArmor();
-            ArmorP.get(armorToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage()));
+            ArmorP.get(armorToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage1()));
         }
 
         if (observableGame.getPerFood() != foodToken) {
             FoodP.get(foodToken).setIcon(null);
             foodToken = observableGame.getPerFood();
-            FoodP.get(foodToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage()));
+            FoodP.get(foodToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage1()));
         }
 
         if (observableGame.getPerHP() != hpToken) {
             HpP.get(hpToken).setIcon(null);
             hpToken = observableGame.getPerHP();
-            HpP.get(hpToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage()));
+            HpP.get(hpToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage1()));
         }
 
         if (observableGame.getPerXP() != xpToken) {
             XpP.get(xpToken).setIcon(null);
             xpToken = observableGame.getPerXP();
-            XpP.get(xpToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage()));
+            XpP.get(xpToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage1()));
         }
 
 //        for (int i = 0; i< observableGame.getPerSpells().size(); i++){
@@ -352,8 +352,8 @@ public class CharacterStatsPanel extends JPanel implements Constants, Observer {
             aux++;
         }
         try {
-            SpellsP.get(spellsToken.get(0)).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage()));
-            SpellsP.get(spellsToken.get(1)).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage()));
+            SpellsP.get(spellsToken.get(0)).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage1()));
+            SpellsP.get(spellsToken.get(1)).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage1()));
         } catch (Exception e) {
         }
        
@@ -362,7 +362,7 @@ public class CharacterStatsPanel extends JPanel implements Constants, Observer {
                 != xpToken) {
             XpP.get(xpToken).setIcon(null);
             xpToken = observableGame.getPerXP();
-            XpP.get(xpToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage()));
+            XpP.get(xpToken).setIcon(new ImageIcon(MiniRoguePanel.getTokenImage1()));
         }
 
         //GoldP.get(1).re;

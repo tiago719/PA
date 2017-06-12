@@ -30,7 +30,8 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
 {
 
     static private BufferedImage TheDungeonImage = null, CharacterStatsImage = null, BackCardImage = null, BossMonsterImage = null,
-            EventImage = null, MerchantImage = null, MonsterImage = null, RestingImage = null, TrapImage = null, TreasureImage = null, WelcomeImage=null, TokenImage=null, BackgroundImage=null;
+            EventImage = null, MerchantImage = null, MonsterImage = null, RestingImage = null, TrapImage = null, TreasureImage = null, WelcomeImage=null,
+            TokenImage1=null,TokenImage2=null, BackgroundImage=null;
     static private ArrayList<BufferedImage> dadosImage = new ArrayList<>();
 
     public static BufferedImage getTheDungeonImage()
@@ -43,9 +44,14 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
         return dadosImage;
     }
     
-    public static BufferedImage getTokenImage()
+    public static BufferedImage getTokenImage1()
     {
-        return TokenImage;
+        return TokenImage1;
+    }
+    
+    public static BufferedImage getTokenImage2()
+    {
+        return TokenImage2;
     }
 
     public static BufferedImage getCharacterStats()
@@ -118,8 +124,9 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
             TrapImage = ImageIO.read(Resources.getResourceFile("images/Trap.JPG"));
             TreasureImage = ImageIO.read(Resources.getResourceFile("images/Treasure.JPG"));
             WelcomeImage = ImageIO.read(Resources.getResourceFile("images/MiniRogue.png"));
-            TokenImage = ImageIO.read(Resources.getResourceFile("images/Token.png"));
-            BackgroundImage=ImageIO.read(Resources.getResourceFile("images/Fundo.jpg"));
+            TokenImage1 = ImageIO.read(Resources.getResourceFile("images/Token_24x26.png"));
+            TokenImage2 = ImageIO.read(Resources.getResourceFile("images/Token_37x41.png"));
+            BackgroundImage=ImageIO.read(Resources.getResourceFile("images/Fundo.png"));
             
             dadosImage.add(ImageIO.read(Resources.getResourceFile("images/d1.png")));
             dadosImage.add(ImageIO.read(Resources.getResourceFile("images/d2.png")));

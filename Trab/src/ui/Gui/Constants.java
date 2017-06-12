@@ -164,5 +164,7 @@ public interface Constants
     
     static final int DIM_X_CARDSPANEL =(1000*DIM_X_FRAME)/1366;
     static final int DIM_Y_CARDSPANEL =(1000*DIM_X_FRAME)/768;
-
+    
+    static final int DIM_X_BACKGROUND =(1027*DIM_X_FRAME)/1366;
+    static final int DIM_Y_BACKGROUND =(476*DIM_X_FRAME)/768;
 }
