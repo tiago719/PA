@@ -100,7 +100,7 @@ public class Jogo implements Serializable {
     }
 
     public void resting() {
-        setState(getState().ResolveSelectedRestingCard());//TODO:Isto esta a ser usado?
+        setState(getState().ResolveSelectedRestingCard());
     }
 
     public boolean AA_Reroll(int c) {
@@ -299,6 +299,10 @@ public class Jogo implements Serializable {
             //Logger.getLogger(Jogo.class.getName()).log(Level.SEVERE, null, ex1);
             return false;
         }
+    }
+
+    void AwaitStart() {
+        setState(getState().VoltaInicio());
     }
 
     

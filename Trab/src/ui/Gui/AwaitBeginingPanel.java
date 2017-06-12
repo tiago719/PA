@@ -12,6 +12,9 @@ import javax.swing.JPanel;
 import LogicaJogo.States.AwaitBegining;
 import LogicaJogo.States.AwaitCardSelectionOnCurrentColumn;
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,6 +27,7 @@ import javafx.scene.control.Spinner;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerListModel;
@@ -39,84 +43,87 @@ import ui.Gui.ImagemCarta.ClickListener;
  *
  * @author Tiago Coutinho
  */
-public class AwaitBeginingPanel extends JPanel implements Observer
-{
+public class AwaitBeginingPanel extends JPanel implements Observer, Constants {
 
     private ObservableGame observableGame;
 
     JButton start, setStartingArea;
-    JSpinner dificuldades;
+    JComboBox dificuldades;
     JDialog dialog;
-   
-    public AwaitBeginingPanel(ObservableGame observableGame)
-    {
+
+    public AwaitBeginingPanel(ObservableGame observableGame) {
         this.observableGame = observableGame;
 
         observableGame.addObserver(this);
-        
-        setVisible(observableGame.getState() instanceof AwaitBegining); 
+
+        setVisible(observableGame.getState() instanceof AwaitBegining);
 
         setupComponents();
         setupLayout();
     }
 
-    public void setupComponents()
-    {
+    public void setupComponents() {
+        Box b1 = Box.createHorizontalBox();
+
         start = new JButton("Start");
-        setStartingArea=new JButton("Set Starting Area");
-        SpinnerListModel SM = new SpinnerListModel(Constants.dificuldades);
-        dificuldades = new JSpinner(SM);
-        
-        start.addActionListener(new ActionListener()
-        {
+        setStartingArea = new JButton("Set Starting Area");
+        dificuldades = new JComboBox(Constants.dificuldades);
+        dificuldades.setPreferredSize(new Dimension(90, 27));
+        dificuldades.setMinimumSize(new Dimension(90, 27));
+        dificuldades.setMaximumSize(new Dimension(90, 27));
+        b1.add(start);
+        b1.add(setStartingArea);
+        b1.add(dificuldades);
+
+        add(b1);
+
+        start.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent ev)
-            {
+            public void actionPerformed(ActionEvent ev) {
                 observableGame.startGame();
-                
+
             }
         });
-        
-        setStartingArea.addActionListener(new ActionListener()
-        {
+
+        setStartingArea.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent ev) 
-            {
-                dialog=new JP_DungeonMaximizada(observableGame, MiniRoguePanel.getTheDungeonImage());
+            public void actionPerformed(ActionEvent ev) {
+                dialog = new JP_DungeonMaximizada(observableGame, MiniRoguePanel.getTheDungeonImage());
                 dialog.setUndecorated(true);
                 dialog.pack();
                 dialog.setModal(true);
-                dialog.setLocation(new Point((DIM_X_FRAME/2)-(DIM_X_CARTA_MAX/2), (DIM_Y_FRAME/2)-(DIM_Y_CARTA_MAX/2)));
+                dialog.setLocation(new Point((DIM_X_FRAME / 2) - (DIM_X_CARTA_MAX / 2), (DIM_Y_FRAME / 2) - (DIM_Y_CARTA_MAX / 2)));
                 dialog.setVisible(true);
             }
         });
 
-        dificuldades.addChangeListener(new ChangeListener()
-        {
+        dificuldades.addActionListener(new ActionListener() {
             @Override
-            public void stateChanged(ChangeEvent ev)
-            {
+            public void actionPerformed(ActionEvent ev) {
                 observableGame.setDificultyLevel(Integer.parseInt(
-                        String.valueOf(dificuldades.getModel().getValue().toString().charAt(0))));
+                        String.valueOf(dificuldades.getSelectedItem().toString().charAt(0))));
             }
         });
 
     }
 
-    public void setupLayout()
-    {
-        setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+    public void setupLayout() {
+        setLayout(new GridLayout(1, 0));
         setAlignmentX(CENTER_ALIGNMENT);
-        add(start);
-        add(dificuldades);
-        add(setStartingArea);
+//        add(start);
+//        add(dificuldades);
+//        add(setStartingArea);
     }
 
     @Override
-    public void update(Observable o, Object arg)
-    {
+    public void update(Observable o, Object arg) {
         setVisible(observableGame.getState() instanceof AwaitBegining);
     }
 
-}
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(MiniRoguePanel.getBgBotoesImg(), 0, 0, DIM_X_BACKGROUNDBOTOES, DIM_Y_BACKGROUNDBOTOES, this);
+    }
 
+}

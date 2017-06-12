@@ -38,8 +38,8 @@ public class ImagemCarta extends JLabel implements Constants, Observer {
     boolean duasCartas;
     int posColuna;
 
-    ImagemCarta(ObservableGame observableGame, boolean duasCartas, 
-            int posColuna) {
+
+    ImagemCarta(ObservableGame observableGame, boolean duasCartas,int posColuna) {
         this.observableGame = observableGame;
         this.posColuna = posColuna;
         observableGame.addObserver(this);
@@ -64,7 +64,7 @@ public class ImagemCarta extends JLabel implements Constants, Observer {
             g.drawImage(img, 10, 10, DIM_X_CARTA - 10, DIM_Y_CARTA - 10, this);
         } else {
             g.drawImage(img, 10, (getHeight() / 2) - (DIM_Y_CARTA / 2),
-                     DIM_X_CARTA - 10, (getHeight() / 2), this);
+                    DIM_X_CARTA - 10, (getHeight() / 2), this);
         }
     }
 
@@ -78,19 +78,22 @@ public class ImagemCarta extends JLabel implements Constants, Observer {
 
         @Override
         public void mousePressed(MouseEvent e) {
-            if (posColuna!=observableGame.getNumColunaAtual())
+            if (posColuna != observableGame.getNumColunaAtual()) {
                 return;
-            
+            }
+
+
+
             JDialog dialog = new JP_CartaMaximizada(img, observableGame, carta);
-            
+
             dialog.setUndecorated(true);
 
             dialog.pack();
-            
+
             dialog.setModal(true);
-            dialog.setLocation(new Point((DIM_X_FRAME/2)-(DIM_X_CARTA_MAX/2), (DIM_Y_FRAME/2)-(DIM_Y_CARTA_MAX/2)));
+            dialog.setLocation(new Point((DIM_X_FRAME / 2) - (DIM_X_CARTA_MAX / 2), (DIM_Y_FRAME / 2) - (DIM_Y_CARTA_MAX / 2)));
             dialog.setVisible(true);
-            
+
         }
 
         @Override

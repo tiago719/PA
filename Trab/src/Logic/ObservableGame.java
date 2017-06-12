@@ -256,12 +256,6 @@ public class ObservableGame extends Observable {
         notifyObservers();
     }
 
-    public void selectGameOver() {
-        GameModel.GameOver();
-        setChanged();
-        notifyObservers();
-    }
-
     public void LoadGame(File file) throws ClassNotFoundException {
         GameModel.continuarJogo(file);
         setChanged();
@@ -271,6 +265,12 @@ public class ObservableGame extends Observable {
     public void SaveGame(File file) {
         GameModel.exportarJogo(file);
         
+    }
+
+    public void selectAwaitStart() {
+        GameModel.AwaitStart();
+        setChanged();
+        notifyObservers();
     }
 
 

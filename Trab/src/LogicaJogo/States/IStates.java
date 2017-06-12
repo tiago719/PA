@@ -18,7 +18,7 @@ public interface IStates {
     IStates start();
     
     //Resting Card
-    IStates ResolveSelectedRestingCard();//TODO:Isto esta a ser Usado?
+    IStates ResolveSelectedRestingCard();
     IStates OptionSelected(int i);
     
     //treasure
@@ -62,5 +62,6 @@ public interface IStates {
     IStates ProxRonda();
 
     IStates GameOver();
+    IStates VoltaInicio();
 
 }

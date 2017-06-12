@@ -167,4 +167,7 @@ public interface Constants
     
     static final int DIM_X_BACKGROUND =(1027*DIM_X_FRAME)/1366;
     static final int DIM_Y_BACKGROUND =(476*DIM_X_FRAME)/768;
+    
+    static final int DIM_X_BACKGROUNDBOTOES =(679*DIM_X_FRAME)/1366;
+    static final int DIM_Y_BACKGROUNDBOTOES =(216*DIM_X_FRAME)/768;
 }

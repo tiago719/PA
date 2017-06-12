@@ -34,13 +34,7 @@ public class Area implements Serializable {
         Baralho.add(new Resting(GameData));
         Baralho.add(new Event(GameData));
         Baralho.add(new Trap(GameData));
-//Baralho.add(new Treasure(GameData));
-//Baralho.add(new Monster(GameData));
-//Baralho.add(new Monster(GameData));
-//Baralho.add(new Monster(GameData));
-//Baralho.add(new Monster(GameData));
-//Baralho.add(new Monster(GameData));
-//TODO: METER NORAML (TESTES)
+
 
         Collections.shuffle(Baralho);
 

@@ -10,6 +10,7 @@ import LogicaJogo.States.AwaitCardSelectionOnCurrentColumn;
 import java.awt.Component;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.util.Observable;
 import java.util.Observer;
@@ -18,21 +19,16 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-/**
- *
- * @author Tiago Coutinho
- */
-public class AwaitCardSelectionOnCurrentColumnPanel extends JPanel implements Observer 
-{
+public class AwaitCardSelectionOnCurrentColumnPanel extends JPanel implements Observer, Constants {
+
     private ObservableGame observableGame;
     private JButton heal;
 
-    public AwaitCardSelectionOnCurrentColumnPanel(ObservableGame observableGame) 
-    {
-        this.observableGame=observableGame;
+    public AwaitCardSelectionOnCurrentColumnPanel(ObservableGame observableGame) {
+        this.observableGame = observableGame;
         observableGame.addObserver(this);
-        setVisible(observableGame.getState() instanceof AwaitCardSelectionOnCurrentColumn); 
-        
+        setVisible(observableGame.getState() instanceof AwaitCardSelectionOnCurrentColumn);
+
         setupComponents();
         setupLayout();
     }
@@ -40,17 +36,16 @@ public class AwaitCardSelectionOnCurrentColumnPanel extends JPanel implements Ob
      void setupComponents()
      {
         Box b1=Box.createHorizontalBox();
-        
+
         heal = new JButton("Heal");
-        
-        heal.addActionListener(new java.awt.event.ActionListener()
-        {
+
+        heal.addActionListener(new java.awt.event.ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent ev)
-            {
-                observableGame.Heal();   
+            public void actionPerformed(ActionEvent ev) {
+                observableGame.Heal();
             }
         });
+
         b1.add(heal);
         add(b1);
      }
@@ -61,11 +56,15 @@ public class AwaitCardSelectionOnCurrentColumnPanel extends JPanel implements Ob
      }
 
     @Override
-    public void update(Observable o, Object arg)
-    {
+    public void update(Observable o, Object arg) {
         heal.setVisible(observableGame.hasHeal());
-        setVisible(observableGame.getState() instanceof AwaitCardSelectionOnCurrentColumn); 
+        setVisible(observableGame.getState() instanceof AwaitCardSelectionOnCurrentColumn);
     }
 
-    
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(MiniRoguePanel.getBgBotoesImg(), 0, 0, DIM_X_BACKGROUNDBOTOES, DIM_Y_BACKGROUNDBOTOES, this);
+    }
+
 }
