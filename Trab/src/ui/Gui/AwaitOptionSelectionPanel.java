@@ -9,10 +9,13 @@ import Logic.ObservableGame;
 import LogicaJogo.States.AwaitFeats;
 import LogicaJogo.States.AwaitOptionSelection;
 import java.awt.Component;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
+import javax.swing.Box;
+import static javax.swing.Box.createHorizontalBox;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -39,6 +42,10 @@ public class AwaitOptionSelectionPanel extends JPanel implements Observer
 
     public void setupComponents()
     {
+        Box b1=createHorizontalBox();
+        Box b2=createHorizontalBox();
+        Box b3=createHorizontalBox();
+
         setVisible(observableGame.getState() instanceof AwaitOptionSelectionPanel);
 
         RYW=new JButton("Reinforce your Weapon");
@@ -53,7 +60,7 @@ public class AwaitOptionSelectionPanel extends JPanel implements Observer
                 observableGame.ResolveRestingCard(1);
             }
         });
-        
+        b1.add(RYW);
         SFR.addActionListener(new ActionListener()
         {
             @Override
@@ -62,7 +69,7 @@ public class AwaitOptionSelectionPanel extends JPanel implements Observer
                 observableGame.ResolveRestingCard(2);
             }
         });
-        
+        b2.add(SFR);
         HEAL.addActionListener(new ActionListener()
         {
             @Override
@@ -71,20 +78,16 @@ public class AwaitOptionSelectionPanel extends JPanel implements Observer
                 observableGame.ResolveRestingCard(3);
             }
         });
+        b3.add(HEAL);
+
+        add(b1);
+        add(b2);
+        add(b3);
     }
 
     public void setupLayout()
     {
-        setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-        
-        RYW.setAlignmentX(Component.CENTER_ALIGNMENT);
-        SFR.setAlignmentX(Component.CENTER_ALIGNMENT);
-        HEAL.setAlignmentX(Component.CENTER_ALIGNMENT);
-        
-        add(RYW);
-        add(SFR);
-        add(HEAL);
-
+        setLayout(new GridLayout(3,1));
     }
 
     @Override
