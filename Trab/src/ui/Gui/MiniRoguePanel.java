@@ -11,6 +11,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
 import static java.awt.PageAttributes.ColorType.COLOR;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -26,93 +27,86 @@ import javax.swing.border.LineBorder;
  *
  * @author Tiago Coutinho
  */
-public class MiniRoguePanel extends JPanel implements Observer, Constants
-{
+public class MiniRoguePanel extends JPanel implements Observer, Constants {
 
     static private BufferedImage TheDungeonImage = null, CharacterStatsImage = null, BackCardImage = null, BossMonsterImage = null,
-            EventImage = null, MerchantImage = null, MonsterImage = null, RestingImage = null, TrapImage = null, TreasureImage = null, WelcomeImage=null,
-            TokenImage1=null,TokenImage2=null, BackgroundImage=null;
+            EventImage = null, MerchantImage = null, MonsterImage = null, RestingImage = null, TrapImage = null, TreasureImage = null, WelcomeImage = null,
+            TokenImage1 = null, TokenImage2 = null, BackgroundImage = null, WinImage= null, GOImage=null, bgBotoesImage = null;
     static private ArrayList<BufferedImage> dadosImage = new ArrayList<>();
 
-    public static BufferedImage getTheDungeonImage()
-    {
+    public static BufferedImage getTheDungeonImage() {
         return TheDungeonImage;
     }
-    
-    public static ArrayList<BufferedImage> getDadosImage()
-    {
+
+    public static ArrayList<BufferedImage> getDadosImage() {
         return dadosImage;
     }
-    
-    public static BufferedImage getTokenImage1()
-    {
+
+    public static BufferedImage getTokenImage1() {
         return TokenImage1;
     }
-    
-    public static BufferedImage getTokenImage2()
-    {
+
+    public static BufferedImage getTokenImage2() {
         return TokenImage2;
     }
 
-    public static BufferedImage getCharacterStats()
-    {
+    public static BufferedImage getCharacterStats() {
         return CharacterStatsImage;
     }
 
-    public static BufferedImage getBackCardImage()
-    {
+    public static BufferedImage getBackCardImage() {
         return BackCardImage;
     }
 
-    public static BufferedImage getBossMonsterImage()
-    {
+    public static BufferedImage getBossMonsterImage() {
         return BossMonsterImage;
     }
 
-    public static BufferedImage getEventImage()
-    {
+    public static BufferedImage getEventImage() {
         return EventImage;
     }
 
-    public static BufferedImage getMerchantImage()
-    {
+    public static BufferedImage getMerchantImage() {
         return MerchantImage;
     }
 
-    public static BufferedImage getMonsterImage()
-    {
+    public static BufferedImage getMonsterImage() {
         return MonsterImage;
     }
 
-    public static BufferedImage getRestingImage()
-    {
+    public static BufferedImage getRestingImage() {
         return RestingImage;
     }
 
-    public static BufferedImage getTrapImage()
-    {
+    public static BufferedImage getTrapImage() {
         return TrapImage;
     }
 
-    public static BufferedImage getTreasureImage()
-    {
+    public static BufferedImage getTreasureImage() {
         return TreasureImage;
     }
-    
-    public static BufferedImage getWelcomeImage()
-    {
+
+    public static BufferedImage getWelcomeImage() {
         return WelcomeImage;
     }
-    
-    public static BufferedImage getBackgroundImage()
-    {
+
+    public static BufferedImage getBackgroundImage() {
         return BackgroundImage;
     }
 
-    static
-    {
-        try
-        {
+    public static BufferedImage getGameoverImg() {
+        return GOImage;
+    }
+
+    public static BufferedImage getWinImg() {
+        return WinImage;
+    }
+    public static Image getBgBotoesImg() {
+        return bgBotoesImage;
+    }
+
+    static {
+        try {
             TheDungeonImage = ImageIO.read(Resources.getResourceFile("images/TheDungeon.JPG"));
             CharacterStatsImage = ImageIO.read(Resources.getResourceFile("images/CharacterStats.JPG"));
             BackCardImage = ImageIO.read(Resources.getResourceFile("images/BackCard.JPG"));
@@ -126,7 +120,11 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
             WelcomeImage = ImageIO.read(Resources.getResourceFile("images/MiniRogue.png"));
             TokenImage1 = ImageIO.read(Resources.getResourceFile("images/Token_24x26.png"));
             TokenImage2 = ImageIO.read(Resources.getResourceFile("images/Token_37x41.png"));
-            BackgroundImage=ImageIO.read(Resources.getResourceFile("images/Fundo.png"));
+            BackgroundImage = ImageIO.read(Resources.getResourceFile("images/Fundo.jpg"));
+            
+            GOImage = ImageIO.read(Resources.getResourceFile("images/Gameover.png"));
+            WinImage = ImageIO.read(Resources.getResourceFile("images/Win.png"));
+            bgBotoesImage = ImageIO.read(Resources.getResourceFile("images/bgBotoes.png"));
             
             dadosImage.add(ImageIO.read(Resources.getResourceFile("images/d1.png")));
             dadosImage.add(ImageIO.read(Resources.getResourceFile("images/d2.png")));
@@ -134,13 +132,13 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
             dadosImage.add(ImageIO.read(Resources.getResourceFile("images/d4.png")));
             dadosImage.add(ImageIO.read(Resources.getResourceFile("images/d5.png")));
             dadosImage.add(ImageIO.read(Resources.getResourceFile("images/d6.png")));
-            
 
-        } catch (IOException e)
-        {
+        } catch (IOException e) {
             System.out.println("Error loading images ");
         }
     }
+
+    
 
     private ObservableGame observableGame;
     private DungeonPanel dungeonPanel;
@@ -157,8 +155,7 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
     private GameOverPanel gameOverPanel;
     private WelcomePanel welcomePanel;
 
-    public MiniRoguePanel(ObservableGame j) throws IOException
-    {
+    public MiniRoguePanel(ObservableGame j) throws IOException {
         observableGame = j;
 
         observableGame.addObserver(this);
@@ -169,8 +166,7 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
         update(observableGame, null);
     }
 
-    public void setupComponents() throws IOException
-    {
+    public void setupComponents() throws IOException {
         dungeonPanel = new DungeonPanel(observableGame);
         cardsPanel = new CardsPanel(observableGame);
         characterStatsPanel = new CharacterStatsPanel(observableGame);
@@ -187,8 +183,7 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
 
     }
 
-    public void setupLayout()
-    {
+    public void setupLayout() {
         Box LeftBox = Box.createVerticalBox();
         LeftBox.setMaximumSize(new Dimension(DIM_X_DUNGEON, DIM_Y_DUNGEON));
         LeftBox.setMinimumSize(new Dimension(DIM_X_DUNGEON, DIM_Y_DUNGEON));
@@ -197,7 +192,7 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
         LeftBox.add(dungeonPanel);
 
         Box MidBox = Box.createVerticalBox();
-        
+
         Box b = Box.createHorizontalBox();
         b.add(Box.createHorizontalGlue());
         b.add(Box.createVerticalGlue());
@@ -219,11 +214,11 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
         south.setPreferredSize(new Dimension(DIM_X_SOUTH_PANEL, DIM_Y_SOUTH_PANEL));
         south.setBorder(new LineBorder(Color.GREEN));
         south.setLayout(new GridLayout());
-        
+
         Box StatsBox = Box.createHorizontalBox();
         StatsBox.add(characterStatsPanel);
         StatsBox.setBorder(new LineBorder(Color.YELLOW));
-        
+
         Box StateBox = Box.createVerticalBox();
         StateBox.add(awaitBattleOptionPanel);
         StateBox.add(awaitBeginingPanel);
@@ -234,7 +229,7 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
         StateBox.add(awaitTraidingPanel);
         StateBox.add(gameOverPanel);
         StateBox.setBorder(new LineBorder(Color.RED));
-        
+
         south.add(StatsBox);
         south.add(StateBox);
 
@@ -243,14 +238,13 @@ public class MiniRoguePanel extends JPanel implements Observer, Constants
         center.setSize(900, 500);
         add(center, BorderLayout.CENTER);
         add(south, BorderLayout.SOUTH);
-        
+
         validate();
 
     }
 
     @Override
-    public void update(Observable t, Object o)
-    {
-        //TODO:fazer isto
+    public void update(Observable t, Object o) {
+        
     }
 }

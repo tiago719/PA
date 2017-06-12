@@ -13,6 +13,7 @@ import LogicaJogo.States.AwaitBegining;
 import LogicaJogo.States.AwaitCardSelectionOnCurrentColumn;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -42,7 +43,7 @@ import ui.Gui.ImagemCarta.ClickListener;
  *
  * @author Tiago Coutinho
  */
-public class AwaitBeginingPanel extends JPanel implements Observer {
+public class AwaitBeginingPanel extends JPanel implements Observer, Constants {
 
     private ObservableGame observableGame;
 
@@ -117,6 +118,12 @@ public class AwaitBeginingPanel extends JPanel implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         setVisible(observableGame.getState() instanceof AwaitBegining);
+    }
+
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(MiniRoguePanel.getBgBotoesImg(), 0, 0, DIM_X_BACKGROUNDBOTOES, DIM_Y_BACKGROUNDBOTOES, this);
     }
 
 }

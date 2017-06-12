@@ -19,9 +19,6 @@ public final class Personagem implements Serializable {
         rank = 1;
         xp = 0;
         gd = gamedata;
-        
-        addSpell(new Fire(gd));//TODO:TIRAR (TESTES)
-        addSpell(new Fire(gd));//TODO:TIRAR (TESTES)
     }
 
     public int getArmor() {

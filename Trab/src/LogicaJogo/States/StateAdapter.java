@@ -241,4 +241,10 @@ public class StateAdapter implements IStates, Serializable{
         return new AwaitCardSelectionOnCurrentColumn(getGame());
     }
 
+    @Override
+    public IStates VoltaInicio() {
+        getGame().setDificuldade(2);
+        return new AwaitBegining(getGame());
+    }
+
 }

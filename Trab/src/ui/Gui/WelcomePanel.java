@@ -46,6 +46,6 @@ public class WelcomePanel extends JPanel implements Constants, Observer
     public void update(Observable o, Object arg) {
 //        setVisible(observableGame.getState() instanceof AwaitBegining);
 //        repaint();
-          setVisible(observableGame.getState() instanceof AwaitBegining);//TODO:TIRAR
+          setVisible(observableGame.getState() instanceof AwaitBegining);
     }
 }
