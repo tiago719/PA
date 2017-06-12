@@ -83,7 +83,7 @@ public class CharacterStatsPanel extends JPanel implements Constants, Observer {
         FoodStats.setBounds(START_X_FOOD_PANEL, START_Y_FOOD_PANEL, DIM_X_FOOD_PANEL, DIM_Y_FOOD_PANEL);
         XpStats.setBounds(START_X_XP_PANEL, START_Y_XP_PANEL, DIM_X_XP_PANEL, DIM_Y_XP_PANEL);
 
-        setBorder(new LineBorder(Color.GRAY));
+        //setBorder(new LineBorder(Color.GRAY));
 
         addXpStats();
         addGoldStats();
@@ -119,13 +119,13 @@ public class CharacterStatsPanel extends JPanel implements Constants, Observer {
     }
 
     public void addXpStats() {
-        XpStats.setBorder(new LineBorder(Color.RED));
+        //XpStats.setBorder(new LineBorder(Color.RED));
 
 
         for (int i = 0; i < 19; i++)
         {
             XpP.add(new JLabel());
-            XpP.get(i).setBorder(new LineBorder(Color.BLACK));
+            //XpP.get(i).setBorder(new LineBorder(Color.BLACK));
         }
 
         XpStats.setLayout(new GridLayout(1, 19, DIM_X_BETWEEN, DIM_Y_BETWEEN));
@@ -146,11 +146,11 @@ public class CharacterStatsPanel extends JPanel implements Constants, Observer {
     }
 
     public void addGoldStats() {
-        GoldStats.setBorder(new LineBorder(Color.RED));
+        //GoldStats.setBorder(new LineBorder(Color.RED));
 
         for (int i = 0; i < MaxGold; i++) {
             GoldP.add(new JLabel());
-            GoldP.get(i).setBorder(new LineBorder(Color.BLACK));
+            //GoldP.get(i).setBorder(new LineBorder(Color.BLACK));
         }
 
         GoldStats.setLayout(new GridLayout(1, MaxGold, DIM_X_BETWEEN, DIM_Y_BETWEEN));
@@ -170,11 +170,11 @@ public class CharacterStatsPanel extends JPanel implements Constants, Observer {
     }
 
     public void addHpStats() {
-        HpStats.setBorder(new LineBorder(Color.RED));
+        //HpStats.setBorder(new LineBorder(Color.RED));
 
         for (int i = 0; i < MaxHP; i++) {
             HpP.add(new JLabel());
-            HpP.get(i).setBorder(new LineBorder(Color.BLACK));
+            //HpP.get(i).setBorder(new LineBorder(Color.BLACK));
         }
 
         HpStats.setLayout(new GridLayout(1, MaxHP, DIM_X_BETWEEN, DIM_Y_BETWEEN));
@@ -195,11 +195,11 @@ public class CharacterStatsPanel extends JPanel implements Constants, Observer {
     }
 
     public void addArmorStats() {
-        ArmorStats.setBorder(new LineBorder(Color.RED));
+        //ArmorStats.setBorder(new LineBorder(Color.RED));
 
         for (int i = 0; i < MaxArmor; i++) {
             ArmorP.add(new JLabel());
-            ArmorP.get(i).setBorder(new LineBorder(Color.BLACK));
+            //ArmorP.get(i).setBorder(new LineBorder(Color.BLACK));
         }
 
         ArmorStats.setLayout(new GridLayout(1, MaxArmor, DIM_X_BETWEEN, DIM_Y_BETWEEN));
@@ -220,11 +220,11 @@ public class CharacterStatsPanel extends JPanel implements Constants, Observer {
     }
 
     public void addSpellsStats() {
-        SpellsStats.setBorder(new LineBorder(Color.RED));
+        //SpellsStats.setBorder(new LineBorder(Color.RED));
 
         for (int i = 0; i < 8; i++) {
             SpellsP.add(new JLabel());
-            SpellsP.get(i).setBorder(new LineBorder(Color.BLACK));
+            //SpellsP.get(i).setBorder(new LineBorder(Color.BLACK));
         }
 
         SpellsStats.setLayout(new GridLayout(1, 8, DIM_X_BETWEEN, DIM_Y_BETWEEN));
@@ -244,11 +244,11 @@ public class CharacterStatsPanel extends JPanel implements Constants, Observer {
     }
 
     public void addFoodStats() {
-        FoodStats.setBorder(new LineBorder(Color.RED));
+        //FoodStats.setBorder(new LineBorder(Color.RED));
 
         for (int i = 0; i < MaxFood; i++) {
             FoodP.add(new JLabel());
-            FoodP.get(i).setBorder(new LineBorder(Color.BLACK));
+            //FoodP.get(i).setBorder(new LineBorder(Color.BLACK));
         }
 
         FoodStats.setLayout(new GridLayout(1, MaxFood, DIM_X_BETWEEN, DIM_Y_BETWEEN));
